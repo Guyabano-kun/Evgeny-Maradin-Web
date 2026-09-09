@@ -1,0 +1,94 @@
+name: ChatGPT Web Writer
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  write:
+    if: github.event.issue.user.login == 'Guyabano-kun' && startsWith(github.event.issue.title, 'CHATGPT_WRITE')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract file data
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 <<'PY'
+          import os
+          import re
+          import base64
+          from pathlib import Path
+
+          body = os.environ.get("ISSUE_BODY", "")
+
+          path_match = re.search(
+              r'^PATH:\s*(web/[^\r\n]+)\s*$',
+              body,
+              re.MULTILINE
+          )
+
+          content_match = re.search(
+              r'^CONTENT_BASE64:\s*([A-Za-z0-9+/=\r\n]+)$',
+              body,
+              re.MULTILINE
+          )
+
+          if not path_match:
+              raise SystemExit("ERROR: PATH is missing or outside web/")
+
+          if not content_match:
+              raise SystemExit("ERROR: CONTENT_BASE64 is missing")
+
+          path = path_match.group(1).strip()
+
+          if not path.startswith("web/"):
+              raise SystemExit("ERROR: Only web/ paths are allowed")
+
+          if ".." in Path(path).parts:
+              raise SystemExit("ERROR: Parent traversal is not allowed")
+
+          encoded = "".join(content_match.group(1).split())
+
+          try:
+              content = base64.b64decode(encoded, validate=True)
+          except Exception as e:
+              raise SystemExit(f"ERROR: Invalid base64: {e}")
+
+          target = Path(path)
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_bytes(content)
+
+          print(f"Writing: {target}")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "ChatGPT Web Writer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add web/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update website from ChatGPT"
+          git push
+
+      - name: Close issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue close "$ISSUE_NUMBER" \
+            --repo "$GITHUB_REPOSITORY" \
+            --comment "Website update applied successfully."
