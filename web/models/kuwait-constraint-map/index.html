@@ -276,6 +276,14 @@
   /* CHEVRON */
   .chevron { position: absolute; right: 14px; top: 18px; color: var(--muted); font-size: 11px; transition: transform 0.18s; }
   .layer.active .chevron { transform: rotate(180deg); }
+  /* narrow screens: let cards shrink to the viewport */
+  .grid > *, .migration-block > * { min-width: 0; }
+  @media (max-width: 560px) {
+    .layer { padding: 16px 14px 16px 54px; }
+    .layer-num { left: 14px; top: 16px; }
+    .layer-header { flex-wrap: wrap; gap: 4px 12px; }
+    .layer-kpi { white-space: normal; text-align: left; flex-shrink: 1; }
+  }
 </style>
 </head>
 <body>

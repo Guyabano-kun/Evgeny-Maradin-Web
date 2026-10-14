@@ -156,6 +156,11 @@ svg{display:block;width:100%;height:auto}
  .callout{padding:10px 12px;font-size:11px}
 }
 
+/* narrow screens: let grid cells shrink, stack 3-up cards */
+.hero>*,.grid2>*,.grid3>*,.cart>*{min-width:0}
+@media(max-width:420px){.grid3{grid-template-columns:1fr}.big{font-size:24px}}
+@media(max-width:340px){.item{grid-template-columns:24px 1fr}.item>:last-child{grid-column:2}}
+
 .ms.active{border-color:var(--oil);background:#15140f;box-shadow:inset 0 0 0 1px rgba(217,164,65,.18)}
 
 .chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
