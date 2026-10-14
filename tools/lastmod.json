@@ -1,0 +1,74 @@
+{
+ "https://evgeny-maradin.pages.dev/": {
+  "sha1": "dac1df7168b0a237c15c1970d094af84de99d2f6",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/about/": {
+  "sha1": "a50602adcb6f4cf8b51dcecd473337f5951b5b04",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/advisory/": {
+  "sha1": "4a87a33fb4968be7235ebd84a3290311cf46fa34",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/": {
+  "sha1": "854dd3bde73b0747c25057d661ecf64fb4f55b74",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/apg-pre-feed/": {
+  "sha1": "e5fcff4dbb7dfd379cebe8eae1bc7fec449799c6",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/bazhenov-appraisal/": {
+  "sha1": "c3308ec301650f042083f5b8f05bc847d1007cdc",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/epc-bid-analysis/": {
+  "sha1": "8c27c8a2fd50e87c861ad812b9fd78bdaf33ded6",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/minor-capex/": {
+  "sha1": "ed119b479d765847147e7e04be72116a496c3b32",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/portfolio-integration/": {
+  "sha1": "0ed49c47c6c62391292096252346a5e91c1a93c9",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/south-hub/": {
+  "sha1": "437b4f279aa1fac88bc7a41e1e0d85fc06e54775",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/water-injection/": {
+  "sha1": "74981abe3f2a30e40276e635e7c2eb1d92c35a94",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
+  "sha1": "7567ddb24221a873616cc5d36eb6f6f595af6e36",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/contact/": {
+  "sha1": "719df9b82185857db88e02b13e81d5157b8f6d8e",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/insights/": {
+  "sha1": "7d9c50404e4579f359c5d8dffff98697b643c766",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/insights/models/eor-constraint-migration/": {
+  "sha1": "54a43ffe383c53587ce6486502cba8d37b75075c",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/insights/models/kuwait-constraint-map/": {
+  "sha1": "2f2dc977462e80226eb90add9208add6fa313d1a",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/insights/models/kuwait-fields-map/": {
+  "sha1": "2c91d9110313c9e733edd483854a8cbf509ff4e7",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/insights/models/production-profile/": {
+  "sha1": "8515dcd1bc99872921112bf047fc3a972d033743",
+  "date": "2026-10-14"
+ }
+}
