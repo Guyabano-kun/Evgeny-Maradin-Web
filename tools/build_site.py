@@ -131,6 +131,18 @@ CASES = [
          action=["Framed each problem against production, integrity and operating data before defining scope.", "Screened alternatives, including doing less: re-routing, re-use of existing equipment, phased scope.", "Used flow assurance and network analysis (PIPESIM, PETEX GAP) to size debottlenecking options.", "Applied competitive scoping and cost engineering, then took each concept to approval."],
          result="Debottlenecking and plant optimisation with up to 10% value uplift, integrity cost savings of up to 20%, and fast-track quick wins that raised Profitability Index by up to 25%.",
          insight="shopping-cart"),
+    dict(slug="bazhenov-appraisal", n="08", label="Shell JV · Unconventional", years="2012–2014",
+         title="Bazhenov Shale Appraisal – Early Production Facility",
+         teaser="Coordinated international technical contractors to deliver the early production facility design for an HPHT shale appraisal project on schedule.",
+         metric="$46M", metric_l="appraisal project<br>EPF design on schedule", big="EPF design package for a $46M Bazhenov HPHT shale appraisal project delivered on schedule, with KBR and Granherne as technical contractors.",
+         tags=["Unconventional", "HPHT", "Contractor Management"],
+         meta=[("Client", "Salym Petroleum Development (Shell JV)"), ("Period", "2012–2014"), ("Role", "Conceptual Design Engineer"), ("Scope", "Early Production Facility")],
+         context="Appraisal of the Bazhenov formation, a high-pressure, high-temperature shale in Western Siberia, at a Shell JV asset. Appraisal wells needed an early production facility to handle test production while the resource was still being understood.",
+         role="Conceptual Design Engineer responsible for the surface facilities scope: coordination of KBR and Granherne as technical contractors and delivery of the EPF design package.",
+         challenge="HPHT conditions and an unconventional reservoir with limited operating history meant the facility had to be designed around uncertain fluid and flow behaviour. Two international contractors had to work to one scope and one schedule.",
+         action=["Coordinated KBR and Granherne as technical contractors on the early production facility design.", "Aligned the facility scope with the appraisal programme and the operating requirements of the asset.", "Managed contractor interfaces, deliverables and schedule through to the final design package."],
+         result="EPF design package delivered on schedule for the $46M appraisal project.",
+         insight="kazakhstan"),
 ]
 
 
@@ -162,7 +174,7 @@ for i, c in enumerate(CASES):
 
 page("cases", "Cases", "Selected cases in concept development, brownfield optimisation and project decision support.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Selected cases</p><h1 class="page">Evidence,<br>not job titles.</h1>
-<p class="lead">Seven cases from concept development, brownfield optimisation and project decision support. Each one: the context, my role, what was hard, what I did and what changed.</p></div></section>
+<p class="lead">Eight cases from concept development, brownfield optimisation and project decision support. Each one: the context, my role, what was hard, what I did and what changed.</p></div></section>
 <section class="section tight" style="border-top:0"><div class="container"><div class="case-grid">{"".join(case_card(c, True) for c in CASES)}</div></div></section>''',
      "/cases/")
 
@@ -344,7 +356,7 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="metrics"><div><b>18+</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
-<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All seven cases →</a></p></div>
+<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All eight cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c) for c in featured)}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Engineering scope</p><h2>Where I create value.</h2><div class="expertise">
 <div><b>01</b><h3>Concept Development</h3><p>FEL1–FEL2, Pre-FEED, option screening, concept selection and investment readiness.</p></div>
