@@ -246,3 +246,9 @@ footer a:hover{color:var(--bg)}
 .facts .doc:hover span{color:var(--accent)}
 .facts .doc-note{margin-top:10px;font-size:12px;color:var(--muted)}
 .facts .doc-note a{text-decoration:underline}
+
+/* home: trust strip */
+.trust{border-top:1px solid var(--line);padding:22px 0}
+.trust-row{display:flex;flex-wrap:wrap;gap:14px 48px}
+.trust-row span{display:block;font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.trust-row b{font-size:15px;font-weight:700}
