@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuwait 4 MMbpd - System Constraint Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0d1117;
+    --bg2:      #131920;
+    --bg3:      #1a2330;
+    --border:   #263040;
+    --text:     #c8d6e5;
+    --muted:    #5a7a9a;
+    --accent:   #e8a830;
+    --l1:       #e8a830;
+    --l2:       #4ab8d4;
+    --l3:       #a070d0;
+    --l4:       #d45a4a;
+    --l5:       #4aaa6a;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+  }
+
+  .header {
+    max-width: 920px;
+    margin: 0 auto 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .main-title {
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #e8eef4;
+    margin-bottom: 8px;
+  }
+  .main-title span { color: var(--accent); }
+  .subtitle { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  /* LEGEND */
+  .legend {
+    max-width: 920px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--muted); font-family: var(--mono); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* GRID */
+  .grid {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
+    position: relative;
+  }
+  .grid::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--l1) 0%, var(--l2) 25%, var(--l3) 50%, var(--l4) 75%, var(--l5) 100%);
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  /* LAYER CARD */
+  .layer {
+    position: relative;
+    z-index: 1;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: 4px;
+    padding: 18px 18px 18px 66px;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s;
+    user-select: none;
+  }
+  .layer:hover { background: var(--bg3); }
+  .layer.active { background: var(--bg3); border-color: var(--layer-color, var(--border)); }
+
+  .layer-1 { --layer-color: var(--l1); border-left-color: var(--l1); }
+  .layer-2 { --layer-color: var(--l2); border-left-color: var(--l2); }
+  .layer-3 { --layer-color: var(--l3); border-left-color: var(--l3); }
+  .layer-4 { --layer-color: var(--l4); border-left-color: var(--l4); }
+  .layer-5 { --layer-color: var(--l5); border-left-color: var(--l5); }
+
+  .layer-num {
+    position: absolute;
+    left: 18px; top: 18px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--layer-color, var(--border));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--bg);
+  }
+  .layer-num.cross {
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid var(--layer-color);
+    color: var(--layer-color);
+  }
+
+  .layer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+  }
+  .layer-badge {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    color: var(--bg);
+    background: var(--layer-color);
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+  .layer-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    margin-top: 4px;
+  }
+  .layer-title { font-size: 14px; font-weight: 600; color: #dce8f4; }
+  .layer-kpi {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--layer-color);
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .layer-summary { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  /* EXPANDED DETAIL */
+  .layer-detail { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .layer.active .layer-detail { display: block; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  @media(max-width: 560px) { .detail-grid { grid-template-columns: 1fr; } }
+
+  .detail-box { background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 10px; }
+  .detail-box-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
+  .detail-box-val { font-family: var(--mono); font-size: 17px; font-weight: 600; color: var(--layer-color); line-height: 1; margin-bottom: 4px; }
+  .detail-box-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  .constraint-tag {
+    display: inline-block;
+    background: color-mix(in srgb, var(--layer-color) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--layer-color) 40%, transparent);
+    color: var(--layer-color);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-right: 5px; margin-bottom: 4px;
+  }
+  .constraint-tags { margin-bottom: 10px; }
+
+  .case-box {
+    background: color-mix(in srgb, var(--layer-color) 8%, var(--bg));
+    border-left: 2px solid var(--layer-color);
+    padding: 10px 12px;
+    border-radius: 0 3px 3px 0;
+    font-size: 11.5px; color: var(--text); line-height: 1.55;
+  }
+  .case-box strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    color: var(--layer-color);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  /* MIGRATION BLOCK */
+  .migration-block { max-width: 920px; margin: 3px auto 0; position: relative; z-index: 1; }
+  .migration-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px 16px 66px;
+    position: relative;
+  }
+  .migration-icon {
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    width: 28px; height: 28px;
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .migration-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .migration-text strong { color: var(--accent); }
+
+  /* CHAIN EQUATION */
+  .equation { max-width: 920px; margin: 32px auto 0; }
+  .eq-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 14px; text-align: center;
+  }
+  .eq-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 6px;
+  }
+  .eq-term {
+    font-family: var(--mono);
+    font-size: clamp(9px, 1.8vw, 12px);
+    padding: 7px 12px; border-radius: 3px; border: 1px solid; white-space: nowrap;
+  }
+  .eq-t1 { background: color-mix(in srgb, var(--l1) 12%, transparent); border-color: var(--l1); color: var(--l1); }
+  .eq-t2 { background: color-mix(in srgb, var(--l2) 12%, transparent); border-color: var(--l2); color: var(--l2); }
+  .eq-ta { background: color-mix(in srgb, var(--l3) 12%, transparent); border-color: var(--l3); color: var(--l3); }
+  .eq-t3 { background: color-mix(in srgb, var(--l4) 12%, transparent); border-color: var(--l4); color: var(--l4); }
+  .eq-t4 { background: color-mix(in srgb, var(--l5) 12%, transparent); border-color: var(--l5); color: var(--l5); }
+  .eq-arrow { color: var(--muted); font-size: 16px; font-weight: 300; }
+  .eq-neq { color: var(--muted); font-size: 20px; font-weight: 300; opacity: 0.7; }
+  .eq-result {
+    font-family: var(--mono); font-size: clamp(10px, 2vw, 13px);
+    padding: 7px 14px; border-radius: 3px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid var(--accent); color: var(--accent);
+  }
+  .eq-note {
+    font-family: var(--mono); font-size: 10px; color: var(--muted);
+    text-align: center; margin-top: 10px; font-style: italic;
+  }
+
+  /* FOOTER */
+  .footer {
+    max-width: 920px; margin: 32px auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+  .footer-text { font-family: var(--mono); font-size: 9.5px; color: var(--muted); }
+
+  /* CHEVRON */
+  .chevron { position: absolute; right: 14px; top: 18px; color: var(--muted); font-size: 11px; transition: transform 0.18s; }
+  .layer.active .chevron { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Kuwait upstream · System Constraint Analysis · FEL perspective · KPC Annual Report 2025/26 · Aug 2026</div>
+  <h1 class="main-title">Kuwait 4 MMbpd: <span>Where Is the Actual Constraint?</span></h1>
+  <p class="subtitle">A drilling target is not a development concept. The binding constraint migrates. Click each layer to expand.</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--l1)"></div>L1 · Reservoir & Wells - key uncertainty</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--l2)"></div>L2 · Surface & Water - emerging execution constraint</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--l3)"></div>L3 · Gas & Midstream - demonstrated local constraint</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--l4)"></div>L4 · External System - system-level exposure</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--l5)"></div>L✕ · Execution Capacity - cross-cutting</div>
+</div>
+
+<div class="grid">
+
+  <!-- L1 -->
+  <div class="layer layer-1" onclick="toggle(this)">
+    <div class="layer-num">1</div>
+    <span class="chevron">▼</span>
+    <div class="layer-header">
+      <div>
+        <span class="layer-badge">Key uncertainty</span>
+        <div class="layer-label">Reservoir & Wells</div>
+        <div class="layer-title">Can the subsurface deliver - and recover?</div>
+      </div>
+      <div class="layer-kpi">751 new wells<br>FY2025/26</div>
+    </div>
+    <div class="layer-summary">
+      KOC achieved 2.72 MMbpd for the second consecutive year. FY2025/26: 751 new oil wells + 1,175 workovers.
+      The execution is not the problem. The new uncertainty is restart behaviour of mature waterflooded fields after prolonged shut-in.
+      If resolved: water handling becomes the next constraint.
+    </div>
+    <div class="layer-detail">
+      <div class="constraint-tags">
+        <span class="constraint-tag">Pressure maintenance</span>
+        <span class="constraint-tag">Shut-in recovery profile</span>
+        <span class="constraint-tag">Water injection dependency</span>
+        <span class="constraint-tag">Jurassic drilling</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <div class="detail-box-label">FY2025/26 crude output</div>
+          <div class="detail-box-val">2.72 MMbpd</div>
+          <div class="detail-box-desc">2nd consecutive year meeting annual target. 751 new oil wells + 1,175 workovers. Source: KPC AR 2025/26.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Gap to target</div>
+          <div class="detail-box-val">1.28 MMbpd</div>
+          <div class="detail-box-desc">Required additional capacity to reach 4.0 MMbpd by 2035. Cannot be created by drilling alone - every layer must move in parallel.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Gas: non-assoc. production</div>
+          <div class="detail-box-val">Below target</div>
+          <div class="detail-box-desc">KPC: variance "primarily attributed to external constraints beyond operational control." Record peak 29 Dec 2025 showed physical capability exists.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Restart uncertainty</div>
+          <div class="detail-box-val">⚠ New risk</div>
+          <div class="detail-box-desc">KPC: 80% of stopped production recoverable in 1 month, remainder in 3–4 months. For mature waterfloods, restart time ≠ reservoir pressure recovery.</div>
+        </div>
+      </div>
+      <div class="case-box">
+        <strong>Offshore: constraint migration begins at discovery - Jazza field FY2025/26</strong>
+        Jazza Field: significant gas and condensate potential from the Minagish formation - Kuwait's first offshore gas discovery from this reservoir.
+        Jurassic wells drilled at Julaia and Ruqwa offshore. KPC "Seef" project: inviting IOCs to develop Nokhatha, Jazah, Julaia via service contracts.
+        Each new offshore barrel requires gas handling, marine facilities, processing and export integration before it becomes available production.
+        Constraint migration can begin at discovery - not only at FEED.
+      </div>
+    </div>
+  </div>
+
+  <!-- L2 -->
+  <div class="layer layer-2" onclick="toggle(this)">
+    <div class="layer-num">2</div>
+    <span class="chevron">▼</span>
+    <div class="layer-header">
+      <div>
+        <span class="layer-badge">Emerging execution constraint</span>
+        <div class="layer-label">Surface Facilities & Water Handling</div>
+        <div class="layer-title">Can facilities grow as fast as the reservoir programme?</div>
+      </div>
+      <div class="layer-kpi">6 active WIP<br>programmes</div>
+    </div>
+    <div class="layer-summary">
+      Simultaneous construction across all producing zones. The design is known. The capital exists.
+      But KPC reports limited international contractor interest in water-management projects - an emerging execution constraint on the delivery pace.
+      If resolved: gas processing becomes the next constraint.
+    </div>
+    <div class="layer-detail">
+      <div class="constraint-tags">
+        <span class="constraint-tag">Produced water handling</span>
+        <span class="constraint-tag">Separation capacity</span>
+        <span class="constraint-tag">Contractor availability</span>
+        <span class="constraint-tag">Multi-zone simultaneous build</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <div class="detail-box-label">Active projects - East Kuwait</div>
+          <div class="detail-box-val">GC-1 / WIP-1</div>
+          <div class="detail-box-desc">Oil Separation Gathering Center-1 + Water Injection Station-1. Under construction FY2025/26.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Active projects - South Kuwait</div>
+          <div class="detail-box-val">GC-3 / WIP-3/4</div>
+          <div class="detail-box-desc">GC-3 + WIP-3 (South Kuwait). WIP-4 (South Kuwait). Concurrent with North & West Kuwait programme.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Active - North & West Kuwait</div>
+          <div class="detail-box-val">GC-25 / GC-30</div>
+          <div class="detail-box-desc">Separation Facility GC-25 + WIP GC-30. New water injection networks in Sabriya, Bahra, Rawdatain.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Execution risk signal</div>
+          <div class="detail-box-val">⚠ KPC flag</div>
+          <div class="detail-box-desc">"Limited interest shown by international contractors in water management projects" - KPC AR 2025/26. Engineering ≠ delivery. Capital ≠ capacity.</div>
+        </div>
+      </div>
+      <div class="case-box">
+        <strong>The water-oil chain - each link is a potential bottleneck</strong>
+        More oil → more produced water → more separation → more water injection for pressure maintenance → more power → more facilities → more CAPEX → more interfaces → more contractor demand.
+        The constraint does not live only in the reservoir. And when contractor markets tighten, the constraint is no longer purely technical - it is a delivery system constraint.
+      </div>
+    </div>
+  </div>
+
+  <!-- L3 -->
+  <div class="layer layer-3" onclick="toggle(this)">
+    <div class="layer-num">3</div>
+    <span class="chevron">▼</span>
+    <div class="layer-header">
+      <div>
+        <span class="layer-badge">Demonstrated local constraint</span>
+        <div class="layer-label">Gas & Midstream Infrastructure</div>
+        <div class="layer-title">Gas handling constrains oil - in two separate years.</div>
+      </div>
+      <div class="layer-kpi">245→270 kbpd<br>FY2024/25 · Khafji</div>
+    </div>
+    <div class="layer-summary">
+      FY2024/25: one missing 12" gas pipeline capped Khafji crude at 245 kbpd.
+      FY2025/26: acid-gas processing gaps in West Kuwait - same mechanism, different field.
+      Gas capacity and oil capacity are not independent variables.
+      If resolved: export route becomes the next constraint.
+    </div>
+    <div class="layer-detail">
+      <div class="constraint-tags">
+        <span class="constraint-tag">Acid-gas processing</span>
+        <span class="constraint-tag">Associated gas governance</span>
+        <span class="constraint-tag">Gas flaring rate</span>
+        <span class="constraint-tag">Offshore gas integration</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <div class="detail-box-label">Khafji case - FY2024/25</div>
+          <div class="detail-box-val">+25 kbpd</div>
+          <div class="detail-box-desc">12" gas export pipeline delay → crude capped at 245 kbpd. MoC: two HP lines via 30" pipe → +40 MMSCFD → crude 270 kbpd. Gas flaring −18 MMSCFD.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">West Kuwait - FY2025/26</div>
+          <div class="detail-box-val">Active study</div>
+          <div class="detail-box-desc">KOC: comprehensive study of acid-gas processing capacity constraints across gathering centres + gas networks → identified gaps constraining crude oil production.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Field trials launched</div>
+          <div class="detail-box-val">6 experiments</div>
+          <div class="detail-box-desc">West Kuwait Ops + GC-32. Target: increase crude production, reduce flaring, enhance gas processing efficiency. Same mechanism as Khafji - different geography.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Gas flaring rate FY2025/26</div>
+          <div class="detail-box-val">0.54%</div>
+          <div class="detail-box-desc">Maintained below 0.80% target despite 15-day AGRU shutdown at Mina Al-Ahmadi. West Kuwait is where the processing gap is most acute.</div>
+        </div>
+      </div>
+      <div class="case-box">
+        <strong>The mechanism - active in two consecutive years</strong>
+        FY2024/25 Khafji: gas export gap → oil production cap → MoC fix → constraint removed.
+        FY2025/26 West Kuwait: acid-gas processing gaps → crude production constrained → 6 field experiments launched.
+        This is not an isolated incident. Gas handling is a recurring constraint on oil production in Kuwait's associated-gas environment. The constraint migrates in geography, not in mechanism.
+      </div>
+    </div>
+  </div>
+
+  <!-- L4 -->
+  <div class="layer layer-4" onclick="toggle(this)">
+    <div class="layer-num">4</div>
+    <span class="chevron">▼</span>
+    <div class="layer-header">
+      <div>
+        <span class="layer-badge">System-level exposure</span>
+        <div class="layer-label">External System Constraints</div>
+        <div class="layer-title">Can produced and processed barrels reach the market?</div>
+      </div>
+      <div class="layer-kpi">2.6 MMbpd → 490 kbpd<br>peak 2026 disruption</div>
+    </div>
+    <div class="layer-summary">
+      Kuwait has no bypass pipeline around Hormuz. When export availability collapsed in 2026,
+      nameplate production capacity became irrelevant. Project Shaheen ($16bn) monetises the infrastructure between production and export. It does not create an alternative route around Hormuz.
+      KPC CEO: "biggest shock to Kuwait's oil sector since the Iraqi invasion of 1990."
+    </div>
+    <div class="layer-detail">
+      <div class="constraint-tags">
+        <span class="constraint-tag">Strait of Hormuz - no bypass</span>
+        <span class="constraint-tag">Nameplate ≠ exportable</span>
+        <span class="constraint-tag">Shaheen / Peregrine capital</span>
+        <span class="constraint-tag">Force majeure shut-in</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <div class="detail-box-label">Pre-war production</div>
+          <div class="detail-box-val">~2.6 MMbpd</div>
+          <div class="detail-box-desc">Jan 2026. Meeting OPEC+ quota. Facilities operational. Export route open. All four layers aligned.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">2026 trough</div>
+          <div class="detail-box-val">~490 kbpd</div>
+          <div class="detail-box-desc">Less than one-fifth of pre-war level. Reservoir intact. Facilities intact. Export availability - collapsed. Production capacity ≠ exportable production.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Project Shaheen / Peregrine</div>
+          <div class="detail-box-val">$16bn</div>
+          <div class="detail-box-desc">Signed Jul 2026. Blackstone/Brookfield/KKR 49% in JV. KOC retains 51% + full ownership/operational control. $7.85bn upfront for CAPEX. Does NOT create Hormuz bypass.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Kuwait bypass capacity</div>
+          <div class="detail-box-val">Zero</div>
+          <div class="detail-box-desc">Saudi Arabia: East-West Pipeline to Yanbu ~5–7 MMbpd. UAE: ADCO Pipeline to Fujairah ~1.8 MMbpd. Kuwait: 13 pipelines, 320 km - all routes terminate at Gulf terminals.</div>
+        </div>
+      </div>
+      <div class="case-box">
+        <strong>KPC FY2025/26: "biggest shock since the Iraqi invasion of 1990"</strong>
+        KWD 2.155 billion net profit despite Iranian attacks on refineries, tankers, production facilities and KPC infrastructure.
+        Force majeure clauses activated across contractual frameworks. Supply chains reoriented.
+        Non-associated gas production fell below annual target - "external constraints beyond operational control."
+        This layer can override all four engineering layers simultaneously. It belongs in every FEL Basis of Design.
+      </div>
+    </div>
+  </div>
+
+  <!-- L5 cross-cutting -->
+  <div class="layer layer-5" onclick="toggle(this)">
+    <div class="layer-num cross">✕</div>
+    <span class="chevron">▼</span>
+    <div class="layer-header">
+      <div>
+        <span class="layer-badge">Cross-cutting constraint</span>
+        <div class="layer-label">Execution Capacity</div>
+        <div class="layer-title">Can the industry deliver everything that the programme requires - simultaneously?</div>
+      </div>
+      <div class="layer-kpi">Affects all<br>4 layers</div>
+    </div>
+    <div class="layer-summary">
+      KOC is drilling at a 5-year high, building water systems in every zone, fixing gas processing and progressing offshore.
+      All at once. KPC flags limited contractor interest in water projects. The engineering solution is known.
+      The delivery capacity to execute it may not arrive at the required pace.
+    </div>
+    <div class="layer-detail">
+      <div class="constraint-tags">
+        <span class="constraint-tag">Contractor market tightness</span>
+        <span class="constraint-tag">Parallel programme execution</span>
+        <span class="constraint-tag">Schedule interaction risk</span>
+        <span class="constraint-tag">Supply chain resilience</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box">
+          <div class="detail-box-label">Simultaneous active programmes</div>
+          <div class="detail-box-val">All zones</div>
+          <div class="detail-box-desc">Drilling (751 wells), water injection (6+ facilities), separation (multiple GCs), gas processing (6 field trials), offshore (Jazza/Julaia/Ruqwa), Seef IOC programme.</div>
+        </div>
+        <div class="detail-box">
+          <div class="detail-box-label">Contractor signal - KPC AR 2025/26</div>
+          <div class="detail-box-val">⚠ Flagged</div>
+          <div class="detail-box-desc">"Limited interest shown by international contractors in water management projects" affects project delivery pace. Capital ≠ execution. Design ≠ delivery.</div>
+        </div>
+      </div>
+      <div class="case-box">
+        <strong>The question a reservoir model cannot answer</strong>
+        Can the reservoir produce 4 MMbpd? - This is a subsurface question.
+        Can the industry deliver all required infrastructure at the rate the subsurface programme is creating production? - This is an execution system question.
+        These are different questions. A FEL-2 concept study that answers only the first is incomplete.
+        The Study Manager must ask: what becomes limiting when each discipline succeeds - and is there delivery capacity to resolve it in time?
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MIGRATION BLOCK -->
+<div class="migration-block">
+  <div class="migration-card">
+    <div class="migration-icon">⇅</div>
+    <div class="migration-text">
+      <strong>The constraint migration principle</strong> - Removing a bottleneck does not create capacity. It reveals the next constraint.
+      FY2024/25 Khafji: gas pipeline → oil cap → fixed in one quarter.
+      FY2025/26 West Kuwait: acid-gas processing → crude constrained → 6 field experiments launched.
+      Same mechanism. Different geography. The constraint migrates - in location, in layer, in type.
+      <strong>A system-level constraint map asks not only "where is the bottleneck?" but "where will it migrate when current investments are complete?"</strong>
+      This is the question a production target cannot answer - and a FEL study must.
+    </div>
+  </div>
+</div>
+
+<!-- EQUATION -->
+<div class="equation">
+  <div class="eq-label">The production chain - the most restrictive combination of constraints determines actual system output</div>
+  <div class="eq-row">
+    <div class="eq-term eq-t1">Reservoir potential</div>
+    <div class="eq-neq">→</div>
+    <div class="eq-term eq-t1">Sustainable production</div>
+    <div class="eq-neq">→</div>
+    <div class="eq-term eq-t2">Available production</div>
+    <div class="eq-neq">→</div>
+    <div class="eq-term eq-ta">Exportable production</div>
+    <div class="eq-neq">→</div>
+    <div class="eq-term eq-t3">Monetisable production</div>
+    <div class="eq-neq">→</div>
+    <div class="eq-result">Realisable value</div>
+  </div>
+  <div class="eq-note">The minimum is not fixed. It moves as constraints are removed, fields mature, infrastructure expands and external conditions change.</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-text">Evgeny Maradin · Senior Concept Engineer / Study Lead · enmaradin@gmail.com</div>
+  <div class="footer-text">Sources: KPC Annual Report 2025/26 · KOC Annual Report 2024/25 · Reuters · AGBI · Times Kuwait · EIA</div>
+</div>
+
+<script>
+  function toggle(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.layer').forEach(l => l.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+</script>
+</body>
+</html>

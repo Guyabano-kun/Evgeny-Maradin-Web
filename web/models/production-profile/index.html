@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Production Profile — Interactive Study Manager Model</title>
+<style>
+:root{
+  --bg:#081018;--panel:#0e1822;--panel2:#121f2b;--panel3:#172634;
+  --line:#263847;--line2:#365064;--text:#e7edf3;--muted:#91a2b2;--dim:#5d7081;
+  --oil:#d9a441;--oil2:#f2c76b;--red:#d96459;--blue:#4c9bd0;--cyan:#45b7c9;
+  --purple:#9b78c8;--green:#54b982;--white:#f5f7fa;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 70% -10%,#173047 0,#081018 42%);color:var(--text);font-family:var(--sans);line-height:1.5}
+button{font:inherit}
+.wrap{max-width:1220px;margin:auto;padding:30px 22px 70px}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:stretch;margin-bottom:22px}
+.hero-main,.hero-kpi{background:linear-gradient(145deg,#101d28,#0b141d);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hero-main{padding:30px 32px;position:relative}
+.eyebrow{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--oil);margin-bottom:12px}
+h1{font-size:clamp(32px,5vw,58px);line-height:.98;margin:0 0 16px;letter-spacing:-.04em}
+.lead{max-width:720px;color:#b7c4cf;font-size:16px}
+.badge{display:inline-flex;padding:6px 9px;border:1px solid #3b4e60;border-radius:999px;color:var(--muted);font:500 10px var(--mono);margin-top:18px}
+.hero-main:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-230px;bottom:-280px;border:1px solid rgba(217,164,65,.18);box-shadow:0 0 0 45px rgba(217,164,65,.025),0 0 0 90px rgba(217,164,65,.02)}
+.hero-kpi{padding:25px}
+.kpi-label{font:600 10px var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.kpi-big{font:700 52px var(--mono);letter-spacing:-.06em;margin:8px 0}
+.kpi-big span{color:var(--red)}
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.kpi-box{background:#0a121a;border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpi-box b{display:block;font:700 20px var(--mono);color:var(--oil2)}
+.kpi-box span{font-size:11px;color:var(--muted)}
+.nav{position:sticky;top:0;z-index:10;background:rgba(8,16,24,.88);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:12px;padding:6px;display:flex;gap:5px;overflow:auto;margin-bottom:22px}
+.nav button{white-space:nowrap;background:transparent;color:var(--muted);border:0;border-radius:8px;padding:10px 13px;cursor:pointer;font:600 10px var(--mono);letter-spacing:.04em}
+.nav button.active,.nav button:hover{background:var(--panel3);color:var(--oil2)}
+.section{background:rgba(13,24,34,.72);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:20px}
+.section-no{font:600 10px var(--mono);color:var(--oil);letter-spacing:.12em}
+h2{font-size:25px;line-height:1.1;margin:4px 0 0;letter-spacing:-.025em}
+.sub{font-size:13px;color:var(--muted);max-width:720px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px}
+.card h3{font-size:13px;margin:0 0 8px}
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.small{font-size:11px;color:var(--muted)}
+.big{font:700 30px var(--mono)}
+.chartbox{background:#09121a;border:1px solid var(--line);border-radius:12px;padding:14px}
+svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:12px}
+.legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:9px;height:9px;border-radius:50%}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+.ctrl{background:#0a131c;border:1px solid var(--line);color:var(--muted);padding:9px 12px;border-radius:8px;cursor:pointer;font:600 10px var(--mono)}
+.ctrl.active{border-color:var(--oil);color:var(--oil2);background:#17150f}
+.waterfall{display:grid;gap:7px}
+.wf{display:grid;grid-template-columns:150px 1fr 86px 72px;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;cursor:pointer}
+.wf:hover{background:var(--panel2)}
+.wf-name{font:600 11px var(--mono)}
+.track{height:27px;background:#071018;border-radius:4px;overflow:hidden;position:relative}
+.fill{height:100%;border-radius:4px;transition:width .5s}
+.val{text-align:right;font:700 13px var(--mono)}
+.delta{text-align:right;font:600 10px var(--mono);color:var(--red)}
+.detail{display:none;background:#0b151e;border:1px solid var(--line);border-top:0;border-radius:0 0 9px 9px;padding:16px;margin-top:-8px}
+.detail.open{display:block}
+.detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px}
+.metric{background:#081018;border:1px solid var(--line);border-radius:8px;padding:10px}
+.metric label{display:block;font:600 8px var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.metric b{font:700 15px var(--mono)}
+.mechanism{font-size:12px;color:#bdc9d4}
+.mechanism strong{color:var(--oil2)}
+.profile-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px;cursor:pointer}
+.pcard.active{border-color:var(--oil);box-shadow:inset 0 0 0 1px rgba(217,164,65,.25)}
+.pcard .pname{font:600 9px var(--mono);color:var(--muted);letter-spacing:.08em}
+.pcard .pval{font:700 25px var(--mono);margin:5px 0}
+.pcard .pnote{font-size:10px;color:var(--muted)}
+.timeline{position:relative;padding:28px 0 10px}
+.timeline-axis{height:1px;background:var(--line);position:absolute;left:0;right:0;top:55px}
+.milestones{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;position:relative}
+.mile{position:relative;text-align:center}
+.mile .dotm{width:12px;height:12px;border-radius:50%;margin:20px auto 9px;border:3px solid var(--panel);box-shadow:0 0 0 1px var(--line)}
+.mile strong{display:block;font:700 10px var(--mono)}
+.mile span{font-size:9px;color:var(--muted);display:block;margin-top:3px}
+.mile.oil .dotm{background:var(--oil)}
+.mile.water .dotm{background:var(--blue)}
+.mile.gas .dotm{background:var(--purple)}
+.mile.export .dotm{background:var(--cyan)}
+.heat{display:grid;grid-template-columns:150px repeat(8,1fr);gap:2px;background:#2a3d4d;border:1px solid #2a3d4d}
+.heat>div{background:#1a2836;min-height:48px;padding:9px;font-size:10px}
+.heat .hd{font:600 9px var(--mono);color:var(--muted);text-align:center}
+.heat .rowhead{font:600 10px var(--mono);color:#cbd5de}
+.cell{position:relative;text-align:center;font:700 10px var(--mono)}
+.cell.ok{background:rgba(54,185,130,.18);color:#5ed4a0}
+.cell.tight{background:rgba(120,200,100,.22);color:#a0d890}
+.cell.warn{background:rgba(240,180,40,.38);color:#ffd050;border-left:3px solid rgba(240,180,40,.6)}
+.cell.bind{background:rgba(220,70,60,.50);color:#ff9e94;border-left:3px solid rgba(220,70,60,.8);font-weight:800}
+.cell span{display:block;font-size:8px;color:var(--muted);font-weight:500;margin-top:2px}
+.cart{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.item{display:grid;grid-template-columns:34px 1fr auto;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.check{width:26px;height:26px;border:1px solid var(--line2);border-radius:7px;display:grid;place-items:center;color:var(--green);font:700 13px var(--mono)}
+.item b{font-size:12px}
+.item span{display:block;font-size:10px;color:var(--muted)}
+.price{font:700 12px var(--mono);text-align:right}
+.range{width:100%;accent-color:var(--oil)}
+.slider-row{display:grid;grid-template-columns:130px 1fr 80px;align-items:center;gap:10px;margin:12px 0}
+.slider-row label{font:600 10px var(--mono);color:var(--muted)}
+.slider-row output{font:700 11px var(--mono);text-align:right;color:var(--oil2)}
+.callout{border-left:3px solid var(--oil);background:#15140f;padding:14px 16px;border-radius:0 9px 9px 0;font-size:12px;margin-top:14px}
+.callout strong{color:var(--oil2)}
+.method{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.ms{background:var(--panel);border:1px solid var(--line);padding:14px 11px;border-radius:9px;min-height:125px}
+.ms .n{font:700 11px var(--mono);color:var(--oil);margin-bottom:10px}
+.ms b{font-size:12px;display:block;margin-bottom:6px}
+.ms p{font-size:10px;color:var(--muted);margin:0}
+.footer{padding-top:12px;color:var(--dim);font:9px var(--mono);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.note{font-size:10px;color:var(--dim);margin-top:14px;line-height:1.6}
+@media(max-width:900px){
+ .hero,.grid2,.cart{grid-template-columns:1fr}
+ .profile-cards{grid-template-columns:1fr 1fr}
+ .method{grid-template-columns:1fr 1fr}
+ .heat{overflow:auto;min-width:720px}
+ .heat-wrap{overflow:auto}
+ .slider-row{grid-template-columns:100px 1fr 70px}
+}
+@media(max-width:650px){
+ .wrap{padding:14px 10px 40px}
+ .section{padding:14px 12px}
+ .hero-main{padding:20px 16px}
+ .hero-kpi{padding:16px}
+ .kpi-row{grid-template-columns:1fr 1fr}
+ .kpi-big{font-size:38px}
+ .wf{grid-template-columns:90px 1fr 58px;padding:7px 8px;gap:6px}
+ .wf .delta{display:none}
+ .wf-name{font-size:9px}
+ .detail-grid{grid-template-columns:1fr 1fr}
+ .profile-cards{grid-template-columns:1fr}
+ .method{grid-template-columns:1fr}
+ .slider-row{grid-template-columns:1fr 1fr;gap:6px}
+ .slider-row label{grid-column:1/3}
+ .slider-row output{text-align:left}
+ h1{font-size:28px}
+ h2{font-size:20px}
+ .sub{font-size:11px}
+ .controls{gap:5px}
+ .ctrl{padding:7px 9px;font-size:9px}
+ .nav button{padding:8px 10px;font-size:9px}
+ .item{grid-template-columns:28px 1fr auto;gap:8px;padding:9px 0}
+ .legend{gap:10px}
+ .callout{padding:10px 12px;font-size:11px}
+}
+
+.ms.active{border-color:var(--oil);background:#15140f;box-shadow:inset 0 0 0 1px rgba(217,164,65,.18)}
+
+.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.chart-legend span{font-size:10px;color:var(--muted)}
+.profile-metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.profile-metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.profile-metrics-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="hero">
+  <div class="hero-main">
+    <div class="eyebrow">Interactive companion · Study / FEL · Illustrative scenario</div>
+    <h1>What has to be true for every barrel on the curve to exist?</h1>
+    <p class="lead">A production profile is not just a reservoir forecast. It is a time-phased commitment to the wells, facilities, utilities, capacity, shutdown windows, capital and execution required to convert reservoir potential into deliverable barrels.</p>
+    <div class="badge">Illustrative asset · 45,000 → 60,000 bopd · values from the accompanying article</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="kpi-label">Profile submitted</div>
+    <div class="kpi-big"><span id="heroTarget">60,000</span> <span>→</span></div>
+    <div class="small mono">bopd reservoir case</div>
+    <div class="kpi-row">
+      <div class="kpi-box"><b id="heroSurface">46k</b><span>surface-constrained plateau</span></div>
+      <div class="kpi-box"><b id="heroAverage">~42k</b><span>expected average production</span></div>
+      <div class="kpi-box"><b id="heroGap">−30%</b><span>illustrative gap to target</span></div>
+      <div class="kpi-box"><b>6</b><span>conversion steps</span></div>
+    </div>
+  </div>
+</section>
+
+<nav class="nav" id="nav">
+  <button class="active" data-target="overview">01 · PROFILE</button>
+  <button data-target="constraints">02 · CONSTRAINT MAP</button>
+  <button data-target="profiles">03 · CURVES</button>
+  <button data-target="basket">04 · SHOPPING CART</button>
+  <button data-target="sync">05 · SYNCHRONISATION</button>
+  <button data-target="method">06 · STUDY MANAGER</button>
+</nav>
+
+
+<section class="section" id="overview">
+  <div class="section-head">
+    <div><div class="section-no">01 / PROFILE</div><h2>One target. Eight physical tests.</h2></div>
+    <div class="sub">The profile starts with reservoir potential, then gets filtered by the systems that have to carry the barrels.</div>
+  </div>
+
+  <div class="controls" id="profileControls">
+    <button class="ctrl active" data-mode="submitted">SUBMITTED CASE</button>
+    <button class="ctrl" data-mode="deliverable">DELIVERABLE CASE</button>
+    <button class="ctrl" data-mode="full">FULL SYSTEM POTENTIAL</button>
+  </div>
+
+  <div class="chartbox"><svg id="barChart" width="980" height="330" viewBox="0 0 980 330" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--oil)"></i>reservoir / wells</span>
+    <span><i class="dot" style="background:var(--blue)"></i>separation / water</span>
+    <span><i class="dot" style="background:var(--purple)"></i>gas</span>
+    <span><i class="dot" style="background:var(--cyan)"></i>gathering / export</span>
+    <span><i class="dot" style="background:var(--green)"></i>power</span>
+    <span><i class="dot" style="background:var(--red)"></i>availability</span>
+  </div>
+  <div class="callout" id="profileCallout"><strong>Submitted case:</strong> 60 kbopd is supported by the reservoir model, but the surface system does not yet prove that rate is executable.</div>
+</section>
+
+<section class="section" id="constraints">
+  <div class="section-head">
+    <div><div class="section-no">02 / CONSTRAINT MAP</div><h2>The bottleneck is a moving target</h2></div>
+    <div class="sub">Click any system. Then change water cut or availability to see the binding point move.</div>
+  </div>
+
+  <div class="waterfall" id="waterfall"></div>
+  <div id="constraintDetail" class="detail"></div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <div class="kpi-label">Current controls</div>
+      <div class="slider-row"><label>Target plateau</label><input id="targetSlider2" class="range" type="range" min="45" max="80" value="60"><output id="targetOut2">60 kbopd</output></div>
+      <div class="slider-row"><label>Availability</label><input id="availSlider2" class="range" type="range" min="75" max="98" value="90"><output id="availOut2">90%</output></div>
+      <div class="slider-row"><label>Water cut</label><input id="wcSlider2" class="range" type="range" min="75" max="95" value="82"><output id="wcOut2">82%</output></div>
+    </div>
+    <div class="card" id="constraintVerdict"></div>
+  </div>
+</section>
+
+<section class="section" id="profiles">
+  <div class="section-head">
+    <div><div class="section-no">03 / CURVES</div><h2>The curve is a stack of investment decisions</h2></div>
+    <div class="sub">Each additional production increment requires specific capacity. Select a curve to expose the investment package behind it.</div>
+  </div>
+  <div class="profile-cards" id="profileCards"></div>
+  <div class="chartbox" style="margin-top:14px"><svg id="profileChart" width="980" height="430" viewBox="0 0 980 430" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div class="profile-metrics-grid" id="profileMetrics" style="margin-top:12px"></div>
+</section>
+
+<section class="section" id="basket">
+  <div class="section-head">
+    <div><div class="section-no">04 / SHOPPING CART</div><h2>What are you actually buying?</h2></div>
+    <div class="sub">The basket changes when the target, water cut or availability changes. A higher curve is not free - and some purchases only create value after another purchase arrives.</div>
+  </div>
+  <div class="cart">
+    <div class="card" id="cartItems"></div>
+    <div class="card">
+      <div class="kpi-label">Dynamic scenario</div>
+      <div class="big" id="cartTotal">$0M</div>
+      <div class="small">illustrative incremental CAPEX required by the selected case</div>
+      <div class="slider-row"><label>Target plateau</label><input id="targetSlider" class="range" type="range" min="45" max="80" value="60" step="1"><output id="targetOut">60 kbopd</output></div>
+      <div class="slider-row"><label>Availability</label><input id="availSlider" class="range" type="range" min="75" max="98" value="90" step="1"><output id="availOut">90%</output></div>
+      <div class="slider-row"><label>Water cut</label><input id="wcSlider" class="range" type="range" min="75" max="95" value="82" step="1"><output id="wcOut">82%</output></div>
+      <div class="slider-row"><label>Illustrative decline</label><input id="declineSlider" class="range" type="range" min="0" max="8" value="2.5" step="0.5"><output id="declineOut">2.5%/yr</output></div>
+      <div class="callout" id="cartInsight"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sync">
+  <div class="section-head">
+    <div><div class="section-no">05 / SYNCHRONISATION</div><h2>Does the profile survive year by year?</h2></div>
+    <div class="sub">Oil is only one row. Water, gas, power, gathering, separation and export have to arrive before the production curve asks for them. A late system is not a schedule note - it is a discounted netback loss.</div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-axis"></div>
+    <div class="milestones">
+      <div class="mile oil"><div class="dotm"></div><strong>Y0</strong><span>45 kbopd<br>base</span></div>
+      <div class="mile oil"><div class="dotm"></div><strong>Y1</strong><span>well batch<br>+ ramp</span></div>
+      <div class="mile water"><div class="dotm"></div><strong>Y2</strong><span>water<br>expansion</span></div>
+      <div class="mile gas"><div class="dotm"></div><strong>Y3</strong><span>gas train<br>commission</span></div>
+      <div class="mile export"><div class="dotm"></div><strong>Y4</strong><span>gathering /<br>export</span></div>
+      <div class="mile oil"><div class="dotm"></div><strong>Y5</strong><span>plateau<br>window</span></div>
+      <div class="mile oil"><div class="dotm"></div><strong>Y6</strong><span>turnaround<br>cycle</span></div>
+    </div>
+  </div>
+
+  <div class="controls" id="syncControls">
+    <button class="ctrl active" data-sync="base">BASE</button>
+    <button class="ctrl" data-sync="water-late">WATER 12 MONTHS LATE</button>
+    <button class="ctrl" data-sync="gas-late">GAS 12 MONTHS LATE</button>
+    <button class="ctrl" data-sync="export-late">EXPORT 12 MONTHS LATE</button>
+  </div>
+
+  <div class="heat-wrap"><div class="heat" id="heatmap"></div></div>
+  <div class="callout" id="syncVerdict"><strong>Base schedule:</strong> supporting systems arrive before the oil profile asks for capacity. The constraint is removed in sequence.</div>
+
+  <div style="margin-top:16px">
+    <button class="ctrl" id="deferredToggle" style="width:auto">▸ SHOW DEFERRED BREAKDOWN</button>
+    <div id="deferredBreakdown" style="display:none;margin-top:12px">
+      <div class="slider-row" style="margin-bottom:8px">
+        <label>Planned share</label>
+        <input type="range" class="range" id="plannedShare" min="15" max="50" value="28">
+        <output id="plannedOut">28%</output>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="section-head">
+    <div><div class="section-no">06 / STUDY MANAGER</div><h2>Build the profile from conversion, not optimism</h2></div>
+    <div class="sub">Six steps, in dependency order: baseline → constraint sequence → windows → priced curves → deferred line → sync &amp; cost of delay. Click each for its review test, output and failure signal.</div>
+  </div>
+
+  <div class="method" id="methodSteps">
+    <div class="ms active" data-step="0"><div class="n">01</div><b>Conversion baseline</b><p>Actual uptime, deferred production and spare capacity by system.</p></div>
+    <div class="ms" data-step="1"><div class="n">02</div><b>Constraint sequence</b><p>Name the constraint at each horizon - and what replaces it.</p></div>
+    <div class="ms" data-step="2"><div class="n">03</div><b>Execution windows first</b><p>Turnarounds, tie-ins and interventions before any curve is drawn.</p></div>
+    <div class="ms" data-step="3"><div class="n">04</div><b>Priced curves</b><p>Base, +A, +A+B. Every increment carries a cost and a date.</p></div>
+    <div class="ms" data-step="4"><div class="n">05</div><b>Deferred as a line</b><p>Split by cause and owner - never hidden in uptime.</p></div>
+    <div class="ms" data-step="5"><div class="n">06</div><b>Sync + cost of delay</b><p>Year-by-year support, with a costed consequence for lateness.</p></div>
+  </div>
+
+  <div class="card" id="methodDetail" style="margin-top:12px"></div>
+</section>
+
+<div class="note">Illustrative scenario only. Capacities calibrated to a typical 60 kbopd Middle East brownfield asset. Source assumptions documented in FDM methodology. This is a decision-logic demonstrator, not a field-specific model. Asset-specific calibration requires the FDM engineering backend.</div>
+<div class="note" style="margin-top:6px">Economics: Illustrative netback $<span id="footerNetback"></span>/bbl (oil price $70 - $4 differential, 55% gov take, $8/bbl variable OPEX). Used for Cost of Delay and Shopping Cart payback. Not a valuation.</div>
+<div class="footer"><span>Evgeny Maradin · enmaradin@gmail.com · Concept Development / FEL | Upstream Oil & Gas</span><span>Interactive companion · Production profile v15</span></div>
+</div>
+
+
+<script>
+const colors={oil:"#d9a441",water:"#4c9bd0",gas:"#9b78c8",export:"#45b7c9",avail:"#d96459",power:"#54b982",gather:"#3b9b9b",grid:"#263847",muted:"#91a2b2",dim:"#5d7081"};
+const $=id=>document.getElementById(id);
+
+let overviewMode="submitted";
+const base={
+ target:60, availability:90, waterCut:82,
+ systems:{
+  "Reservoir / wells":{cap:60,c:colors.oil},
+  "Separation":{cap:50,c:colors.water},
+  "Water handling":{cap:46,c:colors.water},
+  "Gas compression":{cap:48,c:colors.gas},
+  "Power":{cap:52,c:colors.power},
+  "Gathering":{cap:54,c:colors.gather},
+  "Export":{cap:55,c:colors.export}
+ }
+};
+
+// Physical capacity parameters (the ENGINEERING quantities that investment
+// actually changes). Base values are calibrated so that at 82% WC the oil
+// ceilings equal the v17 design points (water 46, sep 50, gath 54, power 52).
+// Actions in the Action Library modify THESE parameters, and the oil ceiling
+// is then recalculated by the same formula - never assigned directly.
+const PHYS_BASE = {
+  wells:      56,                    // well/rig deliverability, kbopd (WC-independent)
+  Q_water:    46 * 0.82 / (1-0.82),  // produced-water handling, kbwpd  (→46 oil @82%)
+  Q_sep:      50 / (1-0.82),         // separator gross-liquid, kblpd   (→50 oil @82%)
+  Q_gath:     54 / (1-0.82),         // flowline gross-liquid, kblpd    (→54 oil @82%)
+  installedMW: null,                 // set below once liftPower is defined
+  exportCap:  55,                    // dry-oil export throughput, kbopd (WC-independent)
+  gas:        48                     // gas handling ceiling, kbopd (illustrative; GOR not simulated)
+};
+
+function effectiveCaps(target,wc,avail,phys){
+  // Independent physical constraint functions (illustrative but causal).
+  // Each subsystem has its OWN formula. No shared multiplier.
+  // `phys` (optional) overrides physical capacity parameters (from investments).
+  // The oil ceiling is ALWAYS recalculated from the physical parameter by the
+  // same formula used in the base case - actions never set an oil ceiling directly.
+  const P = Object.assign({}, PHYS_BASE, phys||{});
+  const WC=Math.min(0.96,Math.max(0.70,wc/100));
+
+  // WELLS / RIG: deliverability ceiling, independent of WC.
+  const wells = P.wells;
+
+  // WATER HANDLING: Q_oil = Q_water_cap * (1-WC)/WC.
+  const water = P.Q_water * (1 - WC) / WC;
+
+  // SEPARATION: Q_oil = Q_liquid_cap * (1-WC).
+  const separation = P.Q_sep * (1 - WC);
+
+  // GATHERING: Q_oil = Q_flowline_cap * (1-WC).
+  const gathering = P.Q_gath * (1 - WC);
+
+  // POWER: inversion of liftPower(). Oil rate at which liftPower = installed MW.
+  const installedMW = (P.installedMW!=null)?P.installedMW:liftPower(52, 82);
+  let pLo=0, pHi=120;
+  for(let i=0;i<24;i++){
+    const mid=(pLo+pHi)/2;
+    if(liftPower(mid,wc)>installedMW) pHi=mid; else pLo=mid;
+  }
+  const power = (pLo+pHi)/2;
+
+  // EXPORT: fixed dry-oil pipeline capacity, independent of WC.
+  const exportCap = P.exportCap;
+
+  // GAS: fixed compression capacity (illustrative; GOR not simulated).
+  const gas = P.gas;
+
+  const instantaneous=Math.min(target,wells,separation,water,gas,power,gathering,exportCap);
+  const expectedAvg = instantaneous*avail/100;
+  return {wells,separation,water,gas,power,gathering,export:exportCap,instantaneous,expectedAvg};
+}
+
+// ── Illustrative economics for Cost of Delay (NOT a valuation) ──────────
+// A delayed barrel is NOT lost revenue. It is a lost/deferred NETBACK:
+//   netback = (oil price − differential) × (1 − royalty − tax) − variable OPEX
+// The number below is a transparent illustrative netback per barrel, so the
+// delay block returns a defensible cash-flow impact, not gross revenue.
+const ECON={
+  price:70,        // $/bbl illustrative realised oil price
+  differential:4,  // $/bbl quality/location differential
+  govTake:0.55,    // combined royalty + tax fraction (illustrative fiscal)
+  varOpex:8,       // $/bbl variable OPEX avoided on a deferred barrel
+  discount:0.10    // annual discount rate for NPV of delay
+};
+// Netback actually realised per deferred barrel, in $/bbl.
+ECON.netback = (ECON.price-ECON.differential)*(1-ECON.govTake) - ECON.varOpex;
+// Convert a stream of monthly lost oil-rate points (kbopd) into a discounted
+// cash-flow impact ($M), sampled on the model's 3-month grid.
+function npvOfLostStream(points){
+  // points: array of {m, lostKbopd}. Sum discounted netback of deferred barrels.
+  let npv=0;
+  for(const p of points){
+    if(p.lostKbopd<=0) continue;
+    const days=91.3;                                  // ~3 months per grid step
+    const barrels=p.lostKbopd*1000*days;              // deferred barrels this step
+    const cash=barrels*ECON.netback/1e6;              // $M (undiscounted)
+    const years=p.m/12;
+    npv += cash/Math.pow(1+ECON.discount,years);      // discounted to t0
+  }
+  return npv;
+}
+
+// ── ESP / lift power model tied to WATER CUT (physically correct) ────────
+// This deliberately FIXES the classic FDM error where power tracks reservoir
+// pressure (falls over time). The physics is the opposite: as water cut rises,
+// the same OIL rate carries far more LIQUID, and as reservoir pressure declines
+// the pump must add more HEAD. Both push lift power UP, not down.
+//
+//   Q_liquid  = Q_oil / (1 - WC)              gross liquid the pumps must lift
+//   Head      = H0 + kΔP·(WC - WC0)           declining P_res ⇒ more lift head
+//   P_ESP     = Q_liq · Head · ρ · g / η      hydraulic power / pump efficiency
+//
+// Returned in MW-equivalent, illustrative constants, normalised so the 82%
+// reference sits near the middle of the demo range.
+const LIFT={ rho:1000, g:9.81, eta:0.55, H0:1500, kHead:2600, wc0:0.82 };
+function liftPower(oilKbopd, wc){
+  const WC=Math.min(0.95,Math.max(0.50,wc/100));
+  const qOil = oilKbopd*1000;                 // bopd
+  const qLiq = qOil/(1-WC);                    // bopd of gross liquid
+  const qLiq_m3s = qLiq*0.159/86400;           // m³/s
+  const head = LIFT.H0 + LIFT.kHead*Math.max(0,(WC-LIFT.wc0)); // m, rises with WC
+  const hydraulic = qLiq_m3s*head*LIFT.rho*LIFT.g;             // Watts
+  return hydraulic/LIFT.eta/1e6;               // MW
+}
+
+function drawBarChart(){
+ const s=$("barChart"),W=980,H=330,L=55,R=28,T=28,B=58;
+ const wc=+$("wcSlider")?.value||82, avail=+$("availSlider")?.value||90, target=+$("targetSlider")?.value||60;
+ const caps=effectiveCaps(target,wc,avail);
+ const rows=[
+  ["Reservoir",target,colors.oil],
+  ["Wells / Rig",caps.wells,colors.oil],
+  ["Separation",caps.separation,colors.water],
+  ["Water",caps.water,colors.water],
+  ["Gas",caps.gas,colors.gas],
+  ["Power",caps.power,colors.power],
+  ["Gathering",caps.gathering,colors.gather],
+  ["Export",caps.export,colors.export],
+  ["Expected avg",caps.expectedAvg,colors.avail]
+ ];
+ const max=Math.max(65000,target*1050), gap=10, bw=(W-L-R-gap*(rows.length-1))/rows.length;
+ let svg=`<rect width="${W}" height="${H}" fill="#09121a"/>`;
+ [0,15000,30000,45000,60000].forEach(v=>{
+  const y=T+(max-v)/max*(H-T-B);
+  svg+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="${colors.grid}"/>`;
+  svg+=`<text x="7" y="${y+4}" fill="${colors.muted}" font-size="10" font-family="monospace">${v/1000}k</text>`;
+ });
+ // Reference line driven by the Section-01 mode buttons
+ let refVal=null, refLabel="", refColor=colors.oil;
+ if(overviewMode==="submitted"){ refVal=target; refLabel="SUBMITTED CASE "+target.toFixed(0)+"k"; refColor=colors.oil; }
+ else if(overviewMode==="deliverable"){ refVal=caps.instantaneous; refLabel="DELIVERABLE "+caps.instantaneous.toFixed(1)+"k"; refColor=colors.avail; }
+ else if(overviewMode==="full"){ refVal=target; refLabel="FULL POTENTIAL "+target.toFixed(0)+"k"; refColor=colors.oil2; }
+ rows.forEach((r,i)=>{
+  const bh=r[1]*1000/max*(H-T-B),y=H-B-bh,x=L+i*(bw+gap);
+  const binding=Math.abs(r[1]-caps.instantaneous)<0.05 && i>1 && i<8;
+  // dim bars above the deliverable line to show they are unreachable in deliverable mode
+  let op = 0.85;
+  if(overviewMode==="deliverable" && r[1] > caps.instantaneous+0.05 && i>1) op=0.32;
+  if(binding) op=0.98;
+  svg+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="4" fill="${r[2]}" opacity="${op}"/>`;
+  if(binding) svg+=`<rect x="${x-2}" y="${y-2}" width="${bw+4}" height="${bh+4}" rx="5" fill="none" stroke="#f28b80" stroke-width="2"/>`;
+  svg+=`<text x="${x+bw/2}" y="${y-8}" text-anchor="middle" fill="#e7edf3" font-size="11" font-weight="700" font-family="monospace">${r[1].toFixed(1)}k</text>`;
+  svg+=`<text x="${x+bw/2}" y="${H-34}" text-anchor="middle" fill="${colors.muted}" font-size="8">${r[0]}</text>`;
+ });
+ // draw the reference line on top
+ if(refVal!==null){
+  const ry=T+(max-refVal*1000)/max*(H-T-B);
+  svg+=`<line x1="${L}" x2="${W-R}" y1="${ry}" y2="${ry}" stroke="${refColor}" stroke-width="1.6" stroke-dasharray="6 4" opacity="0.9"/>`;
+  svg+=`<text x="${L+4}" y="${ry-6}" fill="${refColor}" font-size="9" font-weight="700" font-family="monospace">${refLabel}</text>`;
+ }
+ svg+=`<text x="${W-R}" y="16" text-anchor="end" fill="${colors.dim}" font-size="9" font-family="monospace">EFFECTIVE OIL RATE CEILINGS · kbopd</text>`;
+ // ESP power annotation under the Power bar
+ const mwNow=liftPower(caps.instantaneous,wc);
+ const pwrBarX=L+5*(bw+gap);
+ svg+=`<text x="${pwrBarX+bw/2}" y="${H-22}" text-anchor="middle" fill="${colors.power}" font-size="8" font-weight="600" font-family="monospace">${mwNow.toFixed(1)} MW @ ${wc}%WC</text>`;
+ s.innerHTML=svg;
+}
+
+const systems=[
+ {name:"Reservoir",key:"reservoir",c:colors.oil,base:60,detail:[
+  ["Opportunity","60 kbopd","reservoir potential"],["Ramp","30 mo","batch delivery"],["Decline","illustrative","slider-controlled"],["Role","Defines upside","not the only constraint"]],text:"The reservoir defines the opportunity - the maximum oil rate geology can support. It is not the production forecast. Every barrel between this number and reality must be explained by the constraint chain below."},
+ {name:"Wells / Rig",key:"wells",c:colors.oil,base:56,detail:[
+  ["Active wells","illustrative","current drilling campaign"],["Ceiling","56 kbopd","well deliverability"],["WC dependency","None","wells produce whatever is there"],["Next action","Rig campaign","additional wells"]],text:"Well capacity converts reservoir potential into deliverability. At 56 kbopd the current well stock is not the binding constraint, but additional production targets beyond this require new wells and rig time."},
+ {name:"Separation",key:"separation",c:colors.water,base:50,detail:[
+  ["At 82% WC","250k","gross liquid at 45 kbopd"],["At 88% WC","500k","gross liquid at 60 kbopd"],["Effective ceiling","dynamic","moves with WC"],["Constraint","Surface","liquid handling"]],text:"Water cut changes the amount of gross liquid the facility must process. The same oil target can therefore require dramatically different separation and water-handling capacity."},
+ {name:"Water handling",key:"water",c:colors.water,base:46,detail:[
+  ["Current oil","45 kbopd","base production"],["Base limit","46 kbopd","illustrative"],["Water cut","82% → 92%","scenario slider"],["Next action","Expansion","CAPEX + lead time"]],text:"At mature water cuts, the water system can become the direct limiter on oil. Increasing the oil target without increasing water capacity creates an internally inconsistent profile."},
+ {name:"Gas compression",key:"gas",c:colors.gas,base:48,detail:[
+  ["Base ceiling","48 kbopd","illustrative oil-equivalent"],["Driver","Associated gas","rises with oil"],["Late trigger","High rate / WC","capacity erosion"],["Next action","Compression","long lead"]],text:"Gas is a coupled constraint. More oil can create more associated gas, and a gas system at its limit can cap oil production even when the reservoir and wells can deliver more."},
+ {name:"Power",key:"power",c:colors.power,base:52,detail:[
+  ["Base ceiling","52 kbopd","illustrative"],["Main drivers","Water + lift","energy demand"],["Risk","Peak load","distribution capacity"],["Next action","Power upgrade","if triggered"]],text:"Water handling, artificial lift and compression all consume power. A production profile that grows without checking the electrical system can move the binding constraint from process equipment into the power network.",liveDetail:true},
+ {name:"Gathering",key:"gathering",c:colors.gather,base:54,detail:[
+  ["Base ceiling","54 kbopd","illustrative"],["Driver","Flowlines / headers","network capacity"],["Brownfield issue","Tie-ins","shutdown windows"],["Next action","Debottleneck","capacity + interfaces"]],text:"Gathering is the missing middle between wells and the central facilities. Flowline, header and manifold constraints can cap production before the central plant reaches nameplate."},
+ {name:"Export",key:"export",c:colors.export,base:55,detail:[
+  ["Base ceiling","55 kbopd","illustrative"],["Current status","Headroom","base case"],["Future trigger","58–60 kbopd","after upstream upgrades"],["Next action","Debottleneck","if justified"]],text:"Export is not automatically the first constraint. In a brownfield profile it may be irrelevant today and critical after upstream constraints are removed."},
+ {name:"Availability / deferred",key:"availability",c:colors.avail,base:54,detail:[
+  ["At 96%","−2.4 kbopd","vs 90% on 60k"],["At 90%","−6.0 kbopd","expected avg vs 100%"],["Basis","Asset history","by cause"],["Management","Owner + trajectory","not hidden factor"]],text:"Availability is not a generic haircut. It is the observed conversion loss from outages, interventions and other causes. Changing it changes the expected average production directly - applied once, with planned shutdowns and deferred production kept on a separate line."}
+];
+
+let openConstraint=2;
+function renderWaterfall(){
+ const root=$("waterfall");root.innerHTML="";
+ const wc=+$("wcSlider").value,avail=+$("availSlider").value,target=+$("targetSlider").value,caps=effectiveCaps(target,wc,avail);
+ const vals=[target,caps.wells,caps.separation,caps.water,caps.gas,caps.power,caps.gathering,caps.export,caps.expectedAvg];
+ systems.forEach((r,i)=>{
+   const v=vals[i], binding=(i>=2&&Math.abs(v-caps.instantaneous)<.02);
+   const row=document.createElement("div");row.className="wf";
+   row.innerHTML=`<div class="wf-name" style="color:${r.c}">${r.name}</div>
+    <div class="track"><div class="fill" style="width:${Math.min(100,v/target*100)}%;background:linear-gradient(90deg,${r.c}99,${r.c})"></div></div>
+    <div class="val" style="color:${r.c}">${v.toFixed(1)}k</div><div class="delta">${binding?"BINDING":i===0?"POTENTIAL":(v<target?"−"+(target-v).toFixed(1):"HEADROOM")}</div>`;
+   row.onclick=()=>showConstraint(i,row);
+   root.appendChild(row);
+ });
+ showConstraint(openConstraint,root.children[openConstraint]);
+}
+
+function showConstraint(i,row){
+ openConstraint=i;
+ document.querySelectorAll(".wf").forEach(x=>x.style.borderColor="var(--line)");
+ row.style.borderColor=systems[i].c;
+ const d=$("constraintDetail"),r=systems[i];
+ d.classList.add("open");d.style.borderColor=r.c;
+ let extra="";
+ if(r.liveDetail){
+   const wc=+$("wcSlider").value||82,t=+$("targetSlider").value||60;
+   const c=effectiveCaps(t,wc,+$("availSlider").value||90);
+   const mw=liftPower(c.instantaneous,wc);
+   const mw82=liftPower(c.instantaneous,82);
+   const delta=((mw/mw82-1)*100).toFixed(0);
+   extra=`<div style="margin-top:14px;padding:12px;background:#0a131c;border:1px solid var(--line);border-radius:9px">
+    <div style="font:600 9px var(--mono);color:var(--muted);letter-spacing:.1em;margin-bottom:6px">LIVE: ESP / LIFT POWER (illustrative)</div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:baseline">
+      <div><b style="font:700 22px var(--mono);color:${colors.power}">${mw.toFixed(1)} MW</b>
+        <span style="font:500 10px var(--mono);color:var(--muted)"> at ${wc}% WC</span></div>
+      <div style="font:600 11px var(--mono);color:${+delta>0?'var(--red)':'var(--green)'}">${+delta>0?'+':''}${delta}% vs 82% WC ref</div>
+    </div>
+    <div style="font-size:10px;color:var(--dim);margin-top:6px">Q_liq = Q_oil/(1−WC) · Head rises with WC (declining P_res). This is the physics FDM PS-001 must reproduce: power RISES with water cut, not falls.</div>
+   </div>`;
+ }
+ d.innerHTML=`<div class="detail-grid">${r.detail.map(x=>`<div class="metric"><label>${x[0]}</label><b style="color:${r.c}">${x[1]}</b><div class="small">${x[2]}</div></div>`).join("")}</div><div class="mechanism">${r.text}</div>${extra}`;
+}
+
+function updateProfileSummary(){
+ const t=+$('targetSlider').value,a=+$('availSlider').value,w=+$('wcSlider').value,c=effectiveCaps(t,w,a);
+ const surface=c.instantaneous, avg=c.expectedAvg, gap=t>0?(1-surface/t)*100:0;
+ $("heroTarget").textContent=(t*1000).toLocaleString();
+ $("heroSurface").textContent=surface.toFixed(1)+"k";
+ $("heroAverage").textContent="~"+avg.toFixed(1)+"k";
+ $("heroGap").textContent="−"+Math.max(0,gap).toFixed(0)+"%";
+ // Profile card peak values: derive each from the ACTUAL time profile of its
+ // mode, so the card number always equals the curve it selects. No ad-hoc math.
+ const modeKeys=["BASE","WATER","WATER_GAS","FULL"];
+ const vals=modeKeys.map(mk=>{
+   const pf=buildTimeProfile(mk);
+   return Math.max(...pf.map(d=>d.system));
+ });
+ document.querySelectorAll(".pcard").forEach((node,i)=>{const el=node.querySelector(".pval");if(el)el.textContent=vals[i].toFixed(0)+"k";});
+ const callout=$("profileCallout");
+ if(callout){
+   callout.innerHTML=overviewMode==="submitted"
+    ? `<strong>Submitted case:</strong> the reservoir model supports ${t.toFixed(0)} kbopd. Every bar below that line is a system that must independently support the rate.`
+    : overviewMode==="deliverable"
+    ? `<strong>Deliverable case:</strong> the binding line sits at <strong>${c.instantaneous.toFixed(1)} kbopd</strong> - the narrowest system. Bars above it are unreachable until that capacity is purchased.`
+    : `<strong>Full potential:</strong> ${t.toFixed(0)} kbopd is the opportunity case. It becomes a business-plan number only after the required capacity is delivered.`;
+ }
+}
+
+function syncInputs(from){
+ const t=+$('targetSlider').value,a=+$('availSlider').value,w=+$('wcSlider').value;
+ $("targetSlider2").value=t; $("availSlider2").value=a; $("wcSlider2").value=w;
+ $("targetOut").value=t+" kbopd";$("availOut").value=a+"%";$("wcOut").value=w+"%";
+ $("targetOut2").value=t+" kbopd";$("availOut2").value=a+"%";$("wcOut2").value=w+"%";
+ const dr=$("declineSlider");if(dr)$("declineOut").value=dr.value+"%/yr";
+ updateAll();
+}
+
+["targetSlider","availSlider","wcSlider","targetSlider2","availSlider2","wcSlider2","declineSlider"].forEach(id=>{
+ const el=$(id);if(!el)return;
+ el.addEventListener("input",e=>{
+   const map={targetSlider:"targetSlider2",targetSlider2:"targetSlider",availSlider:"availSlider2",availSlider2:"availSlider",wcSlider:"wcSlider2",wcSlider2:"wcSlider"};
+   if(map[id])$(map[id]).value=e.target.value;
+   syncInputs(id);
+ });
+});
+
+function updateVerdict(){
+ const t=+$("targetSlider").value,a=+$("availSlider").value,w=+$("wcSlider").value,c=effectiveCaps(t,w,a);
+ const bind=c.instantaneous;
+ const names=[];
+ if(Math.abs(c.wells-bind)<0.05) names.push("wells / rig");
+ if(Math.abs(c.water-bind)<0.05) names.push("water handling");
+ if(Math.abs(c.separation-bind)<0.05) names.push("separation");
+ if(Math.abs(c.gas-bind)<0.05) names.push("gas");
+ if(Math.abs(c.power-bind)<0.05) names.push("power");
+ if(Math.abs(c.gathering-bind)<0.05) names.push("gathering");
+ if(Math.abs(c.export-bind)<0.05) names.push("export");
+ $("constraintVerdict").innerHTML=`<div class="kpi-label">Current system verdict</div><div class="big" style="color:var(--red)">${bind.toFixed(1)} kbopd</div><div class="small">instantaneous system ceiling</div><div class="callout"><strong>Binding:</strong> ${names.join(", ")||"upstream potential"}. <strong>Expected average:</strong> ${c.expectedAvg.toFixed(1)} kbopd at ${a}% availability (applied once). Water cut = ${w}%.</div>`;
+}
+
+const profiles=[
+ {name:"BASE",v:46,c:colors.avail,capex:0,lead:"Now",constraint:"Gas compression",desc:"Current executable capability"},
+ {name:"+ WATER",v:48,c:colors.water,capex:180,lead:"24–30 mo",constraint:"Separation",desc:"Water solved; gas now binds"},
+ {name:"+ WATER + GAS",v:50,c:colors.gas,capex:300,lead:"36–42 mo",constraint:"Separation",desc:"Water + gas solved; separation now binds"},
+ {name:"FULL POTENTIAL",v:60,c:colors.oil,capex:520,lead:"48+ mo",constraint:"Availability / decline",desc:"All surface systems + wells lifted to 60"}
+];
+
+function renderProfiles(){
+ const root=$("profileCards");root.innerHTML="";
+ profiles.forEach((p,i)=>{
+  const d=document.createElement("div");d.className="pcard"+(i===0?" active":"");
+  d.innerHTML=`<div class="pname">${p.name}</div><div class="pval" style="color:${p.c}">${p.v}k</div><div class="pnote">${p.desc}</div>`;
+  d.onclick=()=>selectProfile(i,d);root.appendChild(d);
+ });
+ selectProfile(0,root.firstChild);
+}
+// Each measure: {key,label,start(mo),dur(mo),lifts:{system:newCap}} 
+// commissioning month = start+dur. Before that, the base parameter applies.
+// Each measure specifies the PHYSICAL capacity it installs, expressed as the
+// oil rate the system is SIZED FOR at the 82% WC reference (`cap`). This is
+// converted to a physical parameter (kbwpd, kblpd, MW, etc.) and fed into
+// effectiveCaps, which recalculates the actual oil ceiling at the CURRENT WC.
+// An action therefore changes physical capacity - never an oil ceiling directly.
+const WC0_REF = 0.82;
+// Convert a "sized-for X kbopd @ 82% WC" spec into the physical parameter for its system.
+function capToPhys(key, capOil){
+  switch(key){
+    case "water":      return {Q_water: capOil * WC0_REF/(1-WC0_REF)};   // kbwpd
+    case "separation": return {Q_sep:   capOil / (1-WC0_REF)};           // kblpd
+    case "gathering":  return {Q_gath:  capOil / (1-WC0_REF)};           // kblpd
+    case "power":      return {installedMW: liftPower(capOil, 82)};      // MW at ref WC
+    case "export":     return {exportCap: capOil};                       // kbopd (WC-independent)
+    case "gas":        return {gas: capOil};                             // kbopd (illustrative)
+    case "wells":      return {wells: capOil};                           // kbopd (WC-independent)
+    default:           return {};
+  }
+}
+const MEASURES={
+  BASE:[],
+  // +WATER: buy water only, sized past gas. Gas (48) then binds → plateau 48.
+  WATER:[
+    {key:"water",label:"Water handling + injection",start:6,dur:24,cap:52}
+  ],
+  // +WATER+GAS: buy water AND gas, both sized past separation. Separation (50)
+  // then binds → plateau 50. This is the article's exact claim: solve water,
+  // gas binds; solve gas, separation is waiting.
+  WATER_GAS:[
+    {key:"water",label:"Water handling + injection",start:6,dur:24,cap:52},
+    {key:"gas",label:"Gas compression / export",start:12,dur:30,cap:52}
+  ],
+  // FULL: buy the whole package to 60, including a rig campaign for the wells.
+  FULL:[
+    {key:"wells",label:"Rig campaign (additional wells)",start:0,dur:18,cap:65},
+    {key:"water",label:"Water handling + injection",start:6,dur:24,cap:60},
+    {key:"gas",label:"Gas compression / export",start:12,dur:30,cap:60},
+    {key:"separation",label:"Separation debottleneck",start:12,dur:24,cap:60},
+    {key:"power",label:"Power upgrade",start:12,dur:24,cap:60},
+    {key:"gathering",label:"Gathering debottleneck",start:24,dur:24,cap:60},
+    {key:"export",label:"Export debottleneck",start:36,dur:24,cap:60}
+  ]
+};
+
+// delay (optional): {key:"water"|"gas"|"export"|..., months:12}
+// Pushes the commissioning of every measure on that subsystem later by `months`,
+// so the delayed profile differs from the base ONLY by that slipped date.
+function buildTimeProfile(mode,delay){
+ const meas=MEASURES[mode]||MEASURES.BASE;
+ const target=+$('targetSlider').value;
+ const wc=+$('wcSlider').value;
+ const avail=+$('availSlider').value;
+ // NO scaling by target/60. Capacities are physical properties of installed
+ // infrastructure. Target is a REQUIREMENT, not a scaling factor.
+ const out=[];
+ for(let m=0;m<=120;m+=3){
+   const rampFrac=m<=6?0:m>=66?1:(m-6)/60;
+   // Reservoir ramps from 45 to target, then declines
+   const drSlider=$('declineSlider');
+   const declineRate=(drSlider?parseFloat(drSlider.value):2.5)/100;
+   const yearsPostPlateau=Math.max(0,(m-66)/12);
+   const declineFactor=m<=66?1:Math.exp(-declineRate*yearsPostPlateau);
+   const reservoir=(45+(target-45)*rampFrac)*declineFactor;
+   // Accumulate PHYSICAL parameter overrides from every measure that has
+   // commissioned by month m. Each measure changes a physical capacity
+   // parameter (kbwpd, kblpd, MW, ...), NOT an oil ceiling directly.
+   let phys={};
+   meas.forEach(x=>{
+     const slip=(delay&&x.key===delay.key)?delay.months:0;
+     if(m>=x.start+x.dur+slip){
+       Object.assign(phys, capToPhys(x.key, x.cap));
+     }
+   });
+   // Recalculate oil ceilings from the (possibly upgraded) physical parameters,
+   // using the SAME formulas as the base case. This is the core of the patch.
+   const c=effectiveCaps(target,wc,avail,phys);
+   const caps={
+     wells:c.wells, separation:c.separation, water:c.water,
+     gas:c.gas, power:c.power, gathering:c.gathering, export:c.export
+   };
+   const system=Math.min(reservoir,caps.wells,caps.separation,caps.water,caps.gas,caps.power,caps.gathering,caps.export);
+   out.push({m,reservoir,system,average:system*avail/100,caps:{...caps},...caps});
+ }
+ return out;
+}
+
+function drawProfile(i){
+ const s=$("profileChart"),p=profiles[i],W=980,H=430,L=58,R=30,T=25,B=88;
+ const target=+$("targetSlider").value;
+ const maxY=Math.max(65000,target*1050);
+ const mode=i===0?"BASE":i===1?"WATER":i===2?"WATER_GAS":"FULL";
+ const data=buildTimeProfile(mode);
+ const meas=MEASURES[mode]||[];
+ const x=mo=>L+mo/120*(W-L-R), y=v=>T+(maxY-v*1000)/maxY*(H-T-B);
+ const plotBottom=H-B;
+
+ let svg=`<rect width="${W}" height="${H}" fill="#09121a"/>`;
+ // y grid — dynamic to target range
+ const yStep=maxY>70000?20:15;
+ for(let v=0;v<=maxY/1000;v+=yStep){
+   let yy=y(v);
+   svg+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="${colors.grid}"/>`;
+   svg+=`<text x="8" y="${yy+4}" fill="${colors.muted}" font-size="10" font-family="monospace">${v}k</text>`;
+ }
+ // month axis: ticks every 12 months, labelled in months AND years
+ for(let mo=0;mo<=120;mo+=12){
+   svg+=`<line x1="${x(mo)}" x2="${x(mo)}" y1="${T}" y2="${plotBottom}" stroke="${colors.grid}" opacity=".3"/>`;
+   svg+=`<text x="${x(mo)}" y="${plotBottom+16}" text-anchor="middle" fill="${colors.muted}" font-size="9" font-family="monospace">${mo}mo</text>`;
+   svg+=`<text x="${x(mo)}" y="${plotBottom+28}" text-anchor="middle" fill="${colors.dim}" font-size="8" font-family="monospace">Y${mo/12}</text>`;
+ }
+
+ // reservoir potential (dashed) - reaches 60k at ~66mo
+ svg+=`<polyline points="${data.map(d=>`${x(d.m)},${y(d.reservoir)}`).join(" ")}"
+   fill="none" stroke="${colors.oil}" stroke-width="2" stroke-dasharray="7 5" opacity=".8"/>`;
+
+ // physical system ceiling (instantaneous)
+ svg+=`<polyline points="${data.map(d=>`${x(d.m)},${y(d.system)}`).join(" ")}"
+   fill="none" stroke="${colors.muted}" stroke-width="1.8" stroke-dasharray="5 4" opacity=".85"/>`;
+ // business-plan profile (expected average production) - availability is applied here once
+ // ── P90/P10 uncertainty band ─────────────────────────────────────────────
+ // Width grows with time (subsurface uncertainty) and compresses near system
+ // ceilings (surface constraints limit upside). Purely illustrative, not
+ // from a simulation — it shows that the profile is a range, not a line.
+ const p10pts=[], p90pts=[];
+ data.forEach(d=>{
+   const yrFrac=d.m/120;
+   const baseSpread=0.08+0.12*yrFrac;  // 8-20% uncertainty growing with time
+   const headroom=Math.max(0,(d.reservoir-d.system)/d.reservoir);
+   const squeeze=1-0.5*headroom;        // compress when close to ceiling
+   const band=d.average*baseSpread*squeeze;
+   p10pts.push({x:x(d.m),y:y(Math.min(d.system,d.average+band))});
+   p90pts.push({x:x(d.m),y:y(Math.max(0,d.average-band))});
+ });
+ const bandPoly=p10pts.map(p=>`${p.x},${p.y}`).join(" ")+" "+
+   p90pts.reverse().map(p=>`${p.x},${p.y}`).join(" ");
+ svg+=`<polygon points="${bandPoly}" fill="${p.c}" opacity=".06"/>`;
+ svg+=`<polyline points="${p10pts.map(pp=>`${pp.x},${pp.y}`).join(" ")}"
+   fill="none" stroke="${p.c}" stroke-width=".8" stroke-dasharray="3 4" opacity=".3"/>`;
+ svg+=`<polyline points="${p90pts.reverse().map(pp=>`${pp.x},${pp.y}`).join(" ")}"
+   fill="none" stroke="${p.c}" stroke-width=".8" stroke-dasharray="3 4" opacity=".3"/>`;
+ // ── end P90/P10 band ─────────────────────────────────────────────────────
+ svg+=`<polygon points="${data.map(d=>`${x(d.m)},${y(d.average)}`).join(" ")} ${x(120)},${y(0)} ${x(0)},${y(0)}"
+   fill="${p.c}" opacity=".10"/>`;
+ svg+=`<polyline points="${data.map(d=>`${x(d.m)},${y(d.average)}`).join(" ")}"
+   fill="none" stroke="${p.c}" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+ // shade the gap where system < reservoir (deferred barrels)
+ data.forEach(d=>{
+   if(d.reservoir-d.system>0.3){
+     svg+=`<line x1="${x(d.m)}" x2="${x(d.m)}" y1="${y(d.reservoir)}" y2="${y(d.system)}"
+       stroke="#d96459" stroke-width="1" stroke-dasharray="2 3" opacity=".5"/>`;
+   }
+ });
+
+ // MEASURE BARS with duration + commissioning label (below the plot)
+ const barY0=T+6;
+ meas.forEach((mx,k)=>{
+   const cc = mx.key==="water"?colors.water : mx.key==="gas"?colors.gas : mx.key==="gathering"?colors.gather : colors.export;
+   const x1=x(mx.start), x2=x(mx.start+mx.dur), yy=barY0+k*15;
+   // duration bar
+   svg+=`<rect x="${x1}" y="${yy}" width="${x2-x1}" height="8" rx="3" fill="${cc}" opacity=".55"/>`;
+   svg+=`<line x1="${x2}" x2="${x2}" y1="${yy-2}" y2="${plotBottom}" stroke="${cc}" stroke-width="1.3" stroke-dasharray="4 4" opacity=".6"/>`;
+   svg+=`<circle cx="${x2}" cy="${yy+4}" r="4" fill="${cc}"/>`;
+   svg+=`<text x="${x1+3}" y="${yy-3}" fill="${cc}" font-size="8.5" font-family="monospace">${mx.label} · ${mx.dur}mo → live ${mx.start+mx.dur}mo</text>`;
+ });
+
+ // legend
+ svg+=`<text x="${W-R}" y="${T+2}" text-anchor="end" fill="${colors.oil}" font-size="10" font-family="monospace">— — RESERVOIR / WELL POTENTIAL</text>`;
+ svg+=`<text x="${W-R}" y="${T+17}" text-anchor="end" fill="${colors.muted}" font-size="10" font-family="monospace">- - SYSTEM CEILING (instantaneous)</text>`;
+ svg+=`<text x="${W-R}" y="${T+32}" text-anchor="end" fill="${p.c}" font-size="10" font-family="monospace">■ BUSINESS-PLAN PROFILE (expected average)</text>`;
+ svg+=`<text x="${L}" y="${plotBottom+44}" fill="${colors.muted}" font-size="9" font-family="monospace">Bars = build duration · dashed drop = commissioning date · red ticks = deferred barrels (system below reservoir)</text>`;
+ s.innerHTML=svg;
+}
+
+function selectProfile(i,node){
+ document.querySelectorAll(".pcard").forEach(x=>x.classList.remove("active"));node.classList.add("active");drawProfile(i);
+ const p=profiles[i];
+ const target=+$('targetSlider').value, wc_now=+$("wcSlider").value||82, av_now=+$("availSlider").value||90;
+ const c=effectiveCaps(target,wc_now,av_now);
+ const baseInst=c.instantaneous;
+ const pv=["BASE","WATER","WATER_GAS","FULL"].map(mk=>Math.max(...buildTimeProfile(mk).map(d=>d.system)))[i];
+ node.querySelector(".pval").textContent=pv.toFixed(0)+"k";
+ const mwP=liftPower(c.instantaneous,wc_now);
+ $("profileMetrics").innerHTML=[
+  ["Increment","+"+Math.max(0,pv-baseInst).toFixed(1)+" kbopd",p.desc],
+  ["Cumulative CAPEX","$"+p.capex+"M",p.capex===0?"No new capacity":"Illustrative investment"],
+  ["Next constraint",p.constraint,p.lead+" delivery horizon"],
+  ["Lift power",mwP.toFixed(1)+" MW","ESP @ "+wc_now+"% WC · P90/P10 band shown"]
+ ].map(x=>`<div class="card"><div class="kpi-label">${x[0]}</div><div class="big" style="color:${p.c}">${x[1]}</div><div class="small">${x[2]}</div></div>`).join("");
+}
+renderProfiles();
+
+function updateCart(){
+ const t=+$("targetSlider").value,a=+$("availSlider").value,w=+$("wcSlider").value;
+ const c=effectiveCaps(t,w,a);
+ const items=[];
+ const needW=Math.max(0,t-c.water);
+ const needG=Math.max(0,t-c.gas);
+ const needP=Math.max(0,t-c.power);
+ const needS=Math.max(0,t-c.separation);
+ const needGa=Math.max(0,t-c.gathering);
+ const needE=Math.max(0,t-c.export);
+ const needWc=Math.max(0,w-82);
+ const availGap=Math.max(0,92-a);
+ const add=(name,desc,capex,lead,commission,why,active)=>items.push({name,desc,capex,lead,commission,why,active});
+ add("Wells / workovers","well batches, completion, hook-up",Math.round(70*Math.max(0,(t-45)/15)), "3–18 mo","Y1–Y3","Creates reservoir-to-well deliverability",t>45);
+ add("Separation debottleneck","train / liquid throughput",Math.round(40+needS*10), "18–30 mo","Y3",`${needS.toFixed(1)} kbopd separation headroom required`,needS>0);
+ add("Water handling + injection","treatment, disposal / reinjection",Math.round(80+needW*10+needWc*4), "24–36 mo","Y3",`${needW.toFixed(1)} kbopd water-system gap at ${w}% WC`,needW>0||needWc>0);
+ add("Gas compression / export","compression + gas handling",Math.round(90+needG*12), "30–42 mo","Y5",`${needG.toFixed(1)} kbopd-equivalent gas headroom required`,needG>0);
+ add("Power generation / distribution","pumps, lift, compression load",Math.round(45+needP*8), "18–30 mo","Y3",`${needP.toFixed(1)} kbopd power-linked gap`,needP>0);
+ add("Gathering + liquid transport","flowlines, headers, manifolds, tie-ins",Math.round(55+needGa*9+needWc*3), "18–36 mo","Y7",`${needGa.toFixed(1)} kbopd gathering gap · +${needWc.toFixed(0)}% WC raises gross-liquid transport`,needGa>0||needWc>2);
+ add("Export debottleneck","line / terminal capacity",Math.round(65+needE*8), "30–48+ mo","Y9",`${needE.toFixed(1)} kbopd export headroom required`,needE>0);
+ add("Reliability / availability programme","spares, redundancy, maintenance",Math.round(availGap*12), "6–24 mo","Y1–Y2",`${availGap}% availability gap to 92%`,availGap>0);
+
+ const active=items.filter(x=>x.active);
+ const total=active.reduce((s,x)=>s+x.capex,0);
+ $("cartTotal").textContent="$"+total+"M";
+
+ $("cartItems").innerHTML=`<div class="kpi-label">Dynamic purchase basket · ${active.length}/${items.length} active items</div>`+
+  `<div class="item" style="display:grid;grid-template-columns:34px 1fr 90px 90px;gap:10px;font:600 9px var(--mono);color:var(--muted);padding-top:10px">
+    <span></span><span>ITEM / PURPOSE</span><span>CAPEX</span><span>ARRIVES</span></div>`+
+  items.map(x=>`<div class="item" style="opacity:${x.active?1:.42};grid-template-columns:34px 1fr 90px 90px">
+   <div class="check">${x.active?"✓":"—"}</div>
+   <div><b>${x.name}</b><span>${x.desc}<br>${x.why}</span></div>
+   <div class="price">$${x.capex}M</div>
+   <div class="price" style="color:var(--oil2)">${x.commission}</div>
+  </div>`).join("");
+
+ const annual=c.expectedAvg;
+ $("cartInsight").innerHTML=`<strong>Scenario:</strong> target ${t} kbopd, ${w}% water cut, ${a}% availability.
+ Current system ceiling is <strong>${c.instantaneous.toFixed(1)} kbopd</strong>; expected average production is about <strong>${annual.toFixed(1)} kbopd</strong>.
+ ${t>c.instantaneous?`The gap to target is <strong>${(t-c.instantaneous).toFixed(1)} kbopd</strong>. The basket above shows the capacity purchases required to move the curve upward.`:"The target is inside the current instantaneous system envelope."}
+ <span style="display:block;margin-top:8px;font-size:10px;color:var(--dim)">Payback uses illustrative netback of $${ECON.netback.toFixed(1)}/bbl (price $${ECON.price} - $${ECON.differential} differential, ${(ECON.govTake*100).toFixed(0)}% gov take, $${ECON.varOpex}/bbl var OPEX). Not a valuation.</span>`;
+ // Synchronise the visible sliders across sections.
+ $("targetOut").value=t+" kbopd";$("availOut").value=a+"%";$("wcOut").value=w+"%";
+ $("targetOut2").value=t+" kbopd";$("availOut2").value=a+"%";$("wcOut2").value=w+"%";
+ drawBarChart();renderWaterfall();updateVerdict();
+}
+
+function setupSync(){
+ const scenarios={
+  base:{late:null,verdict:"<strong>Base schedule:</strong> capacity is commissioned before the business-plan profile asks for it."},
+  "water-late":{late:"water",verdict:"<strong>Water delayed 12 months:</strong> the impact is small - because gas becomes binding almost immediately after water. Delaying a system that is not the next binding constraint barely moves the curve. That is the point: cost of delay depends on whether the slipped system is actually on the critical path."},
+  "gas-late":{late:"gas",verdict:"<strong>Gas delayed 12 months:</strong> gas is the binding constraint over a wide window, so slipping it is expensive - oil is capped at the gas ceiling until compression arrives. This is where schedule contingency earns its money."},
+  "export-late":{late:"export",verdict:"<strong>Export delayed 12 months:</strong> upstream capacity exists before monetisation capacity. Producible barrels are not exportable barrels until the line arrives - the loss is real but later, so it discounts more heavily."}
+ };
+ function render(kind="base"){
+  const cfg=scenarios[kind];
+  const t=+$('targetSlider').value,w=+$('wcSlider').value,a=+$('availSlider').value;
+  const mode="FULL";
+  // Base (on-time) reference profile - the datum for the delay comparison.
+  const baseData=buildTimeProfile(mode).map(d=>({...d,caps:{...d.caps}}));
+  // Delayed profile: same plan, but the affected subsystem commissions 12 months later.
+  const delayObj=cfg.late?{key:cfg.late,months:12}:null;
+  const data=buildTimeProfile(mode,delayObj).map(d=>({...d,caps:{...d.caps}}));
+  // ── Cost of Delay: lost NETBACK, discounted (not lost revenue) ──────────
+  const lostStream=data.map((d,i)=>({m:d.m,lostKbopd:Math.max(0,baseData[i].average-d.average)}));
+  const npvImpact=cfg.late?npvOfLostStream(lostStream):0;
+  const lostBarrels=lostStream.reduce((s,p)=>s+Math.max(0,p.lostKbopd)*1000*91.3,0);
+  const years=[0,12,24,36,48,60,72,84];
+  const labels=years.map(m=>`Y${m/12}`);
+  const h=$("heatmap");
+  h.innerHTML=`<div class="rowhead">SYSTEM / YEAR</div>`+labels.map(x=>`<div class="hd">${x}</div>`).join("");
+  const rows=[
+   ["Business-plan profile",years.map(m=>data.find(d=>d.m===m).average)],
+   ["Wells / Rig",years.map(m=>data.find(d=>d.m===m).caps.wells)],
+   ["Separation",years.map(m=>data.find(d=>d.m===m).caps.separation)],
+   ["Water",years.map(m=>data.find(d=>d.m===m).caps.water)],
+   ["Gas",years.map(m=>data.find(d=>d.m===m).caps.gas)],
+   ["Power",years.map(m=>data.find(d=>d.m===m).caps.power)],
+   ["Gathering",years.map(m=>data.find(d=>d.m===m).caps.gathering)],
+   ["Export",years.map(m=>data.find(d=>d.m===m).caps.export)]
+  ];
+  // For colouring: compare each capacity against the system ceiling (instantaneous min
+  // of all caps). A system = the ceiling → it is the binding constraint at that year.
+  const sysCeiling=years.map(m=>data.find(d=>d.m===m).system);
+  rows.forEach(r=>{
+   h.innerHTML+=`<div class="rowhead">${r[0]}</div>`;
+   r[1].forEach((v,j)=>{
+    const sys=sysCeiling[j];
+    if(r[0]==="Business-plan profile"){
+      h.innerHTML+=`<div class="cell ok">${v.toFixed(1)}k<span>profile</span></div>`;
+      return;
+    }
+    // headroom above system ceiling
+    const headroom = sys>0 ? (v-sys)/sys : 1;
+    const cls = headroom<=0.005?"bind":headroom<0.08?"warn":headroom<0.25?"tight":"ok";
+    h.innerHTML+=`<div class="cell ${cls}">${v.toFixed(1)}k<span>${cls==="bind"?"BINDING":headroom<0.08?(headroom*100).toFixed(0)+"%":"capacity"}</span></div>`;
+   });
+  });
+  let econLine="";
+  if(cfg.late){
+    const bbl=(lostBarrels/1e6).toFixed(1);
+    econLine=`<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
+      <div><span style="font:600 9px var(--mono);color:var(--muted);display:block">DEFERRED PRODUCTION</span>
+        <b style="font:700 16px var(--mono);color:var(--oil2)">${bbl} MMbbl</b></div>
+      <div><span style="font:600 9px var(--mono);color:var(--muted);display:block">NETBACK (illustrative)</span>
+        <b style="font:700 16px var(--mono);color:var(--muted)">$${ECON.netback.toFixed(1)}/bbl</b></div>
+      <div><span style="font:600 9px var(--mono);color:var(--muted);display:block">NPV IMPACT @ ${(ECON.discount*100).toFixed(0)}%</span>
+        <b style="font:700 22px var(--mono);color:var(--red)">−$${npvImpact.toFixed(0)}M</b></div>
+    </div>
+    <div style="font-size:10px;color:var(--dim);margin-top:8px">Impact = deferred barrels × netback, discounted to t0. Netback = (price − differential) × (1 − gov take) − variable OPEX. Illustrative fiscal terms; not a valuation.</div>`;
+  }
+  $("syncVerdict").innerHTML=`${cfg.verdict} <span style="display:block;margin-top:6px;color:var(--muted)">Scenario inputs: ${t} kbopd target · ${w}% WC · ${a}% availability.</span>${econLine}`;
+ }
+ document.querySelectorAll("#syncControls .ctrl").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#syncControls .ctrl").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.sync);
+ });
+ window.__syncRender=render;
+ render();
+}
+
+const methodData=[
+ ["01","Conversion baseline","Anchor test","Can we show 3–5 years of ACTUAL uptime, deferred production by cause, and measured spare capacity for every system? This baseline anchors every later step — not a nameplate assumption.","Failure signal: a generic availability factor is used with no asset-derived basis.","Output: the conversion baseline every later step is measured against."],
+ ["02","Constraint sequence","Migration test","What is the narrowest system now — and, once it is removed, what becomes binding next? The answer is a SEQUENCE, not a single constraint.","Failure signal: the study names one constraint for a 20-year profile and stops.","Output: an ordered list of binding constraints by horizon."],
+ ["03","Execution windows first","Realism test","Are turnarounds, tie-ins and intervention windows placed on the timeline BEFORE any curve is drawn? Windows constrain the shape of every curve that follows.","Failure signal: windows live only in the execution schedule and appear in the profile as an afterthought.","Output: a calendar of non-productive windows the curves must respect."],
+ ["04","Priced curves","Traceability test","Can every upward step be tied to a NAMED purchase, its CAPEX and its commissioning date — built on top of the windows from step 3?","Failure signal: upside appears with no capacity purchase and no date behind it.","Output: three priced, time-phased curves (base → +A → +A+B)."],
+ ["05","Deferred as a line","Honesty test","Is deferred production shown as its OWN line, split by cause and owner — not folded into a single availability factor that hides it?","Failure signal: one availability number silently absorbs failures, interventions and constraints (double-counting risk).","Output: a visible, owned, managed deferred-production line."],
+ ["06","Sync + cost of delay","Consistency test","For every year, do water, gas, power, gathering and export support the oil rate — and what is the economic cost if any one arrives late? A year that fails is an error to fix, not a risk to log.","Failure signal: a subsystem lands after the oil curve needs it, and the delay has no costed consequence.","Output: an internally consistent business plan with a cost-of-delay per constraint."]
+];
+function renderMethod(i=0){
+ document.querySelectorAll(".ms").forEach(x=>x.classList.toggle("active",+x.dataset.step===i));
+ const d=methodData[i];
+ $("methodDetail").innerHTML=`<div class="grid3">
+  <div><div class="kpi-label">STEP</div><div class="big" style="color:var(--oil)">${d[0]}</div><div class="small">${d[1]}</div></div>
+  <div><div class="kpi-label">${d[2]}</div><div class="mechanism">${d[3]}</div></div>
+  <div><div class="kpi-label">FAILURE SIGNAL</div><div class="mechanism" style="color:#f28b80">${d[4]}</div></div>
+ </div>
+ <div class="callout"><strong>Output:</strong> ${d[5]}</div>`;
+}
+document.querySelectorAll(".ms").forEach(x=>x.onclick=()=>renderMethod(+x.dataset.step));
+renderMethod();
+setupSync();
+
+// ── Deferred production taxonomy (NO double count with availability) ─────
+// The availability slider already removes barrels: gap = instantaneous − expectedAvg.
+// This panel only RE-SPLITS that SAME gap into mutually-exclusive, owned causes.
+// It never subtracts anything new, so it cannot double-count.
+// ── Deferred taxonomy: driven by a planned/unplanned slider ──────────────
+// The slider sets the planned-turnaround share. The rest splits into three
+// unplanned/external/interventions categories with fixed proportions of the
+// remainder. All shares sum to 1.0 — no double count with availability.
+function getDeferredSplit(){
+  const planned=Math.min(0.50,Math.max(0.15,(+$("plannedShare").value||28)/100));
+  const rest=1-planned;
+  return [
+    {cause:"Planned turnarounds & tie-ins",share:planned,owner:"Operations / Turnaround",col:"var(--blue)"},
+    {cause:"Unplanned mechanical downtime",share:rest*0.52,owner:"Maintenance / Reliability",col:"var(--red)"},
+    {cause:"External / commercial curtailment",share:rest*0.30,owner:"Commercial / Export",col:"var(--purple)"},
+    {cause:"Well interventions & workovers",share:rest*0.18,owner:"Subsurface / Wells",col:"var(--oil)"}
+  ];
+}
+
+function renderDeferred(){
+  const t=+$("targetSlider").value,w=+$("wcSlider").value,a=+$("availSlider").value;
+  const c=effectiveCaps(t,w,a);
+  const gap=c.instantaneous-c.expectedAvg;
+  const split=getDeferredSplit();
+  const box=$("deferredBreakdown");
+  const rows=split.map(d=>{
+    const kbopd=gap*d.share;
+    const pct=(100*(1-a/100)*d.share).toFixed(1);
+    return `<div class="item" style="grid-template-columns:14px 1fr 90px 120px;align-items:center">
+      <span style="width:11px;height:11px;border-radius:2px;background:${d.col}"></span>
+      <div><b>${d.cause}</b><span>owner: ${d.owner}</span></div>
+      <div class="price" style="color:${d.col}">${kbopd.toFixed(1)} kbopd</div>
+      <div class="price muted">${pct}% of capacity</div>
+    </div>`;
+  }).join("");
+  // Keep the slider, append rows below it
+  const sliderHtml=box.querySelector(".slider-row")?box.querySelector(".slider-row").outerHTML:"";
+  box.innerHTML=`${sliderHtml}<div class="card" style="margin-top:8px">
+    <div class="kpi-label">Deferred production, split by cause - sums to the availability gap, not added on top</div>
+    <div style="font:700 18px var(--mono);color:var(--oil2);margin:8px 0 4px">${gap.toFixed(1)} kbopd total deferred <span style="font:500 11px var(--mono);color:var(--muted)">(instantaneous ${c.instantaneous.toFixed(1)} - expected avg ${c.expectedAvg.toFixed(1)})</span></div>
+    ${rows}
+    <div style="font-size:10px;color:var(--dim);margin-top:10px">Each cause has an owner and a trajectory. Adjust the planned-share slider to test different maintenance philosophies. This is the same gap the availability factor creates - shown by cause so it becomes a management target.</div>
+  </div>`;
+  // Re-wire planned-share slider (since innerHTML overwrites it)
+  const ps=box.querySelector("#plannedShare");
+  if(ps){
+    ps.addEventListener("input",()=>{$("plannedOut").value=ps.value+"%";renderDeferred();});
+  }
+}
+(function(){
+  const btn=$("deferredToggle"),box=$("deferredBreakdown");
+  let open=false;
+  btn.onclick=()=>{
+    open=!open;
+    box.style.display=open?"block":"none";
+    btn.textContent=(open?"▾ HIDE":"▸ SHOW")+" DEFERRED BREAKDOWN";
+    btn.classList.toggle("active",open);
+    if(open)renderDeferred();
+  };
+})();
+
+document.querySelectorAll("#profileControls .ctrl").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll("#profileControls .ctrl").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ overviewMode=b.dataset.mode;
+ const t=+$("targetSlider").value,w=+$("wcSlider").value,a=+$("availSlider").value,c=effectiveCaps(t,w,a);
+ $("profileCallout").innerHTML=overviewMode==="submitted"
+ ?"<strong>Submitted case:</strong> the reservoir model supports 60 kbopd (dashed line). Every bar below the line is a system that must independently reach that rate - and several do not."
+ :overviewMode==="deliverable"
+ ?`<strong>Deliverable case:</strong> the binding line sits at <strong>${c.instantaneous.toFixed(1)} kbopd</strong> - the narrowest system. Bars above it (dimmed) are unreachable until that capacity is purchased.`
+ :"<strong>Full potential:</strong> 60 kbopd is the opportunity case. It becomes a business-plan number only after every bar is lifted to the line through the capacity purchases in Section 04.";
+ drawBarChart();
+});
+
+function updateAll(){
+ drawBarChart();renderWaterfall();updateCart();updateVerdict();updateProfileSummary();
+ const activeIdx=document.querySelector(".pcard.active") ? [...document.querySelectorAll(".pcard")].findIndex(x=>x.classList.contains("active")) : 0;
+ drawProfile(activeIdx>=0?activeIdx:0);
+ // Refresh profile metrics (lift power, increment) to match current sliders
+ const p=profiles[activeIdx>=0?activeIdx:0];
+ const target=+$("targetSlider").value, wc_now=+$("wcSlider").value||82, av_now=+$("availSlider").value||90;
+ const c=effectiveCaps(target,wc_now,av_now);
+ const baseInst=c.instantaneous;
+ const pv=["BASE","WATER","WATER_GAS","FULL"].map(mk=>Math.max(...buildTimeProfile(mk).map(d=>d.system)))[activeIdx>=0?activeIdx:0];
+ const mwP=liftPower(c.instantaneous,wc_now);
+ $("profileMetrics").innerHTML=[
+  ["Increment","+"+Math.max(0,pv-baseInst).toFixed(1)+" kbopd",p.desc],
+  ["Cumulative CAPEX","$"+p.capex+"M",p.capex===0?"No new capacity":"Illustrative investment"],
+  ["Next constraint",p.constraint,p.lead+" delivery horizon"],
+  ["Lift power",mwP.toFixed(1)+" MW","ESP @ "+wc_now+"% WC · P90/P10 band shown"]
+ ].map(x=>`<div class="card"><div class="kpi-label">${x[0]}</div><div class="big" style="color:${p.c}">${x[1]}</div><div class="small">${x[2]}</div></div>`).join("");
+ // Refresh open constraint detail (incl Power ESP readout)
+ const wfRows=$("waterfall").children;if(wfRows&&wfRows[openConstraint])showConstraint(openConstraint,wfRows[openConstraint]);
+ const db=$("deferredBreakdown");if(db&&db.style.display!=="none")renderDeferred();
+ const sc=document.querySelector("#syncControls .ctrl.active");if(sc&&window.__syncRender)window.__syncRender(sc.dataset.sync);
+}
+updateAll();
+const _fnb=$("footerNetback");if(_fnb)_fnb.textContent=ECON.netback.toFixed(1);
+
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ $(b.dataset.target).scrollIntoView({behavior:"smooth",block:"start"});
+});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+ if(e.isIntersecting){const b=document.querySelector(`.nav button[data-target="${e.target.id}"]`);if(b){document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active")}}
+}),{threshold:.25});
+document.querySelectorAll(".section").forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
