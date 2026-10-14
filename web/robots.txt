@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://evgeny-maradin.pages.dev/sitemap.xml
