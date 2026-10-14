@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuwait Oil & Gas Fields - System Constraint Context Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0d1117;
+    --bg2:     #131920;
+    --bg3:     #1a2330;
+    --border:  #263040;
+    --text:    #c8d6e5;
+    --muted:   #5a7a9a;
+    --amber:   #e8a830;
+    --teal:    #4ab8d4;
+    --violet:  #a070d0;
+    --red:     #d45a4a;
+    --green:   #4aaa6a;
+    --water:   #1e3a5a;
+    --land:    #1a2818;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 32px 20px 48px;
+  }
+
+  .header {
+    max-width: 960px;
+    margin: 0 auto 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .main-title {
+    font-size: clamp(16px, 2.8vw, 26px);
+    font-weight: 600;
+    color: #e8eef4;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .main-title span { color: var(--amber); }
+  .subtitle { font-size: 12px; color: var(--muted); }
+
+  /* MAP CONTAINER */
+  .map-wrap {
+    max-width: 960px;
+    margin: 0 auto 20px;
+    position: relative;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  svg.map {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* LEGEND */
+  .legend {
+    max-width: 960px;
+    margin: 0 auto 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .legend-group {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+  .legend-group-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    color: var(--text);
+  }
+  .legend-item:last-child { margin-bottom: 0; }
+  .leg-circle {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .leg-circle.hollow {
+    background: transparent;
+    border: 2px solid currentColor;
+  }
+  .leg-line {
+    width: 18px; height: 2px;
+    flex-shrink: 0;
+  }
+  .leg-dash {
+    width: 18px; height: 0;
+    border-top: 2px dashed currentColor;
+    flex-shrink: 0;
+  }
+
+  /* DATA CARDS BELOW MAP */
+  .cards {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px;
+  }
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+  .card-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-title { font-size: 13px; font-weight: 600; color: #dce8f4; margin-bottom: 4px; }
+  .card-body { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .card-stat {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .footer {
+    max-width: 960px;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--muted);
+  }
+
+  /* Tooltip */
+  .tip {
+    position: absolute;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text);
+    pointer-events: none;
+    display: none;
+    z-index: 10;
+    max-width: 200px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Kuwait upstream · Field location context · KOC/KPC 2024-2026 · FEL constraint analysis</div>
+  <h1 class="main-title">Kuwait Oil & Gas Fields: <span>Onshore Production Base + Offshore Frontier</span></h1>
+  <p class="subtitle">Hover over fields for details. Offshore discoveries (2024-2026) shown against the onshore producing base. Export terminals and Hormuz exposure included.</p>
+</div>
+
+<div class="map-wrap" id="mapWrap">
+  <div class="tip" id="tip"></div>
+
+  <!-- viewBox covers roughly lat 28.4-30.1 N, lon 46.5-49.0 E -->
+  <!-- SVG coordinate system: x = (lon - 46.5) / 2.5 * 700, y = (30.1 - lat) / 1.7 * 540 -->
+  <svg class="map" viewBox="0 0 700 560" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-amber">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="glow-teal">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="glow-violet">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <pattern id="water-pat" patternUnits="userSpaceOnUse" width="20" height="20">
+        <rect width="20" height="20" fill="#0d1e2e"/>
+        <path d="M0 10 Q5 7 10 10 Q15 13 20 10" stroke="#1a3a5a" stroke-width="0.6" fill="none"/>
+      </pattern>
+    </defs>
+
+    <!-- === WATER (Persian Gulf) === -->
+    <!-- Gulf fills right/top portion -->
+    <polygon points="700,0 700,560 380,560 360,500 340,440 360,380 380,320 400,260 430,200 460,150 500,100 540,60 580,30 620,10 660,0"
+      fill="url(#water-pat)" opacity="0.9"/>
+    <!-- Kuwait Bay -->
+    <ellipse cx="330" cy="100" rx="40" ry="28" fill="#0d1e2e" opacity="0.7"/>
+
+    <!-- === KUWAIT LAND MASS (approximate outline) === -->
+    <!-- Simplified polygon: S border ~28.5N, N border ~30.1N, W ~46.5E, coast E -->
+    <polygon
+      points="20,20 580,20 560,60 520,100 490,150 460,200 430,260 400,320 375,380 355,440 340,490 330,540 20,540"
+      fill="#141f14" stroke="#263040" stroke-width="1"/>
+
+    <!-- Kuwait Bay cutout -->
+    <ellipse cx="330" cy="100" rx="38" ry="26" fill="#0d1e2e"/>
+
+    <!-- === BORDER LINES === -->
+    <!-- Iraq border (N/NW) - approximate -->
+    <line x1="20" y1="20" x2="350" y2="20" stroke="#3a4a3a" stroke-width="1" stroke-dasharray="6 4"/>
+    <!-- Saudi border (S/SW) -->
+    <line x1="20" y1="540" x2="340" y2="490" stroke="#3a4a3a" stroke-width="1" stroke-dasharray="6 4"/>
+
+    <!-- Country labels -->
+    <text x="110" y="16" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#3a5a3a" letter-spacing="0.1em">IRAQ</text>
+    <text x="60" y="555" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#3a5a3a" letter-spacing="0.1em">SAUDI ARABIA</text>
+    <text x="580" y="300" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#1a3a5a" letter-spacing="0.08em">PERSIAN</text>
+    <text x="583" y="313" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#1a3a5a" letter-spacing="0.08em">GULF</text>
+    <text x="300" y="75" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#1a3a5a">Kuwait Bay</text>
+
+    <!-- Failaka Island (approx 29.44N, 48.35E) -->
+    <!-- x = (48.35-46.5)/2.5*700 = 518, y = (30.1-29.44)/1.7*540 = 210 -->
+    <ellipse cx="518" cy="210" rx="14" ry="8" fill="#1a2a1a" stroke="#263040" stroke-width="0.8"/>
+    <text x="535" y="214" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#5a7a9a">Failaka I.</text>
+
+    <!-- === PIPELINE - Mina Al-Ahmadi export terminal === -->
+    <!-- Terminal approx 29.07N, 48.14E -> x=(48.14-46.5)/2.5*700=459, y=(30.1-29.07)/1.7*540=327 -->
+    <!-- Line to Hormuz direction -->
+    <line x1="459" y1="327" x2="680" y2="480" stroke="#d45a4a" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.5"/>
+    <text x="610" y="470" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#d45a4a" opacity="0.8">→ Hormuz</text>
+
+    <!-- Export terminal symbol -->
+    <rect x="449" y="317" width="20" height="20" rx="2" fill="#1a1a0d" stroke="#d45a4a" stroke-width="1.5"/>
+    <text x="459" y="330" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#d45a4a">⚓</text>
+    <text x="432" y="350" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#d45a4a">Mina</text>
+    <text x="428" y="360" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#d45a4a">Al-Ahmadi</text>
+
+    <!-- Shuaiba terminal approx 29.0N, 48.15E -->
+    <rect x="449" y="345" width="14" height="14" rx="2" fill="#1a1a0d" stroke="#d45a4a" stroke-width="1"/>
+    <text x="430" y="368" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#d45a4a">Shuaiba</text>
+
+    <!-- === ONSHORE FIELDS (amber - Layer 1) === -->
+
+    <!-- Greater Burgan 29.11N 47.97E -> x=(47.97-46.5)/2.5*700=412, y=(30.1-29.11)/1.7*540=314 -->
+    <g class="field" data-name="Greater Burgan" data-type="onshore-major"
+       data-info="World's 2nd largest oil field. ~1.2 MMbpd. Mature, pressure maintenance critical. Wara + Burgan formations."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="398" cy="318" r="20" fill="#e8a830" opacity="0.15" filter="url(#glow-amber)"/>
+      <circle cx="398" cy="318" r="13" fill="#e8a830" opacity="0.3"/>
+      <circle cx="398" cy="318" r="7" fill="#e8a830" opacity="0.9"/>
+      <text x="398" y="340" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#e8a830" font-weight="600">Greater Burgan</text>
+      <text x="398" y="350" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#c8a020">~1.2 MMbpd</text>
+    </g>
+
+    <!-- Raudhatain 29.87N 47.72E -> x=(47.72-46.5)/2.5*700=342, y=(30.1-29.87)/1.7*540=73 -->
+    <g class="field" data-name="Raudhatain" data-type="onshore"
+       data-info="Supergiant. North Kuwait. Non-associated Jurassic gas + oil. ~340 kbpd. Water injection programme active."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="342" cy="73" r="12" fill="#e8a830" opacity="0.2"/>
+      <circle cx="342" cy="73" r="6" fill="#e8a830" opacity="0.85"/>
+      <text x="342" y="90" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8a830">Raudhatain</text>
+    </g>
+
+    <!-- Sabriya 29.82N 47.85E -> x=(47.85-46.5)/2.5*700=378, y=(30.1-29.82)/1.7*540=89 -->
+    <g class="field" data-name="Sabriya" data-type="onshore"
+       data-info="Supergiant. North Kuwait. Jurassic gas reservoir (Mutriba). Oil + non-assoc gas. Water injection (WIP in Sabriya active)."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="378" cy="89" r="11" fill="#e8a830" opacity="0.2"/>
+      <circle cx="378" cy="89" r="5.5" fill="#e8a830" opacity="0.85"/>
+      <text x="378" y="106" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8a830">Sabriya</text>
+    </g>
+
+    <!-- Minagish 29.02N 47.55E -> x=(47.55-46.5)/2.5*700=294, y=(30.1-29.02)/1.7*540=343 -->
+    <g class="field" data-name="Minagish" data-type="onshore"
+       data-info="Giant. West Kuwait. Minagish formation - same as Jazza offshore discovery. Heavy oil + Jurassic gas."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="294" cy="343" r="9" fill="#e8a830" opacity="0.2"/>
+      <circle cx="294" cy="343" r="5" fill="#e8a830" opacity="0.8"/>
+      <text x="294" y="358" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8a830">Minagish</text>
+    </g>
+
+    <!-- Umm Gudair 28.9N 47.6E -> x=(47.6-46.5)/2.5*700=308, y=(30.1-28.9)/1.7*540=381 -->
+    <g class="field" data-name="Umm Gudair" data-type="onshore"
+       data-info="Giant. West Kuwait. Adjacent to Minagish. Heavy oil operations."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="308" cy="381" r="7" fill="#e8a830" opacity="0.2"/>
+      <circle cx="308" cy="381" r="4" fill="#e8a830" opacity="0.75"/>
+      <text x="308" y="395" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#e8a830">Umm Gudair</text>
+    </g>
+
+    <!-- Wara / South Ratqa (heavy oil) 29.15N 47.75E -> x=350, y=302 -->
+    <g class="field" data-name="Wara / South Ratqa" data-type="onshore-heavy"
+       data-info="Heavy oil. Steam injection + polymer flood. 95 kbpd peak FY2024/25 - FY2025/26 record. South Kuwait."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="350" cy="302" r="9" fill="#a070d0" opacity="0.2"/>
+      <circle cx="350" cy="302" r="5" fill="#a070d0" opacity="0.8"/>
+      <text x="350" y="318" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#a070d0">Wara HO</text>
+    </g>
+
+    <!-- Khafji (Neutral Zone) 28.66N 48.47E -> x=(48.47-46.5)/2.5*700=551, y=(30.1-28.66)/1.7*540=457 -->
+    <g class="field" data-name="Khafji (KOC/Saudi NZ)" data-type="onshore"
+       data-info="Supergiant. Neutral Zone shared with Saudi Arabia. Gas export pipeline constraint FY2024/25: crude capped at 245 kbpd - MoC fix raised to 270 kbpd. Key Khafji case."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="551" cy="457" r="10" fill="#e8a830" opacity="0.2"/>
+      <circle cx="551" cy="457" r="5.5" fill="#e8a830" opacity="0.85"/>
+      <!-- Special marker - gas constraint case -->
+      <circle cx="551" cy="457" r="13" fill="none" stroke="#a070d0" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <text x="551" y="474" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8a830">Khafji</text>
+      <text x="551" y="484" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#a070d0">gas constraint case</text>
+    </g>
+
+    <!-- Wafra (NZ) 28.62N 47.9E -> x=392, y=453 -->
+    <g class="field" data-name="Wafra (Neutral Zone)" data-type="onshore"
+       data-info="Giant. Neutral Zone. Shared with Saudi Arabia. Heavy oil + carbonate. New discovery announced May 2025 (North Wafra)."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="392" cy="462" r="7" fill="#e8a830" opacity="0.2"/>
+      <circle cx="392" cy="462" r="4" fill="#e8a830" opacity="0.75"/>
+      <text x="392" y="477" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#e8a830">Wafra NZ</text>
+    </g>
+
+    <!-- West Kuwait label -->
+    <text x="160" y="360" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#3a5a3a" letter-spacing="0.08em" opacity="0.6">WEST KUWAIT OPS</text>
+    <!-- North label -->
+    <text x="280" y="130" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#3a5a3a" letter-spacing="0.08em" opacity="0.6">NORTH KUWAIT OPS</text>
+    <!-- South label -->
+    <text x="320" y="420" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#3a5a3a" letter-spacing="0.08em" opacity="0.6">SOUTH KUWAIT OPS</text>
+
+    <!-- === OFFSHORE DISCOVERIES (teal - new frontier) === -->
+
+    <!-- Nokhatha: east of Failaka Island approx 29.4N, 48.6E -> x=(48.6-46.5)/2.5*700=588, y=(30.1-29.4)/1.7*540=225 -->
+    <g class="field" data-name="Al-Nokhatha (offshore)" data-type="offshore-new"
+       data-info="Discovery Jul 2024. 2.1 Bn bbl light oil + 5.1 Tcf gas = 3.2 BnBOE. 96 km². Minagish formation (Cretaceous). First offshore commercial discovery. Phase 1: 6 wells by Q3 2027/28."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="588" cy="225" r="14" fill="#4ab8d4" opacity="0.12" filter="url(#glow-teal)"/>
+      <circle cx="588" cy="225" r="9" fill="#4ab8d4" opacity="0.2"/>
+      <circle cx="588" cy="225" r="5" fill="#4ab8d4" opacity="0.0"/>
+      <circle cx="588" cy="225" r="5" fill="none" stroke="#4ab8d4" stroke-width="2"/>
+      <!-- star marker for new -->
+      <text x="588" y="228" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#4ab8d4">✦</text>
+      <text x="588" y="245" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#4ab8d4" font-weight="600">Al-Nokhatha</text>
+      <text x="588" y="255" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#3a9ab8">2.1 Bn bbl · 5.1 Tcf</text>
+      <text x="588" y="265" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#3a9ab8">Jul 2024</text>
+    </g>
+
+    <!-- Julaia: approx 29.3N, 48.55E -> x=576, y=254 -->
+    <g class="field" data-name="Al-Julaia (offshore)" data-type="offshore-new"
+       data-info="Discovery Jan 2025. 800 MMbbl + 600 Bcf = 950 MMboe. Medium density, H2S-free. Zubair formation (Cretaceous). First Jurassic well Jan 2025."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="570" cy="270" r="11" fill="#4ab8d4" opacity="0.12" filter="url(#glow-teal)"/>
+      <circle cx="570" cy="270" r="7" fill="#4ab8d4" opacity="0.2"/>
+      <circle cx="570" cy="270" r="4" fill="none" stroke="#4ab8d4" stroke-width="1.8"/>
+      <text x="570" y="273" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4ab8d4">✦</text>
+      <text x="570" y="289" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4ab8d4" font-weight="600">Al-Julaia</text>
+      <text x="570" y="299" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#3a9ab8">800 MMbbl</text>
+      <text x="570" y="309" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#3a9ab8">Jan 2025</text>
+    </g>
+
+    <!-- Jazza: approx 29.2N, 48.4E -> x=532, y=290 -->
+    <g class="field" data-name="Jazza (offshore - gas)" data-type="offshore-new-gas"
+       data-info="FY2025/26. Significant gas & condensate potential. Minagish formation. Kuwait's first offshore gas field. Confirms gas constraint migration risk from offshore development."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="538" cy="304" r="10" fill="#4aaa6a" opacity="0.12" filter="url(#glow-violet)"/>
+      <circle cx="538" cy="304" r="6" fill="#4aaa6a" opacity="0.2"/>
+      <circle cx="538" cy="304" r="4" fill="none" stroke="#4aaa6a" stroke-width="1.8"/>
+      <text x="538" y="307" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4aaa6a">✦</text>
+      <text x="538" y="322" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4aaa6a" font-weight="600">Jazza</text>
+      <text x="538" y="332" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#3a8a5a">Gas + condensate</text>
+      <text x="538" y="342" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#3a8a5a">FY2025/26</text>
+    </g>
+
+    <!-- Ruqwa: approx 29.15N, 48.35E -> x=518, y=305 -->
+    <g class="field" data-name="Ruqwa (offshore - Jurassic well)" data-type="offshore-new"
+       data-info="FY2025/26. Jurassic well drilled. Part of KOC offshore exploration campaign. Seef project target."
+       onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+      <circle cx="510" cy="322" r="5" fill="#4ab8d4" opacity="0.15"/>
+      <circle cx="510" cy="322" r="3" fill="none" stroke="#4ab8d4" stroke-width="1.5" stroke-dasharray="2 1"/>
+      <text x="510" y="337" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#4ab8d4">Ruqwa</text>
+    </g>
+
+    <!-- === SEEF PROJECT BOUNDARY (dashed arc) === -->
+    <ellipse cx="564" cy="265" rx="70" ry="65"
+      fill="none" stroke="#4ab8d4" stroke-width="1" stroke-dasharray="5 4" opacity="0.35"/>
+    <text x="630" y="200" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4ab8d4" opacity="0.6">Seef project</text>
+    <text x="630" y="210" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#4ab8d4" opacity="0.6">IOC area</text>
+
+    <!-- === WEST KUWAIT GAS CONSTRAINT BOX === -->
+    <!-- West Kuwait fields: roughly x=180-280, y=280-380 -->
+    <rect x="155" y="270" width="115" height="95" rx="4"
+      fill="none" stroke="#a070d0" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+    <text x="213" y="286" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#a070d0">West Kuwait Ops</text>
+    <text x="213" y="296" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#a070d0">acid-gas constraint</text>
+    <text x="213" y="306" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#a070d0">FY2025/26 active study</text>
+    <!-- placeholder fields in W Kuwait -->
+    <circle cx="185" cy="330" r="4" fill="#e8a830" opacity="0.6"/>
+    <circle cx="210" cy="320" r="3.5" fill="#e8a830" opacity="0.6"/>
+    <circle cx="230" cy="340" r="3" fill="#e8a830" opacity="0.6"/>
+    <text x="185" y="345" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#5a7a9a">GC-32 area</text>
+
+    <!-- === SCALE BAR === -->
+    <line x1="30" y1="530" x2="170" y2="530" stroke="#5a7a9a" stroke-width="1"/>
+    <line x1="30" y1="525" x2="30" y2="535" stroke="#5a7a9a" stroke-width="1"/>
+    <line x1="170" y1="525" x2="170" y2="535" stroke="#5a7a9a" stroke-width="1"/>
+    <text x="100" y="524" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#5a7a9a">~100 km</text>
+
+    <!-- === NORTH ARROW === -->
+    <text x="660" y="35" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="18" fill="#5a7a9a" opacity="0.6">↑</text>
+    <text x="660" y="50" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#5a7a9a" opacity="0.6">N</text>
+
+    <!-- Kuwait City label -->
+    <circle cx="338" cy="112" r="3" fill="#c8d6e5" opacity="0.7"/>
+    <text x="348" y="116" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#c8d6e5" opacity="0.8">Kuwait City</text>
+  </svg>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-group">
+    <div class="legend-group-title">Onshore fields</div>
+    <div class="legend-item">
+      <div class="leg-circle" style="background:#e8a830; width:14px; height:14px; border-radius:50%;"></div>
+      Major producing field (oil)
+    </div>
+    <div class="legend-item">
+      <div class="leg-circle" style="background:#a070d0; width:10px; height:10px; border-radius:50%;"></div>
+      Heavy oil operations
+    </div>
+    <div class="legend-item">
+      <div class="leg-circle hollow" style="color:#a070d0; width:13px; height:13px; border-radius:50%;"></div>
+      Gas constraint case (Khafji)
+    </div>
+  </div>
+  <div class="legend-group">
+    <div class="legend-group-title">Offshore discoveries 2024-2026</div>
+    <div class="legend-item">
+      <div style="color:#4ab8d4; font-size:12px; width:14px; text-align:center;">✦</div>
+      New oil discovery (teal)
+    </div>
+    <div class="legend-item">
+      <div style="color:#4aaa6a; font-size:12px; width:14px; text-align:center;">✦</div>
+      New gas/condensate discovery
+    </div>
+    <div class="legend-item" style="color:#4ab8d4;">
+      <div class="leg-dash" style="color:#4ab8d4; width:22px;"></div>
+      Seef IOC project area
+    </div>
+  </div>
+  <div class="legend-group">
+    <div class="legend-group-title">Infrastructure & constraints</div>
+    <div class="legend-item">
+      <div class="leg-line" style="background:#d45a4a;"></div>
+      Export route (Hormuz-exposed)
+    </div>
+    <div class="legend-item">
+      <div style="width:14px; height:14px; background:#1a1a0d; border:1.5px solid #d45a4a; border-radius:2px; flex-shrink:0;"></div>
+      Export terminal
+    </div>
+    <div class="legend-item">
+      <div class="leg-dash" style="color:#a070d0; width:22px;"></div>
+      Active gas constraint zone
+    </div>
+  </div>
+</div>
+
+<!-- DATA CARDS -->
+<div class="cards">
+  <div class="card" style="border-left-color:#e8a830;">
+    <div class="card-label">Layer 1 - Onshore base</div>
+    <div class="card-stat" style="color:#e8a830;">2.72 MMbpd</div>
+    <div class="card-title">Current production - FY2025/26</div>
+    <div class="card-body">Greater Burgan + North + South + West Kuwait fields. 751 new wells drilled. 2nd year meeting annual target. Gap to 4 MMbpd: 1.28 MMbpd.</div>
+  </div>
+  <div class="card" style="border-left-color:#a070d0;">
+    <div class="card-label">Layer 3 - Gas constraint (active)</div>
+    <div class="card-stat" style="color:#a070d0;">West Kuwait</div>
+    <div class="card-title">Acid-gas processing - FY2025/26</div>
+    <div class="card-body">KOC study identified acid-gas processing capacity gaps constraining crude production. 6 field experiments across West Kuwait Ops + GC-32. Same mechanism as Khafji FY2024/25.</div>
+  </div>
+  <div class="card" style="border-left-color:#4ab8d4;">
+    <div class="card-label">Offshore frontier (Seef project)</div>
+    <div class="card-stat" style="color:#4ab8d4;">4.2 BnBOE</div>
+    <div class="card-title">Nokhatha + Julaia + Jazza combined</div>
+    <div class="card-body">Nokhatha (3.2 BnBOE, Jul 2024) + Julaia (950 MMboe, Jan 2025) + Jazza gas/condensate (FY2025/26). Each discovery adds gas handling, marine, processing requirements. Constraint migration begins at discovery.</div>
+  </div>
+  <div class="card" style="border-left-color:#d45a4a;">
+    <div class="card-label">Layer 4 - Export exposure</div>
+    <div class="card-stat" style="color:#d45a4a;">Zero bypass</div>
+    <div class="card-title">All terminals - same Hormuz route</div>
+    <div class="card-body">Mina Al-Ahmadi + Shuaiba - both Gulf terminals. Saudi Arabia: East-West pipe ~5-7 MMbpd to Yanbu. UAE: ADCO pipe ~1.8 MMbpd to Fujairah. Kuwait: no equivalent bypass exists.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Evgeny Maradin · enmaradin@gmail.com</span>
+  <span>Sources: KPC AR 2025/26 · KOC AR 2024/25 · KUNA · Offshore Energy · GeoExpro · Global Energy Monitor</span>
+</div>
+
+<script>
+const tip = document.getElementById('tip');
+const wrap = document.getElementById('mapWrap');
+
+function showTip(e, el) {
+  const name = el.getAttribute('data-name');
+  const info = el.getAttribute('data-info');
+  tip.innerHTML = '<strong style="color:#e8eef4;">' + name + '</strong><br>' + info;
+  tip.style.display = 'block';
+  moveTip(e);
+}
+function hideTip() {
+  tip.style.display = 'none';
+}
+wrap.addEventListener('mousemove', function(e) {
+  if (tip.style.display === 'block') moveTip(e);
+});
+function moveTip(e) {
+  const rect = wrap.getBoundingClientRect();
+  let x = e.clientX - rect.left + 12;
+  let y = e.clientY - rect.top + 12;
+  if (x + 210 > rect.width) x = e.clientX - rect.left - 220;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+}
+</script>
+</body>
+</html>
