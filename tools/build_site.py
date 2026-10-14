@@ -11,9 +11,9 @@ PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
     "": ("Evgeny Maradin | Pre-FEED Study Manager, FEL1–FEL2, Upstream O&G",
-         "Study Manager and Senior Concept Engineer, 18+ years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
+         "Study Manager and Senior Concept Engineer, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
     "about": ("About Evgeny Maradin | Lead Project Engineer, Pre-FEED & FEL",
-              "18+ years on the operator side (Shell JV, Gazprom Neft, Rosneft): FEL1–FEL2, Pre-FEED, FEED and brownfield development. Career, education and tools."),
+              "19 years in upstream oil & gas, mostly operator side (Shell JV, Gazprom Neft, Rosneft): FEL1–FEL2, Pre-FEED, FEED and brownfield development. Career, education and tools."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
@@ -162,14 +162,14 @@ CASES = [
          action=["Coordinated KBR and Granherne as technical contractors on the early production facility design.", "Aligned the facility scope with the appraisal programme and the operating requirements of the asset.", "Managed contractor interfaces, deliverables and schedule through to the final design package."],
          result="EPF design package delivered on schedule for the $46M appraisal project.",
          insight="kazakhstan"),
-    dict(slug="well-pad-siting", n="09", label="Operator side · Field infrastructure", years="Method",
+    dict(slug="well-pad-siting", n="09", label="Shell JV · Field infrastructure", years="2018–2023",
          title="Well-Pad & Corridor Siting Method",
          teaser="Built an integrated method for choosing well-pad locations and infrastructure corridors that cut lifecycle cost by 10–50%.",
          metric="10–50%", metric_l="lifecycle cost<br>reduction", big="10–50% lifecycle cost reduction depending on the case, with corridor length down 15–35% and earthworks down 10–30%. Adopted as company best practice for well-pad planning.",
          tags=["Concept Select", "Field Infrastructure", "Method"],
-         meta=[("Scope", "Well pads & corridors"), ("Disciplines", "Geology, drilling, infrastructure, economics, legal"), ("Tools", "GIS, cost models, scenarios"), ("Gate", "Decision Review Board")],
+         meta=[("Client", "Salym Petroleum Development (Shell JV)"), ("Period", "2018–2023"), ("Role", "Senior Concept Engineer"), ("Gate", "Decision Review Board")],
          context="Well-pad locations had historically been set mainly by the well pattern. That worked for simple structures, but with horizontal drilling and more complex topography it was pushing unit technical cost up and development efficiency down.",
-         role="Led the cross-discipline group and designed the evaluation framework.",
+         role="Senior Concept Engineer: led a cross-discipline group across geology, drilling, infrastructure, economics and legal, and designed the evaluation framework.",
          challenge="Hit drilling and geology targets at minimum lifecycle cost, within environmental and land-allocation limits, while balancing technical achievability against economics under high input-data uncertainty.",
          action=["Set up a group across geology, drilling, infrastructure, economics and legal.",
                  "Built an evaluation framework with more than 20 parameters: horizontal section length, entry angle, logistics, crossings, land-allocation limits, CAPEX and OPEX.",
@@ -344,7 +344,7 @@ page("advisory", "Advisory", "Independent FEL, Pre-FEED and concept select advis
      f'''<section class="hero small"><div class="container hero-grid"><div><p class="eyebrow">Advisory</p><h1 class="page">Independent front&#8209;end advice,<br>when it matters.</h1>
 <p class="lead">For operators, contractors and investors who need an experienced view before committing to FEED, FID or a contract, without hiring a full team.</p>
 <div class="actions"><a class="button primary" href="/contact/?type=call">Discuss a project</a><a class="button secondary" href="https://www.linkedin.com/services/page/4540aa333982b8584b/" target="_blank" rel="noopener">LinkedIn Services ↗</a></div></div>
-<aside class="metrics"><div><b>50+</b><span>FEL studies led</span></div><div><b>18+</b><span>years operator side</span></div><div><b>$6B+</b><span>EPC portfolio reviewed</span></div><div><b>GMT+8</b><span>remote or on-site</span></div></aside></div></section>
+<aside class="metrics"><div><b>50+</b><span>FEL studies led</span></div><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>$6B+</b><span>EPC portfolio reviewed</span></div><div><b>GMT+8</b><span>remote or on-site</span></div></aside></div></section>
 <section class="section" style="border-top:0;padding-top:40px"><div class="container"><div class="section-head"><div><p class="eyebrow">What I do</p><h2>Six ways to work together.</h2></div><p>Each grounded in cases I have delivered. See <a class="textlink" href="/cases/">cases</a>.</p></div>
 <div class="services">{"".join(f'<div><b>{n}</b><h3>{t}</h3><p>{d}</p><ul>{"".join(f"<li>— {x}</li>" for x in li)}</ul></div>' for n, t, d, li in SERVICES)}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Formats</p><h2 style="margin-bottom:40px">From one call to a full study.</h2>
@@ -362,9 +362,9 @@ TIMELINE = [
     ("2008 – 2011", "Head of Concept Design / Concept Engineer", "Rosneft", "Engineering-centre (contractor) side: delivered 10+ greenfield and brownfield concept and Pre-FEED studies for Rosneft subsidiaries, held the study budget and competed with other centres for scope. Led a team of seven engineers."),
     ("2007 – 2008", "Senior Field Mechanic (LPG/NGL)", "Rosneft · Krasnodarneftegas", "Four-stage oil–gas separation train feeding a DEG gas treatment plant (dry gas, LPG, stabilised condensate): commissioning of a new pump station, start-up, maintenance and post-incident recovery, including winter operation. Team of 11–13 technicians, zero LTI."),
 ]
-page("about", "About", "Evgeny Maradin: 18+ years in upstream oil & gas on the operator side, focused on FEL1–FEL2, Pre-FEED and brownfield development.",
+page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side, focused on FEL1–FEL2, Pre-FEED and brownfield development.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
-<p class="lead">18+ years in upstream oil &amp; gas, most of it on the operator side, focused on the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
+<p class="lead">19 years in upstream oil &amp; gas, most of it on the operator side, focused on the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
 <p class="avail">Based in the Philippines · available to mobilise within 2 weeks · Iraq, Oman, UAE, wider Middle East, Africa, Southeast Asia</p></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
@@ -412,7 +412,7 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 <p class="lead">Study Manager and Senior Concept Engineer focused on FEL1–FEL2, Pre-FEED, brownfield development and multidisciplinary integration, turning complex project constraints into decision-ready concepts.</p>
 <p class="avail">Based in the Philippines · available to mobilise within 2 weeks · Iraq, Oman, UAE, wider Middle East, Africa, Southeast Asia</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
-<aside class="metrics"><div><b>18+</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
+<aside class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
 <section class="trust"><div class="container trust-row"><div><span>Operator side</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>

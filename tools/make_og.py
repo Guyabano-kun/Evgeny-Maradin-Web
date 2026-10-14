@@ -24,7 +24,7 @@ d.text((PAD, 286), "before FEED.", font=ImageFont.truetype(SERIF_IT, 92), fill=A
 d.text((PAD, 406), "Evgeny Maradin — Study Manager · Senior Concept Engineer", font=f("Medium", 28), fill=INK)
 
 d.line((PAD, 482, W - PAD, 482), fill=LINE, width=2)
-metrics = [("18+", "years upstream"), ("50+", "studies"), ("$300M+", "project scale"), ("57%", "CAPEX reduction")]
+metrics = [("19", "years upstream"), ("50+", "studies"), ("$300M+", "project scale"), ("57%", "CAPEX reduction")]
 col = (W - 2 * PAD) / len(metrics)
 for i, (b, s) in enumerate(metrics):
     x = PAD + i * col
