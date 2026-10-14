@@ -8,6 +8,21 @@ EMAIL = "enmaradin@gmail.com"
 UPDATED = "October 2026"
 SITE = "https://evgeny-maradin.pages.dev"
 PAGES = []  # paths written by page(), for sitemap.xml
+# search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
+SEO = {
+    "": ("Evgeny Maradin | Pre-FEED Study Manager, FEL1–FEL2, Upstream O&G",
+         "Study Manager and Senior Concept Engineer, 18+ years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
+    "about": ("About Evgeny Maradin | Lead Project Engineer, Pre-FEED & FEL",
+              "18+ years on the operator side (Shell JV, Gazprom Neft, Rosneft): FEL1–FEL2, Pre-FEED, FEED and brownfield development. Career, education and tools."),
+    "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
+                 "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
+    "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
+              "Eight upstream oil & gas cases: portfolio integration (-57% CAPEX), water injection re-engineering, APG Pre-FEED, EPC bid analysis, Arctic FEED."),
+    "insights": ("Upstream FEL Insights & Interactive Models | Evgeny Maradin",
+                 "Frameworks, interactive models and regional analysis on FEL, Pre-FEED and brownfield development in Iraq, Kuwait, Oman, UAE and Kazakhstan."),
+    "contact": ("Contact Evgeny Maradin | Projects, Expert Calls, Hiring",
+                "Send a message or book a free 30-minute intro call about a role, a study or an expert call. Based in the Philippines, available to mobilise within 2 weeks."),
+}
 PERSON = ('{"@context":"https://schema.org","@type":"Person","name":"Evgeny Maradin","url":"%s/",'
           '"jobTitle":"Study Manager / Senior Concept Engineer (FEL, Pre-FEED)","email":"mailto:%s",'
           '"image":"%s/og.png","sameAs":["%s"],"homeLocation":{"@type":"Place","name":"Philippines"},'
@@ -23,6 +38,8 @@ def page(path, title, desc, body, active=""):
         f'<a href="{h}"{" class=%s" % c if c else ""}{" aria-current=page" if h == active else ""}>{t}</a>'
         for h, t, c in NAV)
     full_title = "Evgeny Maradin | Concept Development / FEL" if path == "" else f"{title} | Evgeny Maradin"
+    if path in SEO:
+        full_title, desc = SEO[path]
     url = f"{SITE}/{path}/" if path else f"{SITE}/"
     ld = f'<script type="application/ld+json">{PERSON}</script>' if path == "" else ""
     PAGES.append(url)
@@ -374,12 +391,6 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
     f.write('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found | Evgeny Maradin</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head><body><section class="hero"><div class="container"><p class="eyebrow">404</p><h1 class="page">This page does not exist.</h1><div class="actions"><a class="button primary" href="/">Home</a><a class="button secondary" href="/cases/">Cases</a></div></div></section></body></html>')
 
-# ---------------- sitemap / robots ----------------
-with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
-    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-            + "".join(f"<url><loc>{u}</loc></url>\n" for u in sorted(PAGES)) + "</urlset>\n")
-with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
-    f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 print("built")
 
 # ---------------- related-reading placeholders in case pages ----------------
@@ -388,3 +399,23 @@ for _f in _glob.glob(os.path.join(OUT, "cases", "*", "index.html")):
     _h = open(_f, encoding="utf-8").read()
     _h2 = _re.sub(r"@@RELATED:([a-z0-9-]+)@@", lambda m: related(m.group(1)), _h)
     if _h2 != _h: open(_f, "w", encoding="utf-8").write(_h2)
+
+# ---------------- sitemap / robots ----------------
+import hashlib, json, datetime
+LASTMOD = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lastmod.json")
+try:
+    lm = json.load(open(LASTMOD, encoding="utf-8"))
+except FileNotFoundError:
+    lm = {}
+today = datetime.date.today().isoformat()
+for u in PAGES:
+    rel = u[len(SITE) + 1:]
+    h = hashlib.sha1(open(os.path.join(OUT, rel, "index.html"), "rb").read()).hexdigest()
+    if lm.get(u, {}).get("sha1") != h:
+        lm[u] = {"sha1": h, "date": today}
+json.dump({u: lm[u] for u in sorted(PAGES)}, open(LASTMOD, "w", encoding="utf-8"), indent=1)
+with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "".join(f"<url><loc>{u}</loc><lastmod>{lm[u]['date']}</lastmod></url>\n" for u in sorted(PAGES)) + "</urlset>\n")
+with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
+    f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
