@@ -299,7 +299,7 @@ page("about", "About", "Evgeny Maradin: 18+ years in upstream oil & gas on the o
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
 <section class="section alt"><div class="container"><div class="facts">
-<div><h4>Education</h4><p>Specialist Diploma (5-year), Machinery and Equipment of Oil &amp; Gas Fields, Kuban State Technological University, 2007. Assessed by UK ENIC as comparable to a UK Bachelor (Honours) degree, RQF Level 6.</p></div>
+<div><h4>Education</h4><p>Specialist Diploma (5-year), Machinery and Equipment of Oil &amp; Gas Fields, Kuban State Technological University, 2007. Assessed by UK ENIC as comparable to a UK Bachelor (Honours) degree, RQF Level 6.</p><a class="doc" href="/docs/uk-enic-statement-of-comparability.pdf" target="_blank" rel="noopener"><img src="/img/docs/uk-enic.webp" alt="UK ENIC Statement of Comparability for Evgeny Maradin" loading="lazy" width="640" height="506"><span>UK ENIC Statement of Comparability · PDF ↗</span></a><p class="doc-note">Reference 4002501645 · verify at <a href="https://www.enic.org.uk/verification" target="_blank" rel="noopener">enic.org.uk/verification</a></p></div>
 <div><h4>Tools</h4><p>Petex GAP · PIPESIM · HYSYS · PI Vision · Power BI · SmartField · SAP S/4HANA (PPM) · MS Project · AutoCAD</p></div>
 <div><h4>Languages</h4><p>English: professional working proficiency.<br>Russian: native.</p></div>
 </div></div></section>''',
