@@ -17,7 +17,7 @@ SEO = {
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
-              "Eight upstream oil & gas cases: portfolio integration (-57% CAPEX), water injection re-engineering, APG Pre-FEED, EPC bid analysis, Arctic FEED."),
+              "Nine upstream oil & gas cases: portfolio integration (-57% CAPEX), water injection re-engineering, gas debottlenecking Pre-FEED, well-pad siting, EPC bid analysis."),
     "insights": ("Upstream FEL Insights & Interactive Models | Evgeny Maradin",
                  "Frameworks, interactive models and regional analysis on FEL, Pre-FEED and brownfield development in Iraq, Kuwait, Oman, UAE and Kazakhstan."),
     "contact": ("Contact Evgeny Maradin | Projects, Expert Calls, Hiring",
@@ -62,6 +62,8 @@ def page(path, title, desc, body, active=""):
         f.write(doc)
 
 
+NUM = {7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve"}
+
 # ---------------- CASES ----------------
 CASES = [
     dict(slug="portfolio-integration", n="01", label="Shell JV · Western Siberia", years="2017–2023",
@@ -78,27 +80,27 @@ CASES = [
          insight="portfolio-risk"),
     dict(slug="water-injection", n="02", label="Shell JV · Asset Integrity", years="2023–2024",
          title="Water Injection Re-engineering",
-         teaser="Challenged a technically valid but commercially disproportionate end-of-life redevelopment concept and developed an alternative.",
-         metric="80%", metric_l="CAPEX reduction<br>$3.6M saved", big="80% CAPEX reduction ($3.6M saved) and a 300% increase in Profitability Index. Approved at Decision Review Board.",
+         teaser='Merged a development scope and an asset-integrity programme into one study and replaced a disproportionate redevelopment concept: VRR from 70% to 95% at 80% lower CAPEX.',
+         metric="80%", metric_l="CAPEX reduction<br>$3.6M saved", big='80% CAPEX reduction ($3.6M saved), Profitability Index up 300% and voidage replacement from 70% to 95%. Approved at Decision Review Board and adopted as best practice.',
          tags=["Brownfield", "DRB", "Economics"],
-         meta=[("Client", "Salym Petroleum Development (Shell JV)"), ("Period", "2023–2024"), ("Role", "Concept lead"), ("Gate", "Decision Review Board")],
-         context="An existing water injection system approaching end-of-life, with a significant CAPEX requirement under the original redevelopment concept.",
-         role="Concept lead. Initiated the re-evaluation of the original approach.",
-         challenge="The original concept was technically valid but commercially disproportionate given the remaining asset life and production profile.",
-         action=["Challenged the original concept.", "Developed an alternative engineering approach.", "Structured the business case and prepared the DRB submission."],
-         result="80% CAPEX reduction ($3.6M saved). Profitability Index increased by 300%. Approved at Decision Review Board.",
+         meta=[('Client', 'Salym Petroleum Development (Shell JV)'), ('Period', '2023–2024'), ('Role', 'Concept Development Manager'), ('Gate', 'Decision Review Board')],
+         context='A mature oil field with a voidage replacement ratio (VRR) of about 70%, a direct threat to reservoir pressure and recovery. The water injection system had been designed for low rates and could no longer deliver the required pressure or capacity. Separately, an asset-integrity scope for the same area was already heading to the DRB with its own budget.',
+         role='Concept lead: overall management, concept definition and flow assurance, leading five discipline leads from development, production engineering, integrity, operations and finance.',
+         challenge='Six months to reach VRR close to 1 by cluster with a Profitability Index above 1 while cutting base CAPEX. The original redevelopment concept was technically valid but commercially disproportionate for the remaining asset life.',
+         action=['Merged the development scope and the asset-integrity programme into one study to capture the synergy.', 'Ran root-cause and flow-assurance analysis and set the key indicators.', 'Designed reconfiguration scenarios, from a partial upgrade to local flow rerouting.', 'Applied competitive scoping to balance risk, cost and performance, re-using existing infrastructure wherever possible.', 'Built the economic model and defended the business case at the Decision Review Board.'],
+         result='Endorsed as the base development scenario: debottleneck the well pad nearest the main high-pressure injection corridor and move producers and injectors to remote pads supported by produced water. 80% CAPEX reduction ($3.6M), Profitability Index +300%, VRR from 70% to 95%, asset life extended. Adopted as best practice for re-engineering and asset-integrity projects.',
          insight="shopping-cart"),
     dict(slug="apg-pre-feed", n="03", label="Shell JV · Associated gas", years="2023–2024",
          title="APG Utilisation Pre-FEED",
-         teaser="Led an eight-month multidisciplinary Pre-FEED covering development planning, contractor interfaces and production–facilities integration.",
-         metric="$160M", metric_l="project scale<br>Pre-FEED", big="An eight-month Pre-FEED for a $160M associated petroleum gas utilisation project, supporting concept selection and investment readiness.",
+         teaser='Owner-side Pre-FEED on associated gas: found the facility was gas-limited, selected a right-sized debottlenecking fix and screened about 19 gas-use routes with my own scoring method.',
+         metric="$160M", metric_l="project scale<br>Pre-FEED", big='Gas loading peaking at 2.15× installed capacity; a compact pre-separation takeoff about 3× cheaper than separator options and the only one stable at peak gas-oil ratio. Pre-FEED for a $160M project.',
          tags=["Study Management", "Pre-FEED", "Gas"],
          meta=[("Client", "Salym Petroleum Development (Shell JV)"), ("Period", "2023–2024"), ("Role", "Study lead"), ("Duration", "8 months")],
-         context="Associated petroleum gas utilisation project at a mature oil asset, requiring a Pre-FEED to support concept selection and investment readiness.",
-         role="Led the Pre-FEED study as Concept Development Manager.",
-         challenge="Align production, facilities and contractor scopes into one development plan within an eight-month study window.",
-         action=["Coordinated multidisciplinary engineering and contractor interfaces.", "Developed the scope and the development plan across production and facilities.", "Prepared execution planning inputs for the investment decision."],
-         result="Pre-FEED delivered for a $160M project, providing the basis for concept selection and investment readiness.",
+         context='Associated petroleum gas utilisation at a mature onshore oil asset. As the field gassed out, the gas-oil ratio was set to rise roughly 13-fold over field life, and the existing processing facility was already close to capacity.',
+         role='Study lead on the owner side as Concept Development Manager. Engineering was executed by an external technical centre under my direction; the evaluation criteria, the weighted scoring method and the one-page decision-brief format were my design.',
+         challenge='Find the true capacity constraint over the full life of field, fix it without building permanent worst-case steel, and decide what to do with the gas, all within an eight-month Pre-FEED that had to align production, facilities and contractor scopes.',
+         action=['Screened facility loading phase by phase (liquid, oil, water, gas) with a hydraulic throughput model over a 17-year profile: the asset was gas-limited, not liquid-limited.', 'Checked equipment adequacy unit by unit: actual against rated flow on every separator, scrubber, flare and multiphase pump.', 'Identified the system bottlenecks together with the process engineer and set the engineering direction; proposed most of the practical options, with the contractor adding the unconventional ones.', 'Defined three debottlenecking configurations to comparable maturity and screened them on cost and on stability at peak inlet gas-oil ratio.', 'Defined the weighted scoring method, trained the engineering centre to apply it and required a one-page technical note per option, so weak options were dropped before deep engineering.', 'Screened about 19 gas-use routes, from third-party processing, reinjection and power to GTL, methanol and LNG, down to a realistic shortlist.', 'Flagged early that the inlet tie-in needed a facility shutdown, so the work was folded into a planned turnaround.'],
+         result='Compact pre-separation gas takeoff selected: about 3× cheaper than the separator-based options and the only configuration stable at peak gas-oil ratio. The gas peak lasts about five years, so capacity was phased instead of sized for permanent worst case, and the short plateau ruled out gas chemistry as the wrong scale of solution. Pre-FEED delivered for the $160M project as the basis for concept selection and investment readiness.',
          insight="pressure"),
     dict(slug="epc-bid-analysis", n="04", label="MENA · Independent advisory", years="2026",
          title="EPC Bid Analysis & Contract Strategy",
@@ -115,14 +117,14 @@ CASES = [
     dict(slug="yaro-yakhinskoye", n="05", label="Gazprom Neft · Arctic onshore", years="2014–2017",
          title="Yaro-Yakhinskoye Field Development",
          teaser="Led Pre-FEED and FEED, then supported detailed engineering and execution readiness for facilities tied into live production.",
-         metric="$300M+", metric_l="programme scale<br>within schedule", big="New facilities integrated without production disruption. Delivered within schedule on a $300M+ programme.",
+         metric="$300M+", metric_l="programme scale<br>within schedule", big='New facilities integrated without production disruption on a $300M+ programme; FEED interface gap closed in a week, so the construction permit came on schedule.',
          tags=["FEED", "Brownfield", "Execution"],
          meta=[("Client", "Gazprom Neft · Arcticgas JV"), ("Period", "2014–2017"), ("Role", "Study Manager → Project Engineer / PMO"), ("Phase", "Pre-FEED → Detailed design")],
          context="Greenfield-to-brownfield transition on an active producing asset in Arctic conditions.",
          role="Led Pre-FEED and FEED as Study Manager, then supported detailed engineering as Project Engineer / PMO, including construction and pre-start-up readiness assessments.",
-         challenge="New facilities had to be integrated into live production infrastructure with no production interruption, across multiple contractor interfaces in a remote environment.",
-         action=["Coordinated engineering disciplines through FEED.", "Managed contractor interfaces.", "Led risk management and change control during execution preparation."],
-         result="Facilities integrated without production disruption. Delivered within schedule on a $300M+ programme.",
+         challenge="New facilities had to be tied into live production in a remote Arctic environment. Civil works were possible only in winter, so a month's slip in design approval risked a one-year deferral, and survey data and key tie-in areas were split across several FEED contractors.",
+         action=['Coordinated engineering disciplines through Pre-FEED and FEED.', 'On my own initiative ran an integrated review of key FEED documents and found a mismatch at the export pipeline and central processing facility tie-in point.', 'Brought the contractors and stakeholders together, set roles, responsibility zones and a short correction plan across FEED and detailed design; the changes were aligned within a week.', 'Led risk management and change control during execution preparation.'],
+         result='FEED documentation submitted to state expert review on time with no interface findings, and the construction permit secured on schedule. Facilities integrated without production disruption on a $300M+ programme. The lesson, interface checks in a dedicated early FEED stage, was added to the Gazprom Neft corporate lessons-learned register.',
          insight="integrated-fd"),
     dict(slug="south-hub", n="06", label="Shell JV · Upper Salym field", years="2017–2018",
          title="South Hub – Brownfield Expansion",
@@ -160,18 +162,56 @@ CASES = [
          action=["Coordinated KBR and Granherne as technical contractors on the early production facility design.", "Aligned the facility scope with the appraisal programme and the operating requirements of the asset.", "Managed contractor interfaces, deliverables and schedule through to the final design package."],
          result="EPF design package delivered on schedule for the $46M appraisal project.",
          insight="kazakhstan"),
+    dict(slug="well-pad-siting", n="09", label="Operator side · Field infrastructure", years="Method",
+         title="Well-Pad & Corridor Siting Method",
+         teaser="Built an integrated method for choosing well-pad locations and infrastructure corridors that cut lifecycle cost by 10–50%.",
+         metric="10–50%", metric_l="lifecycle cost<br>reduction", big="10–50% lifecycle cost reduction depending on the case, with corridor length down 15–35% and earthworks down 10–30%. Adopted as company best practice for well-pad planning.",
+         tags=["Concept Select", "Field Infrastructure", "Method"],
+         meta=[("Scope", "Well pads & corridors"), ("Disciplines", "Geology, drilling, infrastructure, economics, legal"), ("Tools", "GIS, cost models, scenarios"), ("Gate", "Decision Review Board")],
+         context="Well-pad locations had historically been set mainly by the well pattern. That worked for simple structures, but with horizontal drilling and more complex topography it was pushing unit technical cost up and development efficiency down.",
+         role="Led the cross-discipline group and designed the evaluation framework.",
+         challenge="Hit drilling and geology targets at minimum lifecycle cost, within environmental and land-allocation limits, while balancing technical achievability against economics under high input-data uncertainty.",
+         action=["Set up a group across geology, drilling, infrastructure, economics and legal.",
+                 "Built an evaluation framework with more than 20 parameters: horizontal section length, entry angle, logistics, crossings, land-allocation limits, CAPEX and OPEX.",
+                 "Generated 9 to 30 alternative pad locations per case, ranked them and shortlisted the top 3 to 5 with GIS models, cost models and scenario analysis.",
+                 "Produced a recommended and an alternative option with quantified savings per driver and aligned them at the DRB."],
+         result="10–50% lifecycle cost reduction depending on the case; corridor length down 15–35% and earthworks down 10–30%. The method became company best practice for well-pad planning, with faster alignment between technical and economic teams and more predictable budgets.",
+         insight="integrated-fd"),
 ]
 
 
 def case_card(c, full=False, num=True):
     cls = "case feature" if c.get("feature") else "case"
     n = f'{c["n"]} · ' if num else ""
-    return (f'<a class="{cls}" href="/cases/{c["slug"]}/"><small>{n}{c["label"].upper()} · {c["years"].upper()}</small>'
+    return (f'<a class="{cls}" href="/cases/{c["slug"]}/"><small>{n}{c["label"].upper()}{" · " + c["years"].upper() if c["years"] else ""}</small>'
             f'<h3>{c["title"]}</h3><p>{c["teaser"]}</p>'
             f'<div class="result"><b>{c["metric"]}</b><span>{c["metric_l"]}</span></div>'
             + (f'<div class="tags">{"".join(f"<i>{t}</i>" for t in c["tags"])}</div>' if full else "")
             + '<span class="more">Read case →</span></a>')
 
+
+# ---------------- case figures ----------------
+_gas = [.84, .79, .77, .73, .76, 1.05, 1.57, 1.77, 1.64, 1.8, 2.01, 2.15, 2.05, 1.54, 1.06, .68, .45]
+_pts = " ".join(f"{60 + i * 47.5:.1f},{280 - v / 2.3 * 250:.1f}" for i, v in enumerate(_gas))
+FIGURES = {
+    "apg-pre-feed": f'''<figure class="case-fig"><figcaption>Gas loading against installed capacity over the life of field</figcaption>
+<svg viewBox="0 0 860 330" role="img" aria-label="Gas loading peaks at 2.15 times installed capacity around year 12 and falls back below 1 by year 15">
+<line x1="60" y1="280" x2="820" y2="280" class="ax"/><line x1="60" y1="30" x2="60" y2="280" class="ax"/>
+<g class="lab"><text x="30" y="284">0</text><text x="26" y="228">0.5</text><text x="26" y="175">1.0</text><text x="26" y="120">1.5</text><text x="26" y="65">2.0</text>
+<text x="60" y="300" text-anchor="middle">Y1</text><text x="250" y="300" text-anchor="middle">Y5</text><text x="440" y="300" text-anchor="middle">Y9</text><text x="630" y="300" text-anchor="middle">Y13</text><text x="820" y="300" text-anchor="middle">Y17</text>
+<text x="440" y="322" text-anchor="middle">project year (life of field)</text></g>
+<line x1="60" y1="171.3" x2="820" y2="171.3" class="cap"/><text x="70" y="164" class="lab">installed capacity = 1.0</text>
+<line x1="250" y1="30" x2="250" y2="280" class="fix"/><text x="256" y="250" class="fixt">pre-separation gas takeoff</text>
+<polyline points="{_pts}" class="load"/>
+<circle cx="582.5" cy="46.2" r="4.5" class="pk"/><text x="582.5" y="36" text-anchor="middle" class="pkt">peak 2.15×</text>
+</svg>
+<table><thead><tr><th>Debottlenecking option</th><th>Relative CAPEX</th><th>At peak gas-oil ratio</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>Compact pre-separation gas takeoff</td><td>1.0×</td><td>stable</td><td><b>selected</b></td></tr>
+<tr><td>Three-phase separator train</td><td>~3.1×</td><td>unstable</td><td>rejected</td></tr>
+<tr><td>Gas–liquid separator train</td><td>~4.5×</td><td>unstable</td><td>rejected</td></tr>
+</tbody></table>
+<p class="fig-note">Illustrative figures: loading fractions, ratios and relative CAPEX only. No asset name, contractor or absolute costs.</p></figure>''',
+}
 
 for i, c in enumerate(CASES):
     prev_c, next_c = CASES[i - 1], CASES[(i + 1) % len(CASES)]
@@ -183,7 +223,7 @@ for i, c in enumerate(CASES):
 <div class="big-result"><b>{c["metric"]}</b><span>{c["big"]}</span></div>
 <div class="story"><div><h4>Context</h4><p>{c["context"]}</p></div><div><h4>Role</h4><p>{c["role"]}</p></div>
 <div><h4>Challenge</h4><p>{c["challenge"]}</p></div><div><h4>Action</h4><ul>{actions}</ul></div>
-<div><h4>Result</h4><p>{c["result"]}</p></div></div>
+<div><h4>Result</h4><p>{c["result"]}</p></div></div>{FIGURES.get(c["slug"], "")}
 <div class="tags" style="margin:30px 0 50px">{"".join(f"<i>{t}</i>" for t in c["tags"])}</div>
 <div style="margin-bottom:50px">@@RELATED:{c["insight"]}@@</div>
 <div class="pager"><a href="/cases/{prev_c["slug"]}/"><small>← Previous case</small><b>{prev_c["title"]}</b></a><a href="/cases/{next_c["slug"]}/"><small>Next case →</small><b>{next_c["title"]}</b></a></div>
@@ -192,7 +232,7 @@ for i, c in enumerate(CASES):
 
 page("cases", "Cases", "Selected cases in concept development, brownfield optimisation and project decision support.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Selected cases</p><h1 class="page">Evidence,<br>not job titles.</h1>
-<p class="lead">Eight cases from concept development, brownfield optimisation and project decision support. Each one: the context, my role, what was hard, what I did and what changed.</p></div></section>
+<p class="lead">{NUM[len(CASES)]} cases from concept development, brownfield optimisation and project decision support. Each one: the context, my role, what was hard, what I did and what changed.</p></div></section>
 <section class="section tight" style="border-top:0"><div class="container"><div class="case-grid">{"".join(case_card(c, True) for c in CASES)}</div></div></section>''',
      "/cases/")
 
@@ -319,8 +359,8 @@ TIMELINE = [
     ("2017 – 2023", "Senior Concept Engineer", "Salym Petroleum Development (Shell JV)", "Front-End Development Manager on FEL1–FEL2 and Pre-FEED studies up to $300M+. Cross-field integration programme: 57% portfolio CAPEX reduction. Flow assurance at Technical Authority level 2."),
     ("2014 – 2017", "Senior Project Engineer", "Gazprom Neft · Arctic onshore", "Study Manager for Pre-FEED and FEED on Yaro-Yakhinskoye ($300M+), then Project Engineer / PMO through detailed design and pre-start-up readiness."),
     ("2012 – 2014", "Conceptual Design Engineer", "Salym Petroleum Development (Shell JV)", "15 concept studies ($1M–$26M). Managed international contractors, including KBR and Granherne, on a $46M shale appraisal project. Introduced the engineering MoC system."),
-    ("2008 – 2011", "Head of Concept Design / Concept Engineer", "Rosneft", "10+ greenfield and brownfield concept studies. Managed Pre-FEED contractor scopes. Led a team of seven engineers."),
-    ("2007 – 2008", "Senior Field Mechanic (LPG/NGL)", "Rosneft · Krasnodarneftegas", "Gas treatment plant and separation station: commissioning, start-up, maintenance and post-incident recovery. Team of 11–13 technicians, zero LTI."),
+    ("2008 – 2011", "Head of Concept Design / Concept Engineer", "Rosneft", "Engineering-centre (contractor) side: delivered 10+ greenfield and brownfield concept and Pre-FEED studies for Rosneft subsidiaries, held the study budget and competed with other centres for scope. Led a team of seven engineers."),
+    ("2007 – 2008", "Senior Field Mechanic (LPG/NGL)", "Rosneft · Krasnodarneftegas", "Four-stage oil–gas separation train feeding a DEG gas treatment plant (dry gas, LPG, stabilised condensate): commissioning of a new pump station, start-up, maintenance and post-incident recovery, including winter operation. Team of 11–13 technicians, zero LTI."),
 ]
 page("about", "About", "Evgeny Maradin: 18+ years in upstream oil & gas on the operator side, focused on FEL1–FEL2, Pre-FEED and brownfield development.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
@@ -375,7 +415,7 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 <aside class="metrics"><div><b>18+</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
 <section class="trust"><div class="container trust-row"><div><span>Operator side</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
-<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All eight cases →</a></p></div>
+<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Engineering scope</p><h2>Where I create value.</h2><div class="expertise">
 <div><b>01</b><h3>Concept Development</h3><p>FEL1–FEL2, Pre-FEED, option screening, concept selection and investment readiness.</p></div>

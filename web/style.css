@@ -252,3 +252,22 @@ footer a:hover{color:var(--bg)}
 .trust-row{display:flex;flex-wrap:wrap;gap:14px 48px}
 .trust-row span{display:block;font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .trust-row b{font-size:15px;font-weight:700}
+
+/* case figure (chart + option table) */
+.case-fig{margin:40px 0 0;border-top:1px solid var(--ink);padding-top:22px}
+.case-fig figcaption{font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.case-fig svg{display:block;width:100%;height:auto;background:#fbfaf6;border:1px solid var(--line)}
+.case-fig .ax{stroke:var(--muted);stroke-width:1}
+.case-fig .lab{font:11px Inter,Arial,sans-serif;fill:var(--muted)}
+.case-fig .cap{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:3 4}
+.case-fig .fix{stroke:#2e6b34;stroke-width:1;stroke-dasharray:4 3}
+.case-fig .fixt{font:11px Inter,Arial,sans-serif;fill:#2e6b34}
+.case-fig .load{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round}
+.case-fig .pk{fill:var(--accent)}
+.case-fig .pkt{font:700 12px Inter,Arial,sans-serif;fill:var(--accent)}
+.case-fig table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px}
+.case-fig th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
+.case-fig td{padding:10px 10px 10px 0;border-bottom:1px solid var(--line)}
+.case-fig td b{color:#2e6b34}
+.fig-note{font-size:12px;color:var(--muted);margin:12px 0 0}
+@media(max-width:560px){.case-fig .lab,.case-fig .fixt{font-size:20px}.case-fig .pkt{font-size:22px}.case-fig table{font-size:12.5px}.case-fig th{font-size:10px;letter-spacing:.06em}}

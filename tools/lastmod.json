@@ -1,10 +1,10 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "dac1df7168b0a237c15c1970d094af84de99d2f6",
+  "sha1": "9ed6b80cb768040e6f7c12f1752cf5e6a39a4a43",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/about/": {
-  "sha1": "a50602adcb6f4cf8b51dcecd473337f5951b5b04",
+  "sha1": "0c907dd8fc13398ffe52ab39686f3c31345e9a98",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/advisory/": {
@@ -12,15 +12,15 @@
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/": {
-  "sha1": "854dd3bde73b0747c25057d661ecf64fb4f55b74",
+  "sha1": "c940563cf44eba7494cf5d872ec09b44d6f0a0b6",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/apg-pre-feed/": {
-  "sha1": "e5fcff4dbb7dfd379cebe8eae1bc7fec449799c6",
+  "sha1": "8f2f26ae518492f5547b3caa533579d50da8c830",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/bazhenov-appraisal/": {
-  "sha1": "c3308ec301650f042083f5b8f05bc847d1007cdc",
+  "sha1": "12a0543261c07d87def8c5f30c3a9b2fa6500a66",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/epc-bid-analysis/": {
@@ -32,7 +32,7 @@
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/portfolio-integration/": {
-  "sha1": "0ed49c47c6c62391292096252346a5e91c1a93c9",
+  "sha1": "30759034204f46e7c87fd95e2d58975ec5ba848d",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/south-hub/": {
@@ -40,11 +40,15 @@
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/water-injection/": {
-  "sha1": "74981abe3f2a30e40276e635e7c2eb1d92c35a94",
+  "sha1": "c01665d411f3185d52369fa01565b46659974650",
+  "date": "2026-10-14"
+ },
+ "https://evgeny-maradin.pages.dev/cases/well-pad-siting/": {
+  "sha1": "92e227c45f5d7679caef596291d1b44741a38537",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
-  "sha1": "7567ddb24221a873616cc5d36eb6f6f595af6e36",
+  "sha1": "e001e4b1551d9fbc59bd52c79ac7e26c642f97fa",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/contact/": {
