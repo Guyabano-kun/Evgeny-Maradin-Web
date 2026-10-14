@@ -1,18 +1,18 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "9ed6b80cb768040e6f7c12f1752cf5e6a39a4a43",
+  "sha1": "081a002b90a7e4d369b669314cb23baef9990c4b",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/about/": {
-  "sha1": "0c907dd8fc13398ffe52ab39686f3c31345e9a98",
+  "sha1": "36bfe14fc5af729a1c473b3b6b333ed626e1f05f",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/advisory/": {
-  "sha1": "4a87a33fb4968be7235ebd84a3290311cf46fa34",
+  "sha1": "c629b30dcf21c6c6c074792da416b04891960ff6",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/": {
-  "sha1": "c940563cf44eba7494cf5d872ec09b44d6f0a0b6",
+  "sha1": "662b291570b6c273054760e3ee969a37e8a05209",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/apg-pre-feed/": {
@@ -44,7 +44,7 @@
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/well-pad-siting/": {
-  "sha1": "92e227c45f5d7679caef596291d1b44741a38537",
+  "sha1": "d34e83ce6d3defc09c5ca4e0444bffb8cb1d4b10",
   "date": "2026-10-14"
  },
  "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
