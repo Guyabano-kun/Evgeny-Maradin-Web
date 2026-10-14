@@ -1,6 +1,6 @@
 # evgeny-maradin.pages.dev
 
-Static site, deployed by Cloudflare Pages from the `web/` folder on every push to `main`.
+Static site, deployed by Cloudflare Pages from the `web/` folder on every push to `main` (Cloudflare is connected to this GitHub repo directly; there is no deploy workflow here). Other branches get Cloudflare preview deployments.
 
 ## How the site is built
 
