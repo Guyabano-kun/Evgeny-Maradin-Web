@@ -6,6 +6,13 @@ LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
 PULSE = "https://www.linkedin.com/pulse/"
 EMAIL = "enmaradin@gmail.com"
 UPDATED = "October 2026"
+SITE = "https://evgeny-maradin.pages.dev"
+PAGES = []  # paths written by page(), for sitemap.xml
+PERSON = ('{"@context":"https://schema.org","@type":"Person","name":"Evgeny Maradin","url":"%s/",'
+          '"jobTitle":"Study Manager / Senior Concept Engineer (FEL, Pre-FEED)","email":"mailto:%s",'
+          '"image":"%s/og.png","sameAs":["%s"],"homeLocation":{"@type":"Place","name":"Philippines"},'
+          '"knowsAbout":["FEL1–FEL2","Pre-FEED","Concept Selection","Brownfield Development","CAPEX Optimisation","Upstream Oil and Gas"]}'
+          % (SITE, EMAIL, SITE, LI))
 
 NAV = [("/cases/", "Cases", ""), ("/advisory/", "Advisory", ""), ("/insights/", "Insights", ""),
        ("/about/", "About", "hide-sm"), ("/contact/", "Contact", "hide-sm")]
@@ -16,9 +23,15 @@ def page(path, title, desc, body, active=""):
         f'<a href="{h}"{" class=%s" % c if c else ""}{" aria-current=page" if h == active else ""}>{t}</a>'
         for h, t, c in NAV)
     full_title = "Evgeny Maradin | Concept Development / FEL" if path == "" else f"{title} | Evgeny Maradin"
+    url = f"{SITE}/{path}/" if path else f"{SITE}/"
+    ld = f'<script type="application/ld+json">{PERSON}</script>' if path == "" else ""
+    PAGES.append(url)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(full_title)}</title><meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{html.escape(full_title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="website">
+<meta property="og:url" content="{url}"><meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">{ld}
 <link rel="stylesheet" href="/style.css"></head><body>
 <header><div class="container nav"><a class="brand" href="/">EM<span>.</span></a><nav>{nav}</nav></div></header>
 <main id="top">{body}</main>
@@ -345,7 +358,14 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 
 # ---------------- 404 ----------------
 with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
-    f.write('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found | Evgeny Maradin</title><link rel="stylesheet" href="/style.css"></head><body><section class="hero"><div class="container"><p class="eyebrow">404</p><h1 class="page">This page does not exist.</h1><div class="actions"><a class="button primary" href="/">Home</a><a class="button secondary" href="/cases/">Cases</a></div></div></section></body></html>')
+    f.write('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found | Evgeny Maradin</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head><body><section class="hero"><div class="container"><p class="eyebrow">404</p><h1 class="page">This page does not exist.</h1><div class="actions"><a class="button primary" href="/">Home</a><a class="button secondary" href="/cases/">Cases</a></div></div></section></body></html>')
+
+# ---------------- sitemap / robots ----------------
+with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "".join(f"<url><loc>{u}</loc></url>\n" for u in sorted(PAGES)) + "</urlset>\n")
+with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
+    f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 print("built")
 
 # ---------------- related-reading placeholders in case pages ----------------
