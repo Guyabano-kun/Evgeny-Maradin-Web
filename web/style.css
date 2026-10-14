@@ -173,6 +173,7 @@ footer a:hover{color:var(--bg)}
 }
 @media(max-width:560px){
  nav a.hide-sm{display:none}
+ nav a{padding:14px 0}
  .case-meta{grid-template-columns:1fr}
 }
 .contact .copy{display:inline-block;margin:4px 0 14px;padding:9px 14px;background:transparent;color:var(--bg);border:1px solid #555;font:800 11px Inter,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
@@ -245,3 +246,9 @@ footer a:hover{color:var(--bg)}
 .facts .doc:hover span{color:var(--accent)}
 .facts .doc-note{margin-top:10px;font-size:12px;color:var(--muted)}
 .facts .doc-note a{text-decoration:underline}
+
+/* home: trust strip */
+.trust{border-top:1px solid var(--line);padding:22px 0}
+.trust-row{display:flex;flex-wrap:wrap;gap:14px 48px}
+.trust-row span{display:block;font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.trust-row b{font-size:15px;font-weight:700}

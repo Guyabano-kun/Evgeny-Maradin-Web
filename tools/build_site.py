@@ -28,7 +28,7 @@ def page(path, title, desc, body, active=""):
     PAGES.append(url)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(full_title)}</title><meta name="description" content="{html.escape(desc)}">
-<link rel="canonical" href="{url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="{url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="{html.escape(full_title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="website">
 <meta property="og:url" content="{url}"><meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">{ld}
@@ -146,9 +146,10 @@ CASES = [
 ]
 
 
-def case_card(c, full=False):
+def case_card(c, full=False, num=True):
     cls = "case feature" if c.get("feature") else "case"
-    return (f'<a class="{cls}" href="/cases/{c["slug"]}/"><small>{c["n"]} · {c["label"].upper()} · {c["years"].upper()}</small>'
+    n = f'{c["n"]} · ' if num else ""
+    return (f'<a class="{cls}" href="/cases/{c["slug"]}/"><small>{n}{c["label"].upper()} · {c["years"].upper()}</small>'
             f'<h3>{c["title"]}</h3><p>{c["teaser"]}</p>'
             f'<div class="result"><b>{c["metric"]}</b><span>{c["metric_l"]}</span></div>'
             + (f'<div class="tags">{"".join(f"<i>{t}</i>" for t in c["tags"])}</div>' if full else "")
@@ -355,9 +356,10 @@ page("", "", "Study Manager and Senior Concept Engineer: FEL1–FEL2, Pre-FEED a
 <p class="avail">Based in the Philippines · available to mobilise within 2 weeks · Iraq, Oman, UAE, wider Middle East, Africa, Southeast Asia</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="metrics"><div><b>18+</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
+<section class="trust"><div class="container trust-row"><div><span>Operator side</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Evidence, not job titles.</h2></div><p><a class="textlink" href="/cases/">All eight cases →</a></p></div>
-<div class="case-grid three">{"".join(case_card(c) for c in featured)}</div></div></section>
+<div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Engineering scope</p><h2>Where I create value.</h2><div class="expertise">
 <div><b>01</b><h3>Concept Development</h3><p>FEL1–FEL2, Pre-FEED, option screening, concept selection and investment readiness.</p></div>
 <div><b>02</b><h3>Brownfield Optimisation</h3><p>Re-engineering, debottlenecking, live-asset interfaces and execution constraints.</p></div>
