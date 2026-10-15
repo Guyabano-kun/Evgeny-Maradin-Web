@@ -19,10 +19,17 @@ const num = (x) => (typeof x === "number" && isFinite(x) ? x : null);
 async function yahoo(symbol) {
   const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`, { headers: UA });
   if (!r.ok) throw new Error(`yahoo ${r.status}`);
-  const m = (await r.json())?.chart?.result?.[0]?.meta;
+  const res = (await r.json())?.chart?.result?.[0];
+  const m = res?.meta;
   const price = num(m?.regularMarketPrice);
   if (price === null) throw new Error("yahoo no price");
-  return { price, prev: num(m.chartPreviousClose ?? m.previousClose), time: m.regularMarketTime ? m.regularMarketTime * 1000 : null };
+  // previous daily settlement: the last daily bar before the one that contains the latest trade
+  const ts = res.timestamp || [], closes = res.indicators?.quote?.[0]?.close || [];
+  const day = (t) => new Date(t * 1000).toISOString().slice(0, 10);
+  const today = m.regularMarketTime ? day(m.regularMarketTime) : null;
+  let prev = num(m.previousClose);
+  for (let k = ts.length - 1; prev === null && k >= 0; k--) if (day(ts[k]) !== today && num(closes[k]) !== null) prev = closes[k];
+  return { price, prev, time: m.regularMarketTime ? m.regularMarketTime * 1000 : null };
 }
 
 async function stooq(symbol) {
@@ -45,18 +52,20 @@ async function opecBasket() {
 }
 
 async function build() {
+  const errors = [];
   const jobs = FUTURES.map(async ([key, label, unit, ysym, ssym]) => {
     try { return { key, label, unit, src: "Yahoo Finance", ...(await yahoo(ysym)) }; }
     catch (e) {
+      errors.push(`${key}: ${e.message}`);
       if (!ssym) return null;
-      try { return { key, label, unit, src: "Stooq", ...(await stooq(ssym)) }; } catch (e2) { return null; }
+      try { return { key, label, unit, src: "Stooq", ...(await stooq(ssym)) }; } catch (e2) { errors.push(`${key}: ${e2.message}`); return null; }
     }
   });
-  jobs.splice(2, 0, opecBasket().then((v) => ({ key: "orb", label: "OPEC Basket", unit: "$/bbl", src: "OPEC", ...v })).catch(() => null));
+  jobs.splice(2, 0, opecBasket().then((v) => ({ key: "orb", label: "OPEC Basket", unit: "$/bbl", src: "OPEC", ...v })).catch((e) => { errors.push(`orb: ${e.message}`); return null; }));
   const items = (await Promise.all(jobs)).filter(Boolean).map((i) => ({
     ...i, change: i.prev ? +(((i.price - i.prev) / i.prev) * 100).toFixed(2) : null,
   }));
-  return { updated: Date.now(), items };
+  return { updated: Date.now(), items, errors };
 }
 
 export async function onRequestGet({ request, waitUntil }) {
