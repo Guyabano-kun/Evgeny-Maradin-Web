@@ -1,0 +1,37 @@
+name: Production data (EIA)
+
+# Refreshes web/data/production.json (crude oil production by country) for the
+# "Production data" section on /insights/. Source: U.S. EIA international bulk file (no API key).
+on:
+  schedule:
+    - cron: "17 6 22 * *"   # 22nd of every month, 06:17 UTC
+  workflow_dispatch:
+  push:
+    paths:
+      - tools/update_production.py
+      - .github/workflows/production-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: production-data-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download EIA international data and build production.json
+        run: |
+          pip install --quiet pycountry
+          python3 tools/update_production.py web/data/production.json
+      - name: Commit if changed
+        run: |
+          git add web/data/production.json
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Production data: EIA update $(date -u +%Y-%m-%d)"
+          git push

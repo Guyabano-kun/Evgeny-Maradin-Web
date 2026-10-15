@@ -410,6 +410,14 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Insights</p><h1 class="page">From project experience<br>to reusable engineering logic.</h1>
 <p class="lead">Frameworks, interactive models and regional analysis. Mostly MENA, always through the lens of early-phase decisions.</p></div></section>
 <section class="section" style="border-top:0;padding-top:20px"><div class="container"><div class="section-head"><div><p class="eyebrow">Latest</p><h2>Most recent analysis.</h2></div></div>{art_card(ORDER[0], "wide")}</div></section>
+<section class="section" id="production"><div class="container"><div class="section-head"><div><p class="eyebrow">Production data</p><h2>Who is producing, month by month.</h2></div><p>Crude oil production by country, refreshed monthly. Top producers shown, the rest summed. Filter by period and region; click countries in the table to compare your own selection.</p></div>
+<div class="prod" id="prod"><div class="prod-bar"><div class="prod-period" role="group" aria-label="Period"></div>
+<label>Region <select class="prod-region"></select></label><label>Show <select class="prod-top"></select></label></div>
+<p class="prod-total"></p><div class="prod-chart"><p class="prod-err">Loading production data…</p></div><div class="prod-legend"></div>
+<details class="prod-more" open><summary>All countries <span class="prod-mode"></span><button type="button" class="prod-reset" hidden>Back to top producers</button></summary>
+<div class="prod-scroll"><table class="prod-table"><thead><tr><th>#</th><th>Country</th><th>Region</th><th>Latest month</th><th>Last 12 m avg</th><th>vs prior 12 m</th></tr></thead><tbody></tbody></table></div></details>
+<p class="prod-src"></p></div></div></section>
+<script src="/production.js" defer></script>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Interactive models</p><h2>Move the levers.</h2></div><p>Move the inputs and watch the binding constraint migrate. Open any model to use it full screen.</p></div><div class="agrid two">{"".join(model_card(m) for m in MODELS)}</div></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Frameworks</p><h2>How I approach front-end decisions.</h2></div></div>{art_grid([k for k in FRAMEWORK_KEYS])}</div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Regional analysis</p><h2>Reading the news as an early-phase engineer.</h2></div><p>Public deals and announcements, and the front-end questions behind them.</p></div>{art_grid([k for k in regional if k != ORDER[0]])}</div></section>''',
