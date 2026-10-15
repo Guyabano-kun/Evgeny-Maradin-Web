@@ -1,0 +1,73 @@
+// Cloudflare Pages Function: GET /api/prices
+// Delayed benchmark prices for the ticker at the top of every page.
+// No API keys. Sources: Yahoo Finance chart API (front-month futures), Stooq CSV as a fallback,
+// OPEC Reference Basket daily XML. The result is cached at the edge for 15 minutes,
+// so the upstream sources are hit at most a few times per hour.
+
+const TTL = 900; // seconds
+
+// key, label, unit, Yahoo symbol, Stooq fallback symbol
+const FUTURES = [
+  ["brent", "Brent", "$/bbl", "BZ=F", "cb.f"],
+  ["wti", "WTI", "$/bbl", "CL=F", "cl.f"],
+  ["hh", "Henry Hub", "$/MMBtu", "NG=F", "ng.f"],
+  ["ttf", "TTF (EU gas)", "€/MWh", "TTF=F", null],
+];
+const UA = { "user-agent": "Mozilla/5.0 (compatible; evgeny-maradin.pages.dev price ticker)" };
+const num = (x) => (typeof x === "number" && isFinite(x) ? x : null);
+
+async function yahoo(symbol) {
+  const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`, { headers: UA });
+  if (!r.ok) throw new Error(`yahoo ${r.status}`);
+  const m = (await r.json())?.chart?.result?.[0]?.meta;
+  const price = num(m?.regularMarketPrice);
+  if (price === null) throw new Error("yahoo no price");
+  return { price, prev: num(m.chartPreviousClose ?? m.previousClose), time: m.regularMarketTime ? m.regularMarketTime * 1000 : null };
+}
+
+async function stooq(symbol) {
+  const r = await fetch(`https://stooq.com/q/l/?s=${symbol}&f=sd2t2c&h&e=csv`, { headers: UA });
+  if (!r.ok) throw new Error(`stooq ${r.status}`);
+  const row = (await r.text()).trim().split("\n")[1]?.split(",");
+  const price = row ? parseFloat(row[3]) : NaN;
+  if (!isFinite(price)) throw new Error("stooq no price");
+  return { price, prev: null, time: Date.parse(`${row[1]}T${row[2]}Z`) || null };
+}
+
+async function opecBasket() {
+  const r = await fetch("https://www.opec.org/basket/basketDayArchives.xml", { headers: UA });
+  if (!r.ok) throw new Error(`opec ${r.status}`);
+  const rows = [...(await r.text()).matchAll(/<[^>]*\bdata="(\d{4}-\d{2}-\d{2})"[^>]*\bval="([\d.]+)"/g)];
+  if (rows.length < 1) throw new Error("opec no rows");
+  rows.sort((a, b) => a[1].localeCompare(b[1]));
+  const last = rows[rows.length - 1], prev = rows[rows.length - 2];
+  return { price: parseFloat(last[2]), prev: prev ? parseFloat(prev[2]) : null, time: Date.parse(last[1] + "T12:00:00Z") };
+}
+
+async function build() {
+  const jobs = FUTURES.map(async ([key, label, unit, ysym, ssym]) => {
+    try { return { key, label, unit, src: "Yahoo Finance", ...(await yahoo(ysym)) }; }
+    catch (e) {
+      if (!ssym) return null;
+      try { return { key, label, unit, src: "Stooq", ...(await stooq(ssym)) }; } catch (e2) { return null; }
+    }
+  });
+  jobs.splice(2, 0, opecBasket().then((v) => ({ key: "orb", label: "OPEC Basket", unit: "$/bbl", src: "OPEC", ...v })).catch(() => null));
+  const items = (await Promise.all(jobs)).filter(Boolean).map((i) => ({
+    ...i, change: i.prev ? +(((i.price - i.prev) / i.prev) * 100).toFixed(2) : null,
+  }));
+  return { updated: Date.now(), items };
+}
+
+export async function onRequestGet({ request, waitUntil }) {
+  const cache = caches.default;
+  const key = new Request(new URL("/api/prices", request.url).toString());
+  const hit = await cache.match(key);
+  if (hit) return hit;
+  const data = await build();
+  const res = new Response(JSON.stringify(data), {
+    headers: { "content-type": "application/json", "cache-control": `public, max-age=${data.items.length ? TTL : 60}` },
+  });
+  if (data.items.length) waitUntil(cache.put(key, res.clone()));
+  return res;
+}
