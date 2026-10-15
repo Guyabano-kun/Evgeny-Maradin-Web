@@ -27,7 +27,7 @@ jobs:
         run: python3 tools/update_production.py web/data/production.json
       - name: Commit if changed
         run: |
-          git add web/data/production.json
+          git add web/data/production.json web/data/production-diag.json
           if git diff --cached --quiet; then echo "No change"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

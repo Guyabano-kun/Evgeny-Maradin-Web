@@ -66,6 +66,8 @@ def fetch(url):
 def main():
     this_year = datetime.date.today().year
     kbd, kbbl, seen = {}, {}, collections.Counter()
+    diag = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, "", 0]))  # area -> unit -> [rows, last period, non-numeric]
+    header = None
     for y in range(FIRST_YEAR, this_year + 1):
         names = ([f"primaryyear{y}.csv", f"{y}.csv"] if y == this_year else [f"{y}.csv", f"primaryyear{y}.csv"])
         text = None
@@ -77,6 +79,7 @@ def main():
         if text is None:
             print(f"year {y}: no file"); continue
         rows = csv.DictReader(io.StringIO(text))
+        header = rows.fieldnames
         n = 0
         for r in rows:
             r = {k.strip().upper(): (v or "").strip() for k, v in r.items() if k}
@@ -84,10 +87,14 @@ def main():
                 continue
             unit, area, per = r.get("UNIT_MEASURE"), r.get("REF_AREA"), r.get("TIME_PERIOD")
             seen[unit] += 1
+            dg = diag[area][unit]
             try:
                 val = float(r.get("OBS_VALUE"))
             except (TypeError, ValueError):
+                dg[2] += 1
                 continue
+            dg[0] += 1
+            dg[1] = max(dg[1], per)
             if unit == "KBD":
                 kbd[(area, per)] = val
             elif unit == "KBBL":
@@ -95,6 +102,8 @@ def main():
             n += 1
         print(f"year {y}: {n} crude production rows")
     print("units seen:", dict(seen))
+    with open(os.path.join(os.path.dirname(OUT), "production-diag.json"), "w") as f:
+        json.dump({"header": header, "units": dict(seen), "areas": {a: dict(u) for a, u in diag.items()}}, f, indent=0, sort_keys=True)
 
     data = dict(kbd)
     for (area, per), v in kbbl.items():
