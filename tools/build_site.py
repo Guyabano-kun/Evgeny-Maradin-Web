@@ -343,7 +343,7 @@ FORMATS = [("Expert call", "1 hour. A focused answer to a specific question."), 
 page("advisory", "Advisory", "Independent FEL, Pre-FEED and concept select advisory for upstream operators, contractors and investors.",
      f'''<section class="hero small"><div class="container hero-grid"><div><p class="eyebrow">Advisory</p><h1 class="page">Independent front&#8209;end advice,<br>when it matters.</h1>
 <p class="lead">For operators, contractors and investors who need an experienced view before committing to FEED, FID or a contract, without hiring a full team.</p>
-<div class="actions"><a class="button primary" href="/contact/?type=call">Discuss a project</a><a class="button secondary" href="https://www.linkedin.com/services/page/4540aa333982b8584b/" target="_blank" rel="noopener">LinkedIn Services ↗</a></div></div>
+<div class="actions"><a class="button primary" href="/contact/?type=call">Discuss a project</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn profile ↗</a></div></div>
 <aside class="metrics"><div><b>50+</b><span>FEL studies led</span></div><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>$6B+</b><span>EPC portfolio reviewed</span></div><div><b>GMT+8</b><span>remote or on-site</span></div></aside></div></section>
 <section class="section" style="border-top:0;padding-top:40px"><div class="container"><div class="section-head"><div><p class="eyebrow">What I do</p><h2>Six ways to work together.</h2></div><p>Each grounded in cases I have delivered. See <a class="textlink" href="/cases/">cases</a>.</p></div>
 <div class="services">{"".join(f'<div><b>{n}</b><h3>{t}</h3><p>{d}</p><ul>{"".join(f"<li>— {x}</li>" for x in li)}</ul></div>' for n, t, d, li in SERVICES)}</div></div></section>
