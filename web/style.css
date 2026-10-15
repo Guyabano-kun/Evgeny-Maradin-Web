@@ -271,3 +271,26 @@ footer a:hover{color:var(--bg)}
 .case-fig td b{color:#2e6b34}
 .fig-note{font-size:12px;color:var(--muted);margin:12px 0 0}
 @media(max-width:560px){.case-fig .lab,.case-fig .fixt{font-size:20px}.case-fig .pkt{font-size:22px}.case-fig table{font-size:12.5px}.case-fig th{font-size:10px;letter-spacing:.06em}}
+
+/* article pages (/insights/<key>/) */
+h1.article-title{font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.045em}
+.art-meta{margin:22px 0 0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.art-cover{display:block;width:100%;height:auto;border:1px solid var(--line);margin:0 0 46px}
+.prose{font-size:18px;line-height:1.65;color:#2f2c28;max-width:760px;overflow-wrap:anywhere}
+.prose p{margin:0 0 22px}
+.prose h2{font-size:34px;line-height:1.05;letter-spacing:-.035em;margin:52px 0 18px;color:var(--ink)}
+.prose h3{font-size:24px;line-height:1.15;margin:42px 0 14px;color:var(--ink)}
+.prose h4{font-size:19px;margin:34px 0 12px;color:var(--ink)}
+.prose a{color:var(--accent);border-bottom:1px solid rgba(200,75,47,.35)}
+.prose a:hover{border-bottom-color:var(--accent)}
+.prose ul,.prose ol{margin:0 0 22px;padding-left:24px}
+.prose li{margin-bottom:8px}
+.prose blockquote{margin:30px 0;padding:4px 0 4px 22px;border-left:3px solid var(--accent);font-family:Georgia,serif;font-size:21px;line-height:1.45;color:var(--ink)}
+.prose blockquote p{margin:0}
+.prose hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.prose figure{margin:32px 0}
+.prose figure img{display:block;max-width:100%;height:auto;background:#fff;border:1px solid var(--line)}
+.prose figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
+.art-source{max-width:760px;margin:44px 0 0;padding-top:22px;border-top:1px solid var(--ink);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.art-source a{color:var(--accent)}
+@media(max-width:800px){.prose{font-size:16.5px}.prose h2{font-size:27px}.prose h3{font-size:21px}.prose blockquote{font-size:18px}h1.article-title{font-size:32px}}

@@ -14,6 +14,8 @@ It also writes `web/sitemap.xml` (with `lastmod` from `tools/lastmod.json`, whic
 
 Run it after editing the script, check the result locally (`cd web && python3 -m http.server`), then commit `web/` and push.
 
+Article full texts live in `content/articles/<key>.md` (front matter: title, date, LinkedIn url; body copied verbatim from LinkedIn). For every key in `ARTICLES` that has such a file, the build writes `/insights/<key>/` and article cards link there instead of LinkedIn. In-article images are in `web/img/insights/<key>/NN.webp`; their pixel sizes are in `tools/img_sizes.json` (add an entry when adding an image). To add a new article: add it to `ARTICLES`/`ORDER`, save the cover as `web/img/insights/<key>.webp`, the text as `content/articles/<key>.md`, and rebuild.
+
 ## Hand-maintained files (not generated)
 
 - `web/style.css` — all styles

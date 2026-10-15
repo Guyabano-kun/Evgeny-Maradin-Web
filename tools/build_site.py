@@ -33,21 +33,28 @@ NAV = [("/cases/", "Cases", ""), ("/advisory/", "Advisory", ""), ("/insights/", 
        ("/about/", "About", "hide-sm"), ("/contact/", "Contact", "hide-sm")]
 
 
-def page(path, title, desc, body, active=""):
+def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
     nav = "".join(
         f'<a href="{h}"{" class=%s" % c if c else ""}{" aria-current=page" if h == active else ""}>{t}</a>'
         for h, t, c in NAV)
     full_title = "Evgeny Maradin | Concept Development / FEL" if path == "" else f"{title} | Evgeny Maradin"
     if path in SEO:
         full_title, desc = SEO[path]
+    if seo:
+        full_title, desc = seo
     url = f"{SITE}/{path}/" if path else f"{SITE}/"
     ld = f'<script type="application/ld+json">{PERSON}</script>' if path == "" else ""
+    if ld_json:
+        ld = f'<script type="application/ld+json">{ld_json}</script>'
+    og_type, og_img = ("article", og) if og else ("website", None)
+    og_img_tags = (f'<meta property="og:image" content="{og_img}">' if og_img else
+                   f'<meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">')
     PAGES.append(url)
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(full_title)}</title><meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="{html.escape(full_title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="website">
-<meta property="og:url" content="{url}"><meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="{html.escape(full_title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="{og_type}">
+<meta property="og:url" content="{url}">{og_img_tags}
 <meta name="twitter:card" content="summary_large_image">{ld}
 <link rel="stylesheet" href="/style.css"></head><body>
 <header><div class="container nav"><a class="brand" href="/">EM<span>.</span></a><nav>{nav}</nav></div></header>
@@ -293,8 +300,85 @@ def art_card(key, size=""):
     a = ARTICLES[key]; img = cover(key)
     pic = (f'<img src="{img}" alt="" loading="lazy" width="800" height="449">' if img
            else f'<div class="ph"><span>{a["tag"].split(" · ")[0]}</span></div>')
-    return (f'<a class="acard {size}" href="{a["u"]}" target="_blank" rel="noopener"><div class="pic">{pic}</div>'
-            f'<div class="abody"><small>{a["tag"].upper()} · {a["d"].upper()} · {mins(a["w"])} MIN</small><b>{a["t"]}</b><p>{a["s"]}</p><span class="more">Read on LinkedIn ↗</span></div></a>')
+    if key in ARTICLE_MD:  # full text hosted on this site
+        href, more = f'href="/insights/{key}/"', "Read article →"
+    else:
+        href, more = f'href="{a["u"]}" target="_blank" rel="noopener"', "Read on LinkedIn ↗"
+    return (f'<a class="acard {size}" {href}><div class="pic">{pic}</div>'
+            f'<div class="abody"><small>{a["tag"].upper()} · {a["d"].upper()} · {mins(a["w"])} MIN</small><b>{a["t"]}</b><p>{a["s"]}</p><span class="more">{more}</span></div></a>')
+
+
+# ---------------- full article texts (content/articles/<key>.md, copied verbatim from LinkedIn) ----------------
+import re, json
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ARTICLE_MD = {}
+for _k in ARTICLES:
+    _p = os.path.join(ROOT, "content", "articles", _k + ".md")
+    if os.path.exists(_p):
+        _t = open(_p, encoding="utf-8").read()
+        _fm, _body = _t.split("\n---\n", 1)
+        _meta = dict(re.findall(r'^(\w+): "?(.*?)"?$', _fm.strip("-\n"), re.M))
+        ARTICLE_MD[_k] = (_meta, _body.strip("\n"))
+_IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
+# search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
+ART_SEO = {
+    "kirkuk": ("Kirkuk: Fast First Barrels, Slow Gas Outlets",
+               "Kirkuk is going from 320,000 to 420,000 bpd. Early barrels come quickly from existing wells; gas outlets take years. The real question is sequencing."),
+    "pressure": ("Pressure Decisions: Reservoir vs Facilities", None),
+    "kazakhstan": ("Kazakhstan's 24 Blocks: Options, Not Acreage", None),
+    "kuwait": ("Kuwait 4 MMbpd: Not a Drilling Problem", None),
+    "portfolio-risk": ("Portfolio Integration Risk Nobody Owns", None),
+    "kurdistan": ("Kurdistan and Delivery Certainty in Upstream", None),
+    "integrated-fd": ("Field Development Is About Managing Constraints", None),
+    "oman": ("Oman 2026 Onshore Bid Round: Five Blocks", None),
+    "me-brownfields": ("Middle East Brownfields: Early-Phase Decisions", None),
+    "digital-oilfield": ("Digital Oilfield System: Lessons Learned", None),
+}
+
+
+def _inline(s):
+    """Markdown inline subset used by the LinkedIn exports: links, bold, italic, line breaks."""
+    links = []
+
+    def keep(m):
+        url = m.group(2)
+        ext = url.startswith("http")
+        links.append(f'<a href="{html.escape(url)}"' + (' target="_blank" rel="noopener"' if ext else "") + f'>{_inline(m.group(1))}</a>')
+        return f"\x00{len(links) - 1}\x00"
+    s = re.sub(r"\[((?:[^\[\]]|\[[^\]]*\])*)\]\(([^)\s]+)\)", keep, s)
+    s = html.escape(s, quote=False)
+    s = re.sub(r"\*\*\*(\S(?:.*?\S)?)\*\*\*", r"<b><i>\1</i></b>", s)
+    s = re.sub(r"\*\*(\S(?:.*?\S)?)\*\*", r"<b>\1</b>", s)
+    s = re.sub(r"(?<![\*\w])\*(\S(?:.*?\S)?)\*(?![\*\w])", r"<i>\1</i>", s)
+    s = s.replace("  \n", "<br>").replace("\n", " ")
+    return re.sub(r"\x00(\d+)\x00", lambda m: links[int(m.group(1))], s)
+
+
+def md_to_html(md):
+    out = []
+    for blk in re.split(r"\n{2,}", md.strip()):
+        lines = blk.split("\n")
+        if blk.strip() == "---":
+            out.append("<hr>")
+        elif re.match(r"#{1,6} ", blk):
+            n = min(max(len(blk) - len(blk.lstrip("#")), 2), 4)
+            out.append(f"<h{n}>{_inline(blk.lstrip('#').strip())}</h{n}>")
+        elif blk.startswith("![") and re.match(r"!\[(.*?)\]\((.*?)\)$", lines[0]):
+            alt, src = re.match(r"!\[(.*?)\]\((.*?)\)$", lines[0]).groups()
+            w, h = _IMG_SIZES.get(src, (1200, 675))
+            cap = lines[1].strip("*").strip() if len(lines) > 1 else ""
+            out.append(f'<figure><img src="{html.escape(src)}" alt="{html.escape(alt or cap)}" loading="lazy" width="{w}" height="{h}">'
+                       + (f"<figcaption>{_inline(cap)}</figcaption>" if cap else "") + "</figure>")
+        elif all(l.startswith("> ") or l == ">" for l in lines):
+            out.append(f"<blockquote><p>{_inline(chr(10).join(l[2:] for l in lines))}</p></blockquote>")
+        elif all(l.startswith("- ") for l in lines):
+            out.append("<ul>" + "".join(f"<li>{_inline(l[2:])}</li>" for l in lines) + "</ul>")
+        elif all(re.match(r"\d+\. ", l) for l in lines):
+            start = int(lines[0].split(".")[0])
+            out.append(f'<ol{" start=%d" % start if start != 1 else ""}>' + "".join(f"<li>{_inline(l.split('. ', 1)[1])}</li>" for l in lines) + "</ol>")
+        else:
+            out.append(f"<p>{_inline(blk)}</p>")
+    return "\n".join(out)
 
 
 def art_grid(keys, cls="agrid"):
@@ -328,6 +412,47 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Frameworks</p><h2>How I approach front-end decisions.</h2></div></div>{art_grid([k for k in FRAMEWORK_KEYS])}</div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Regional analysis</p><h2>Reading the news as an early-phase engineer.</h2></div><p>Public deals and announcements, and the front-end questions behind them.</p></div>{art_grid([k for k in regional if k != ORDER[0]])}</div></section>''',
      "/insights/")
+
+# ---------------- ARTICLE PAGES (/insights/<key>/) ----------------
+for i, key in enumerate(ORDER):
+    if key not in ARTICLE_MD:
+        continue
+    a = ARTICLES[key]; meta, body = ARTICLE_MD[key]
+    url = f"{SITE}/insights/{key}/"
+    img = cover(key)
+    st, sd = ART_SEO.get(key, (None, None))
+    seo_title = (st or meta["title"]) + " | Evgeny Maradin"
+    seo_desc = sd or a["s"]
+    assert len(seo_title) <= 65 and len(seo_desc) <= 160, (key, len(seo_title), len(seo_desc))
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": meta["title"][:110],
+                     "description": seo_desc, "datePublished": meta["date"],
+                     "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
+                     "image": f"{SITE}{img}" if img else f"{SITE}/og.png",
+                     "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url,
+                     "isBasedOn": meta["url"]}, ensure_ascii=False)
+    cases_rel = [c for c in CASES if c["insight"] == key]
+    models_rel = [m for m in MODELS if m["related"] == key]
+    others = [k for k in ORDER[i + 1:] + ORDER[:i] if k != key][:2]
+    rel = ""
+    if cases_rel:
+        rel += f'<div class="case-grid{" three" if len(cases_rel) > 2 else ""}" style="margin-bottom:28px">{"".join(case_card(c, num=False) for c in cases_rel)}</div>'
+    if models_rel:
+        rel += f'<div class="agrid two" style="margin-bottom:28px">{"".join(model_card(m) for m in models_rel)}</div>'
+    rel += art_grid(others, "agrid two")
+    body_html = md_to_html(body)
+    page(f"insights/{key}", meta["title"], seo_desc,
+         f'''<article><section class="hero small"><div class="container narrow"><p class="eyebrow"><a href="/insights/">Insights</a> / {a["tag"]}</p>
+<h1 class="page article-title">{html.escape(meta["title"])}</h1><p class="lead">{a["s"]}</p>
+<p class="art-meta"><time datetime="{meta["date"]}">{a["d"]}</time> · {mins(a["w"])} min read · Evgeny Maradin</p></div></section>
+<section class="section tight" style="border-top:0;padding-top:0"><div class="container narrow">
+{f'<img class="art-cover" src="{img}" alt="" width="{_IMG_SIZES[img][0]}" height="{_IMG_SIZES[img][1]}">' if img else ""}
+<div class="prose">
+{body_html}
+</div>
+<p class="art-source"><a href="{a["u"]}" target="_blank" rel="noopener">Originally published on LinkedIn ↗</a></p>
+</div></section></article>
+<section class="section"><div class="container"><p class="eyebrow">Related reading</p>{rel}</div></section>''',
+         "/insights/", seo=(seo_title, seo_desc), og=f"{SITE}{img}" if img else None, ld_json=ld)
 
 # ---------------- ADVISORY ----------------
 SERVICES = [
