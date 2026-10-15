@@ -20,6 +20,7 @@ Article full texts live in `content/articles/<key>.md` (front matter: title, dat
 
 - `web/style.css` — all styles
 - `web/contact.js` — contact form logic (message / free 30-min call booking)
+- `web/functions/api/prices.js` + `web/ticker.js` — market ticker above the header on every page: Brent, WTI, Henry Hub, TTF; no API keys (Yahoo Finance, Stooq fallback), cached 15 min at the edge; the bar collapses if no prices are available
 - `web/functions/api/contact.js` — Cloudflare Pages Function that emails form submissions via Resend (needs `RESEND_API_KEY` secret in Cloudflare)
 - `web/models/*/index.html` — interactive models (moved from Netlify), embedded on `/insights/models/*`
 - `web/img/insights/*.webp` — article covers (self-hosted copies of LinkedIn covers) and model thumbnails
