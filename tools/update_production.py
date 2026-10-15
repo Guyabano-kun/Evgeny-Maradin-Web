@@ -1,16 +1,13 @@
-"""Monthly crude oil production by country, from the JODI Oil World Database (free, no API key).
+"""Monthly crude oil production by country, from the US EIA International Energy Data bulk file (free, no API key).
 
 Writes web/data/production.json for the "Production data" section on /insights/.
-Run monthly by .github/workflows/production-data.yml (JODI updates around the 17th-20th).
-
-Series: ENERGY_PRODUCT=CRUDEOIL, FLOW_BREAKDOWN=INDPROD (crude oil production, excl. NGL),
-unit CONVBBL (thousand barrels per month, JODI's harmonised conversion, reported by every country)
-divided by days in month -> thousand barrels per day; KBD is used only where CONVBBL is missing.
+Run monthly by .github/workflows/production-data.yml.
+Series: "Crude oil including lease condensate production", monthly, thousand barrels per day.
+(JODI was tried first: it has no production volumes for Iraq after 2024, UAE after 2018, Oman after 2016.)
 """
 import csv, io, json, os, sys, calendar, datetime, urllib.request, collections
 
 FIRST_YEAR = 2015
-BASE = "https://www.jodidata.org/_resources/files/downloads/oil-data/annual-csv/primary/"
 OUT = sys.argv[1] if len(sys.argv) > 1 else "web/data/production.json"
 
 ME, CIS, AF, NA, LA, EU, AP = "Middle East", "CIS & Caspian", "Africa", "North America", "Latin America", "Europe", "Asia-Pacific"
@@ -58,62 +55,55 @@ COUNTRIES = {
 }
 
 
-def fetch(url):
+def fetch_bytes(url):
     req = urllib.request.Request(url, headers={"user-agent": "evgeny-maradin.pages.dev production-data updater"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read().decode("utf-8-sig", errors="replace")
+    with urllib.request.urlopen(req, timeout=600) as r:
+        return r.read()
+
+
+EIA_BULK = "https://api.eia.gov/bulk/INTL.zip"
+NAME = "crude oil including lease condensate production"
 
 
 def main():
-    this_year = datetime.date.today().year
-    kbd, kbbl, seen = {}, {}, collections.Counter()
-    diag = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, "", 0]))  # area -> unit -> [rows, last period, non-numeric]
-    header = None
-    for y in range(FIRST_YEAR, this_year + 1):
-        names = ([f"primaryyear{y}.csv", f"{y}.csv"] if y == this_year else [f"{y}.csv", f"primaryyear{y}.csv"])
-        text = None
-        for n in names:
-            try:
-                text = fetch(BASE + n); break
-            except Exception as e:
-                print(f"  {n}: {e}")
-        if text is None:
-            print(f"year {y}: no file"); continue
-        rows = csv.DictReader(io.StringIO(text))
-        header = rows.fieldnames
-        n = 0
-        for r in rows:
-            r = {k.strip().upper(): (v or "").strip() for k, v in r.items() if k}
-            if r.get("ENERGY_PRODUCT") != "CRUDEOIL" or r.get("FLOW_BREAKDOWN") != "INDPROD":
-                continue
-            unit, area, per = r.get("UNIT_MEASURE"), r.get("REF_AREA"), r.get("TIME_PERIOD")
-            seen[unit] += 1
-            dg = diag[area][unit]
-            try:
-                val = float(r.get("OBS_VALUE"))
-            except (TypeError, ValueError):
-                dg[2] += 1
-                continue
-            dg[0] += 1
-            dg[1] = max(dg[1], per)
-            if unit == "KBD":
-                kbd[(area, per)] = val
-            elif unit == "CONVBBL":
-                kbbl[(area, per)] = val
-            n += 1
-        print(f"year {y}: {n} crude production rows")
-    print("units seen:", dict(seen))
+    import zipfile, pycountry
+    raw = fetch_bytes(EIA_BULK)
+    print(f"EIA bulk: {len(raw)//1024//1024} MB")
+    z = zipfile.ZipFile(io.BytesIO(raw))
+    data, units, skipped = {}, collections.Counter(), set()
+    for member in z.namelist():
+        with z.open(member) as fh:
+            for line in io.TextIOWrapper(fh, encoding="utf-8"):
+                if NAME not in line.lower() or '"f":"M"' not in line.replace(" ", ""):
+                    continue
+                try:
+                    s = json.loads(line)
+                except ValueError:
+                    continue
+                if s.get("f") != "M" or NAME not in s.get("name", "").lower():
+                    continue
+                unit = s.get("units", "")
+                units[unit] += 1
+                if "barrels per day" not in unit.lower():
+                    continue
+                iso3 = (s.get("geography") or "").split("-")[-1]
+                c = pycountry.countries.get(alpha_3=iso3)
+                if not c:
+                    skipped.add(iso3); continue
+                mult = 1000.0 if unit.lower().startswith("million") else 1.0
+                for d, v in s.get("data", []):
+                    if v is None or not isinstance(v, (int, float)):
+                        continue
+                    per = f"{str(d)[:4]}-{str(d)[4:6]}"
+                    if int(per[:4]) >= FIRST_YEAR:
+                        data[(c.alpha_2, per)] = v * mult
+    print("units seen:", dict(units))
+    print("skipped aggregates/unknown:", sorted(skipped))
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(os.path.join(os.path.dirname(OUT), "production-diag.json"), "w") as f:
-        json.dump({"header": header, "units": dict(seen), "areas": {a: dict(u) for a, u in diag.items()}}, f, indent=0, sort_keys=True)
-
-    data = {}
-    for (area, per), v in kbbl.items():
-        yy, mm = map(int, per.split("-"))
-        data[(area, per)] = v / calendar.monthrange(yy, mm)[1]
-    for k, v in kbd.items():
-        data.setdefault(k, v)
+        json.dump({"units": dict(units), "skipped": sorted(skipped), "points": len(data), "members": z.namelist()}, f, indent=0)
     if not data:
-        sys.exit("no data parsed - JODI format changed?")
+        sys.exit("no data parsed - EIA bulk format changed?")
 
     months = sorted({p for _, p in data})
     by = collections.defaultdict(dict)
@@ -139,14 +129,15 @@ def main():
         v = [round(series[m], 1) if m in series else None for m in months]
         if not any(x for x in v if x):  # never produced
             continue
-        name, region = COUNTRIES.get(a, (a, "Other"))
+        pc = pycountry.countries.get(alpha_2=a)
+        name, region = COUNTRIES.get(a, (getattr(pc, "common_name", None) or getattr(pc, "name", a), "Other"))
         countries[a] = {"n": name, "r": region, "v": v}
     unknown = sorted(a for a in countries if a not in COUNTRIES)
     if unknown:
         print("codes without a name/region mapping:", unknown)
 
-    out = {"source": "JODI Oil World Database", "source_url": "https://www.jodidata.org/oil/",
-           "series": "Crude oil production (excl. NGL), thousand barrels per day",
+    out = {"source": "U.S. EIA International Energy Data", "source_url": "https://www.eia.gov/international/data/world",
+           "series": "Crude oil incl. lease condensate production, thousand barrels per day",
            "updated": datetime.date.today().isoformat(), "months": months, "countries": countries}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

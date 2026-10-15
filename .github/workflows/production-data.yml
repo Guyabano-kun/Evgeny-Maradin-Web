@@ -1,7 +1,7 @@
-name: Production data (JODI)
+name: Production data (EIA)
 
 # Refreshes web/data/production.json (crude oil production by country) for the
-# "Production data" section on /insights/. JODI publishes its monthly update around the 17th-20th.
+# "Production data" section on /insights/. Source: U.S. EIA international bulk file (no API key).
 on:
   schedule:
     - cron: "17 6 22 * *"   # 22nd of every month, 06:17 UTC
@@ -23,13 +23,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download JODI and build production.json
-        run: python3 tools/update_production.py web/data/production.json
+      - name: Download EIA international data and build production.json
+        run: |
+          pip install --quiet pycountry
+          python3 tools/update_production.py web/data/production.json
       - name: Commit if changed
         run: |
           git add web/data/production.json web/data/production-diag.json
           if git diff --cached --quiet; then echo "No change"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Production data: JODI update $(date -u +%Y-%m-%d)"
+          git commit -m "Production data: EIA update $(date -u +%Y-%m-%d)"
           git push
