@@ -4,7 +4,8 @@ Writes web/data/production.json for the "Production data" section on /insights/.
 Run monthly by .github/workflows/production-data.yml (JODI updates around the 17th-20th).
 
 Series: ENERGY_PRODUCT=CRUDEOIL, FLOW_BREAKDOWN=INDPROD (crude oil production, excl. NGL),
-unit KBD (thousand barrels per day); KBBL is converted to KBD by days in month if KBD is missing.
+unit CONVBBL (thousand barrels per month, JODI's harmonised conversion, reported by every country)
+divided by days in month -> thousand barrels per day; KBD is used only where CONVBBL is missing.
 """
 import csv, io, json, os, sys, calendar, datetime, urllib.request, collections
 
@@ -97,7 +98,7 @@ def main():
             dg[1] = max(dg[1], per)
             if unit == "KBD":
                 kbd[(area, per)] = val
-            elif unit == "KBBL":
+            elif unit == "CONVBBL":
                 kbbl[(area, per)] = val
             n += 1
         print(f"year {y}: {n} crude production rows")
@@ -105,11 +106,12 @@ def main():
     with open(os.path.join(os.path.dirname(OUT), "production-diag.json"), "w") as f:
         json.dump({"header": header, "units": dict(seen), "areas": {a: dict(u) for a, u in diag.items()}}, f, indent=0, sort_keys=True)
 
-    data = dict(kbd)
+    data = {}
     for (area, per), v in kbbl.items():
-        if (area, per) not in data:
-            yy, mm = map(int, per.split("-"))
-            data[(area, per)] = v / calendar.monthrange(yy, mm)[1]
+        yy, mm = map(int, per.split("-"))
+        data[(area, per)] = v / calendar.monthrange(yy, mm)[1]
+    for k, v in kbd.items():
+        data.setdefault(k, v)
     if not data:
         sys.exit("no data parsed - JODI format changed?")
 
