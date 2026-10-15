@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: GET /api/prices
 // Delayed benchmark prices for the ticker at the top of every page.
-// No API keys. Sources: Yahoo Finance chart API (front-month futures), Stooq CSV as a fallback,
-// OPEC Reference Basket daily XML. The result is cached at the edge for 15 minutes,
+// No API keys. Sources: Yahoo Finance chart API (front-month futures), Stooq CSV as a fallback.
+// (OPEC Basket was tried: opec.org returns 403 to Cloudflare servers.) The result is cached at the edge for 15 minutes,
 // so the upstream sources are hit at most a few times per hour.
 
 const TTL = 900; // seconds
@@ -41,16 +41,6 @@ async function stooq(symbol) {
   return { price, prev: null, time: Date.parse(`${row[1]}T${row[2]}Z`) || null };
 }
 
-async function opecBasket() {
-  const r = await fetch("https://www.opec.org/basket/basketDayArchives.xml", { headers: UA });
-  if (!r.ok) throw new Error(`opec ${r.status}`);
-  const rows = [...(await r.text()).matchAll(/<[^>]*\bdata="(\d{4}-\d{2}-\d{2})"[^>]*\bval="([\d.]+)"/g)];
-  if (rows.length < 1) throw new Error("opec no rows");
-  rows.sort((a, b) => a[1].localeCompare(b[1]));
-  const last = rows[rows.length - 1], prev = rows[rows.length - 2];
-  return { price: parseFloat(last[2]), prev: prev ? parseFloat(prev[2]) : null, time: Date.parse(last[1] + "T12:00:00Z") };
-}
-
 async function build() {
   const errors = [];
   const jobs = FUTURES.map(async ([key, label, unit, ysym, ssym]) => {
@@ -61,7 +51,6 @@ async function build() {
       try { return { key, label, unit, src: "Stooq", ...(await stooq(ssym)) }; } catch (e2) { errors.push(`${key}: ${e2.message}`); return null; }
     }
   });
-  jobs.splice(2, 0, opecBasket().then((v) => ({ key: "orb", label: "OPEC Basket", unit: "$/bbl", src: "OPEC", ...v })).catch((e) => { errors.push(`orb: ${e.message}`); return null; }));
   const items = (await Promise.all(jobs)).filter(Boolean).map((i) => ({
     ...i, change: i.prev ? +(((i.price - i.prev) / i.prev) * 100).toFixed(2) : null,
   }));
