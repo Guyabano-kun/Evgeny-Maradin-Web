@@ -99,9 +99,6 @@ def main():
                         data[(c.alpha_2, per)] = v * mult
     print("units seen:", dict(units))
     print("skipped aggregates/unknown:", sorted(skipped))
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    with open(os.path.join(os.path.dirname(OUT), "production-diag.json"), "w") as f:
-        json.dump({"units": dict(units), "skipped": sorted(skipped), "points": len(data), "members": z.namelist()}, f, indent=0)
     if not data:
         sys.exit("no data parsed - EIA bulk format changed?")
 
