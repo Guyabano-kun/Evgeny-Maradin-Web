@@ -1,10 +1,10 @@
 name: Production data (EIA)
 
 # Refreshes web/data/production.json (crude oil production by country) for the
-# "Production data" section on /insights/. Source: U.S. EIA international bulk file (no API key).
+# "Production data" section on /insights/. Sources: U.S. EIA international bulk file + STEO estimates for the latest months (no API key).
 on:
   schedule:
-    - cron: "17 6 22 * *"   # 22nd of every month, 06:17 UTC
+    - cron: "17 6 12,24 * *"   # 12th (after the STEO release) and 24th of every month, 06:17 UTC
   workflow_dispatch:
   push:
     paths:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download EIA international data and build production.json
+      - name: Download EIA international data + STEO and build production.json
         run: |
           pip install --quiet pycountry
           python3 tools/update_production.py web/data/production.json
