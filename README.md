@@ -20,11 +20,16 @@ Article full texts live in `content/articles/<key>.md` (front matter: title, dat
 
 - `web/style.css` — all styles
 - `web/contact.js` — contact form logic (message / free 30-min call booking)
-- `web/functions/api/prices.js` + `web/ticker.js` — market ticker above the header on every page: Brent, WTI, Henry Hub, TTF; no API keys (Yahoo Finance, Stooq fallback), cached 15 min at the edge; the bar collapses if no prices are available
-- `web/production.js` + `web/data/production.json` — "Production data" section on /insights/: monthly crude oil production by country (U.S. EIA international bulk file, no API key). The JSON is refreshed by `.github/workflows/production-data.yml` (22nd of each month, or run it manually) using `tools/update_production.py`
+- `web/functions/api/prices.js` + `web/ticker.js` — market ticker above the header on the Insights page: Brent, WTI, Henry Hub, TTF; no API keys (Yahoo Finance, Stooq fallback), cached 15 min at the edge; the bar collapses if no prices are available
+- `web/production.js` + `web/data/production.json` — "Production data" section on /insights/: monthly crude oil production by country (U.S. EIA international bulk file, no API key). The JSON is refreshed by `.github/workflows/production-data.yml` (22nd of each month, or run it manually) using `tools/update_production.py`. Under the chart: an auto-generated one-line summary (computed in the browser from the data) and a hand-written note from `content/production-note.md` (edit the text and its `date`/`data_to` monthly)
 - `web/functions/api/contact.js` — Cloudflare Pages Function that emails form submissions via Resend (needs `RESEND_API_KEY` secret in Cloudflare)
 - `web/models/*/index.html` — interactive models (moved from Netlify), embedded on `/insights/models/*`
 - `web/img/insights/*.webp` — article covers (self-hosted copies of LinkedIn covers) and model thumbnails
+
+## Search engines
+
+- Google: the site is verified in Search Console (`web/google5ee18c8586b05b2f.html`); submit `https://evgeny-maradin.pages.dev/sitemap.xml` there once.
+- Bing, Yandex and other IndexNow engines: `.github/workflows/indexnow.yml` submits pages changed today after each deploy (key file `web/d64e44d74df91f311902d640a0627c67.txt`). Run it manually to resubmit everything.
 
 ## Notes
 

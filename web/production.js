@@ -84,6 +84,7 @@
     $(".prod-total").textContent = "Total " + (st.region === "All" ? "reported" : st.region) + ", " + mlabel(M[b]) + ": " + fmt(tot[tot.length - 1]);
     hover(s, a, b, x, W, L, iw);
     table(S);
+    auto(S);
   }
   function niceStep(r) { var p = Math.pow(10, Math.floor(Math.log10(r))), n = r / p; return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * p; }
 
@@ -115,6 +116,23 @@
     $(".prod-table tbody").innerHTML = rows.join("");
     $(".prod-mode").textContent = st.pinned.length ? "Showing your selection (" + st.pinned.length + "). " : "Showing top " + st.top + " by last 12 months. ";
     $(".prod-reset").hidden = !st.pinned.length;
+  }
+
+  // auto-generated one-liner: region total vs a year earlier, biggest movers (recomputed on every data refresh)
+  function auto(S) {
+    var n = M.length, last = n - 1, ago = n - 13;
+    if (ago < 0) { $(".prod-auto").textContent = ""; return; }
+    var cs = codes(), tl = 0, ta = 0, mv = [];
+    cs.forEach(function (c) {
+      var v = D.countries[c].f.v, a0 = v[ago], l0 = v[last]; tl += l0; ta += a0;
+      if (a0 >= 100 || l0 >= 100) mv.push({ n: D.countries[c].n, d: l0 - a0, p: a0 ? (l0 / a0 - 1) * 100 : null });
+    });
+    var pct = ta ? (tl / ta - 1) * 100 : 0, sign = function (x) { return (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(0) + "%"; };
+    var dn = mv.filter(function (m) { return m.d < 0; }).sort(function (x, y) { return x.d - y.d; }).slice(0, 3);
+    var up = mv.filter(function (m) { return m.d > 0; }).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
+    var li = function (m) { return esc(m.n) + " " + (m.d > 0 ? "+" : "−") + fmt(Math.abs(m.d)) + (m.p === null ? "" : " (" + sign(m.p) + ")"); };
+    $(".prod-auto").innerHTML = "<b>" + (st.region === "All" ? "All reporting countries" : esc(st.region)) + ": " + sign(pct) + " vs " + mlabel(M[ago]) + ".</b> " +
+      (dn.length ? "Largest falls: " + dn.map(li).join(", ") + ". " : "") + (up.length ? "Largest gains: " + up.map(li).join(", ") + "." : "");
   }
 
   function controls() {

@@ -1,0 +1,49 @@
+name: IndexNow (Bing, Yandex, Seznam, Naver)
+
+# Tells IndexNow search engines about new or changed pages after each deploy to main.
+# Changed pages = sitemap entries whose lastmod is today (tools/lastmod.json changes only when a page changes).
+# Run it manually with "all" to submit every page in the sitemap.
+# Key file: web/d64e44d74df91f311902d640a0627c67.txt (must stay published at the site root).
+# Google does not use IndexNow; for Google submit the sitemap once in Search Console.
+on:
+  push:
+    branches: [main]
+    paths: [web/sitemap.xml]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Submit every URL in the sitemap"
+        type: boolean
+        default: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Cloudflare Pages to publish
+        if: github.event_name == 'push'
+        run: sleep 180
+      - name: Submit to IndexNow
+        env:
+          ALL: ${{ github.event_name == 'workflow_dispatch' && inputs.all }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, datetime, urllib.request
+          host = "evgeny-maradin.pages.dev"
+          key = "d64e44d74df91f311902d640a0627c67"
+          lm = json.load(open("tools/lastmod.json"))
+          if os.environ.get("ALL") == "true":
+              urls = sorted(lm)
+          else:
+              today = datetime.date.today().isoformat()
+              urls = sorted(u for u, v in lm.items() if v["date"] == today)
+          print(len(urls), "URL(s)")
+          if not urls:
+              raise SystemExit(0)
+          body = json.dumps({"host": host, "key": key, "keyLocation": f"https://{host}/{key}.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"content-type": "application/json; charset=utf-8"})
+          with urllib.request.urlopen(req, timeout=60) as r:
+              print("IndexNow:", r.status)
+          PY

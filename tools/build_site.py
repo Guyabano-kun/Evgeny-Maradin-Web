@@ -50,6 +50,10 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
     og_img_tags = (f'<meta property="og:image" content="{og_img}">' if og_img else
                    f'<meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">')
     PAGES.append(url)
+    # market ticker only on the Insights page (next to the production data), not site-wide
+    ticker = ('<div class="ticker" id="ticker" aria-label="Oil and gas benchmark prices"><div class="container ticker-row"><b>Markets</b>'
+              '<span class="ticker-items" id="ticker-items"></span><small id="ticker-time"></small></div></div>\n') if path == "insights" else ""
+    ticker_js = '<script src="/ticker.js" defer></script>\n' if path == "insights" else ""
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(full_title)}</title><meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -57,14 +61,12 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 <meta property="og:url" content="{url}">{og_img_tags}
 <meta name="twitter:card" content="summary_large_image">{ld}
 <link rel="stylesheet" href="/style.css"></head><body>
-<div class="ticker" id="ticker" aria-label="Oil and gas benchmark prices"><div class="container ticker-row"><b>Markets</b><span class="ticker-items" id="ticker-items"></span><small id="ticker-time"></small></div></div>
-<header><div class="container nav"><a class="brand" href="/" aria-label="Evgeny Maradin, home"><i class="bn-full">Evgeny Maradin</i><i class="bn-short">EM</i><span>.</span></a><nav>{nav}</nav></div></header>
+{ticker}<header><div class="container nav"><a class="brand" href="/" aria-label="Evgeny Maradin, home"><i class="bn-full">Evgeny Maradin</i><i class="bn-short">EM</i><span>.</span></a><nav>{nav}</nav></div></header>
 <main id="top">{body}</main>
 <section id="contact" class="contact"><div class="container contact-grid"><div><p class="eyebrow">Contact</p><h2>For studies, project development and engineering leadership.</h2></div><div><a href="mailto:{EMAIL}">{EMAIL}</a><button class="copy" type="button" data-copy="{EMAIL}">Copy email</button><a href="tel:+639669813383">+63 966 981 3383</a><a class="wa" href="https://wa.me/639669813383" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp ↗</a><a href="/contact/?type=call">Book a free 30-min call →</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a><p class="avail">CV and project enquiries by email. Based in the Philippines, available to mobilise within 2 weeks.</p></div></div></section>
 <footer><div class="container"><span>Evgeny Maradin · <a href="/cases/">Cases</a> · <a href="/advisory/">Advisory</a> · <a href="/insights/">Insights</a> · <a href="/about/">About</a></span><span>Concept Development / FEL | Upstream Oil &amp; Gas · Updated {UPDATED}</span></div></footer>
 <script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{{const t=b.dataset.copy;try{{await navigator.clipboard.writeText(t)}}catch(e){{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}}b.textContent='Copied: '+t;setTimeout(()=>b.textContent='Copy email',2500)}}))</script>
-<script src="/ticker.js" defer></script>
-</body></html>'''
+{ticker_js}</body></html>'''
     d = os.path.join(OUT, path)
     os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
@@ -246,7 +248,7 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
      "/cases/")
 
 # ---------------- INSIGHTS ----------------
-import math
+import math, datetime
 ARTICLES = {
  "kirkuk": dict(t="Kirkuk: The First Barrels Will Be Fast. Their Gas Outlets Will Not.", tag="Iraq · Kirkuk", d="9 Oct 2026", w=1925, u=PULSE+"kirkuk-first-barrels-fast-gas-outlets-evgeny-maradin-ymsoc/",
    s="Kirkuk is going from 320,000 to 420,000 bpd. The first barrels come quickly from existing wells, but the outlets for their gas take years. The real question is sequencing."),
@@ -406,6 +408,15 @@ for m in MODELS:
 <div style="margin-top:50px">{rel}</div></div></section>''', "/insights/")
 
 regional = [k for k in ORDER if k not in FRAMEWORK_KEYS]
+# analyst note under the production chart: content/production-note.md (front matter: date, data_to; body = paragraphs)
+_pn = os.path.join(ROOT, "content", "production-note.md")
+PROD_NOTE = ""
+if os.path.exists(_pn):
+    _fm, _pb = open(_pn, encoding="utf-8").read().split("\n---\n", 1)
+    _pm = dict(re.findall(r'^(\w+): ?(.*)$', _fm.strip("-\n"), re.M))
+    _d = datetime.date.fromisoformat(_pm["date"])
+    PROD_NOTE = (f'<div class="prod-note"><p class="eyebrow">Evgeny&#8217;s note · {_d.strftime("%B %Y")} · data to {html.escape(_pm.get("data_to", ""))}</p>'
+                 + md_to_html(_pb) + "</div>")
 page("insights", "Insights", "Frameworks, interactive models and regional analysis on FEL, brownfield and upstream development.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Insights</p><h1 class="page">From project experience<br>to reusable engineering logic.</h1>
 <p class="lead">Frameworks, interactive models and regional analysis. Mostly MENA, always through the lens of early-phase decisions.</p></div></section>
@@ -413,7 +424,7 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
 <section class="section" id="production"><div class="container"><div class="section-head"><div><p class="eyebrow">Production data</p><h2>Who is producing, month by month.</h2></div><p>Crude oil production by country, refreshed monthly. Top producers shown, the rest summed. Filter by period and region; click countries in the table to compare your own selection.</p></div>
 <div class="prod" id="prod"><div class="prod-bar"><div class="prod-period" role="group" aria-label="Period"></div>
 <label>Region <select class="prod-region"></select></label><label>Show <select class="prod-top"></select></label></div>
-<p class="prod-total"></p><div class="prod-chart"><p class="prod-err">Loading production data…</p></div><div class="prod-legend"></div>
+<p class="prod-total"></p><p class="prod-auto"></p><div class="prod-chart"><p class="prod-err">Loading production data…</p></div><div class="prod-legend"></div>{PROD_NOTE}
 <details class="prod-more" open><summary>All countries <span class="prod-mode"></span><button type="button" class="prod-reset" hidden>Back to top producers</button></summary>
 <div class="prod-scroll"><table class="prod-table"><thead><tr><th>#</th><th>Country</th><th>Region</th><th>Latest month</th><th>Last 12 m avg</th><th>vs prior 12 m</th></tr></thead><tbody></tbody></table></div></details>
 <p class="prod-src"></p></div></div></section>
