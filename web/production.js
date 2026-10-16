@@ -76,8 +76,15 @@
       areas += '<polygon points="' + up.concat(dn).join(" ") + '" fill="' + ser.color + '" stroke="#f4f1ea" stroke-width="1.5" stroke-linejoin="round"/>';
       for (var k = a; k <= b; k++) base[k] += ser.v[k];
     });
+    var ef = D.est_from, estS = "";
+    if (ef !== null && ef !== undefined && ef <= b) {
+      var ex = x(Math.max(a, ef) - (ef > a ? 0.5 : 0));
+      estS += '<rect x="' + ex + '" y="' + T + '" width="' + (L + iw - ex) + '" height="' + ih + '" class="estbg"/>';
+      estS += '<line x1="' + ex + '" x2="' + ex + '" y1="' + T + '" y2="' + (T + ih) + '" class="estl"/>';
+      estS += '<text x="' + (ex + 6) + '" y="' + (T + 12) + '" class="ax est" text-anchor="start">estimates</text>';
+    }
     var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Crude oil production, stacked by country">' + g +
-      '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(0) + '" y2="' + y(0) + '" class="bl"/>' + areas +
+      '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(0) + '" y2="' + y(0) + '" class="bl"/>' + areas + estS +
       '<line class="xh" x1="0" x2="0" y1="' + T + '" y2="' + (T + ih) + '" visibility="hidden"/><rect class="hit" x="' + L + '" y="' + T + '" width="' + iw + '" height="' + ih + '"/></svg>';
     $(".prod-chart").innerHTML = svg + '<div class="prod-tip" hidden></div>';
     $(".prod-legend").innerHTML = s.map(function (ser) { return '<span><i style="background:' + ser.color + '"></i>' + esc(ser.name) + "</span>"; }).join("");
@@ -156,9 +163,14 @@
 
   fetch("/data/production.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     D = d; M = d.months;
-    Object.keys(D.countries).forEach(function (c) { D.countries[c].f = filled(D.countries[c].v); });
+    Object.keys(D.countries).forEach(function (c) {
+      var cc = D.countries[c]; cc.f = filled(cc.v);
+      if (cc.e !== undefined) for (var i = cc.e; i < M.length; i++) cc.f.est[i] = true;
+    });
     $(".prod-src").innerHTML = "Source: <a href=\"" + esc(d.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(d.source) + "</a> · " + esc(d.series) + " · data to " + mlabel(M[M.length - 1]) +
-      " · " + Object.keys(D.countries).length + " countries · refreshed " + esc(d.updated) + ". Latest months are EIA estimates and may be revised. * = gap filled with the last reported month.";
+      " · " + Object.keys(D.countries).length + " countries · refreshed " + esc(d.updated) + "." +
+      (d.est_from !== null && d.est_from !== undefined ? " From " + mlabel(M[d.est_from]) + ": estimates from the " + esc(d.est_source || "EIA STEO") + ", scaled to each country's latest reported level; they will be replaced by reported data as it arrives." : "") +
+      " * = estimate.";
     controls(); bind(); chart(); root.classList.add("ready");
     var rw = 0; window.addEventListener("resize", function () { clearTimeout(rw); rw = setTimeout(chart, 150); });
   }).catch(function () { $(".prod-chart").innerHTML = '<p class="prod-err">Production data is temporarily unavailable.</p>'; });
