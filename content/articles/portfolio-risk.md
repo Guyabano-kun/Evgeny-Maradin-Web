@@ -98,7 +98,7 @@ The engineering challenge is not attracting concurrent programmes. It is ensurin
 
 That is likely to require a portfolio-level systems engineering capability - not just well-engineered individual projects.
 
-*18+ years in upstream operator and PMC environments, 50+ FEL and Pre-FEED studies.* [*enmaradin@gmail.com*](mailto:enmaradin@gmail.com)
+*18+ years in upstream oil & gas on the operator side, 50+ FEL and Pre-FEED studies.* [*enmaradin@gmail.com*](mailto:enmaradin@gmail.com)
 
 ---
 
