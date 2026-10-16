@@ -171,7 +171,7 @@ The job is not to eliminate uncertainty. It is to understand which uncertainty c
 
 ---
 
-*18+ years in upstream operator and PMC environments. 50+ FEL and Pre-FEED studies. If you are working on concept selection or early-phase project development in the Middle East, I am available for engagements.*
+*18+ years in upstream oil & gas on the operator side. 50+ FEL and Pre-FEED studies. If you are working on concept selection or early-phase project development in the Middle East, I am available for engagements.*
 
 [*enmaradin@gmail.com*](mailto:enmaradin@gmail.com)
 

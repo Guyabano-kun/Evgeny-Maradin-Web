@@ -109,7 +109,7 @@ That may be Iraq's next engineering challenge - and it is the subject of the nex
 
 *This article is analytical interpretation based on publicly available information. Neither the Iraqi Ministry of Oil nor the operators involved have formally described this as a coordinated strategic shift. The framework presented here - Realisable Project Value = Economic Potential × Delivery Certainty - is proposed as an explanatory model, not an established industry standard.*
 
-*18+ years in upstream operator and PMC environments, 50+ FEL and Pre-FEED studies.* [*enmaradin@gmail.com*](mailto:enmaradin@gmail.com)
+*18+ years in upstream oil & gas on the operator side, 50+ FEL and Pre-FEED studies.* [*enmaradin@gmail.com*](mailto:enmaradin@gmail.com)
 
 ---
 
