@@ -1,0 +1,9847 @@
+{
+"keys": [
+"category_id",
+"childseries",
+"copyright",
+"data",
+"description",
+"end",
+"f",
+"geography",
+"lastHistoricalPeriod",
+"last_updated",
+"name",
+"notes",
+"parent_category_id",
+"series_id",
+"source",
+"start",
+"units"
+],
+"n": 222,
+"series": [
+{
+"id": "STEO.CONWHA.M",
+"name": "Haynesville New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+0.586631863
+],
+"pts": [
+[
+"202605",
+0.5267922
+],
+[
+"202606",
+0.545042145
+],
+[
+"202607",
+0.560932506
+],
+[
+"202608",
+0.575125496
+],
+[
+"202609",
+0.586631863
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.LGFPPUS.M",
+"name": "Liquefied Petroleum Gas Field Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+7.366084
+],
+"pts": [
+[
+"202605",
+7.054807
+],
+[
+"202606",
+6.9295
+],
+[
+"202607",
+6.996742
+],
+[
+"202608",
+7.030352322
+],
+[
+"202609",
+7.183875623
+],
+[
+"202610",
+7.243545
+],
+[
+"202611",
+7.242881
+],
+[
+"202612",
+7.10439
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWAP.M",
+"name": "Appalachia New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+18.07355433
+],
+"pts": [
+[
+"202605",
+18.16372737
+],
+[
+"202606",
+18.1889645
+],
+[
+"202607",
+18.17970036
+],
+[
+"202608",
+18.13966941
+],
+[
+"202609",
+18.07355433
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_VE.M",
+"name": "Venezuela Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "VEN",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPAP.M",
+"name": "Appalachia Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-1215.754677
+],
+"pts": [
+[
+"202605",
+-1187.266174
+],
+[
+"202606",
+-1186.191084
+],
+[
+"202607",
+-1191.166648
+],
+[
+"202608",
+-1201.301525
+],
+[
+"202609",
+-1215.754677
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.BDPRPUS.M",
+"name": "Biodiesel Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.1112097
+],
+"pts": [
+[
+"202605",
+0.09940971
+],
+[
+"202606",
+0.111006633
+],
+[
+"202607",
+0.109571
+],
+[
+"202608",
+0.1078194
+],
+[
+"202609",
+0.1096694
+],
+[
+"202610",
+0.1104776
+],
+[
+"202611",
+0.1100689
+],
+[
+"202612",
+0.1107952
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "200101",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWBK.M",
+"name": "Bakken New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+66.12688175
+],
+"pts": [
+[
+"202605",
+62.31643303
+],
+[
+"202606",
+63.32837509
+],
+[
+"202607",
+64.30907552
+],
+[
+"202608",
+65.26622848
+],
+[
+"202609",
+66.12688175
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ETFPPUS.M",
+"name": "Ethane Production at Natural Gas Processing Plants, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+3.344522
+],
+"pts": [
+[
+"202605",
+3.437484
+],
+[
+"202606",
+3.312167
+],
+[
+"202607",
+3.316032
+],
+[
+"202608",
+3.316338704
+],
+[
+"202609",
+3.418049182
+],
+[
+"202610",
+3.409347
+],
+[
+"202611",
+3.403802
+],
+[
+"202612",
+3.262177
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ETROPUS.M",
+"name": "Ethane/Ethylene Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+-0.0148537
+],
+"pts": [
+[
+"202605",
+-0.024291
+],
+[
+"202606",
+-0.0232
+],
+[
+"202607",
+-0.023645
+],
+[
+"202608",
+-0.0154508
+],
+[
+"202609",
+-0.0164985
+],
+[
+"202610",
+-0.0148352
+],
+[
+"202611",
+-0.0142995
+],
+[
+"202612",
+-0.015095
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWEF.M",
+"name": "Eagle Ford New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+66.68761184
+],
+"pts": [
+[
+"202605",
+67.65561621
+],
+[
+"202606",
+67.59522586
+],
+[
+"202607",
+67.42021655
+],
+[
+"202608",
+67.11398281
+],
+[
+"202609",
+66.68761184
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.C4FPPUS.M",
+"name": "Butanes Production at Natural Gas Processing Plants, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.366106
+],
+"pts": [
+[
+"202605",
+1.237291
+],
+[
+"202606",
+1.2412
+],
+[
+"202607",
+1.264097
+],
+[
+"202608",
+1.275945012
+],
+[
+"202609",
+1.293075818
+],
+[
+"202610",
+1.305985
+],
+[
+"202611",
+1.310563
+],
+[
+"202612",
+1.315861
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.C3ROPUS.M",
+"name": "Propane Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.2763567
+],
+"pts": [
+[
+"202605",
+0.283613
+],
+[
+"202606",
+0.296667
+],
+[
+"202607",
+0.291
+],
+[
+"202608",
+0.2805791
+],
+[
+"202609",
+0.2585816
+],
+[
+"202610",
+0.2415524
+],
+[
+"202611",
+0.262175
+],
+[
+"202612",
+0.2717962
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "200401",
+"end": "202712",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.C4ROPUS.M",
+"name": "Butanes/Butylenes Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+-0.2366041
+],
+"pts": [
+[
+"202605",
+0.252937
+],
+[
+"202606",
+0.234466
+],
+[
+"202607",
+0.237322
+],
+[
+"202608",
+0.2406147
+],
+[
+"202609",
+0.0575172
+],
+[
+"202610",
+-0.1034526
+],
+[
+"202611",
+-0.2346207
+],
+[
+"202612",
+-0.236416
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMP48NGOM.M",
+"name": "Natural Gas Lower 48 States (excl GOA) Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+127.5007
+],
+"pts": [
+[
+"202605",
+119.025779
+],
+[
+"202606",
+120.5854262
+],
+[
+"202607",
+122.1343869
+],
+[
+"202608",
+122.2699708
+],
+[
+"202609",
+121.8512004
+],
+[
+"202610",
+121.9636
+],
+[
+"202611",
+122.2234
+],
+[
+"202612",
+122.804
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199701",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPAP.M",
+"name": "Natural Gas Appalachia Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+37.85532394
+],
+"pts": [
+[
+"202605",
+37.37603533
+],
+[
+"202606",
+37.4293199
+],
+[
+"202607",
+37.01316066
+],
+[
+"202608",
+37.62833432
+],
+[
+"202609",
+37.02771305
+],
+[
+"202610",
+36.95800191
+],
+[
+"202611",
+37.05091731
+],
+[
+"202612",
+37.30356676
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPBK.M",
+"name": "Natural Gas Bakken Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+3.387884792
+],
+"pts": [
+[
+"202605",
+3.377043145
+],
+[
+"202606",
+3.435170024
+],
+[
+"202607",
+3.436458669
+],
+[
+"202608",
+3.442170075
+],
+[
+"202609",
+3.456091184
+],
+[
+"202610",
+3.435334424
+],
+[
+"202611",
+3.437716967
+],
+[
+"202612",
+3.389417053
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPEF.M",
+"name": "Natural Gas Eagle Ford Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+8.550476557
+],
+"pts": [
+[
+"202605",
+7.814257683
+],
+[
+"202606",
+7.921592685
+],
+[
+"202607",
+8.12644457
+],
+[
+"202608",
+8.059723625
+],
+[
+"202609",
+8.069557972
+],
+[
+"202610",
+8.088273467
+],
+[
+"202611",
+8.116497249
+],
+[
+"202612",
+8.146667548
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPHA.M",
+"name": "Natural Gas Haynesville Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+18.01557547
+],
+"pts": [
+[
+"202605",
+16.27373471
+],
+[
+"202606",
+16.75236932
+],
+[
+"202607",
+17.04579952
+],
+[
+"202608",
+17.26022921
+],
+[
+"202609",
+17.37152715
+],
+[
+"202610",
+17.4393753
+],
+[
+"202611",
+17.44898832
+],
+[
+"202612",
+17.67545295
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPPAK.M",
+"name": "Natural Gas Alaska Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+1.1
+],
+"pts": [
+[
+"202605",
+1.008516807
+],
+[
+"202606",
+0.9974727
+],
+[
+"202607",
+0.971680419
+],
+[
+"202608",
+0.878
+],
+[
+"202609",
+0.951
+],
+[
+"202610",
+1.006
+],
+[
+"202611",
+1.056
+],
+[
+"202612",
+1.091
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA-AK",
+"start": "199701",
+"end": "202712",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPPGLF.M",
+"name": "Natural Gas Marketed Production Federal Gulf of America, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+1.822716373
+],
+"pts": [
+[
+"202605",
+1.915281548
+],
+[
+"202606",
+2.072449133
+],
+[
+"202607",
+2.068506323
+],
+[
+"202608",
+2.070116752
+],
+[
+"202609",
+2.052112583
+],
+[
+"202610",
+2.016357693
+],
+[
+"202611",
+2.014270235
+],
+[
+"202612",
+2.026080988
+]
+],
+"extra": {
+"description": "Production from U.S. Federal leases in the Gulf of Mexico.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199701",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPPM.M",
+"name": "Natural Gas Permian Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+33.49180042
+],
+"pts": [
+[
+"202605",
+28.8487544
+],
+[
+"202606",
+29.35056375
+],
+[
+"202607",
+30.38478184
+],
+[
+"202608",
+30.07051295
+],
+[
+"202609",
+30.20514606
+],
+[
+"202610",
+30.3323421
+],
+[
+"202611",
+30.45355609
+],
+[
+"202612",
+30.58209654
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPPUS.M",
+"name": "Natural Gas Total Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+130.4234
+],
+"pts": [
+[
+"202605",
+121.9495773
+],
+[
+"202606",
+123.655348
+],
+[
+"202607",
+125.1745737
+],
+[
+"202608",
+125.2181
+],
+[
+"202609",
+124.8543
+],
+[
+"202610",
+124.9859
+],
+[
+"202611",
+125.2937
+],
+[
+"202612",
+125.9211
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199701",
+"end": "202712",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGMPR48.M",
+"name": "Natural Gas Rest of U.S. Marketed Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+26.19964311
+],
+"pts": [
+[
+"202605",
+25.26169108
+],
+[
+"202606",
+25.6229171
+],
+[
+"202607",
+25.93369475
+],
+[
+"202608",
+25.80900062
+],
+[
+"202609",
+25.72116502
+],
+[
+"202610",
+25.71023165
+],
+[
+"202611",
+25.71574831
+],
+[
+"202612",
+25.70683566
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWAP.M",
+"name": "Appalachia New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+1157.909518
+],
+"pts": [
+[
+"202605",
+1149.563735
+],
+[
+"202606",
+1149.750248
+],
+[
+"202607",
+1151.822095
+],
+[
+"202608",
+1154.759958
+],
+[
+"202609",
+1157.909518
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_BR.M",
+"name": "Unplanned liquid fuel production disruptions, Brazil, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "BRA",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWR48.M",
+"name": "Rest of Lower 48 States, excluding GOA New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+412.5510376
+],
+"pts": [
+[
+"202605",
+452.2495875
+],
+[
+"202606",
+441.4593402
+],
+[
+"202607",
+431.4597236
+],
+[
+"202608",
+421.6487106
+],
+[
+"202609",
+412.5510376
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPPM.M",
+"name": "Permian Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-841.218115
+],
+"pts": [
+[
+"202605",
+-790.0744085
+],
+[
+"202606",
+-801.4031761
+],
+[
+"202607",
+-814.061989
+],
+[
+"202608",
+-827.647534
+],
+[
+"202609",
+-841.218115
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NLPRPUS.M",
+"name": "Natural Gas Processing Plant Total Liquids Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+8.192866
+],
+"pts": [
+[
+"202605",
+7.986807
+],
+[
+"202606",
+7.8851
+],
+[
+"202607",
+7.984129
+],
+[
+"202608",
+7.891627223
+],
+[
+"202609",
+8.03109451
+],
+[
+"202610",
+8.082879
+],
+[
+"202611",
+8.063229
+],
+[
+"202612",
+7.903708
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NLROPUS.M",
+"name": "Hydrocarbon Gas Liquids Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.3049127
+],
+"pts": [
+[
+"202605",
+0.765936
+],
+[
+"202606",
+0.7607
+],
+[
+"202607",
+0.752516
+],
+[
+"202608",
+0.7733211
+],
+[
+"202609",
+0.5581846
+],
+[
+"202610",
+0.3863974
+],
+[
+"202611",
+0.2812657
+],
+[
+"202612",
+0.3027126
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NONOPEC_NC.M",
+"name": "Non-OPEC non-Crude Oil Liquids Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+23.43571288
+],
+"pts": [
+[
+"202605",
+21.89667442
+],
+[
+"202606",
+22.32693543
+],
+[
+"202607",
+22.56890527
+],
+[
+"202608",
+22.31025356
+],
+[
+"202609",
+22.28060999
+],
+[
+"202610",
+22.58112517
+],
+[
+"202611",
+22.66225657
+],
+[
+"202612",
+22.41619904
+]
+],
+"extra": {
+"description": "Includes lease condensate, natural gas plant liquids, other liquids, refinery prodessing gain, and other unaccounted-for liquids.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.OHPRPUS.M",
+"name": "Other HC/Oxygenates Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.624305
+],
+"pts": [
+[
+"202605",
+1.485588
+],
+[
+"202606",
+1.525523
+],
+[
+"202607",
+1.515243
+],
+[
+"202608",
+1.493600861
+],
+[
+"202609",
+1.475829967
+],
+[
+"202610",
+1.488725
+],
+[
+"202611",
+1.552088
+],
+[
+"202612",
+1.566012
+]
+],
+"extra": {
+"description": "Renewables and oxygenate production includes pentanes plus, oxygenates (excluding fuel ethanol), and renewable fuels.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.OPEC_NC.M",
+"name": "OPEC non-Crude Oil Liquids Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+5.082170705
+],
+"pts": [
+[
+"202605",
+2.9733
+],
+[
+"202606",
+3.1519
+],
+[
+"202607",
+3.439992997
+],
+[
+"202608",
+3.028373245
+],
+[
+"202609",
+3.051589689
+],
+[
+"202610",
+3.209294397
+],
+[
+"202611",
+3.367508438
+],
+[
+"202612",
+3.615792037
+]
+],
+"extra": {
+"description": "Includes lease condensate, natural gas plant liquids, other liquids, refinery prodessing gain, and other unaccounted-for liquids.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_CA.M",
+"name": "Unplanned liquid fuel production disruptions, Canada, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "CAN",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.P3ROPUS.M",
+"name": "Propylene Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.2800138
+],
+"pts": [
+[
+"202605",
+0.253677
+],
+[
+"202606",
+0.252767
+],
+[
+"202607",
+0.247839
+],
+[
+"202608",
+0.2675781
+],
+[
+"202609",
+0.2585843
+],
+[
+"202610",
+0.2631328
+],
+[
+"202611",
+0.2680109
+],
+[
+"202612",
+0.2824275
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_CD.M",
+"name": "Unplanned liquid fuel production disruptions, Chad, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWRAP.M",
+"name": "Appalachia New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+32.16415329
+],
+"pts": [
+[
+"202605",
+29.85879832
+],
+[
+"202606",
+31.07433104
+],
+[
+"202607",
+31.64346416
+],
+[
+"202608",
+32.07666551
+],
+[
+"202609",
+32.16415329
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.OXPRPUS.M",
+"name": "Oxygenates (excluding Fuel Ethanol) Plant Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"201912",
+0
+],
+"pts": [],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "200901",
+"end": "201912",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWBK.M",
+"name": "Bakken New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+73.73284743
+],
+"pts": [
+[
+"202605",
+74.6220595
+],
+[
+"202606",
+74.51846018
+],
+[
+"202607",
+74.36432674
+],
+[
+"202608",
+74.12003203
+],
+[
+"202609",
+73.73284743
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPR48.M",
+"name": "Rest of Lower 48 States, excluding GOA Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-458.7049531
+],
+"pts": [
+[
+"202605",
+-448.8785373
+],
+[
+"202606",
+-450.6882033
+],
+[
+"202607",
+-452.7708155
+],
+[
+"202608",
+-455.4021011
+],
+[
+"202609",
+-458.7049531
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_CH.M",
+"name": "Unplanned liquid fuel production disruptions, China, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "CHN",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_CO.M",
+"name": "Unplanned liquid fuel production disruptions, Colombia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "COL",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWEF.M",
+"name": "Eagle Ford New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+384.9035887
+],
+"pts": [
+[
+"202605",
+379.8793704
+],
+[
+"202606",
+381.2960141
+],
+[
+"202607",
+382.6603083
+],
+[
+"202608",
+383.8965661
+],
+[
+"202609",
+384.9035887
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_AJ.M",
+"name": "Unplanned liquid fuel production disruptions, Azerbaijan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWHA.M",
+"name": "Haynesville New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+937.9042099
+],
+"pts": [
+[
+"202605",
+870.3606719
+],
+[
+"202606",
+885.4655822
+],
+[
+"202607",
+900.9864316
+],
+[
+"202608",
+918.6442815
+],
+[
+"202609",
+937.9042099
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_AR.M",
+"name": "Unplanned liquid fuel production disruptions, Argentina, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "ARG",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_AS.M",
+"name": "Unplanned liquid fuel production disruptions, Australia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0.011
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "AUS",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWPM.M",
+"name": "Permian New-wells Gas Production, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+955.2044921
+],
+"pts": [
+[
+"202605",
+918.490207
+],
+[
+"202606",
+927.9037865
+],
+[
+"202607",
+937.2574086
+],
+[
+"202608",
+946.5834621
+],
+[
+"202609",
+955.2044921
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWRPM.M",
+"name": "Permian New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+1.899604113
+],
+"pts": [
+[
+"202605",
+1.85810062
+],
+[
+"202606",
+1.886526279
+],
+[
+"202607",
+1.925545574
+],
+[
+"202608",
+1.932101546
+],
+[
+"202609",
+1.899604113
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.OBPRPUS.M",
+"name": "Other Biofuels Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.0566291
+],
+"pts": [
+[
+"202605",
+0.037562032
+],
+[
+"202606",
+0.0392953
+],
+[
+"202607",
+0.041376
+],
+[
+"202608",
+0.0431218
+],
+[
+"202609",
+0.0453717
+],
+[
+"202610",
+0.0468598
+],
+[
+"202611",
+0.0494835
+],
+[
+"202612",
+0.0500834
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "201401",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPBK.M",
+"name": "Bakken Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-72.22643111
+],
+"pts": [
+[
+"202605",
+-67.42246765
+],
+[
+"202606",
+-68.37059083
+],
+[
+"202607",
+-69.49930016
+],
+[
+"202608",
+-70.81148469
+],
+[
+"202609",
+-72.22643111
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWRR48.M",
+"name": "Rest of Lower 48 States, excluding GOA New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+0.717877126
+],
+"pts": [
+[
+"202605",
+0.661358892
+],
+[
+"202606",
+0.698860068
+],
+[
+"202607",
+0.740477495
+],
+[
+"202608",
+0.723702526
+],
+[
+"202609",
+0.717877126
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_AG.M",
+"name": "Algeria Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1
+],
+"pts": [
+[
+"202605",
+1
+],
+[
+"202606",
+1
+],
+[
+"202607",
+1
+],
+[
+"202608",
+1
+],
+[
+"202609",
+1
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "DZA",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_CF.M",
+"name": "Congo (Brazzaville) Crude Oil Production Capacity, Monthly",
+"units": "million barres per day",
+"last": [
+"202609",
+0.27
+],
+"pts": [
+[
+"202605",
+0.27
+],
+[
+"202606",
+0.27
+],
+[
+"202607",
+0.27
+],
+[
+"202608",
+0.27
+],
+[
+"202609",
+0.27
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_EK.M",
+"name": "Equatorial Guinea Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.04
+],
+"pts": [
+[
+"202605",
+0.05
+],
+[
+"202606",
+0.04
+],
+[
+"202607",
+0.05
+],
+[
+"202608",
+0.04
+],
+[
+"202609",
+0.04
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_IR.M",
+"name": "Iran Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.9
+],
+"pts": [
+[
+"202605",
+2.6
+],
+[
+"202606",
+2.7
+],
+[
+"202607",
+2.8
+],
+[
+"202608",
+2.2
+],
+[
+"202609",
+1.9
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRN",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_IZ.M",
+"name": "Iraq Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+3.7
+],
+"pts": [
+[
+"202605",
+1.3
+],
+[
+"202606",
+1.92
+],
+[
+"202607",
+2.75
+],
+[
+"202608",
+3.68
+],
+[
+"202609",
+3.7
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRQ",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_KU.M",
+"name": "Kuwait Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.62
+],
+"pts": [
+[
+"202605",
+0.59
+],
+[
+"202606",
+1.36
+],
+[
+"202607",
+1.77
+],
+[
+"202608",
+1.92
+],
+[
+"202609",
+1.62
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "KWT",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_LY.M",
+"name": "Libya Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.27
+],
+"pts": [
+[
+"202605",
+1.29
+],
+[
+"202606",
+1.29
+],
+[
+"202607",
+1.34
+],
+[
+"202608",
+1.31
+],
+[
+"202609",
+1.27
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "LBY",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_NI.M",
+"name": "Nigeria Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.49
+],
+"pts": [
+[
+"202605",
+1.48
+],
+[
+"202606",
+1.52
+],
+[
+"202607",
+1.42
+],
+[
+"202608",
+1.53
+],
+[
+"202609",
+1.49
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "NGA",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_OPEC.M",
+"name": "OPEC Total Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+27.545
+],
+"pts": [
+[
+"202605",
+16.44
+],
+[
+"202606",
+18.63
+],
+[
+"202607",
+20.6
+],
+[
+"202608",
+19.88
+],
+[
+"202609",
+20.82
+],
+[
+"202610",
+20.78
+],
+[
+"202611",
+20.965
+],
+[
+"202612",
+21.25
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_OPEC_R05.M",
+"name": "OPEC Middle East Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+21.8
+],
+"pts": [
+[
+"202605",
+10.99
+],
+[
+"202606",
+13.14
+],
+[
+"202607",
+15.15
+],
+[
+"202608",
+14.33
+],
+[
+"202609",
+15.32
+],
+[
+"202610",
+15.35
+],
+[
+"202611",
+15.55
+],
+[
+"202612",
+15.8
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_OPEC_ROT.M",
+"name": "OPEC Other Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+5.745
+],
+"pts": [
+[
+"202605",
+5.45
+],
+[
+"202606",
+5.49
+],
+[
+"202607",
+5.45
+],
+[
+"202608",
+5.55
+],
+[
+"202609",
+5.5
+],
+[
+"202610",
+5.43
+],
+[
+"202611",
+5.415
+],
+[
+"202612",
+5.45
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_SA.M",
+"name": "Saudi Arabia Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+8.1
+],
+"pts": [
+[
+"202605",
+6.5
+],
+[
+"202606",
+7.16
+],
+[
+"202607",
+7.83
+],
+[
+"202608",
+6.53
+],
+[
+"202609",
+8.1
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SAU",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_VE.M",
+"name": "Venezuela Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.21
+],
+"pts": [
+[
+"202605",
+1.13
+],
+[
+"202606",
+1.13
+],
+[
+"202607",
+1.15
+],
+[
+"202608",
+1.18
+],
+[
+"202609",
+1.21
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "VEN",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRAP.M",
+"name": "Crude Oil Production: Appalachia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.202410832
+],
+"pts": [
+[
+"202605",
+0.199183068
+],
+[
+"202606",
+0.212097575
+],
+[
+"202607",
+0.202091076
+],
+[
+"202608",
+0.205164149
+],
+[
+"202609",
+0.205166806
+],
+[
+"202610",
+0.204832761
+],
+[
+"202611",
+0.204620601
+],
+[
+"202612",
+0.204384329
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRBK.M",
+"name": "Crude Oil Production: Bakken, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.200121463
+],
+"pts": [
+[
+"202605",
+1.176645163
+],
+[
+"202606",
+1.208173437
+],
+[
+"202607",
+1.207338047
+],
+[
+"202608",
+1.209504911
+],
+[
+"202609",
+1.209368949
+],
+[
+"202610",
+1.203946441
+],
+[
+"202611",
+1.202259839
+],
+[
+"202612",
+1.190936114
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPREF.M",
+"name": "Crude Oil Production: Eagle Ford, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.247967627
+],
+"pts": [
+[
+"202605",
+1.114166654
+],
+[
+"202606",
+1.100668086
+],
+[
+"202607",
+1.107591788
+],
+[
+"202608",
+1.100630636
+],
+[
+"202609",
+1.105315598
+],
+[
+"202610",
+1.114939862
+],
+[
+"202611",
+1.129925839
+],
+[
+"202612",
+1.146571756
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRHA.M",
+"name": "Crude Oil Production: Haynesville, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.031630497
+],
+"pts": [
+[
+"202605",
+0.033070202
+],
+[
+"202606",
+0.032723521
+],
+[
+"202607",
+0.032716551
+],
+[
+"202608",
+0.032004276
+],
+[
+"202609",
+0.031684317
+],
+[
+"202610",
+0.031411603
+],
+[
+"202611",
+0.031207424
+],
+[
+"202612",
+0.031073912
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRPM.M",
+"name": "Crude Oil Production: Permian, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+7.307971097
+],
+"pts": [
+[
+"202605",
+6.861959981
+],
+[
+"202606",
+6.776585516
+],
+[
+"202607",
+6.853305273
+],
+[
+"202608",
+6.861519484
+],
+[
+"202609",
+6.867267319
+],
+[
+"202610",
+6.89141886
+],
+[
+"202611",
+6.916292899
+],
+[
+"202612",
+6.959489117
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRPUS.M",
+"name": "U.S. Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+14.57708
+],
+"pts": [
+[
+"202605",
+13.810826
+],
+[
+"202606",
+13.843846
+],
+[
+"202607",
+13.947584
+],
+[
+"202608",
+13.94250356
+],
+[
+"202609",
+13.9649971
+],
+[
+"202610",
+14.0017
+],
+[
+"202611",
+14.04095
+],
+[
+"202612",
+14.10586
+]
+],
+"extra": {
+"description": "Includes lease condensate.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPRR48.M",
+"name": "Crude Oil Production: Rest of Lower 48 States, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+2.174416384
+],
+"pts": [
+[
+"202605",
+2.051867729
+],
+[
+"202606",
+2.058774612
+],
+[
+"202607",
+2.0797665
+],
+[
+"202608",
+2.04925875
+],
+[
+"202609",
+2.039677016
+],
+[
+"202610",
+2.037687272
+],
+[
+"202611",
+2.041459908
+],
+[
+"202612",
+2.048412637
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200812",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_AG.M",
+"name": "Crude Oil Production, Algeria, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.98
+],
+"pts": [
+[
+"202605",
+0.97
+],
+[
+"202606",
+0.98
+],
+[
+"202607",
+0.98
+],
+[
+"202608",
+0.98
+],
+[
+"202609",
+0.98
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "DZA",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_AJ.M",
+"name": "Crude Oil Production, Azerbaijan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.438245403
+],
+"pts": [
+[
+"202605",
+0.4426
+],
+[
+"202606",
+0.4423
+],
+[
+"202607",
+0.443326668
+],
+[
+"202608",
+0.435772801
+],
+[
+"202609",
+0.438245403
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_BA.M",
+"name": "Crude Oil Production, Bahrain, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.1
+],
+"pts": [
+[
+"202605",
+0.032
+],
+[
+"202606",
+0.03
+],
+[
+"202607",
+0.074
+],
+[
+"202608",
+0.101
+],
+[
+"202609",
+0.1
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "BIH",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_BX.M",
+"name": "Crude Oil Production, Brunei, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.087191667
+],
+"pts": [
+[
+"202605",
+0.0521
+],
+[
+"202606",
+0.083
+],
+[
+"202607",
+0.0944
+],
+[
+"202608",
+0.0947
+],
+[
+"202609",
+0.087191667
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_CF.M",
+"name": "Crude Oil Production, Congo (Brazzaville), Monthly",
+"units": "million barrles per day",
+"last": [
+"202609",
+0.27
+],
+"pts": [
+[
+"202605",
+0.27
+],
+[
+"202606",
+0.27
+],
+[
+"202607",
+0.27
+],
+[
+"202608",
+0.27
+],
+[
+"202609",
+0.27
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_EK.M",
+"name": "Crude Oil Production, Equatorial Guinea, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.04
+],
+"pts": [
+[
+"202605",
+0.05
+],
+[
+"202606",
+0.04
+],
+[
+"202607",
+0.05
+],
+[
+"202608",
+0.04
+],
+[
+"202609",
+0.04
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_GB.M",
+"name": "Crude Oil Production, Gabon, Monthly",
+"units": "million barrles per day",
+"last": [
+"202609",
+0.22
+],
+"pts": [
+[
+"202605",
+0.23
+],
+[
+"202606",
+0.24
+],
+[
+"202607",
+0.22
+],
+[
+"202608",
+0.22
+],
+[
+"202609",
+0.22
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "GAB",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_IR.M",
+"name": "Crude Oil Production, Iran, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.9
+],
+"pts": [
+[
+"202605",
+2.6
+],
+[
+"202606",
+2.7
+],
+[
+"202607",
+2.8
+],
+[
+"202608",
+2.2
+],
+[
+"202609",
+1.9
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRN",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_IZ.M",
+"name": "Crude Oil Production, Iraq, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+3.7
+],
+"pts": [
+[
+"202605",
+1.3
+],
+[
+"202606",
+1.92
+],
+[
+"202607",
+2.75
+],
+[
+"202608",
+3.68
+],
+[
+"202609",
+3.7
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRQ",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_KU.M",
+"name": "Crude Oil Production, Kuwait, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.62
+],
+"pts": [
+[
+"202605",
+0.59
+],
+[
+"202606",
+1.36
+],
+[
+"202607",
+1.77
+],
+[
+"202608",
+1.92
+],
+[
+"202609",
+1.62
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "KWT",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_KZ.M",
+"name": "Crude Oil Production, Kazakhstan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.86573386
+],
+"pts": [
+[
+"202605",
+1.8333
+],
+[
+"202606",
+1.8582
+],
+[
+"202607",
+1.606207861
+],
+[
+"202608",
+1.786472838
+],
+[
+"202609",
+1.86573386
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "KAZ",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_LY.M",
+"name": "Crude Oil Production, Libya, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.27
+],
+"pts": [
+[
+"202605",
+1.29
+],
+[
+"202606",
+1.29
+],
+[
+"202607",
+1.34
+],
+[
+"202608",
+1.31
+],
+[
+"202609",
+1.27
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "LBY",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_MU.M",
+"name": "Crude Oil Production, Oman, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.85
+],
+"pts": [
+[
+"202605",
+0.87
+],
+[
+"202606",
+0.86
+],
+[
+"202607",
+0.84
+],
+[
+"202608",
+0.86
+],
+[
+"202609",
+0.85
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_MX.M",
+"name": "Crude Oil Production, Mexico, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.431341
+],
+"pts": [
+[
+"202605",
+1.423
+],
+[
+"202606",
+1.4307
+],
+[
+"202607",
+1.427636
+],
+[
+"202608",
+1.428375
+],
+[
+"202609",
+1.431341
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "MEX",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_MY.M",
+"name": "Crude Oil Production, Malaysia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.344
+],
+"pts": [
+[
+"202605",
+0.35
+],
+[
+"202606",
+0.35
+],
+[
+"202607",
+0.348
+],
+[
+"202608",
+0.346
+],
+[
+"202609",
+0.344
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "MYS",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_NI.M",
+"name": "Crude Oil Production, Nigeria, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.49
+],
+"pts": [
+[
+"202605",
+1.48
+],
+[
+"202606",
+1.52
+],
+[
+"202607",
+1.42
+],
+[
+"202608",
+1.53
+],
+[
+"202609",
+1.49
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "NGA",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_NONOPEC.M",
+"name": "Non-OPEC Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+57.80833161
+],
+"pts": [
+[
+"202605",
+53.303226
+],
+[
+"202606",
+55.433846
+],
+[
+"202607",
+55.44977617
+],
+[
+"202608",
+55.2148178
+],
+[
+"202609",
+55.17159343
+],
+[
+"202610",
+55.55424
+],
+[
+"202611",
+56.11689734
+],
+[
+"202612",
+56.44699421
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_NONOPECPLUS_XUS.M",
+"name": "Non-OPEC+ exluding United States Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+34.64807361
+],
+"pts": [
+[
+"202605",
+30.3813
+],
+[
+"202606",
+32.6277
+],
+[
+"202607",
+32.93045497
+],
+[
+"202608",
+32.02682693
+],
+[
+"202609",
+31.53691773
+],
+[
+"202610",
+31.70783731
+],
+[
+"202611",
+32.08742129
+],
+[
+"202612",
+32.32337575
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_OD.M",
+"name": "Crude Oil Production, South Sudan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.13
+],
+"pts": [
+[
+"202605",
+0.15
+],
+[
+"202606",
+0.15
+],
+[
+"202607",
+0.15
+],
+[
+"202608",
+0.13
+],
+[
+"202609",
+0.13
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_OPEC.M",
+"name": "Crude Oil Production, OPEC Total, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+25.165
+],
+"pts": [
+[
+"202605",
+16.41
+],
+[
+"202606",
+18.61
+],
+[
+"202607",
+20.58
+],
+[
+"202608",
+19.86
+],
+[
+"202609",
+20.8
+],
+[
+"202610",
+20.76
+],
+[
+"202611",
+20.945
+],
+[
+"202612",
+21.23
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_RS.M",
+"name": "Crude Oil Production, Russia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+8.773166667
+],
+"pts": [
+[
+"202605",
+8.9481
+],
+[
+"202606",
+8.8481
+],
+[
+"202607",
+8.848166667
+],
+[
+"202608",
+8.723166667
+],
+[
+"202609",
+8.773166667
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SRB",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_SA.M",
+"name": "Crude Oil Production, Saudi Arabia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+8.1
+],
+"pts": [
+[
+"202605",
+6.5
+],
+[
+"202606",
+7.16
+],
+[
+"202607",
+7.83
+],
+[
+"202608",
+6.53
+],
+[
+"202609",
+8.1
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SAU",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_SU.M",
+"name": "Crude Oil Production, Sudan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.03
+],
+"pts": [
+[
+"202605",
+0.03
+],
+[
+"202606",
+0.03
+],
+[
+"202607",
+0.03
+],
+[
+"202608",
+0.03
+],
+[
+"202609",
+0.03
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_VE.M",
+"name": "Crude Oil Production, Venezuela, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.21
+],
+"pts": [
+[
+"202605",
+1.13
+],
+[
+"202606",
+1.13
+],
+[
+"202607",
+1.15
+],
+[
+"202608",
+1.18
+],
+[
+"202609",
+1.21
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "VEN",
+"start": "199301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_EK.M",
+"name": "Equatorial Guinea Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWRAP.M",
+"name": "Appalachia New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+0.502043176
+],
+"pts": [
+[
+"202605",
+0.471785126
+],
+[
+"202606",
+0.491593635
+],
+[
+"202607",
+0.499442317
+],
+[
+"202608",
+0.503879706
+],
+[
+"202609",
+0.502043176
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPPM.M",
+"name": "Permian Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-487.0201452
+],
+"pts": [
+[
+"202605",
+-459.9004244
+],
+[
+"202606",
+-464.9429612
+],
+[
+"202607",
+-471.0530825
+],
+[
+"202608",
+-478.4334235
+],
+[
+"202609",
+-487.0201452
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPBK.M",
+"name": "Bakken Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-64.36147182
+],
+"pts": [
+[
+"202605",
+-62.29569634
+],
+[
+"202606",
+-62.64216096
+],
+[
+"202607",
+-63.12057494
+],
+[
+"202608",
+-63.71402943
+],
+[
+"202609",
+-64.36147182
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_IR.M",
+"name": "Iran Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRN",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_IZ.M",
+"name": "Iraq Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRQ",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_KU.M",
+"name": "Kuwait Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "KWT",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPEF.M",
+"name": "Eagle Ford Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-84.28730976
+],
+"pts": [
+[
+"202605",
+-80.89220118
+],
+[
+"202606",
+-81.84860517
+],
+[
+"202607",
+-82.70620575
+],
+[
+"202608",
+-83.52223016
+],
+[
+"202609",
+-84.28730976
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPR_WORLD.M",
+"name": "Total World Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+82.97333161
+],
+"pts": [
+[
+"202605",
+69.713226
+],
+[
+"202606",
+74.043846
+],
+[
+"202607",
+76.02977617
+],
+[
+"202608",
+75.0748178
+],
+[
+"202609",
+75.97159343
+],
+[
+"202610",
+76.31424
+],
+[
+"202611",
+77.06189734
+],
+[
+"202612",
+77.67699421
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_AG.M",
+"name": "Algeria Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.02
+],
+"pts": [
+[
+"202605",
+0.03
+],
+[
+"202606",
+0.02
+],
+[
+"202607",
+0.02
+],
+[
+"202608",
+0.02
+],
+[
+"202609",
+0.02
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "DZA",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_CF.M",
+"name": "Congo (Brazzaville) Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWRBK.M",
+"name": "Bakken New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+2.449143769
+],
+"pts": [
+[
+"202605",
+2.225586894
+],
+[
+"202606",
+2.241712393
+],
+[
+"202607",
+2.296752697
+],
+[
+"202608",
+2.330936731
+],
+[
+"202609",
+2.449143769
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPR48.M",
+"name": "Rest of Lower 48 States, excluding GOA Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-96.84755182
+],
+"pts": [
+[
+"202605",
+-94.6499118
+],
+[
+"202606",
+-95.06773428
+],
+[
+"202607",
+-95.58552101
+],
+[
+"202608",
+-96.21019843
+],
+[
+"202609",
+-96.84755182
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_OPEC_R05.M",
+"name": "OPEC Middle East Surplus Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+2.35
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+],
+[
+"202610",
+0
+],
+[
+"202611",
+0
+],
+[
+"202612",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPHA.M",
+"name": "Haynesville Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-0.6249488
+],
+"pts": [
+[
+"202605",
+-0.510321663
+],
+[
+"202606",
+-0.535040567
+],
+[
+"202607",
+-0.563507587
+],
+[
+"202608",
+-0.594450668
+],
+[
+"202609",
+-0.6249488
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_LY.M",
+"name": "Libya Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "LBY",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_NI.M",
+"name": "Nigeria Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "NGA",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_OPEC.M",
+"name": "OPEC Total Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+2.38
+],
+"pts": [
+[
+"202605",
+0.03
+],
+[
+"202606",
+0.02
+],
+[
+"202607",
+0.02
+],
+[
+"202608",
+0.02
+],
+[
+"202609",
+0.02
+],
+[
+"202610",
+0.02
+],
+[
+"202611",
+0.02
+],
+[
+"202612",
+0.02
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_OPEC_ROT.M",
+"name": "OPEC Other Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.03
+],
+"pts": [
+[
+"202605",
+0.03
+],
+[
+"202606",
+0.02
+],
+[
+"202607",
+0.02
+],
+[
+"202608",
+0.02
+],
+[
+"202609",
+0.02
+],
+[
+"202610",
+0.02
+],
+[
+"202611",
+0.02
+],
+[
+"202612",
+0.02
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200301",
+"end": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_SA.M",
+"name": "Saudi Arabia Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SAU",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPEF.M",
+"name": "Eagle Ford Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-337.026413
+],
+"pts": [
+[
+"202605",
+-332.1310215
+],
+[
+"202606",
+-333.4175188
+],
+[
+"202607",
+-334.5081549
+],
+[
+"202608",
+-335.6465819
+],
+[
+"202609",
+-337.026413
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPS_GB.M",
+"name": "Gabon Spare Crude Oil Production Capacity, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "GAB",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.EOPRPUS.M",
+"name": "Fuel Ethanol Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.155411
+],
+"pts": [
+[
+"202605",
+1.103864
+],
+[
+"202606",
+1.117005
+],
+[
+"202607",
+1.109662
+],
+[
+"202608",
+1.105645161
+],
+[
+"202609",
+1.076112267
+],
+[
+"202610",
+1.080201
+],
+[
+"202611",
+1.125967
+],
+[
+"202612",
+1.126434
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGEOPHA.M",
+"name": "Haynesville Existing Gas Production Change, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+-796.5636829
+],
+"pts": [
+[
+"202605",
+-772.5834831
+],
+[
+"202606",
+-774.4264447
+],
+[
+"202607",
+-778.9495386
+],
+[
+"202608",
+-786.7875143
+],
+[
+"202609",
+-796.5636829
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWREF.M",
+"name": "Eagle Ford New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+1.240699755
+],
+"pts": [
+[
+"202605",
+1.409492004
+],
+[
+"202606",
+1.358698007
+],
+[
+"202607",
+1.362024577
+],
+[
+"202608",
+1.315960447
+],
+[
+"202609",
+1.240699755
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWRHA.M",
+"name": "Haynesville New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+15.27531286
+],
+"pts": [
+[
+"202605",
+15.54215486
+],
+[
+"202606",
+15.33273735
+],
+[
+"202607",
+15.27095647
+],
+[
+"202608",
+15.50454484
+],
+[
+"202609",
+15.27531286
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWPM.M",
+"name": "Permian New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+487.7233561
+],
+"pts": [
+[
+"202605",
+445.0150984
+],
+[
+"202606",
+455.5960965
+],
+[
+"202607",
+465.9820289
+],
+[
+"202608",
+476.8426615
+],
+[
+"202609",
+487.7233561
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_GB.M",
+"name": "Unplanned liquid fuel production disruptions, Gabon, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "GAB",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_GH.M",
+"name": "Unplanned liquid fuel production disruptions, Ghana, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWRPM.M",
+"name": "Permian New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+3.720368032
+],
+"pts": [
+[
+"202605",
+3.83503218
+],
+[
+"202606",
+3.842251704
+],
+[
+"202607",
+3.872964498
+],
+[
+"202608",
+3.835427318
+],
+[
+"202609",
+3.720368032
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWRBK.M",
+"name": "Bakken New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+2.730846201
+],
+"pts": [
+[
+"202605",
+2.665073554
+],
+[
+"202606",
+2.637821599
+],
+[
+"202607",
+2.655868812
+],
+[
+"202608",
+2.647144001
+],
+[
+"202609",
+2.730846201
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWRR48.M",
+"name": "Rest of Lower 48 States, excluding GOA New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+3.67528764
+],
+"pts": [
+[
+"202605",
+3.737599896
+],
+[
+"202606",
+3.847140219
+],
+[
+"202607",
+3.976587314
+],
+[
+"202608",
+3.791804952
+],
+[
+"202609",
+3.67528764
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGPRPUS.M",
+"name": "Natural Gas Total Dry Production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202712",
+118.6139
+],
+"pts": [
+[
+"202605",
+110.4615484
+],
+[
+"202606",
+112.3291667
+],
+[
+"202607",
+113.7063226
+],
+[
+"202608",
+113.7203
+],
+[
+"202609",
+113.3328
+],
+[
+"202610",
+113.33
+],
+[
+"202611",
+113.66
+],
+[
+"202612",
+114.5266
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202607",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CLPRPAR_TON.M",
+"name": "Coal Production Appalachia Region, Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+12.57745
+],
+"pts": [
+[
+"202605",
+14.435201
+],
+[
+"202606",
+14.041392
+],
+[
+"202607",
+12.695922
+],
+[
+"202608",
+13.68741
+],
+[
+"202609",
+12.98493412
+],
+[
+"202610",
+13.91376
+],
+[
+"202611",
+13.49472
+],
+[
+"202612",
+13.43894
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CLPRPWR_TON.M",
+"name": "Coal Production Western Region, Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+22.26955
+],
+"pts": [
+[
+"202605",
+20.810166
+],
+[
+"202606",
+20.242513
+],
+[
+"202607",
+23.667409
+],
+[
+"202608",
+25.316852
+],
+[
+"202609",
+23.25444478
+],
+[
+"202610",
+24.3586
+],
+[
+"202611",
+23.86765
+],
+[
+"202612",
+23.24405
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWRHA.M",
+"name": "Haynesville New-wells Oil Production Per Rig, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+0.009554265
+],
+"pts": [
+[
+"202605",
+0.009407004
+],
+[
+"202606",
+0.009437959
+],
+[
+"202607",
+0.009507331
+],
+[
+"202608",
+0.009706759
+],
+[
+"202609",
+0.009554265
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CONWR48.M",
+"name": "Rest of Lower 48 States, excluding GOA New-wells Oil Production, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+80.58170744
+],
+"pts": [
+[
+"202605",
+80.02442592
+],
+[
+"202606",
+80.19419285
+],
+[
+"202607",
+80.34180815
+],
+[
+"202608",
+80.47572089
+],
+[
+"202609",
+80.58170744
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CLPRPIR_TON.M",
+"name": "Coal Production Interior Region, Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+6.304175
+],
+"pts": [
+[
+"202605",
+7.076962
+],
+[
+"202606",
+6.883931
+],
+[
+"202607",
+6.243454
+],
+[
+"202608",
+6.734828
+],
+[
+"202609",
+6.456531758
+],
+[
+"202610",
+6.893017
+],
+[
+"202611",
+6.7825
+],
+[
+"202612",
+6.718785
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CLPRPUS_TON.M",
+"name": "Coal Production Total U.S., Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+41.15117
+],
+"pts": [
+[
+"202605",
+42.322329
+],
+[
+"202606",
+41.167836
+],
+[
+"202607",
+42.606785
+],
+[
+"202608",
+45.73909
+],
+[
+"202609",
+42.69591066
+],
+[
+"202610",
+45.16538
+],
+[
+"202611",
+44.14487
+],
+[
+"202612",
+43.40177
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.CLWCPUS_TON.M",
+"name": "Waste Coal Production, Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+0.4210394
+],
+"pts": [
+[
+"202605",
+0.533333331
+],
+[
+"202606",
+0.42902457
+],
+[
+"202607",
+0.429024583
+],
+[
+"202608",
+0.429024583
+],
+[
+"202609",
+0.429024583
+],
+[
+"202610",
+0.4290246
+],
+[
+"202611",
+0.4290246
+],
+[
+"202612",
+0.4290246
+]
+],
+"extra": {
+"description": "Waste coal includes waste coal and cloal slurry reprocessed into briquettes.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "201001",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_ID.M",
+"name": "Unplanned liquid fuel production disruptions, Indonesia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IDN",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.NGNWREF.M",
+"name": "Eagle Ford New-wells Gas Production Per Rig, One-year Trend, Monthly",
+"units": "million cubic feet per day",
+"last": [
+"202609",
+7.160996999
+],
+"pts": [
+[
+"202605",
+7.914153549
+],
+[
+"202606",
+7.664241489
+],
+[
+"202607",
+7.73051128
+],
+[
+"202608",
+7.527383648
+],
+[
+"202609",
+7.160996999
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.HGPRPUS.M",
+"name": "Hydrocarbon Gas Liquids Total Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+8.47467
+],
+"pts": [
+[
+"202605",
+8.728694
+],
+[
+"202606",
+8.620773
+],
+[
+"202607",
+8.711091
+],
+[
+"202608",
+8.664948323
+],
+[
+"202609",
+8.58927911
+],
+[
+"202610",
+8.447673
+],
+[
+"202611",
+8.321975
+],
+[
+"202612",
+8.183892
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COPC_GB.M",
+"name": "Gabon Crude Oil Production Capacity, Monthly",
+"units": "million barres per day",
+"last": [
+"202609",
+0.22
+],
+"pts": [
+[
+"202605",
+0.23
+],
+[
+"202606",
+0.24
+],
+[
+"202607",
+0.22
+],
+[
+"202608",
+0.22
+],
+[
+"202609",
+0.22
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "GAB",
+"start": "200301",
+"end": "202609",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.COEOPAP.M",
+"name": "Appalachia Existing Oil Production Change, One-year Trend, Monthly",
+"units": "thousand barrels per day",
+"last": [
+"202609",
+-15.44801926
+],
+"pts": [
+[
+"202605",
+-15.22894665
+],
+[
+"202606",
+-15.30231394
+],
+[
+"202607",
+-15.36106343
+],
+[
+"202608",
+-15.40899788
+],
+[
+"202609",
+-15.44801926
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201301",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_RS.M",
+"name": "Unplanned liquid fuel production disruptions, Russia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.075
+],
+"pts": [
+[
+"202605",
+0.9
+],
+[
+"202606",
+1
+],
+[
+"202607",
+1
+],
+[
+"202608",
+1.125
+],
+[
+"202609",
+1.075
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SRB",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_SA.M",
+"name": "Unplanned liquid fuel production disruptions, Saudi Arabia, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+2.61
+],
+"pts": [
+[
+"202605",
+4.3
+],
+[
+"202606",
+3.49
+],
+[
+"202607",
+2.55
+],
+[
+"202608",
+4.19
+],
+[
+"202609",
+2.61
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SAU",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_KU.M",
+"name": "Unplanned crude oil production disruptions, Kuwait, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.105
+],
+"pts": [
+[
+"202605",
+2.2
+],
+[
+"202606",
+1.385
+],
+[
+"202607",
+0.97
+],
+[
+"202608",
+0.82
+],
+[
+"202609",
+1.105
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "KWT",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_LY.M",
+"name": "Unplanned crude oil production disruptions, Libya, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.13
+],
+"pts": [
+[
+"202605",
+0.11
+],
+[
+"202606",
+0.11
+],
+[
+"202607",
+0.06
+],
+[
+"202608",
+0.09
+],
+[
+"202609",
+0.13
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "LBY",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PRFPPUS.M",
+"name": "Propane Production at Natural Gas Processing Plants, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+2.655455
+],
+"pts": [
+[
+"202605",
+2.380032
+],
+[
+"202606",
+2.376133
+],
+[
+"202607",
+2.416613
+],
+[
+"202608",
+2.438068607
+],
+[
+"202609",
+2.472750623
+],
+[
+"202610",
+2.528212
+],
+[
+"202611",
+2.528517
+],
+[
+"202612",
+2.526353
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_MX.M",
+"name": "Unplanned liquid fuel production disruptions, Mexico, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "MEX",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_NI.M",
+"name": "Unplanned crude oil production disruptions, Nigeria, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.06
+],
+"pts": [
+[
+"202605",
+0.05
+],
+[
+"202606",
+0.03
+],
+[
+"202607",
+0.13
+],
+[
+"202608",
+0.02
+],
+[
+"202609",
+0.06
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "NGA",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PRROPUS.M",
+"name": "Propane/Propylene Refinery and Blender Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.5563705
+],
+"pts": [
+[
+"202605",
+0.53729
+],
+[
+"202606",
+0.549434
+],
+[
+"202607",
+0.538839
+],
+[
+"202608",
+0.5481572
+],
+[
+"202609",
+0.5171659
+],
+[
+"202610",
+0.5046852
+],
+[
+"202611",
+0.5301859
+],
+[
+"202612",
+0.5542236
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_CL.M",
+"name": "Coal-weighted Industrial Production Index, Monthly",
+"units": "Index, 2017=100",
+"last": [
+"202712",
+99.47325
+],
+"pts": [
+[
+"202605",
+95.72648666
+],
+[
+"202606",
+96.26934314
+],
+[
+"202607",
+96.52734168
+],
+[
+"202608",
+96.18019475
+],
+[
+"202609",
+97.13267206
+],
+[
+"202610",
+97.11403
+],
+[
+"202611",
+97.25828
+],
+[
+"202612",
+97.43208
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_EL.M",
+"name": "Electricity-weighted Industrial Production Index, Monthly",
+"units": "Index, 2017=100",
+"last": [
+"202712",
+101.7735
+],
+"pts": [
+[
+"202605",
+98.05908877
+],
+[
+"202606",
+97.88221136
+],
+[
+"202607",
+97.97467517
+],
+[
+"202608",
+98.01872813
+],
+[
+"202609",
+98.54631269
+],
+[
+"202610",
+98.66873
+],
+[
+"202611",
+98.84552
+],
+[
+"202612",
+99.04372
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_NO.M",
+"name": "Unplanned crude oil production disruptions, Norway, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "NOR",
+"start": "201501",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_NONOPEC.M",
+"name": "Unplanned liquid fuel production disruptions, countries outside of the Organization of the Petroleum Exporting Countries, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+2.624
+],
+"pts": [
+[
+"202605",
+4.523
+],
+[
+"202606",
+3.1367
+],
+[
+"202607",
+2.844
+],
+[
+"202608",
+2.864
+],
+[
+"202609",
+2.624
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_NORTHSEA.M",
+"name": "Unplanned liquid fuel production disruptions, North Sea, Monthly",
+"units": "million barrels per day",
+"last": [
+"201412",
+0
+],
+"pts": [],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "201412",
+"lastHistoricalPeriod": "201412",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_OPEC.M",
+"name": "Unplanned crude oil production disruptions, Organization of the Petroleum Exporting Countries, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+7.336
+],
+"pts": [
+[
+"202605",
+11.701
+],
+[
+"202606",
+9.361
+],
+[
+"202607",
+7.121
+],
+[
+"202608",
+8.271
+],
+[
+"202609",
+7.336
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_DF.M",
+"name": "Distillate-weighted Industrial Production Index, Monthly",
+"units": "Index, 2017=100",
+"last": [
+"202712",
+101.0489
+],
+"pts": [
+[
+"202605",
+97.23578172
+],
+[
+"202606",
+97.91114063
+],
+[
+"202607",
+98.20968182
+],
+[
+"202608",
+97.86937441
+],
+[
+"202609",
+98.47318519
+],
+[
+"202610",
+98.63291
+],
+[
+"202611",
+98.80939
+],
+[
+"202612",
+98.97922
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_DF_PCT.M",
+"name": "Distillate-weighted Industrial Production Index, Monthly",
+"units": "Percent change from prior year",
+"last": [
+"202712",
+2.090977
+],
+"pts": [
+[
+"202605",
+0.57692754
+],
+[
+"202606",
+1.340564978
+],
+[
+"202607",
+1.383769723
+],
+[
+"202608",
+0.576558948
+],
+[
+"202609",
+1.11731867
+],
+[
+"202610",
+2.836195
+],
+[
+"202611",
+2.347245
+],
+[
+"202612",
+3.153143
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_NG.M",
+"name": "Natural Gas-weighted Industrial Production Index, Monthly",
+"units": "Index, 2017=100",
+"last": [
+"202712",
+97.96899
+],
+"pts": [
+[
+"202605",
+94.76593698
+],
+[
+"202606",
+94.8009675
+],
+[
+"202607",
+94.43621437
+],
+[
+"202608",
+94.83895213
+],
+[
+"202609",
+95.25293408
+],
+[
+"202610",
+95.3136
+],
+[
+"202611",
+95.45276
+],
+[
+"202612",
+95.62907
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.QSIC_NG_PCT.M",
+"name": "Natural Gas-weighted Industrial Production Index, Monthly",
+"units": "Percent change from prior year",
+"last": [
+"202712",
+2.446866
+],
+"pts": [
+[
+"202605",
+1.067681625
+],
+[
+"202606",
+-0.069154222
+],
+[
+"202607",
+-1.111201335
+],
+[
+"202608",
+-1.088894192
+],
+[
+"202609",
+-0.549765206
+],
+[
+"202610",
+1.231449
+],
+[
+"202611",
+1.162011
+],
+[
+"202612",
+1.659984
+]
+],
+"extra": {
+"description": "Fuel share weights of individual sector indices based on EIA <i>Manufacturing Energy Consumption Survey</i>.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.RDPRPUS.M",
+"name": "Renewable Diesel Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.3010547
+],
+"pts": [
+[
+"202605",
+0.244752097
+],
+[
+"202606",
+0.258215933
+],
+[
+"202607",
+0.254634
+],
+[
+"202608",
+0.2370145
+],
+[
+"202609",
+0.2446766
+],
+[
+"202610",
+0.2511866
+],
+[
+"202611",
+0.2665691
+],
+[
+"202612",
+0.278699
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "201301",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.RSPRPUS.M",
+"name": "Total Raw Steel Production, Monthly",
+"units": "million short tons",
+"last": [
+"202712",
+8.26213
+],
+"pts": [
+[
+"202605",
+8.056699507
+],
+[
+"202606",
+7.951285714
+],
+[
+"202607",
+8.191428571
+],
+[
+"202608",
+8.102714286
+],
+[
+"202609",
+7.870879121
+],
+[
+"202610",
+7.86962
+],
+[
+"202611",
+7.714239
+],
+[
+"202612",
+7.921551
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRBK.M",
+"name": "Shale natural gas production from Bakken formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+2.781
+],
+"pts": [
+[
+"202605",
+2.727
+],
+[
+"202606",
+2.764
+],
+[
+"202607",
+2.765
+],
+[
+"202608",
+2.77
+],
+[
+"202609",
+2.781
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRBN.M",
+"name": "Shale natural gas production from Barnett formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+1.551
+],
+"pts": [
+[
+"202605",
+1.573
+],
+[
+"202606",
+1.562
+],
+[
+"202607",
+1.552
+],
+[
+"202608",
+1.544
+],
+[
+"202609",
+1.551
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPREF.M",
+"name": "Shale natural gas production from Eagle Ford formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+4.462
+],
+"pts": [
+[
+"202605",
+4.32
+],
+[
+"202606",
+4.38
+],
+[
+"202607",
+4.493
+],
+[
+"202608",
+4.456
+],
+[
+"202609",
+4.462
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRFY.M",
+"name": "Shale natural gas production from Fayetteville formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+0.681
+],
+"pts": [
+[
+"202605",
+0.704
+],
+[
+"202606",
+0.686
+],
+[
+"202607",
+0.681
+],
+[
+"202608",
+0.679
+],
+[
+"202609",
+0.681
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRHA.M",
+"name": "Shale natural gas production from Haynesville formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+14.432
+],
+"pts": [
+[
+"202605",
+13.992
+],
+[
+"202606",
+14.136
+],
+[
+"202607",
+14.191
+],
+[
+"202608",
+14.549
+],
+[
+"202609",
+14.432
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRL48.M",
+"name": "Shale dry natural gas production, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+92.908
+],
+"pts": [
+[
+"202605",
+91.932
+],
+[
+"202606",
+92.317
+],
+[
+"202607",
+92.626
+],
+[
+"202608",
+93.082
+],
+[
+"202609",
+92.908
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRMC.M",
+"name": "Shale natural gas production from Marcellus formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+26.799
+],
+"pts": [
+[
+"202605",
+26.849
+],
+[
+"202606",
+27.241
+],
+[
+"202607",
+27.354
+],
+[
+"202608",
+27.126
+],
+[
+"202609",
+26.799
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRMP.M",
+"name": "Shale natural gas production from Mississippian formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+2.367
+],
+"pts": [
+[
+"202605",
+2.366
+],
+[
+"202606",
+2.358
+],
+[
+"202607",
+2.35
+],
+[
+"202608",
+2.31
+],
+[
+"202609",
+2.367
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRNI.M",
+"name": "Shale natural gas production from Niobrara Codell formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+2.957
+],
+"pts": [
+[
+"202605",
+2.918
+],
+[
+"202606",
+2.902
+],
+[
+"202607",
+2.94
+],
+[
+"202608",
+2.96
+],
+[
+"202609",
+2.957
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRPM.M",
+"name": "Shale natural gas production from Permian formations, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+23.453
+],
+"pts": [
+[
+"202605",
+23.27
+],
+[
+"202606",
+23.186
+],
+[
+"202607",
+23.259
+],
+[
+"202608",
+23.424
+],
+[
+"202609",
+23.453
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRR48.M",
+"name": "Shale natural gas production from other U.S. formations, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+3.941
+],
+"pts": [
+[
+"202605",
+3.825
+],
+[
+"202606",
+3.669
+],
+[
+"202607",
+3.771
+],
+[
+"202608",
+3.924
+],
+[
+"202609",
+3.941
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRUA.M",
+"name": "Shale natural gas production from Utica formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+6.861
+],
+"pts": [
+[
+"202605",
+6.767
+],
+[
+"202606",
+6.839
+],
+[
+"202607",
+6.635
+],
+[
+"202608",
+6.756
+],
+[
+"202609",
+6.861
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.SNGPRWF.M",
+"name": "Shale natural gas production from Woodford formation, Monthly",
+"units": "billion cubic feet per day",
+"last": [
+"202609",
+2.623
+],
+"pts": [
+[
+"202605",
+2.621
+],
+[
+"202606",
+2.594
+],
+[
+"202607",
+2.635
+],
+[
+"202608",
+2.584
+],
+[
+"202609",
+2.623
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_IR.M",
+"name": "Unplanned crude oil production disruptions, Iran, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+2.62
+],
+"pts": [
+[
+"202605",
+1.77
+],
+[
+"202606",
+1.72
+],
+[
+"202607",
+1.62
+],
+[
+"202608",
+2.32
+],
+[
+"202609",
+2.62
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRN",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_IZ.M",
+"name": "Unplanned crude oil production disruptions, Iraq, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.811
+],
+"pts": [
+[
+"202605",
+3.271
+],
+[
+"202606",
+2.626
+],
+[
+"202607",
+1.791
+],
+[
+"202608",
+0.831
+],
+[
+"202609",
+0.811
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "IRQ",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO311IUS.M",
+"name": "Food and Kindred Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+107.0918
+],
+"pts": [
+[
+"202605",
+103.968
+],
+[
+"202606",
+104.8191
+],
+[
+"202607",
+103.9291
+],
+[
+"202608",
+103.974
+],
+[
+"202609",
+104.3291963
+],
+[
+"202610",
+104.6092
+],
+[
+"202611",
+104.7629
+],
+[
+"202612",
+104.9192
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO321IUS.M",
+"name": "Wood Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+104.3448
+],
+"pts": [
+[
+"202605",
+97.3733
+],
+[
+"202606",
+97.0416
+],
+[
+"202607",
+99.5898
+],
+[
+"202608",
+99.8293
+],
+[
+"202609",
+99.14886543
+],
+[
+"202610",
+100.0313
+],
+[
+"202611",
+100.6044
+],
+[
+"202612",
+101.0821
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO322IUS.M",
+"name": "Paper and Allied Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+79.60677
+],
+"pts": [
+[
+"202605",
+79.9955
+],
+[
+"202606",
+79.6853
+],
+[
+"202607",
+79.2875
+],
+[
+"202608",
+79.0932
+],
+[
+"202609",
+78.96350358
+],
+[
+"202610",
+78.95143
+],
+[
+"202611",
+78.91088
+],
+[
+"202612",
+78.89253
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO324IUS.M",
+"name": "Petroleum and Coal Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+92.30252
+],
+"pts": [
+[
+"202605",
+87.3575
+],
+[
+"202606",
+90.2596
+],
+[
+"202607",
+90.822
+],
+[
+"202608",
+90.1994
+],
+[
+"202609",
+90.94557728
+],
+[
+"202610",
+91.01683
+],
+[
+"202611",
+91.21237
+],
+[
+"202612",
+91.40796
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO3252IUS.M",
+"name": "Resins and Synthetic Rubber Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+104.9585
+],
+"pts": [
+[
+"202605",
+102.6203
+],
+[
+"202606",
+101.5578
+],
+[
+"202607",
+98.1875
+],
+[
+"202608",
+100.079
+],
+[
+"202609",
+100.3282469
+],
+[
+"202610",
+100.7305
+],
+[
+"202611",
+100.8671
+],
+[
+"202612",
+101.0556
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO3253IUS.M",
+"name": "Agricultural Chemicals Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+101.882
+],
+"pts": [
+[
+"202605",
+94.0434
+],
+[
+"202606",
+95.6625
+],
+[
+"202607",
+95.902
+],
+[
+"202608",
+94.8631
+],
+[
+"202609",
+98.80713778
+],
+[
+"202610",
+98.84463
+],
+[
+"202611",
+99.17179
+],
+[
+"202612",
+99.49386
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO325IUS.M",
+"name": "Basic Chemical Manufacturing Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+107.2741
+],
+"pts": [
+[
+"202605",
+101.0291
+],
+[
+"202606",
+101.8067
+],
+[
+"202607",
+101.5062
+],
+[
+"202608",
+101.5452
+],
+[
+"202609",
+102.4485901
+],
+[
+"202610",
+102.6511
+],
+[
+"202611",
+102.8933
+],
+[
+"202612",
+103.162
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO326IUS.M",
+"name": "Plastics and Rubber Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+98.53559
+],
+"pts": [
+[
+"202605",
+96.3317
+],
+[
+"202606",
+95.4635
+],
+[
+"202607",
+95.7757
+],
+[
+"202608",
+94.9484
+],
+[
+"202609",
+95.83784543
+],
+[
+"202610",
+96.0006
+],
+[
+"202611",
+96.11009
+],
+[
+"202612",
+96.22405
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO327IUS.M",
+"name": "Stone, Clay, Glass, and Concrete Products Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+101.3124
+],
+"pts": [
+[
+"202605",
+98.3971
+],
+[
+"202606",
+100.0738
+],
+[
+"202607",
+100.0721
+],
+[
+"202608",
+98.926
+],
+[
+"202609",
+99.72040753
+],
+[
+"202610",
+99.58848
+],
+[
+"202611",
+99.63776
+],
+[
+"202612",
+99.70472
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZO331IUS.M",
+"name": "Primary Metals Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+105.0525
+],
+"pts": [
+[
+"202605",
+101.5092
+],
+[
+"202606",
+99.5775
+],
+[
+"202607",
+101.0251
+],
+[
+"202608",
+100.7582
+],
+[
+"202609",
+101.7184259
+],
+[
+"202610",
+101.6067
+],
+[
+"202611",
+101.7731
+],
+[
+"202612",
+102.0048
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZOMNIUS.M",
+"name": "Manufacturing Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+102.7003
+],
+"pts": [
+[
+"202605",
+98.9796
+],
+[
+"202606",
+99.2374
+],
+[
+"202607",
+99.3952
+],
+[
+"202608",
+99.0964
+],
+[
+"202609",
+99.71727741
+],
+[
+"202610",
+99.80743
+],
+[
+"202611",
+99.90091
+],
+[
+"202612",
+99.98111
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZOMNIUS_PCT.M",
+"name": "Manufacturing Production Index, Monthly",
+"units": "Percent change from prior year",
+"last": [
+"202712",
+2.719703
+],
+"pts": [
+[
+"202605",
+1.780392851
+],
+[
+"202606",
+1.69912912
+],
+[
+"202607",
+1.352003124
+],
+[
+"202608",
+1.032176502
+],
+[
+"202609",
+1.703236507
+],
+[
+"202610",
+2.669019
+],
+[
+"202611",
+2.852889
+],
+[
+"202612",
+3.088511
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.ZOTOIUS.M",
+"name": "Total Industrial Production Index, Monthly",
+"units": "Index, 2017=100 (seasonally adjusted)",
+"last": [
+"202712",
+104.5961
+],
+"pts": [
+[
+"202605",
+102.6396
+],
+[
+"202606",
+102.842
+],
+[
+"202607",
+103.0454
+],
+[
+"202608",
+103.0682
+],
+[
+"202609",
+103.2930593
+],
+[
+"202610",
+103.3168
+],
+[
+"202611",
+103.3206
+],
+[
+"202612",
+103.2906
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202608",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PPFPPUS.M",
+"name": "Natural Gasoline (Pentanes Plus) Production at Natural Gas Processing Plants, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.826782
+],
+"pts": [
+[
+"202605",
+0.932
+],
+[
+"202606",
+0.9556
+],
+[
+"202607",
+0.987387
+],
+[
+"202608",
+0.861274901
+],
+[
+"202609",
+0.847218888
+],
+[
+"202610",
+0.8393347
+],
+[
+"202611",
+0.8203476
+],
+[
+"202612",
+0.7993177
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PPPRPUS.M",
+"name": "Natural Gasoline (Pentanes Plus) Renewable Fuels and Oxygenanted Plant Net Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+-0.0231082
+],
+"pts": [
+[
+"202605",
+-0.024049
+],
+[
+"202606",
+-0.025027
+],
+[
+"202607",
+-0.025554
+],
+[
+"202608",
+-0.0223368
+],
+[
+"202609",
+-0.0214946
+],
+[
+"202610",
+-0.021604
+],
+[
+"202611",
+-0.0225193
+],
+[
+"202612",
+-0.0225287
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_PE.M",
+"name": "Unplanned liquid fuel production disruptions, Peru, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "PER",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.WORLD_NC.M",
+"name": "World non-Crude Oil Liquids Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+28.51788359
+],
+"pts": [
+[
+"202605",
+24.86997442
+],
+[
+"202606",
+25.47883543
+],
+[
+"202607",
+26.00889827
+],
+[
+"202608",
+25.3386268
+],
+[
+"202609",
+25.33219968
+],
+[
+"202610",
+25.79041956
+],
+[
+"202611",
+26.02976501
+],
+[
+"202612",
+26.03199108
+]
+],
+"extra": {
+"description": "Includes lease condensate, natural gas plant liquids, other liquids, refinery prodessing gain, and other unaccounted-for liquids.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202712",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.RNPRPUS.M",
+"name": "Renewable Fuels Except Fuel Ethanol Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.4688935
+],
+"pts": [
+[
+"202605",
+0.381724
+],
+[
+"202606",
+0.408518
+],
+[
+"202607",
+0.405581
+],
+[
+"202608",
+0.3879557
+],
+[
+"202609",
+0.3997177
+],
+[
+"202610",
+0.408524
+],
+[
+"202611",
+0.4261215
+],
+[
+"202612",
+0.4395776
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_VE.M",
+"name": "Unplanned liquid fuel production disruptions, Venezuela, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "VEN",
+"start": "200901",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_YM.M",
+"name": "Unplanned liquid fuel production disruptions, Yemen, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.036
+],
+"pts": [
+[
+"202605",
+0.036
+],
+[
+"202606",
+0.036
+],
+[
+"202607",
+0.036
+],
+[
+"202608",
+0.036
+],
+[
+"202609",
+0.036
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "YEM",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR48NGOM.M",
+"name": "Lower 48 States (excl GOA) Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+12.16452
+],
+"pts": [
+[
+"202605",
+11.436912
+],
+[
+"202606",
+11.389042
+],
+[
+"202607",
+11.482828
+],
+[
+"202608",
+11.45808221
+],
+[
+"202609",
+11.45848001
+],
+[
+"202610",
+11.48424
+],
+[
+"202611",
+11.52577
+],
+[
+"202612",
+11.58087
+]
+],
+"extra": {
+"description": "Includes lease condensate.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPRPAK.M",
+"name": "Alaska Crude Oil Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+0.529
+],
+"pts": [
+[
+"202605",
+0.41551
+],
+[
+"202606",
+0.412584
+],
+[
+"202607",
+0.421362
+],
+[
+"202608",
+0.427
+],
+[
+"202609",
+0.461
+],
+[
+"202610",
+0.511
+],
+[
+"202611",
+0.523
+],
+[
+"202612",
+0.521
+]
+],
+"extra": {
+"description": "Includes lease condensate.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA-AK",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPRPGLF.M",
+"name": "Crude Oil Production Federal Gulf of America, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.883561407
+],
+"pts": [
+[
+"202605",
+1.958404
+],
+[
+"202606",
+2.04222
+],
+[
+"202607",
+2.043394
+],
+[
+"202608",
+2.057421346
+],
+[
+"202609",
+2.045517094
+],
+[
+"202610",
+2.006458827
+],
+[
+"202611",
+1.992183318
+],
+[
+"202612",
+2.003988368
+]
+],
+"extra": {
+"description": "Production from U.S. Federal leases in the Gulf of Mexico.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_FSU.M",
+"name": "Eurasia Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+13.73755273
+],
+"pts": [
+[
+"202605",
+13.5485
+],
+[
+"202606",
+13.4559
+],
+[
+"202607",
+13.04177114
+],
+[
+"202608",
+13.12477884
+],
+[
+"202609",
+13.16718459
+],
+[
+"202610",
+13.52953907
+],
+[
+"202611",
+13.68212029
+],
+[
+"202612",
+13.74674353
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_SU.M",
+"name": "Unplanned liquid fuel production disruptions, Sudan and South Sudan, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.14
+],
+"pts": [
+[
+"202605",
+0.12
+],
+[
+"202606",
+0.12
+],
+[
+"202607",
+0.12
+],
+[
+"202608",
+0.14
+],
+[
+"202609",
+0.14
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_SY.M",
+"name": "Unplanned liquid fuel production disruptions, Syria, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0
+],
+[
+"202606",
+0
+],
+[
+"202607",
+0
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "SYR",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_NONOPEC.M",
+"name": "Total non-OPEC Liquids Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+81.24404449
+],
+"pts": [
+[
+"202605",
+75.19990042
+],
+[
+"202606",
+77.76078143
+],
+[
+"202607",
+78.01868144
+],
+[
+"202608",
+77.52507135
+],
+[
+"202609",
+77.45220341
+],
+[
+"202610",
+78.13536516
+],
+[
+"202611",
+78.77915391
+],
+[
+"202612",
+78.86319325
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_NONOPECPLUS.M",
+"name": "Non-OPEC Liquids Petroleum Production from non-OPEC+, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+71.37423571
+],
+"pts": [
+[
+"202605",
+64.23540042
+],
+[
+"202606",
+66.89388143
+],
+[
+"202607",
+67.64634719
+],
+[
+"202608",
+66.40669926
+],
+[
+"202609",
+65.9950702
+],
+[
+"202610",
+66.27407658
+],
+[
+"202611",
+66.74764539
+],
+[
+"202612",
+66.86646235
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_NONOPECPLUS_XUS.M",
+"name": "Non-OPEC Liquids Petroleum Production from non-OPEC+ excluding the US, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+45.77323781
+],
+"pts": [
+[
+"202605",
+39.7827
+],
+[
+"202606",
+42.4809
+],
+[
+"202607",
+43.02994144
+],
+[
+"202608",
+41.84066326
+],
+[
+"202609",
+41.33176343
+],
+[
+"202610",
+41.50485798
+],
+[
+"202611",
+41.85677099
+],
+[
+"202612",
+42.04670295
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_NONOPEC_I_OPECNC.M",
+"name": "Non- OPEC + OPEC non-crude Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+86.3262152
+],
+"pts": [
+[
+"202605",
+78.17320042
+],
+[
+"202606",
+80.91268143
+],
+[
+"202607",
+81.45867444
+],
+[
+"202608",
+80.5534446
+],
+[
+"202609",
+80.5037931
+],
+[
+"202610",
+81.34465956
+],
+[
+"202611",
+82.14666235
+],
+[
+"202612",
+82.47898529
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_OECD.M",
+"name": "OECD Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+38.3691207
+],
+"pts": [
+[
+"202605",
+36.63190042
+],
+[
+"202606",
+36.94258143
+],
+[
+"202607",
+37.14635854
+],
+[
+"202608",
+37.10249799
+],
+[
+"202609",
+36.91846719
+],
+[
+"202610",
+37.30388057
+],
+[
+"202611",
+37.58486004
+],
+[
+"202612",
+37.5888506
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_OPECPLUS_OPEC.M",
+"name": "OPEC+ Liquids Petroleum Production from OPEC Members Subject to OPEC+ Agreements, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+22.90340146
+],
+"pts": [
+[
+"202605",
+13.3706
+],
+[
+"202606",
+15.6988
+],
+[
+"202607",
+17.78689953
+],
+[
+"202608",
+17.3550403
+],
+[
+"202609",
+18.62813021
+],
+[
+"202610",
+18.78605231
+],
+[
+"202611",
+19.14414958
+],
+[
+"202612",
+19.56227423
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_OTHEROECD.M",
+"name": "Other OECD Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+4.348110174
+],
+"pts": [
+[
+"202605",
+4.1767
+],
+[
+"202606",
+4.3442
+],
+[
+"202607",
+4.176948528
+],
+[
+"202608",
+4.259142605
+],
+[
+"202609",
+4.242712229
+],
+[
+"202610",
+4.351146577
+],
+[
+"202611",
+4.348705829
+],
+[
+"202612",
+4.3599071
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_OTHER_NONOECD.M",
+"name": "Other Non-OECD Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+23.5767554
+],
+"pts": [
+[
+"202605",
+19.5067
+],
+[
+"202606",
+21.8102
+],
+[
+"202607",
+22.35043721
+],
+[
+"202608",
+21.77542472
+],
+[
+"202609",
+21.82086524
+],
+[
+"202610",
+21.73805483
+],
+[
+"202611",
+21.93044583
+],
+[
+"202612",
+21.99499124
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PAPR_WORLD.M",
+"name": "Total World Petroleum Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+111.4912152
+],
+"pts": [
+[
+"202605",
+94.58320042
+],
+[
+"202606",
+99.52268143
+],
+[
+"202607",
+102.0386744
+],
+[
+"202608",
+100.4134446
+],
+[
+"202609",
+101.3037931
+],
+[
+"202610",
+102.1046596
+],
+[
+"202611",
+103.0916624
+],
+[
+"202612",
+103.7089853
+]
+],
+"extra": {
+"description": "Includes production of crude oil (including lease condensates), natural gas plant liquids, other liquids, and refinery processing gains, alcohol.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "199301",
+"end": "202712",
+"lastHistoricalPeriod": "202606",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PARNPUS.M",
+"name": "Renewables and Oxygenate Production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202712",
+1.601197
+],
+"pts": [
+[
+"202605",
+1.468035
+],
+[
+"202606",
+1.507101
+],
+[
+"202607",
+1.497177
+],
+[
+"202608",
+1.474356621
+],
+[
+"202609",
+1.457351957
+],
+[
+"202610",
+1.467121
+],
+[
+"202611",
+1.529569
+],
+[
+"202612",
+1.543483
+]
+],
+"extra": {
+"description": "Renewables and oxygenate production includes pentanes plus, oxygenates (excluding fuel ethanol), and renewable fuels.",
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "199001",
+"end": "202712",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_UK.M",
+"name": "Unplanned liquid fuel production disruptions, United Kingdom, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0.06
+],
+[
+"202606",
+0.06
+],
+[
+"202607",
+0.03
+],
+[
+"202608",
+0.005
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "GBR",
+"start": "201501",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRAC.M",
+"name": "Tight oil production from Austin Chalk formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.125
+],
+"pts": [
+[
+"202605",
+0.124
+],
+[
+"202606",
+0.122
+],
+[
+"202607",
+0.121
+],
+[
+"202608",
+0.123
+],
+[
+"202609",
+0.125
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRBK.M",
+"name": "Tight oil production from Bakken formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+1.18
+],
+"pts": [
+[
+"202605",
+1.156
+],
+[
+"202606",
+1.179
+],
+[
+"202607",
+1.179
+],
+[
+"202608",
+1.181
+],
+[
+"202609",
+1.18
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPREF.M",
+"name": "Tight oil production from Eagle Ford formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.972
+],
+"pts": [
+[
+"202605",
+0.98
+],
+[
+"202606",
+0.969
+],
+[
+"202607",
+0.975
+],
+[
+"202608",
+0.969
+],
+[
+"202609",
+0.972
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRL48.M",
+"name": "Tight oil production, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+9.471
+],
+"pts": [
+[
+"202605",
+9.402
+],
+[
+"202606",
+9.415
+],
+[
+"202607",
+9.425
+],
+[
+"202608",
+9.449
+],
+[
+"202609",
+9.471
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRMP.M",
+"name": "Tight oil production from Mississippian formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.092
+],
+"pts": [
+[
+"202605",
+0.098
+],
+[
+"202606",
+0.095
+],
+[
+"202607",
+0.093
+],
+[
+"202608",
+0.091
+],
+[
+"202609",
+0.092
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRNI.M",
+"name": "Tight oil production from Niobrara Codell formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.459
+],
+"pts": [
+[
+"202605",
+0.448
+],
+[
+"202606",
+0.438
+],
+[
+"202607",
+0.444
+],
+[
+"202608",
+0.451
+],
+[
+"202609",
+0.459
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRPM.M",
+"name": "Tight oil production from Permian formations, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+6.173
+],
+"pts": [
+[
+"202605",
+6.141
+],
+[
+"202606",
+6.147
+],
+[
+"202607",
+6.159
+],
+[
+"202608",
+6.169
+],
+[
+"202609",
+6.173
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRR48.M",
+"name": "Tight oil production from other U.S. formations, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.387
+],
+"pts": [
+[
+"202605",
+0.374
+],
+[
+"202606",
+0.384
+],
+[
+"202607",
+0.374
+],
+[
+"202608",
+0.384
+],
+[
+"202609",
+0.387
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.TOPRWF.M",
+"name": "Tight oil production from Woodford formation, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0.083
+],
+"pts": [
+[
+"202605",
+0.081
+],
+[
+"202606",
+0.081
+],
+[
+"202607",
+0.08
+],
+[
+"202608",
+0.081
+],
+[
+"202609",
+0.083
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"start": "200001",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+},
+{
+"id": "STEO.PADI_US.M",
+"name": "Unplanned liquid fuel production disruptions, United States, Monthly",
+"units": "million barrels per day",
+"last": [
+"202609",
+0
+],
+"pts": [
+[
+"202605",
+0.118
+],
+[
+"202606",
+0.1927
+],
+[
+"202607",
+0.09
+],
+[
+"202608",
+0
+],
+[
+"202609",
+0
+]
+],
+"extra": {
+"copyright": "None",
+"source": "U.S. Energy Information Administration (EIA) - Short Term Energy Outlook",
+"geography": "USA",
+"start": "201101",
+"end": "202609",
+"lastHistoricalPeriod": "202609",
+"last_updated": "2026-10-06T16:02:16-04:00"
+}
+}
+]
+}
