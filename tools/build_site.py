@@ -12,7 +12,7 @@ PAGES = []  # paths written by page(), for sitemap.xml
 SEO = {
     "": ("Evgeny Maradin | Senior Concept & Project Engineer, FEL1–FEL2, Upstream O&G",
          "Senior Concept and Project Engineer, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
-    "about": ("About Evgeny Maradin | Lead Project Engineer, Pre-FEED & FEL",
+    "about": ("About Evgeny Maradin | Senior Concept & Project Engineer, Pre-FEED & FEL",
               "19 years in upstream oil & gas, mostly operator side (Shell JV, Gazprom Neft, Rosneft): FEL1–FEL2, Pre-FEED, FEED and brownfield development. Career, education and tools."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
