@@ -21,7 +21,7 @@ d.text((PAD + d.textlength("EM", font=f("Black", 40)), 64), ".", font=f("Black",
 d.text((PAD, 150), "CONCEPT DEVELOPMENT / FEL  ·  UPSTREAM OIL & GAS", font=f("Bold", 20), fill=MUTED)
 d.text((PAD, 196), "Engineering decisions", font=f("ExtraBold", 84), fill=INK)
 d.text((PAD, 286), "before FEED.", font=ImageFont.truetype(SERIF_IT, 92), fill=ACCENT)
-d.text((PAD, 406), "Evgeny Maradin — Study Manager · Senior Concept Engineer", font=f("Medium", 28), fill=INK)
+d.text((PAD, 406), "Evgeny Maradin — Senior Concept & Project Engineer", font=f("Medium", 28), fill=INK)
 
 d.line((PAD, 482, W - PAD, 482), fill=LINE, width=2)
 metrics = [("19", "years upstream"), ("50+", "studies"), ("$300M+", "project scale"), ("57%", "CAPEX reduction")]
