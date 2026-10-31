@@ -1,7 +1,7 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "c337fa0c9ea357cd27af46a8d6b2011d9c51a7d5",
-  "date": "2026-10-17"
+  "sha1": "f806c6345b30e392ed097c0fa7b39a41580e05b1",
+  "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/about/": {
   "sha1": "c8f5e15e763983e2f4e89b8f4f7d1eb150a465c6",
@@ -56,12 +56,16 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/": {
-  "sha1": "be65c6cbacb01daf59b96549cc9856f892727ffd",
-  "date": "2026-10-17"
+  "sha1": "b32dd79271a89743f256647bef31fed280c1c4a7",
+  "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/digital-oilfield/": {
-  "sha1": "8c5461e1895496a26d0eed1313918b67e9c2f2a5",
-  "date": "2026-10-17"
+  "sha1": "573e1c5b8bae4a2d6af21c5c7041481f8500922a",
+  "date": "2026-10-31"
+ },
+ "https://evgeny-maradin.pages.dev/insights/hormuz/": {
+  "sha1": "80f32977247c70557b3513364f767b4f5a175411",
+  "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/integrated-fd/": {
   "sha1": "1b3a29d9109dbdf4ec9ffdd5e351f6f66afe1aa8",
@@ -83,6 +87,10 @@
   "sha1": "1b2225a3aca0edd45d922b595c6c0b5f4dc50560",
   "date": "2026-10-17"
  },
+ "https://evgeny-maradin.pages.dev/insights/kurdamir/": {
+  "sha1": "a2f3d8985a786cb9d1c6973f707215a8e9f14fd9",
+  "date": "2026-10-31"
+ },
  "https://evgeny-maradin.pages.dev/insights/kurdistan/": {
   "sha1": "54e2c052e9107c24518d982dc82d41319418a338",
   "date": "2026-10-17"
@@ -92,8 +100,8 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/me-brownfields/": {
-  "sha1": "a948eb247a8a4c6102a6365faaef184df71f9c4d",
-  "date": "2026-10-17"
+  "sha1": "b208e0b891e680294c84531f547576e6ab29c0b1",
+  "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/models/eor-constraint-migration/": {
   "sha1": "cf37616f4bbe7bd5ce004d0b0e362afbcdce7a87",
