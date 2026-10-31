@@ -1,5 +1,5 @@
 ---
-title: "LinkedIn article: Kurdamir, a concept check before FEED"
+title: "Kurdamir, a concept check before FEED"
 date: 2026-10-26
 url: https://www.linkedin.com/pulse/linkedin-article-kurdamir-concept-check-before-feed-evgeny-maradin-x2eqc/
 ---
