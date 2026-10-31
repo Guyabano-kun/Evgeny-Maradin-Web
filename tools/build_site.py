@@ -250,6 +250,10 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
 # ---------------- INSIGHTS ----------------
 import math, datetime
 ARTICLES = {
+ "kurdamir": dict(t="Kurdamir, a concept check before FEED", tag="Kurdistan · Kurdamir", d="26 Oct 2026", w=1836, u=PULSE+"linkedin-article-kurdamir-concept-check-before-feed-evgeny-maradin-x2eqc/",
+   s="A concept check of the 2014 Kurdamir development plan on public data. The CPF, not the reservoir, limits the plan; a larger phased concept adds 3.8 billion $ of modelled NPV."),
+ "hormuz": dict(t="Around Hormuz, Not Through It: The Bypass Is Now the Constraint", tag="Gulf · Export routes", d="19 Oct 2026", w=2080, u=PULSE+"around-hormuz-through-bypass-now-constraint-evgeny-maradin-dy8tc/",
+   s="Gulf exports are back above 80% of pre-war levels, but via bypass routes. An export route is a system of pipeline, storage, terminals and vessels, and each can bind."),
  "kirkuk": dict(t="Kirkuk: The First Barrels Will Be Fast. Their Gas Outlets Will Not.", tag="Iraq · Kirkuk", d="9 Oct 2026", w=1925, u=PULSE+"kirkuk-first-barrels-fast-gas-outlets-evgeny-maradin-ymsoc/",
    s="Kirkuk is going from 320,000 to 420,000 bpd. The first barrels come quickly from existing wells, but the outlets for their gas take years. The real question is sequencing."),
  "pressure": dict(t="Pressure decisions are made in the reservoir – and paid for in the facilities", tag="Framework · UAE / Iraq", d="28 Sep 2026", w=1485, u=PULSE+"pressure-decisions-made-reservoir-paid-facilities-evgeny-maradin-yh2hc/",
@@ -277,7 +281,7 @@ ARTICLES = {
  "digital-oilfield": dict(t="Oilfield Development System: Bridging Engineering and Digital Intelligence", tag="Digital", d="21 Oct 2025", w=806, u=PULSE+"oilfield-development-system-bridging-engineering-digital-maradin-isame/",
    s="Lessons from building a digital oilfield MVP that linked SmartField data, PETEX GAP models and GIS with field systems."),
 }
-ORDER = ["kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
+ORDER = ["kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="production-profile", t="Production profile as a shopping cart", u="/models/production-profile/",
@@ -326,6 +330,10 @@ for _k in ARTICLES:
 _IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
 # search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
 ART_SEO = {
+    "kurdamir": ("Kurdamir: A Concept Check Before FEED",
+                 "A concept check of the 2014 Kurdamir plan on public data: the plant, not the reservoir, limits it, and a phased larger concept adds 3.8 billion $ of NPV."),
+    "hormuz": ("Around Hormuz: The Bypass Is Now the Constraint",
+               "Gulf exports recovered via bypass routes. An export route is pipeline, storage, terminals and vessels, and any of them can become the binding constraint."),
     "kirkuk": ("Kirkuk: Fast First Barrels, Slow Gas Outlets",
                "Kirkuk is going from 320,000 to 420,000 bpd. Early barrels come quickly from existing wells; gas outlets take years. The real question is sequencing."),
     "pressure": ("Pressure Decisions: Reservoir vs Facilities", None),
