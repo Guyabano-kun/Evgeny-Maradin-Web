@@ -1,138 +1,138 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "0202293288d4c5134e600b997b76b1d6bd6a638e",
+  "sha1": "f806c6345b30e392ed097c0fa7b39a41580e05b1",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/about/": {
-  "sha1": "553649fced4dffea3a3ea65b66ccb9d9e6fbf07f",
-  "date": "2026-10-31"
+  "sha1": "c8f5e15e763983e2f4e89b8f4f7d1eb150a465c6",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/advisory/": {
-  "sha1": "89b14ed0b6bdc7c19755eb6263c597d393cae36e",
-  "date": "2026-10-31"
+  "sha1": "94c978aa8ac00a342e47fb179c546f7591bc6d19",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/": {
-  "sha1": "3b1794700816208dbe8f296ba17442f1a20ab266",
-  "date": "2026-10-31"
+  "sha1": "ffbd09f7e064885e8c4f9f46c3169cebb6926055",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/apg-pre-feed/": {
-  "sha1": "4bf3bf3a289408b93fb4bff57f28181182a81274",
-  "date": "2026-10-31"
+  "sha1": "efd7ed6b38e65114115e5865190e933584b96f58",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/bazhenov-appraisal/": {
-  "sha1": "80900dd4bfa7f00e406e8ce6ad7f394ffa8308d3",
-  "date": "2026-10-31"
+  "sha1": "9b561e54558ecbc93a36cc42cc0375c12f6dca24",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/epc-bid-analysis/": {
-  "sha1": "225aa3b32e9f57394f9290a72b6fe69ac6629321",
-  "date": "2026-10-31"
+  "sha1": "5de9774a10d6559cb20be507e00fb784ae19cdad",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/minor-capex/": {
-  "sha1": "7ede01e3d03582ad3d17292d61b3cf7bc07ea393",
-  "date": "2026-10-31"
+  "sha1": "54fcb76bfc048b29d9fce86bc232ae6fa2071c51",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/portfolio-integration/": {
-  "sha1": "d37b367690a7859e62ffb024237b16c87e51d301",
-  "date": "2026-10-31"
+  "sha1": "8f22636b21787eb186f7062b2cde42212e589051",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/south-hub/": {
-  "sha1": "41556756c14db6ea49d32f0e986b99b2593ed70a",
-  "date": "2026-10-31"
+  "sha1": "df47e5a1c31eeea2234e8a3886d041516395d389",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/water-injection/": {
-  "sha1": "b471d7e00e18e0d5a5d2291a6c847398a12bb9e7",
-  "date": "2026-10-31"
+  "sha1": "50b270362e9a2b515566e23c5555b55b5a72196d",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/well-pad-siting/": {
-  "sha1": "d593dc0b5176f6cd70d3b9a4ea140c69fcf537ba",
-  "date": "2026-10-31"
+  "sha1": "099bd6c2b2dc59c35617bd3eb90b15dda2c37538",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
-  "sha1": "cfae97d2c0919c0b9f0c6257221b420c65b9cc41",
-  "date": "2026-10-31"
+  "sha1": "a7acabf567600c0b8346c5bd7b4b0e6e5bef7120",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/contact/": {
-  "sha1": "cf11d52cd464ca7ab0ec8f4b03180791edad74b1",
-  "date": "2026-10-31"
+  "sha1": "c68e5df9b1669d4be0b847c04ddd339133f41876",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/": {
-  "sha1": "45d4510b15a112f669e2ce9a027e411b91123d7d",
+  "sha1": "b32dd79271a89743f256647bef31fed280c1c4a7",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/digital-oilfield/": {
-  "sha1": "fef5cd332ff0d1a6fee1a4838f68dd48fb971bf4",
+  "sha1": "573e1c5b8bae4a2d6af21c5c7041481f8500922a",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/hormuz/": {
-  "sha1": "ac30e90143dac1fdaa608c18a91202a734dd89a1",
+  "sha1": "80f32977247c70557b3513364f767b4f5a175411",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/integrated-fd/": {
-  "sha1": "d4d73df3f010e9517a54e0500da8349bb781794a",
-  "date": "2026-10-31"
+  "sha1": "1b3a29d9109dbdf4ec9ffdd5e351f6f66afe1aa8",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/iraq-cycle/": {
-  "sha1": "a09e6e68eda866b7e52835ff9ac3ca91df734d6f",
-  "date": "2026-10-31"
+  "sha1": "72d2345406f95a8c50eebcf5d4b1fb486701b1f4",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/iraq-deals/": {
-  "sha1": "8830fa83bc8c2527c22b42c76d10ade95fb12c11",
-  "date": "2026-10-31"
+  "sha1": "eb75d1cff4ca0105aba5ae9e712692daeace660e",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/kazakhstan/": {
-  "sha1": "5448fe965f32f7c3f09fbe120a0d90f4975e14ac",
-  "date": "2026-10-31"
+  "sha1": "76bcf6cd471b7233264d88eba5fecaff4a902c3c",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/kirkuk/": {
-  "sha1": "99c2a91641263ced8ebf378e63f31b8d40269759",
-  "date": "2026-10-31"
+  "sha1": "1b2225a3aca0edd45d922b595c6c0b5f4dc50560",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/kurdamir/": {
-  "sha1": "a41502c0896956cedd8d9b01f4dd66f500236995",
+  "sha1": "a2f3d8985a786cb9d1c6973f707215a8e9f14fd9",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/kurdistan/": {
-  "sha1": "e5824096bfe95d5b593cefcc1d5f3c3ae38467a2",
-  "date": "2026-10-31"
+  "sha1": "54e2c052e9107c24518d982dc82d41319418a338",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/kuwait/": {
-  "sha1": "8cf8d4d894215d126eeb1f95b4f10c5ce78d024e",
-  "date": "2026-10-31"
+  "sha1": "42a64a8e0fecbfd0764f7c2db4584e5672ab21f1",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/me-brownfields/": {
-  "sha1": "976e5cb798c71eab5efef5382c373c69c10269ff",
+  "sha1": "b208e0b891e680294c84531f547576e6ab29c0b1",
   "date": "2026-10-31"
  },
  "https://evgeny-maradin.pages.dev/insights/models/eor-constraint-migration/": {
-  "sha1": "c658edf41c3c3e2f1adfcb18b5c48a9f960fdef4",
-  "date": "2026-10-31"
+  "sha1": "cf37616f4bbe7bd5ce004d0b0e362afbcdce7a87",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/models/kuwait-constraint-map/": {
-  "sha1": "653f08ae39aa25c613d64d4befe55ba797925a9a",
-  "date": "2026-10-31"
+  "sha1": "fb2f66f2ddc4d77f621fbb7e3a1f78b5c165bf04",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/models/kuwait-fields-map/": {
-  "sha1": "efbe0f0a4bad0a05a1e0b32085f3b7c50fc8779a",
-  "date": "2026-10-31"
+  "sha1": "0d303b4b178ddaba8750cdaef2171d2feae45014",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/models/production-profile/": {
-  "sha1": "d56baf68ac77c3a21201cc2f286648e5b81fbbbe",
-  "date": "2026-10-31"
+  "sha1": "5317616436be4fc15cc101e1b35edc92bf00745b",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/oman/": {
-  "sha1": "a8e14fdf65b0ff54edc3dd38574566dc162469f4",
-  "date": "2026-10-31"
+  "sha1": "79f2e659bc8a7b5f241b3c9d4dda35c41dc90464",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/portfolio-risk/": {
-  "sha1": "fcb40c7e7b22f04e05da2a93c3996f4e5c9301a3",
-  "date": "2026-10-31"
+  "sha1": "9f91fc7996418f177ed3e946c46482a0616007ae",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/pressure/": {
-  "sha1": "6059ee5e5d812cb527d92bce20eb28f3a7ed9e90",
-  "date": "2026-10-31"
+  "sha1": "f9c7e44afd3b173bde0422ee4e6ad2f332c3e447",
+  "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/shopping-cart/": {
-  "sha1": "4a6db3da2454d3447fdeb2c413201f6d1509d908",
-  "date": "2026-10-31"
+  "sha1": "262d90bf2c56a3110c069bb9f6df58ea0fddd164",
+  "date": "2026-10-17"
  }
 }
