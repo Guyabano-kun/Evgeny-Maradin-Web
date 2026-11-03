@@ -13,7 +13,7 @@ SEO = {
     "": ("Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL, Upstream O&G",
          "Lead Project Engineer – Pre-FEED / FEL, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
-              "19 years in upstream oil & gas: operator side (Shell JV, Gazprom Neft) and a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, FEED, brownfield. Career and tools."),
+              "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
@@ -518,7 +518,7 @@ TIMELINE = [
 ]
 page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side plus a Rosneft engineering centre, focused on FEL1–FEL2, Pre-FEED and brownfield.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
-<p class="lead">19 years in upstream oil &amp; gas, most of it on the operator side, plus three years in a Rosneft engineering centre on the contractor side, focused on the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
+<p class="lead">19 years in upstream oil &amp; gas on both sides of the table: most of it on the operator side, and three years in a Rosneft engineering centre delivering studies as the contractor. I know how a contractor scopes and delivers a study, and what an operator needs to take it through a gate. My focus is the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available to mobilise within 2 weeks · Middle East, Africa, Southeast Asia</p></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
@@ -567,7 +567,7 @@ page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield dev
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available to mobilise within 2 weeks · Middle East, Africa, Southeast Asia</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
-<section class="trust"><div class="container trust-row"><div><span>Operator side &amp; engineering centre</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
+<section class="trust"><div class="container trust-row"><div><span>Both sides of the table · mostly operator</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Project cases.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
