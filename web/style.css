@@ -394,3 +394,5 @@ h1.article-title{font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacin
 .art-cta{margin:40px 0 10px;padding:26px 28px;background:var(--alt);border:1px solid var(--line);max-width:760px}
 .art-cta p{margin:0 0 4px;font-size:17px;line-height:1.5}
 .art-cta .actions{margin-top:18px}
+/* advisory terms line */
+.terms{margin:26px 0 0;max-width:760px;font-size:15px;color:var(--muted)}
