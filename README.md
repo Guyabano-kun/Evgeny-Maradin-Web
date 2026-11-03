@@ -1,6 +1,6 @@
-# evgeny-maradin.pages.dev
+# evgenymaradin.com
 
-Static site, deployed by Cloudflare Pages from the `web/` folder on every push to `main` (Cloudflare is connected to this GitHub repo directly; there is no deploy workflow here). Other branches get Cloudflare preview deployments.
+Static site on the custom domain evgenymaradin.com (registered at Cloudflare; `www` and the old `evgeny-maradin.pages.dev` redirect to it via `web/functions/_middleware.js`), deployed by Cloudflare Pages from the `web/` folder on every push to `main` (Cloudflare is connected to this GitHub repo directly; there is no deploy workflow here). Other branches get Cloudflare preview deployments.
 
 ## How the site is built
 
@@ -32,7 +32,7 @@ The project skill `.claude/skills/maradin-site/` holds the facts policy, the wor
 
 ## Search engines
 
-- Google: the site is verified in Search Console (`web/google5ee18c8586b05b2f.html`); submit `https://evgeny-maradin.pages.dev/sitemap.xml` there once.
+- Google: the site is verified in Search Console (`web/google5ee18c8586b05b2f.html`); submit `https://evgenymaradin.com/sitemap.xml` there once.
 - Bing, Yandex and other IndexNow engines: `.github/workflows/indexnow.yml` submits pages changed today after each deploy (key file `web/d64e44d74df91f311902d640a0627c67.txt`). Run it manually to resubmit everything.
 
 ## Notes

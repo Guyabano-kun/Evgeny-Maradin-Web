@@ -86,7 +86,7 @@ The 24 blocks are real. The acreage is real. But the thing being sold is the rig
 
 If you were bidding: how does your team value a 5,000 km² exploration option against a smaller, near-field development with a known export route - and at what stage does export feasibility enter your concept screening?
 
-[https://evgeny-maradin.pages.dev/](https://evgeny-maradin.pages.dev/)
+[https://evgenymaradin.com/](https://evgenymaradin.com/)
 
 **Sources**
 

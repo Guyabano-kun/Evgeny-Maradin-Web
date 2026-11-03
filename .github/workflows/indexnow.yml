@@ -30,7 +30,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import json, os, re, datetime, urllib.request
-          host = "evgeny-maradin.pages.dev"
+          host = "evgenymaradin.com"
           key = "d64e44d74df91f311902d640a0627c67"
           lm = json.load(open("tools/lastmod.json"))
           if os.environ.get("ALL") == "true":

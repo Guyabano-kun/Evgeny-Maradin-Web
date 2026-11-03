@@ -45,7 +45,7 @@
     var title = 'Intro call with Evgeny Maradin';
     var details = 'Free 30-min intro call (tentative until confirmed by email). Contact: enmaradin@gmail.com';
     var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Evgeny Maradin//Website booking//EN', 'BEGIN:VEVENT',
-      'UID:' + start.getTime() + '@evgeny-maradin.pages.dev', 'DTSTAMP:' + icsDate(new Date()), 'DTSTART:' + icsDate(start), 'DTEND:' + icsDate(end),
+      'UID:' + start.getTime() + '@evgenymaradin.com', 'DTSTAMP:' + icsDate(new Date()), 'DTSTART:' + icsDate(start), 'DTEND:' + icsDate(end),
       'SUMMARY:' + title, 'DESCRIPTION:' + details, 'STATUS:TENTATIVE', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     var file = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
     var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) +
