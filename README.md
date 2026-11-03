@@ -1,6 +1,6 @@
 # evgenymaradin.com
 
-Static site on the custom domain evgenymaradin.com (registered at Cloudflare; `www` and the old `evgeny-maradin.pages.dev` redirect to it via `web/functions/_middleware.js`), deployed by Cloudflare Pages from the `web/` folder on every push to `main` (Cloudflare is connected to this GitHub repo directly; there is no deploy workflow here). Other branches get Cloudflare preview deployments.
+Static site on the custom domain evgenymaradin.com (registered at Cloudflare; `www` redirects to it via `web/functions/_middleware.js`; the old `evgeny-maradin.pages.dev` still serves the same site, with canonical tags pointing to the new domain), deployed by Cloudflare Pages from the `web/` folder on every push to `main` (Cloudflare is connected to this GitHub repo directly; there is no deploy workflow here). Other branches get Cloudflare preview deployments.
 
 ## How the site is built
 

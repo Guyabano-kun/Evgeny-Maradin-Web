@@ -1,13 +1,13 @@
-// Canonical host: evgenymaradin.com. The old *.pages.dev address and www redirect here (301).
-// Preview deployments (<hash>.evgeny-maradin.pages.dev) are left alone, and so is the
-// Search Console verification file, so the old property stays verified.
+// Canonical host: evgenymaradin.com. www redirects to it (301).
+// The old evgeny-maradin.pages.dev address keeps serving the same site for now
+// (owner's request); canonical tags on every page point Google to evgenymaradin.com.
+// To retire it later, add "evgeny-maradin.pages.dev" to REDIRECT_FROM.
 const CANONICAL = "evgenymaradin.com";
-const REDIRECT_FROM = new Set(["evgeny-maradin.pages.dev", "www.evgenymaradin.com"]);
-const KEEP = new Set(["/google5ee18c8586b05b2f.html"]);
+const REDIRECT_FROM = new Set(["www.evgenymaradin.com"]);
 
 export async function onRequest(ctx) {
   const url = new URL(ctx.request.url);
-  if (REDIRECT_FROM.has(url.hostname) && !KEEP.has(url.pathname)) {
+  if (REDIRECT_FROM.has(url.hostname)) {
     url.hostname = CANONICAL;
     url.protocol = "https:";
     url.port = "";

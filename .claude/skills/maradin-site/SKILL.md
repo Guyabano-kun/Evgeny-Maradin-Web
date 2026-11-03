@@ -47,7 +47,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 
 ## Known limits
 
-- The site lives on `evgenymaradin.com` (registered at Cloudflare, November 2026; renews yearly). `web/functions/_middleware.js` 301-redirects `www.evgenymaradin.com` and the old `evgeny-maradin.pages.dev` to it; branch previews stay on `*.evgeny-maradin.pages.dev`. LinkedIn Post Inspector could not fetch `*.pages.dev`, which was the reason for the domain.
+- The site lives on `evgenymaradin.com` (registered at Cloudflare, November 2026; renews yearly). `web/functions/_middleware.js` 301-redirects `www.evgenymaradin.com` to it. The old `evgeny-maradin.pages.dev` still serves the site (owner wants it reachable for now; canonical tags point to the new domain); to retire it, add it to `REDIRECT_FROM`. LinkedIn Post Inspector could not fetch `*.pages.dev`, which was the reason for the domain.
 - Cloud sessions cannot reach LinkedIn, the live site or the owner's browser.
 - Google Search Console is verified with the HTML file. The sitemap and IndexNow submissions are automatic; "Request indexing" is the owner's button and has a daily quota.
 - Fonts: the CSS names Inter but does not load it, so visitors see Arial. Loading it is an open task; ask before restyling. Design option B ("Engineering": IBM Plex, blue accent) was proposed but not chosen yet.
