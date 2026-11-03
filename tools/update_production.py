@@ -58,7 +58,7 @@ COUNTRIES = {
 
 
 def fetch_bytes(url):
-    req = urllib.request.Request(url, headers={"user-agent": "evgeny-maradin.pages.dev production-data updater"})
+    req = urllib.request.Request(url, headers={"user-agent": "evgenymaradin.com production-data updater"})
     with urllib.request.urlopen(req, timeout=600) as r:
         return r.read()
 

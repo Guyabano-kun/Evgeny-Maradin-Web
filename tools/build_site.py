@@ -6,7 +6,7 @@ LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
 PULSE = "https://www.linkedin.com/pulse/"
 EMAIL = "enmaradin@gmail.com"
 UPDATED = "October 2026"
-SITE = "https://evgeny-maradin.pages.dev"
+SITE = "https://evgenymaradin.com"
 PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {

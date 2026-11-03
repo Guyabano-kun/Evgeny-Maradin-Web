@@ -12,7 +12,7 @@ const icsDate = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "
 
 function buildIcs({ start, minutes, name, email, topic, message, owner }) {
   const end = new Date(start.getTime() + minutes * 60000);
-  const uid = `${start.getTime()}-${Math.random().toString(36).slice(2)}@evgeny-maradin.pages.dev`;
+  const uid = `${start.getTime()}-${Math.random().toString(36).slice(2)}@evgenymaradin.com`;
   const lines = [
     "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Evgeny Maradin//Website booking//EN", "CALSCALE:GREGORIAN", "METHOD:REQUEST",
     "BEGIN:VEVENT", `UID:${uid}`, `DTSTAMP:${icsDate(new Date())}`, `DTSTART:${icsDate(start)}`, `DTEND:${icsDate(end)}`,
