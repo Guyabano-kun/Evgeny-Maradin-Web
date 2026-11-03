@@ -13,7 +13,7 @@ const FUTURES = [
   ["hh", "Henry Hub", "$/MMBtu", "NG=F", "ng.f"],
   ["ttf", "TTF (EU gas)", "€/MWh", "TTF=F", null],
 ];
-const UA = { "user-agent": "Mozilla/5.0 (compatible; evgeny-maradin.pages.dev price ticker)" };
+const UA = { "user-agent": "Mozilla/5.0 (compatible; evgenymaradin.com price ticker)" };
 const num = (x) => (typeof x === "number" && isFinite(x) ? x : null);
 
 async function yahoo(symbol) {

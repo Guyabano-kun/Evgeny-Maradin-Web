@@ -1,6 +1,6 @@
 ---
 name: maradin-site
-description: Build, update, check and publish Evgeny Maradin's website (evgeny-maradin.pages.dev, this repo). Use for any change to the site - adding a LinkedIn article, adding or editing a case, CV/education/experience facts, SEO titles, the social preview image, the production-data note, design or mobile fixes, indexing, testing the site on phone and desktop. Triggers include "сайт", "добавь статью на сайт", "актуализируй сайт", "добавь кейс", "проверь сайт на телефоне", "SEO", "site", "case", "article".
+description: Build, update, check and publish Evgeny Maradin's website (evgenymaradin.com, this repo). Use for any change to the site - adding a LinkedIn article, adding or editing a case, CV/education/experience facts, SEO titles, the social preview image, the production-data note, design or mobile fixes, indexing, testing the site on phone and desktop. Triggers include "сайт", "добавь статью на сайт", "актуализируй сайт", "добавь кейс", "проверь сайт на телефоне", "SEO", "site", "case", "article".
 ---
 
 # Evgeny Maradin's website
@@ -47,6 +47,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 
 ## Known limits
 
-- Cloud sessions cannot reach LinkedIn, the live `*.pages.dev` site or the owner's browser. LinkedIn Post Inspector cannot fetch `*.pages.dev`, so LinkedIn shows no preview card; WhatsApp and Telegram previews work. The owner chose not to buy a custom domain.
+- The site lives on `evgenymaradin.com` (registered at Cloudflare, November 2026; renews yearly). `web/functions/_middleware.js` 301-redirects `www.evgenymaradin.com` to it. The old `evgeny-maradin.pages.dev` still serves the site (owner wants it reachable for now; canonical tags point to the new domain); to retire it, add it to `REDIRECT_FROM`. LinkedIn Post Inspector could not fetch `*.pages.dev`, which was the reason for the domain.
+- Cloud sessions cannot reach LinkedIn, the live site or the owner's browser.
 - Google Search Console is verified with the HTML file. The sitemap and IndexNow submissions are automatic; "Request indexing" is the owner's button and has a daily quota.
 - Fonts: the CSS names Inter but does not load it, so visitors see Arial. Loading it is an open task; ask before restyling. Design option B ("Engineering": IBM Plex, blue accent) was proposed but not chosen yet.
