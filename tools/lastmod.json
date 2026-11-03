@@ -1,19 +1,19 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "f806c6345b30e392ed097c0fa7b39a41580e05b1",
-  "date": "2026-10-31"
+  "sha1": "2b3b9ca08cfcf062c2c954854b2e5c57e8721320",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/about/": {
-  "sha1": "c8f5e15e763983e2f4e89b8f4f7d1eb150a465c6",
-  "date": "2026-10-17"
+  "sha1": "71b928359c6896b688b0a5e009741adc3921d0bd",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/advisory/": {
   "sha1": "94c978aa8ac00a342e47fb179c546f7591bc6d19",
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/": {
-  "sha1": "ffbd09f7e064885e8c4f9f46c3169cebb6926055",
-  "date": "2026-10-17"
+  "sha1": "33577880626a058625239dcad85d42cc4284b377",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/cases/apg-pre-feed/": {
   "sha1": "efd7ed6b38e65114115e5865190e933584b96f58",
@@ -24,8 +24,8 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/epc-bid-analysis/": {
-  "sha1": "5de9774a10d6559cb20be507e00fb784ae19cdad",
-  "date": "2026-10-17"
+  "sha1": "4b52b1a2fd92bc338e4fca6fcf741b778f39aa52",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/cases/minor-capex/": {
   "sha1": "54fcb76bfc048b29d9fce86bc232ae6fa2071c51",
@@ -44,12 +44,12 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/cases/well-pad-siting/": {
-  "sha1": "099bd6c2b2dc59c35617bd3eb90b15dda2c37538",
-  "date": "2026-10-17"
+  "sha1": "9bdae0f5b427b47c94ca58d721766adaac58066a",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
-  "sha1": "a7acabf567600c0b8346c5bd7b4b0e6e5bef7120",
-  "date": "2026-10-17"
+  "sha1": "791d16142311b423453e81bbd1baebed7bd323a0",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/contact/": {
   "sha1": "c68e5df9b1669d4be0b847c04ddd339133f41876",
@@ -72,8 +72,8 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/iraq-cycle/": {
-  "sha1": "72d2345406f95a8c50eebcf5d4b1fb486701b1f4",
-  "date": "2026-10-17"
+  "sha1": "82cfe751cb54b63417db3685fd303466351dd3ef",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/insights/iraq-deals/": {
   "sha1": "eb75d1cff4ca0105aba5ae9e712692daeace660e",
@@ -124,8 +124,8 @@
   "date": "2026-10-17"
  },
  "https://evgeny-maradin.pages.dev/insights/portfolio-risk/": {
-  "sha1": "9f91fc7996418f177ed3e946c46482a0616007ae",
-  "date": "2026-10-17"
+  "sha1": "acee1a34466b93909122344a0ad3404a7fdb7ccb",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/insights/pressure/": {
   "sha1": "f9c7e44afd3b173bde0422ee4e6ad2f332c3e447",

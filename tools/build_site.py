@@ -10,10 +10,10 @@ SITE = "https://evgeny-maradin.pages.dev"
 PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
-    "": ("Evgeny Maradin | Senior Concept & Project Engineer, FEL1–FEL2, Upstream O&G",
-         "Senior Concept and Project Engineer, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
-    "about": ("About Evgeny Maradin | Senior Concept & Project Engineer, Pre-FEED & FEL",
-              "19 years in upstream oil & gas, mostly operator side (Shell JV, Gazprom Neft, Rosneft): FEL1–FEL2, Pre-FEED, FEED and brownfield development. Career, education and tools."),
+    "": ("Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL, Upstream O&G",
+         "Lead Project Engineer – Pre-FEED / FEL, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
+    "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
+              "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
@@ -24,7 +24,7 @@ SEO = {
                 "Send a message or book a free 30-minute intro call about a role, a study or an expert call. Based in the Philippines, available to mobilise within 2 weeks."),
 }
 PERSON = ('{"@context":"https://schema.org","@type":"Person","name":"Evgeny Maradin","url":"%s/",'
-          '"jobTitle":"Senior Concept and Project Engineer (FEL, Pre-FEED, FEED)","email":"mailto:%s",'
+          '"jobTitle":"Lead Project Engineer – Pre-FEED / FEL","email":"mailto:%s",'
           '"image":"%s/og.png","sameAs":["%s"],"homeLocation":{"@type":"Place","name":"Philippines"},'
           '"knowsAbout":["FEL1–FEL2","Pre-FEED","Concept Selection","Brownfield Development","CAPEX Optimisation","Upstream Oil and Gas"]}'
           % (SITE, EMAIL, SITE, LI))
@@ -113,18 +113,18 @@ CASES = [
          action=['Screened facility loading phase by phase (liquid, oil, water, gas) with a hydraulic throughput model over a 17-year profile: the asset was gas-limited, not liquid-limited.', 'Checked equipment adequacy unit by unit: actual against rated flow on every separator, scrubber, flare and multiphase pump.', 'Identified the system bottlenecks together with the process engineer and set the engineering direction; proposed most of the practical options, with the contractor adding the unconventional ones.', 'Defined three debottlenecking configurations to comparable maturity and screened them on cost and on stability at peak inlet gas-oil ratio.', 'Defined the weighted scoring method, trained the engineering centre to apply it and required a one-page technical note per option, so weak options were dropped before deep engineering.', 'Screened about 19 gas-use routes, from third-party processing, reinjection and power to GTL, methanol and LNG, down to a realistic shortlist.', 'Flagged early that the inlet tie-in needed a facility shutdown, so the work was folded into a planned turnaround.'],
          result='Compact pre-separation gas takeoff selected: about 3× cheaper than the separator-based options and the only configuration stable at peak gas-oil ratio. The gas peak lasts about five years, so capacity was phased instead of sized for permanent worst case, and the short plateau ruled out gas chemistry as the wrong scale of solution. Pre-FEED delivered for the $160M project as the basis for concept selection and investment readiness.',
          insight="pressure"),
-    dict(slug="epc-bid-analysis", n="04", label="MENA · Independent advisory", years="2026",
+    dict(slug="epc-bid-analysis", n="04", label="MENA · Independent advisory input", years="2026",
          title="EPC Bid Analysis & Contract Strategy",
          teaser="Decomposed bid escalation drivers across a major upstream portfolio and structured scenarios around schedule, FEED maturity, scope and risk allocation.",
-         metric="$6B+", metric_l="portfolio assessed<br>decision support", big="Scenario and decision-support framework for contract renegotiation, provided as input to the client side.",
+         metric="$6B+", metric_l="portfolio scale<br>independent advisory input", big="Independent advisory input: a scenario framework for bid escalation and contract strategy.",
          tags=["EPC", "Risk", "Commercial"],
-         meta=[("Client", "MENA upstream portfolio"), ("Period", "2026"), ("Role", "Independent advisory"), ("Scope", "Separation & water injection packages")],
-         context="An upstream portfolio in MENA with several major EPC packages (separation and water injection facilities) where bids came in significantly above approved estimates. Tenders were cancelled under management pressure.",
-         role="Independent advisory: analytical support on contracting strategy and scenario development.",
+         meta=[("Client", "MENA upstream portfolio"), ("Period", "2026"), ("Role", "Independent advisory input"), ("Scope", "Separation & water injection packages")],
+         context="An upstream portfolio in MENA with several major EPC packages (separation and water injection facilities) where bids came in significantly above approved estimates.",
+         role="Independent advisory input: analytical support on contracting strategy and scenario development.",
          challenge="The cost estimate was approved years before tender. Market escalation, an outdated FEED and aggressive schedule and LD terms combined into a risk premium that contractors priced fully upfront under LSTK.",
          action=["Decomposed the bid-to-estimate gap into controllable and non-controllable components.", "Quantified risk exposure per package.", "Built a scenario framework: renegotiation (schedule extension and LD reduction), selective BOOT restructuring for long-life assets, phased scope.", "Designed a pre-tender gate KPI set: Schedule Confidence Index, TCE Age Index, Interface Register Completeness."],
-         result="The analysis and scenario framework were provided as input to contract renegotiation discussions.",
-         insight="iraq-cycle"),
+         result="The analysis and scenario framework were shared as independent advisory input.",
+         insight="portfolio-risk"),
     dict(slug="yaro-yakhinskoye", n="05", label="Gazprom Neft · Arctic onshore", years="2014–2017",
          title="Yaro-Yakhinskoye Field Development",
          teaser="Led Pre-FEED and FEED, then supported detailed engineering and execution readiness for facilities tied into live production.",
@@ -135,7 +135,7 @@ CASES = [
          role="Led Pre-FEED and FEED, then supported detailed engineering as Project Engineer / PMO, including construction and pre-start-up readiness assessments.",
          challenge="New facilities had to be tied into live production in a remote Arctic environment. Civil works were possible only in winter, so a month's slip in design approval risked a one-year deferral, and survey data and key tie-in areas were split across several FEED contractors.",
          action=['Coordinated engineering disciplines through Pre-FEED and FEED.', 'On my own initiative ran an integrated review of key FEED documents and found a mismatch at the export pipeline and central processing facility tie-in point.', 'Brought the contractors and stakeholders together, set roles, responsibility zones and a short correction plan across FEED and detailed design; the changes were aligned within a week.', 'Led risk management and change control during execution preparation.'],
-         result='FEED documentation submitted to state expert review on time with no interface findings, and the construction permit secured on schedule. Facilities integrated without production disruption on a $300M+ programme. The lesson, interface checks in a dedicated early FEED stage, was added to the Gazprom Neft corporate lessons-learned register.',
+         result='FEED documentation submitted to state expert review on time with no interface findings, and the construction permit secured on schedule. Facilities integrated without production disruption on a $300M+ programme.',
          insight="integrated-fd"),
     dict(slug="south-hub", n="06", label="Shell JV · Upper Salym field", years="2017–2018",
          title="South Hub – Brownfield Expansion",
@@ -176,7 +176,7 @@ CASES = [
     dict(slug="well-pad-siting", n="09", label="Shell JV · Field infrastructure", years="2018–2023",
          title="Well-Pad & Corridor Siting Method",
          teaser="Built an integrated method for choosing well-pad locations and infrastructure corridors that cut lifecycle cost by 10–50%.",
-         metric="10–50%", metric_l="lifecycle cost<br>reduction", big="10–50% lifecycle cost reduction depending on the case, with corridor length down 15–35% and earthworks down 10–30%. Adopted as company best practice for well-pad planning.",
+         metric="10–50%", metric_l="lifecycle cost<br>reduction", big="10–50% lifecycle cost reduction depending on the case, with corridor length down 15–35% and earthworks down 10–30%.",
          tags=["Concept Select", "Field Infrastructure", "Method"],
          meta=[("Client", "Salym Petroleum Development (Shell JV)"), ("Period", "2018–2023"), ("Role", "Senior Concept Engineer"), ("Gate", "Decision Review Board")],
          context="Well-pad locations had historically been set mainly by the well pattern. That worked for simple structures, but with horizontal drilling and more complex topography it was pushing unit technical cost up and development efficiency down.",
@@ -186,7 +186,7 @@ CASES = [
                  "Built an evaluation framework with more than 20 parameters: horizontal section length, entry angle, logistics, crossings, land-allocation limits, CAPEX and OPEX.",
                  "Generated 9 to 30 alternative pad locations per case, ranked them and shortlisted the top 3 to 5 with GIS models, cost models and scenario analysis.",
                  "Produced a recommended and an alternative option with quantified savings per driver and aligned them at the DRB."],
-         result="10–50% lifecycle cost reduction depending on the case; corridor length down 15–35% and earthworks down 10–30%. The method became company best practice for well-pad planning, with faster alignment between technical and economic teams and more predictable budgets.",
+         result="10–50% lifecycle cost reduction depending on the case; corridor length down 15–35% and earthworks down 10–30%. The method gave faster alignment between technical and economic teams and more predictable budgets.",
          insight="integrated-fd"),
 ]
 
@@ -516,9 +516,9 @@ TIMELINE = [
     ("2008 – 2011", "Head of Concept Design / Concept Engineer", "Rosneft", "Engineering-centre (contractor) side: delivered 10+ greenfield and brownfield concept and Pre-FEED studies for Rosneft subsidiaries, held the study budget and competed with other centres for scope. Led a team of seven engineers."),
     ("2007 – 2008", "Senior Field Mechanic (LPG/NGL)", "Rosneft · Krasnodarneftegas", "Four-stage oil–gas separation train feeding a DEG gas treatment plant (dry gas, LPG, stabilised condensate): commissioning of a new pump station, start-up, maintenance and post-incident recovery, including winter operation. Team of 11–13 technicians, zero LTI."),
 ]
-page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side, focused on FEL1–FEL2, Pre-FEED and brownfield development.",
+page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side plus a Rosneft engineering centre, focused on FEL1–FEL2, Pre-FEED and brownfield.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
-<p class="lead">19 years in upstream oil &amp; gas, most of it on the operator side, focused on the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
+<p class="lead">19 years in upstream oil &amp; gas on both sides of the table: most of it on the operator side, and three years in a Rosneft engineering centre delivering studies as the contractor. I know how a contractor scopes and delivers a study, and what an operator needs to take it through a gate. My focus is the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available to mobilise within 2 weeks · Middle East, Africa, Southeast Asia</p></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
@@ -561,13 +561,13 @@ page("contact", "Contact", "Send a message or book a free 30-minute intro call w
 
 # ---------------- HOME ----------------
 featured = [CASES[0], CASES[1], CASES[3]]
-page("", "", "Senior Concept and Project Engineer: FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
-     f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name">Evgeny Maradin</p><p class="eyebrow">Concept Development / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions<br><em>before FEED.</em></h1>
-<p class="lead">Senior Concept and Project Engineer: FEL1–FEL2, Pre-FEED, FEED and brownfield development, with hands-on operations and maintenance background.</p>
+page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
+     f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions<br><em>before FEED.</em></h1>
+<p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development, with hands-on operations and maintenance background.</p>
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available to mobilise within 2 weeks · Middle East, Africa, Southeast Asia</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></aside></div></section>
-<section class="trust"><div class="container trust-row"><div><span>Operator side</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
+<section class="trust"><div class="container trust-row"><div><span>Both sides of the table · mostly operator</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft (national majors)</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Project cases.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
