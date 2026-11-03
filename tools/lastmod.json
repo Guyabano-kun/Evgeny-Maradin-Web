@@ -1,11 +1,11 @@
 {
  "https://evgeny-maradin.pages.dev/": {
-  "sha1": "a6b1fc681adbcef7908dbbacd7c38a1c957af9b3",
+  "sha1": "639615091d9a3f79cbd8e4fdc96db7ec1d64e8d1",
   "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/about/": {
-  "sha1": "c8f5e15e763983e2f4e89b8f4f7d1eb150a465c6",
-  "date": "2026-10-17"
+  "sha1": "fe16769acd517c7b8eaf477a2d372be33dbc1704",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/advisory/": {
   "sha1": "94c978aa8ac00a342e47fb179c546f7591bc6d19",
@@ -48,8 +48,8 @@
   "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/cases/yaro-yakhinskoye/": {
-  "sha1": "a7acabf567600c0b8346c5bd7b4b0e6e5bef7120",
-  "date": "2026-10-17"
+  "sha1": "791d16142311b423453e81bbd1baebed7bd323a0",
+  "date": "2026-11-03"
  },
  "https://evgeny-maradin.pages.dev/contact/": {
   "sha1": "c68e5df9b1669d4be0b847c04ddd339133f41876",
