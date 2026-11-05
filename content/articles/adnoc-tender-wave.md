@@ -107,12 +107,6 @@ And the reason for the 2023 cancellation is reported by MEED from unofficial sou
 
 **Tender cycle.** The 40 percent cut is ADNOC's stated target. The baseline duration is not disclosed, so I calculate no days.
 
-### Your experience
-
-When scope goes to market, what is the first FEL gap you check before you price delivery certainty?
-
-I work on early-phase concept development and Pre-FEED for brownfield upstream assets. If you are testing scope readiness ahead of a tender, I am happy to compare notes: [enmaradin@gmail.com](mailto:enmaradin@gmail.com)
-
 ### Sources
 
 - The National, 25 October 2026 (updated 27 October): [ADNOC prepares new wave of oil and gas tenders for 2027](https://www.thenationalnews.com/business/energy/2026/10/25/adnoc-prepares-new-wave-of-oil-and-gas-tenders-for-2027/)
