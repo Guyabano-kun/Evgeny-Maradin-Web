@@ -11,7 +11,7 @@ PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
     "": ("Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL, Upstream O&G",
-         "Lead Project Engineer – Pre-FEED / FEL, 19 years in upstream oil & gas: FEL1–FEL2, Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Asia."),
+         "Lead Project Engineer – Pre-FEED / FEL, 19 years in upstream oil & gas: Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Southeast Asia."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
               "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
@@ -64,7 +64,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 {ticker}<header><div class="container nav"><a class="brand" href="/" aria-label="Evgeny Maradin, home"><i class="bn-full">Evgeny Maradin</i><i class="bn-short">EM</i><span>.</span></a><nav>{nav}</nav></div></header>
 <main id="top">{body}</main>
 <section id="contact" class="contact"><div class="container contact-grid"><div><p class="eyebrow">Contact</p><h2>For roles, studies and expert calls.</h2></div><div><a href="mailto:{EMAIL}">{EMAIL}</a><button class="copy" type="button" data-copy="{EMAIL}">Copy email</button><a href="tel:+639669813383">+63 966 981 3383</a><a class="wa" href="https://wa.me/639669813383" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp ↗</a><a href="/contact/?type=call">Book a free 30-min call →</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a><p class="avail"><a href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a> · project enquiries by email. Based in the Philippines, available to mobilise within 2 weeks.</p></div></div></section>
-<footer><div class="container"><span>Evgeny Maradin · <a href="/cases/">Cases</a> · <a href="/advisory/">Advisory</a> · <a href="/insights/">Insights</a> · <a href="/about/">About</a></span><span>Concept Development / FEL | Upstream Oil &amp; Gas · Updated {UPDATED}</span></div></footer>
+<footer><div class="container"><span>Evgeny Maradin · <a href="/cases/">Cases</a> · <a href="/advisory/">Advisory</a> · <a href="/insights/">Insights</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a></span><span>Concept Development / FEL | Upstream Oil &amp; Gas · Updated {UPDATED}</span></div></footer>
 <script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{{const t=b.dataset.copy;try{{await navigator.clipboard.writeText(t)}}catch(e){{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}}b.textContent='Copied: '+t;setTimeout(()=>b.textContent='Copy email',2500)}}))</script>
 {ticker_js}</body></html>'''
     d = os.path.join(OUT, path)
@@ -250,6 +250,8 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
 # ---------------- INSIGHTS ----------------
 import math, datetime
 ARTICLES = {
+ "adnoc-tender-wave": dict(t="A Tender Wave Is Only as Fast as Its Slowest FEL", tag="UAE · ADNOC", d="5 Nov 2026", w=1507, u="",
+   s="ADNOC has set its 2027 tender list and is cutting tender cycles by 40%. How mature each scope is remains undisclosed, and that decides whether the schedule holds."),
  "kurdamir": dict(t="Kurdamir, a concept check before FEED", tag="Kurdistan · Kurdamir", d="26 Oct 2026", w=1836, u=PULSE+"linkedin-article-kurdamir-concept-check-before-feed-evgeny-maradin-x2eqc/",
    s="A concept check of the 2014 Kurdamir development plan on public data. The CPF, not the reservoir, limits the plan; a larger phased concept adds 3.8 billion $ of modelled NPV."),
  "hormuz": dict(t="Around Hormuz, Not Through It: The Bypass Is Now the Constraint", tag="Gulf · Export routes", d="19 Oct 2026", w=2080, u=PULSE+"around-hormuz-through-bypass-now-constraint-evgeny-maradin-dy8tc/",
@@ -281,7 +283,7 @@ ARTICLES = {
  "digital-oilfield": dict(t="Oilfield Development System: Bridging Engineering and Digital Intelligence", tag="Digital", d="21 Oct 2025", w=806, u=PULSE+"oilfield-development-system-bridging-engineering-digital-maradin-isame/",
    s="Lessons from building a digital oilfield MVP that linked SmartField data, PETEX GAP models and GIS with field systems."),
 }
-ORDER = ["kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
+ORDER = ["adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="production-profile", t="Production profile as a shopping cart", u="/models/production-profile/",
@@ -330,6 +332,8 @@ for _k in ARTICLES:
 _IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
 # search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
 ART_SEO = {
+    "adnoc-tender-wave": ("ADNOC 2027 Tenders: Scope Maturity vs Schedule",
+                          "ADNOC's 2027 tender list is public and tender cycles are 40% shorter. Scope maturity is not public. A Hail and Ghasha precedent and a five-question RFP test."),
     "kurdamir": ("Kurdamir: A Concept Check Before FEED",
                  "A concept check of the 2014 Kurdamir plan on public data: the plant, not the reservoir, limits it, and a phased larger concept adds 3.8 billion $ of NPV."),
     "hormuz": ("Around Hormuz: The Bypass Is Now the Constraint",
@@ -372,6 +376,8 @@ def md_to_html(md):
         lines = blk.split("\n")
         if blk.strip() == "---":
             out.append("<hr>")
+        elif blk.lstrip().startswith(("<figure", "<div", "<table", "<svg")):  # raw HTML exhibit, passed through
+            out.append(blk)
         elif re.match(r"#{1,6} ", blk):
             n = min(max(len(blk) - len(blk.lstrip("#")), 2), 4)
             out.append(f"<h{n}>{_inline(blk.lstrip('#').strip())}</h{n}>")
@@ -458,7 +464,7 @@ for i, key in enumerate(ORDER):
                      "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
                      "image": f"{SITE}{img}" if img else f"{SITE}/og.png",
                      "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url,
-                     "isBasedOn": meta["url"]}, ensure_ascii=False)
+                     **({"isBasedOn": meta["url"]} if meta.get("url") else {})}, ensure_ascii=False)
     cases_rel = [c for c in CASES if c["insight"] == key]
     models_rel = [m for m in MODELS if m["related"] == key]
     others = [k for k in ORDER[i + 1:] + ORDER[:i] if k != key][:2]
@@ -478,7 +484,8 @@ for i, key in enumerate(ORDER):
 <div class="prose">
 {body_html}
 </div>
-<p class="art-source"><a href="{a["u"]}" target="_blank" rel="noopener">Originally published on LinkedIn ↗</a></p>
+{f'<p class="art-source"><a href="{a["u"]}" target="_blank" rel="noopener">Originally published on LinkedIn ↗</a></p>' if a["u"] else ""}
+<div class="art-cta"><p><b>Working on a concept, Pre-FEED or a tender pack?</b> A short call is often enough to see where the gaps are.</p><div class="actions"><a class="button primary" href="/contact/?type=call">Book a free 30-min call</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">Follow on LinkedIn ↗</a></div></div>
 </div></section></article>
 <section class="section"><div class="container"><p class="eyebrow">Related reading</p>{rel}</div></section>''',
          "/insights/", seo=(seo_title, seo_desc), og=f"{SITE}{img}" if img else None, ld_json=ld)
