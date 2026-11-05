@@ -4,7 +4,6 @@ date: 2026-11-05
 url:
 ---
 
-### ADNOC has told suppliers what goes to market in 2027. It has not said how mature that scope is, and that is the variable that decides whether the schedule holds.
 
 ADNOC has told its suppliers what goes to market in 2027. It has not told them how mature that scope is.
 
@@ -24,15 +23,7 @@ The context is a capacity push: ADNOC is seeking 5 million barrels per day of oi
 
 No project values were disclosed. No field names. No FEED status.
 
-<figure class="exhibit"><figcaption><b>What ADNOC has said, and what it has not.</b> The 2027 upstream list, as reported by The National.</figcaption>
-<div class="exhibit-scroll"><table><thead><tr><th>Topic</th><th>Public</th><th>Not disclosed</th></tr></thead><tbody>
-<tr><th scope="row">Scopes</th><td>Four upstream: offshore sour gas, export gas pipeline with wells, CO2/water EOR, long-term development with processing island</td><td>Field names</td></tr>
-<tr><th scope="row">Timing</th><td>2027 tender wave; 2028 outlook adds onshore and offshore fields, integrated gas, storage</td><td>Per-scope RFP dates</td></tr>
-<tr><th scope="row">Process</th><td>Tender cycle target 40% shorter; EPC principles 10 to 20; 70/30 commercial/ICV from 1 November</td><td>Baseline cycle duration</td></tr>
-<tr><th scope="row">Context</th><td>5 MMbpd capacity target by 2027 (from 4.85); ten major EPC awards in 2026</td><td>Project values</td></tr>
-<tr><th scope="row">Scope maturity</th><td>Nothing</td><td>FEL stage, FEED status, estimate class</td></tr>
-</tbody></table></div>
-<p class="exhibit-note">Source: The National, 25 Oct 2026 (updated 27 Oct). A reading of the public picture; ADNOC may hold mature FEED for all scopes.</p></figure>
+![What ADNOC has said about the 2027 tender list, and what it has not: scopes, timing, process and context are public; field names, RFP dates, baseline cycle and scope maturity are not](/img/insights/adnoc-tender-wave/01.webp)
 
 ### The procurement side is getting faster
 
@@ -54,20 +45,7 @@ There is a public example of how much can happen between FEED and a contract tha
 
 More than four years from FEED to award, though not all of that time reflects FEL maturity, and the packaging went from four to two, to three, to two.
 
-<figure class="exhibit"><figcaption><b>More than 4 years from FEED to award.</b> Hail and Ghasha: number of EPC packages tendered.</figcaption>
-<svg viewBox="0 0 860 360" role="img" aria-label="Step chart: 4 EPC packages tendered after the 2019 FEED, consolidated to 2 in early 2021, re-tendered as 3 in late April 2023, awarded as 2 in October 2023">
-<g class="ex-grid"><line x1="60" y1="60" x2="830" y2="60"/><line x1="60" y1="120" x2="830" y2="120"/><line x1="60" y1="180" x2="830" y2="180"/><line x1="60" y1="240" x2="830" y2="240"/></g>
-<g class="ex-lab"><text x="44" y="64" text-anchor="end">4</text><text x="44" y="124" text-anchor="end">3</text><text x="44" y="184" text-anchor="end">2</text><text x="44" y="244" text-anchor="end">1</text>
-<text x="80" y="340" text-anchor="middle">2019</text><text x="230" y="340" text-anchor="middle">2020</text><text x="380" y="340" text-anchor="middle">2021</text><text x="530" y="340" text-anchor="middle">2022</text><text x="680" y="340" text-anchor="middle">2023</text><text x="830" y="340" text-anchor="middle">2024</text></g>
-<polyline class="ex-line" points="155,60 395,60 395,180 730,180 730,120 794,120 794,180"/>
-<circle class="ex-dot" cx="155" cy="60" r="5"/><circle class="ex-dot" cx="395" cy="180" r="5"/><circle class="ex-dot" cx="730" cy="120" r="5"/><circle class="ex-dot" cx="794" cy="180" r="5"/>
-<g class="ex-ann"><text x="155" y="30">2019: Bechtel FEED complete,</text><text x="155" y="46">4 packages tendered</text>
-<text x="405" y="205">Early 2021: redesign to cut</text><text x="405" y="221">CAPEX, 4 to 2 packages</text>
-<text x="722" y="90" text-anchor="end">Late Apr 2023: PCSAs cancelled,</text><text x="722" y="106" text-anchor="end">re-tender in 3 packages</text>
-<text x="794" y="252" text-anchor="end">5 Oct 2023: EPC award</text><text x="794" y="268" text-anchor="end">USD 16.94bn, 2 packages</text></g>
-<line class="ex-span" x1="155" y1="305" x2="794" y2="305"/><text class="ex-lab" x="474" y="299" text-anchor="middle">more than 4 years (not all of it FEL maturity)</text>
-</svg>
-<p class="exhibit-note">Source: MEED, 1 May 2023 and 5 Oct 2023 (subscription). 2019 month not stated; positions on the time axis are approximate. One precedent, not proof.</p></figure>
+![Hail and Ghasha: number of EPC packages tendered from the 2019 FEED to the October 2023 award, four to two to three to two](/img/insights/adnoc-tender-wave/02.webp)
 
 This does not prove that the FEED was immature. Mega-projects get re-baselined for many reasons, including market conditions between 2021 and 2023, budget decisions and strategy. The narrower point is this: even for an operator with ADNOC's capability, the gap between FEED and an award that holds can run for years, and the first public sign of misalignment came at bid stage, when estimates met the budget.
 
@@ -95,15 +73,7 @@ Each one returns as change orders, re-FEED or a fresh tender. All of them cost m
 
 If any answer is no, the scope carries an unresolved maturity gap. It may still go to tender, but the gap should be visible, owned and priced.
 
-<figure class="exhibit"><figcaption><b>Five questions before any RFP.</b> If any answer is no, the gap should be visible, owned and priced.</figcaption>
-<div class="exhibit-scroll"><table><thead><tr><th>Question to ask</th><th>If the answer is no, what typically returns (judgement)</th></tr></thead><tbody>
-<tr><th scope="row">1. Concept frozen, with an option record of what was rejected and why?</th><td>Bid spread: bidders read soft scope differently; the difference returns as change orders</td></tr>
-<tr><th scope="row">2. Estimate class behind the budget, and the range it states?</th><td>Bids land above budget after the tender is already running</td></tr>
-<tr><th scope="row">3. Interface register: tie-ins, shutdown windows, an owner for each?</th><td>Interfaces belong to nobody; the EPC contractor finds them first</td></tr>
-<tr><th scope="row">4. Existing-asset data validated for this scope?</th><td>Validation of as-builts and condition happens in execution</td></tr>
-<tr><th scope="row">5. Production or injection profile basis frozen, with a range?</th><td>Design basis moves after award: re-FEED or re-baseline</td></tr>
-</tbody></table></div>
-<p class="exhibit-note">Author's framework; engineering judgement, not a claim about any specific ADNOC scope. Contractors can run it in reverse on the RFP pack.</p></figure>
+![Five questions before any RFP, and what typically returns if the answer is no](/img/insights/adnoc-tender-wave/03.webp)
 
 Contractors can use the same list in reverse: ask it of the RFP pack, and price the gaps explicitly instead of absorbing them.
 
@@ -115,18 +85,7 @@ On ADNOC's list, Economic Potential is large and well understood. Delivery Certa
 
 At portfolio level, Delivery Certainty does not average. Where packages share tie-ins, power, processing or installation vessels, it compounds. As an illustration, take four packages of equal value, each with a delivery certainty of 0.9. If they are independent, the portfolio delivers 0.9 of its potential. If each depends on the previous one, the chain delivers 0.9 x 0.9 x 0.9 x 0.9, about 0.66. The numbers are invented for the arithmetic, not ADNOC data. It illustrates a chain of sequential dependencies, not a model of ADNOC's portfolio or of delivery certainty in general, since real packages are partly dependent and partly independent.
 
-<figure class="exhibit"><figcaption><b>Delivery certainty compounds, it does not average.</b> Illustration: four equal packages, each 0.9.</figcaption>
-<svg viewBox="0 0 860 330" role="img" aria-label="Line chart: independent packages stay at 0.90; a chain of dependent packages falls to 0.81, 0.73 and 0.66 at four packages">
-<g class="ex-grid"><line x1="60" y1="40" x2="830" y2="40"/><line x1="60" y1="100" x2="830" y2="100"/><line x1="60" y1="160" x2="830" y2="160"/><line x1="60" y1="220" x2="830" y2="220"/><line x1="60" y1="280" x2="830" y2="280"/></g>
-<g class="ex-lab"><text x="44" y="44" text-anchor="end">1.0</text><text x="44" y="104" text-anchor="end">0.9</text><text x="44" y="164" text-anchor="end">0.8</text><text x="44" y="224" text-anchor="end">0.7</text><text x="44" y="284" text-anchor="end">0.6</text>
-<text x="110" y="310" text-anchor="middle">1</text><text x="330" y="310" text-anchor="middle">2</text><text x="550" y="310" text-anchor="middle">3</text><text x="770" y="310" text-anchor="middle">4 packages</text></g>
-<polyline class="ex-flat" points="110,100 330,100 550,100 770,100"/>
-<polyline class="ex-line" points="110,100 330,154 550,202.6 770,246.4"/>
-<circle class="ex-dot" cx="110" cy="100" r="5"/><circle class="ex-dot" cx="330" cy="154" r="5"/><circle class="ex-dot" cx="550" cy="202.6" r="5"/><circle class="ex-dot" cx="770" cy="246.4" r="6"/>
-<g class="ex-val"><text x="110" y="126" text-anchor="middle">0.90</text><text x="330" y="140" text-anchor="middle">0.81</text><text x="550" y="188" text-anchor="middle">0.73</text><text x="770" y="275" text-anchor="middle" class="ex-big">0.66</text></g>
-<g class="ex-ann"><text x="770" y="88" text-anchor="end">Independent: stays at 0.90</text><text x="640" y="236" text-anchor="end">Chain of dependencies: 0.9 × 0.9 × 0.9 × 0.9</text></g>
-</svg>
-<p class="exhibit-note">Illustrative arithmetic, not ADNOC data. Assumes strict sequential dependence and multiplicative probabilities; real packages are partly dependent.</p></figure>
+![Delivery certainty compounds: four packages at 0.9 each stay at 0.90 if independent and fall to 0.66 as a chain of dependencies](/img/insights/adnoc-tender-wave/04.webp)
 
 And the queue is already crowded. Ten EPC awards in 2026, four upstream scopes in 2027 and more in 2028 draw on the same engineering houses, yards and vessels.
 

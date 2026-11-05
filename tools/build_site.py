@@ -385,7 +385,10 @@ def md_to_html(md):
             alt, src = re.match(r"!\[(.*?)\]\((.*?)\)$", lines[0]).groups()
             w, h = _IMG_SIZES.get(src, (1200, 675))
             cap = lines[1].strip("*").strip() if len(lines) > 1 else ""
-            out.append(f'<figure><img src="{html.escape(src)}" alt="{html.escape(alt or cap)}" loading="lazy" width="{w}" height="{h}">'
+            img = f'<img src="{html.escape(src)}" alt="{html.escape(alt or cap)}" loading="lazy" width="{w}" height="{h}">'
+            if w >= 1200:  # large exhibit: tap to open full size
+                img = f'<a class="zoom" href="{html.escape(src)}" target="_blank" rel="noopener">{img}</a>'
+            out.append(f"<figure>{img}"
                        + (f"<figcaption>{_inline(cap)}</figcaption>" if cap else "") + "</figure>")
         elif all(l.startswith("> ") or l == ">" for l in lines):
             out.append(f"<blockquote><p>{_inline(chr(10).join(l[2:] for l in lines))}</p></blockquote>")
