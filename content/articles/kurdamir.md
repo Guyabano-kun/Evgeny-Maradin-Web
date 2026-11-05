@@ -72,12 +72,6 @@ Both are the same failure class as a gas-cap error I found in an earlier version
 
 This takes two to three weeks with a small team. Compared with a FEED budget, it is cheap insurance against freezing the wrong concept.
 
-### Your experience
-
-Have you reviewed a development plan that was technically sound but sized well below what the field could carry? What made the case for changing it?
-
-I run concept checks before FEED (FEL1–FEL2, Pre-FEED) for operators and EPC contractors. If you want this check on your field, write to enmaradin@gmail.com.
-
 ### Calculation note
 
 - Model: FDM v152.131, one integrated Excel model; Brent 70 $/bbl less KRI differential and tariff, gas 60 $/thousand m³, WACC 12.5%, KRG model PSC with a 30-year development period. All NPVs are model outputs under these assumptions.
