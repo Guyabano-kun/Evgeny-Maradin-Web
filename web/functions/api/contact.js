@@ -2,10 +2,10 @@
 // Sends the website enquiry to the site owner via Resend.
 // Required env var (Cloudflare Pages > Settings > Environment variables): RESEND_API_KEY
 // Optional: CONTACT_TO (defaults to the owner's address)
-// Optional: MAIL_FROM, e.g. "Evgeny Maradin <hello@evgenymaradin.com>" once the domain is verified in Resend.
-//   With it set, the visitor also gets a confirmation email. Without it Resend can only mail the owner.
+// Optional: MAIL_FROM (sender; evgenymaradin.com is verified in Resend, Nov 2026). The visitor gets a confirmation email.
 
 const DEFAULT_TO = "enmaradin@gmail.com";
+const DEFAULT_FROM = "Evgeny Maradin <hello@evgenymaradin.com>";
 const MAX = { name: 120, email: 160, company: 160, topic: 80, message: 4000 };
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -77,6 +77,7 @@ export async function onRequestPost({ request, env }) {
   if (!env.RESEND_API_KEY) return json({ ok: false, error: "Form is not configured yet. Please email directly." }, 503);
 
   const owner = env.CONTACT_TO || DEFAULT_TO;
+  const mailFrom = env.MAIL_FROM || DEFAULT_FROM;
   const visitorTz = String(d.tz || "").slice(0, 60);
   const whenOwner = start ? start.toLocaleString("en-GB", { timeZone: "Asia/Manila", dateStyle: "full", timeStyle: "short" }) + " (Cebu, GMT+8)" : "";
   const whenVisitor = start && visitorTz ? start.toLocaleString("en-GB", { timeZone: visitorTz, dateStyle: "full", timeStyle: "short" }) + ` (${visitorTz})` : "";
@@ -92,7 +93,7 @@ ${isCall ? `<p style="font-family:Arial;font-size:14px;margin:18px 0"><a href="$
 <p style="font-family:Arial;font-size:13px;color:#666">The button opens the event with ${esc(email)} already added as a guest. Add Google Meet if needed, press Save, then "Send" so the invitation goes out. Other calendars: open the attached invite.ics. To propose another time, just reply to this email.</p>` : ""}`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n") + "\n\n" + (message || "(no message)") + (isCall ? "\n\nAdd to Google Calendar and invite: " + gcal : "");
 
-  const payload = { from: env.MAIL_FROM || "Website <onboarding@resend.dev>", to: [owner], reply_to: email, subject, html, text };
+  const payload = { from: mailFrom, to: [owner], reply_to: email, subject, html, text };
   if (isCall) {
     const ics = buildIcs({ start, minutes: 30, name, email, company, topic, message });
     payload.attachments = [{ filename: "invite.ics", content: btoa(unescape(encodeURIComponent(ics))) }];
@@ -105,7 +106,7 @@ ${isCall ? `<p style="font-family:Arial;font-size:14px;margin:18px 0"><a href="$
   });
   if (!r.ok) return json({ ok: false, error: "Could not send right now. Please email directly." }, 502);
 
-  if (env.MAIL_FROM) { // visitor confirmation; needs a sender domain verified in Resend
+  { // visitor confirmation
     const vSubject = isCall ? "Your intro call request: Evgeny Maradin" : "Your message to Evgeny Maradin";
     const vText = `Hello ${name},\n\n` + (isCall
       ? `Thank you for requesting a free 30-min intro call for ${whenVisitor || whenOwner}. I will confirm by email within one working day and send a calendar invitation.`
@@ -114,7 +115,7 @@ ${isCall ? `<p style="font-family:Arial;font-size:14px;margin:18px 0"><a href="$
     await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: env.MAIL_FROM, to: [email], reply_to: owner, subject: vSubject, text: vText }),
+      body: JSON.stringify({ from: mailFrom, to: [email], reply_to: owner, subject: vSubject, text: vText }),
     }).catch(() => {});
   }
   return json({ ok: true });
