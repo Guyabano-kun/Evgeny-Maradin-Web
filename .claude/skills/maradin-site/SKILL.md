@@ -25,7 +25,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 
 1. Use only facts the owner gave: his messages, his CVs and interview notes, existing site text. Do not invent numbers, clients, dates, roles or outcomes. If a source marks something as reconstructed or to be verified (for example the three-pipe gathering and VSM water injection stories), leave it out until he confirms.
 2. Employer labels: Salym Petroleum Development is "Shell JV" only up to March 2023, when Shell exited; 2023–2024 work is "Salym Petroleum". Experience is operator side plus the Rosneft engineering centre (contractor side); no "PMC" wording.
-3. Experience: 19 years in upstream oil & gas (since 2007), the same number everywhere, including `make_og.py`. Do not call the whole period "operator side": 2024–now is independent advisory.
+3. Experience: 19 years in upstream oil & gas (since 2007), the same number everywhere, including `make_og.py`. Do not call the whole period "operator side": 2024–now is independent advisory. Availability: "available immediately".
 4. Education: Specialist Diploma (5-year), Kuban State Technological University, 2007; UK ENIC: comparable to UK Bachelor (Honours), RQF Level 6. Not "Master's".
 5. No unverifiable claims ("adopted as best practice", named NOC clients, management adoption) unless he confirms them. Anonymised studies keep "illustrative figures, relative values only", with no asset names or absolute costs.
 6. When in doubt, ask one short question instead of guessing. Case 09 (well-pad siting) is SPD, 2018–2023.
@@ -48,6 +48,10 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 ## Known limits
 
 - The site lives on `evgenymaradin.com` (registered at Cloudflare, November 2026; renews yearly). `web/functions/_middleware.js` 301-redirects `www.evgenymaradin.com` to it. The old `evgeny-maradin.pages.dev` still serves the site (owner wants it reachable for now; canonical tags point to the new domain); to retire it, add it to `REDIRECT_FROM`. LinkedIn Post Inspector could not fetch `*.pages.dev`, which was the reason for the domain.
-- Cloud sessions cannot reach LinkedIn, the live site or the owner's browser.
+- Cloud sessions cannot reach LinkedIn, the live site or the owner's browser. Workaround: give the owner a prompt for a local Claude Desktop session with Claude in Chrome that copies the LinkedIn content verbatim into a Google Doc, then read the doc via Google Drive (this is how `RECS` was filled).
+- Email: `hello@evgenymaradin.com` is the public address (`EMAIL` in the build). Cloudflare Email Routing forwards it to Gmail; the owner replies from it via Gmail "Send mail as" (Resend SMTP). The contact form sends through Resend from `hello@` (domain verified, DNS records `resend._domainkey`, `send`, `rsend`, `_dmarc`), mails the owner a Google Calendar "invite" button for call requests and the visitor a confirmation.
+- `style.css` and `contact.js` are linked with a content hash (`?v=`); phones otherwise keep stale CSS and render new HTML unstyled.
+- Recommendations: `RECS` in the build (verbatim LinkedIn texts; `x` = home excerpt, `t` = full text on About). Never edit or invent quotes.
+- Owner's rule: do not add "Your experience" / engagement-question blocks to articles unless he asks.
 - Google Search Console is verified with the HTML file. The sitemap and IndexNow submissions are automatic; "Request indexing" is the owner's button and has a daily quota.
 - Fonts: the CSS names Inter but does not load it, so visitors see Arial. Loading it is an open task; ask before restyling. Design option B ("Engineering": IBM Plex, blue accent) was proposed but not chosen yet.
