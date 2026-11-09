@@ -3,6 +3,40 @@ import os, sys, html
 
 OUT = sys.argv[1]
 LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
+
+# LinkedIn recommendations, verbatim (collected from the owner's profile, Nov 2026).
+# "x" = excerpt for the home page (verbatim, cut with an ellipsis); "t" = full text for About.
+REC_ALL = LI + "details/recommendations/"
+RECS = [
+    dict(n="Runo Mijnarends", h="Energy industry expert · ex-McKinsey · ex-Shell", r="Worked with Evgeny on the same team",
+         u="https://www.linkedin.com/in/runo-mijnarends/",
+         x="I found Evgeny to be an excellent engineer, integrator and team mate. … I would highly recommend working with him.",
+         t="When we worked together on an onshore oil project in 2017-18, I found Evgeny to be an excellent engineer, integrator and team mate. His combination of strong conceptual thinking, pragmatism, results orientation, project management ability, communication skills and sense of humour made him a highly effective and appreciated member of the team. I expect him to thrive in environments where cross-disciplinary integration, cross-cultural communication and stakeholder management are key. I would highly recommend working with him."),
+    dict(n="Alexander Galkin", h="Engineering Project Manager · Asset Integrity Manager · Shell", r="Managed Evgeny directly",
+         u="https://www.linkedin.com/in/alexander-galkin-38ba9742/",
+         x="Evgeny has strong, hands-on experience in integrated Pre-FEED development … has successfully developed a complete field-wide pipeline network model exceeding 500 km. This model proved critical for evaluating alternative development scenarios …",
+         t="Evgeny has strong, hands-on experience in integrated Pre-FEED development, consistently delivering high-quality trade-off studies and competitively selected design options for production well-pad configurations, oil-gathering pipeline systems, and associated infrastructure facilities. He is highly proficient in PIPESIM, Petex GAP, and HYSYS, and has successfully developed a complete field-wide pipeline network model exceeding 500 km. This model proved critical for evaluating alternative development scenarios and significantly contributed to the company’s field development plan update."),
+    dict(n="Nico E. van der Veen", h="Project Control Director · Major Capital Projects", r="Worked with Evgeny on different teams",
+         u="https://www.linkedin.com/in/nico-e-van-der-veen/",
+         x="Evgeny is a very dedicated and experienced concept engineer and able to explain different concepts and the rationale why to go for a certain solution. I would hire Evgeny without any hesitation on my project.",
+         t="Evgeny is a very dedicated and experienced concept engineer and able to explain different concepts and the rationale why to go for a certain solution. I would hire Evgeny without any hesitation on my project."),
+    dict(n="Irshat Musin", h="Lead Process Engineer · Salym Petroleum Development", r="Worked with Evgeny on different teams",
+         u="https://www.linkedin.com/in/irshat-musin-a19078195/",
+         t="I was glad to working with Evgeny at Salym Petroleum Development on the APG usage strategy development and the long-term Field Development Plan. Evgeny demonstrated outstanding capability in concept development, project and process engineering, as well as flow assurance. His leadership in feasibility studies and risk management ensured that complex engineering tasks were transformed into practical, value-adding solutions. By guiding pre-FEED contractors and aligning technology screening with business objectives, he delivered clear strategies for unconventional reserves and gas utilization. What impressed me most was Evgeny’s ability to lead cross-functional teams with effective communication and sharp analytical thinking. In the Field Development Plan, he coordinated reservoir development with facilities and infrastructure upgrades, balancing production growth with CAPEX efficiency. Evgeny combines technical excellence with a rare ability to listen and build consensus, making him an invaluable professional for complex upstream projects."),
+    dict(n="Ruslan Kaibyshev", h="Oil &amp; Gas Executive · Upstream Technology, Commercial Strategy · MBA", r="Managed Evgeny directly",
+         u="https://www.linkedin.com/in/ruslan-kaibyshev/",
+         t="I worked with Evgeny Maradin at Rosneft, where he was part of my team, and later we collaborated at Gazprom Neft. Evgeny is a highly competent engineer with strong expertise in concept development and project engineering. He combines deep technical knowledge with strategic vision and delivers results even in the most complex projects. Reliable, responsible, and professional – Evgeny is a valuable colleague and a trusted team player."),
+    dict(n="Mervin Frumau", h="Geoscientist · Exploration, Development, Well and Reservoir Management", r="Worked with Evgeny on different teams",
+         u="https://www.linkedin.com/in/mervin-frumau-68745a/",
+         t="Having worked with Evgeny at Shell's joint venture with GPN I am pleased to provide recommendation. He was my go-to contact for concept engineering when we had to evaluate a set of growth opportunities across multiple geological plays with varying fluids, and he was also integral part of the companies large south hub extension project. His professionalism transpired through his dedication and ability to quickly provide pragmatic solutions whereby he shared his knowledge with others. He is an aimable personality that contributes to team spirit. I am confident that he will be successful in any organisation."),
+]
+
+
+def rec_card(r, full=False):
+    q = html.escape(r["t"] if full else r["x"], quote=False)
+    return (f'<figure class="rec"><blockquote>“{q}”</blockquote><figcaption>'
+            f'<a href="{r["u"]}" target="_blank" rel="noopener">{r["n"]} ↗</a><span>{r["h"]}</span><span>{r["r"]}</span></figcaption></figure>')
+
 PULSE = "https://www.linkedin.com/pulse/"
 EMAIL = "enmaradin@gmail.com"
 UPDATED = "November 2026"
@@ -538,6 +572,8 @@ page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly o
 <div class="actions"><a class="button primary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary" href="/contact/">Contact</a></div></div><img class="portrait about" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Recommendations</p><h2>From people I worked with.</h2></div><p><a class="textlink" href="{REC_ALL}" target="_blank" rel="noopener">All on LinkedIn ↗</a></p></div>
+<div class="recs full">{"".join(rec_card(r, True) for r in RECS)}</div></div></section>
 <section class="section alt"><div class="container"><div class="facts">
 <div><h4>Education</h4><p>Specialist Diploma (5-year), Machinery and Equipment of Oil &amp; Gas Fields, Kuban State Technological University, 2007. Assessed by UK ENIC as comparable to a UK Bachelor (Honours) degree, RQF Level 6.</p><a class="doc" href="/docs/uk-enic-statement-of-comparability.pdf" target="_blank" rel="noopener"><img src="/img/docs/uk-enic.webp" alt="UK ENIC Statement of Comparability for Evgeny Maradin" loading="lazy" width="640" height="506"><span>UK ENIC Statement of Comparability · PDF ↗</span></a><p class="doc-note">Reference 4002501645 · verify at <a href="https://www.enic.org.uk/verification" target="_blank" rel="noopener">enic.org.uk/verification</a></p></div>
 <div><h4>Tools</h4><p>Petex GAP · PIPESIM · HYSYS · PI Vision · Power BI · SmartField · SAP S/4HANA (PPM) · MS Project · AutoCAD</p></div>
@@ -587,6 +623,8 @@ page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield dev
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Project cases.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Recommendations</p><h2>What colleagues say.</h2></div><p><a class="textlink" href="{REC_ALL}" target="_blank" rel="noopener">All on LinkedIn ↗</a></p></div>
+<div class="recs">{"".join(rec_card(r) for r in RECS if r.get("x"))}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Engineering scope</p><h2>What I work on.</h2><div class="expertise">
 <div><b>01</b><h3>Concept Development</h3><p>FEL1–FEL2, Pre-FEED, option screening, concept selection and investment readiness.</p></div>
 <div><b>02</b><h3>Brownfield Optimisation</h3><p>Re-engineering, debottlenecking, live-asset interfaces and execution constraints.</p></div>
