@@ -3,6 +3,12 @@ import os, sys, html
 
 OUT = sys.argv[1]
 LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
+import hashlib
+# cache-busting: phones keep old CSS/JS otherwise and render new HTML unstyled
+def _v(path):
+    try: return hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "web", path), "rb").read()).hexdigest()[:8]
+    except OSError: return "1"
+CSS_V, JS_V = _v("style.css"), _v("contact.js")
 
 # LinkedIn recommendations, verbatim (collected from the owner's profile, Nov 2026).
 # "x" = excerpt for the home page (verbatim, cut with an ellipsis); "t" = full text for About.
@@ -94,7 +100,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 <meta property="og:title" content="{html.escape(full_title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{url}">{og_img_tags}
 <meta name="twitter:card" content="summary_large_image">{ld}
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="/style.css"></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="/style.css?v={CSS_V}"></head><body>
 {ticker}<header><div class="container nav"><a class="brand" href="/" aria-label="Evgeny Maradin, home"><i class="bn-full">Evgeny Maradin</i><i class="bn-short">EM</i><span>.</span></a><nav>{nav}</nav></div></header>
 <main id="top">{body}</main>
 <section id="contact" class="contact"><div class="container contact-grid"><div><p class="eyebrow">Contact</p><h2>For roles, studies and expert calls.</h2></div><div><a href="mailto:{EMAIL}">{EMAIL}</a><button class="copy" type="button" data-copy="{EMAIL}">Copy email</button><a href="tel:+639669813383">+63 966 981 3383</a><a class="wa" href="https://wa.me/639669813383" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp ↗</a><a href="/contact/?type=call">Book a free 30-min call →</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a><p class="avail"><a href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a> · project enquiries by email. Based in the Philippines, available immediately.</p></div></div></section>
@@ -608,7 +614,7 @@ page("contact", "Contact", "Send a message or book a free 30-minute intro call w
 <a class="wa" href="https://wa.me/639669813383" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp: +63 966 981 3383 ↗</a>
 <a href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a>
 <p class="avail">Cebu, Philippines (GMT+8). Calls usually work best between 12:00 and 22:00 my time, which covers Gulf mornings and afternoons.</p></aside>
-</div></section><script src="/contact.js" defer></script>""",
+</div></section><script src="/contact.js?v={JS_V}" defer></script>""",
      "/contact/")
 
 # ---------------- HOME ----------------
@@ -637,7 +643,7 @@ page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield dev
 
 # ---------------- 404 ----------------
 with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
-    f.write('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found | Evgeny Maradin</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="/style.css"></head><body><section class="hero"><div class="container"><p class="eyebrow">404</p><h1 class="page">This page does not exist.</h1><div class="actions"><a class="button primary" href="/">Home</a><a class="button secondary" href="/cases/">Cases</a></div></div></section></body></html>')
+    f.write('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found | Evgeny Maradin</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="/style.css?v=' + CSS_V + '"></head><body><section class="hero"><div class="container"><p class="eyebrow">404</p><h1 class="page">This page does not exist.</h1><div class="actions"><a class="button primary" href="/">Home</a><a class="button secondary" href="/cases/">Cases</a></div></div></section></body></html>')
 
 print("built")
 
