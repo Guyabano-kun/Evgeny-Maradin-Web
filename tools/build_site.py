@@ -546,7 +546,9 @@ SERVICES = [
     ("05", "Expert calls", "One-hour calls for investors, consultants and operators on upstream development, brownfield and FEL topics.", ["Directly or via GLG", "Iraq, Kurdistan, Gulf, CIS", "Facilities and gas"]),
     ("06", "FEL & Concept Select workshops", "One- or two-day workshops for engineering teams, built on real gate cases rather than textbook theory.", ["FEL1–FEL2 process", "Concept select in practice", "Decision quality"]),
 ]
-FORMATS = [("Expert call", "1 hour. A focused answer to a specific question."), ("Review sprint", "1–2 weeks, remote. A written review with findings and recommendations."), ("Embedded study lead", "Contract, remote or on-site. Leading a study or FEL phase end to end.")]
+FORMATS = [("Expert call", "1 hour. A focused answer to a specific question.", "Expert call"), ("Review sprint", "1–2 weeks, remote. A written review with findings and recommendations.", "Advisory project"), ("Embedded study lead", "Contract, remote or on-site. Leading a study or FEL phase end to end.", "Advisory project")]
+from urllib.parse import quote as _q
+quote_url = lambda service, topic="Advisory project": f"/contact/?type=message&topic={_q(topic)}&service={_q(service)}"
 
 page("advisory", "Advisory", "Independent FEL, Pre-FEED and concept select advisory for upstream operators, contractors and investors.",
      f'''<section class="hero small"><div class="container hero-grid"><div><p class="eyebrow">Advisory</p><h1 class="page">Independent front&#8209;end advice.</h1>
@@ -556,9 +558,9 @@ page("advisory", "Advisory", "Independent FEL, Pre-FEED and concept select advis
 <section class="section" style="border-top:0;padding-top:40px"><div class="container"><div class="section-head"><div><p class="eyebrow">What I do</p><h2>Six ways to work together.</h2></div><p>Examples in <a class="textlink" href="/cases/">cases</a>.</p></div>
 <div class="services">{"".join(f'<div><b>{n}</b><h3>{t}</h3><p>{d}</p><ul>{"".join(f"<li>— {x}</li>" for x in li)}</ul></div>' for n, t, d, li in SERVICES)}</div></div></section>
 <section class="section alt"><div class="container"><p class="eyebrow">Formats</p><h2 style="margin-bottom:40px">From one call to a full study.</h2>
-<div class="formats">{"".join(f"<div><b>{t}</b><span>{d}</span></div>" for t, d in FORMATS)}</div>
+<div class="formats">{"".join(f'<div><b>{t}</b><span>{d}</span><a class="quote" href="{quote_url(t, tp)}">Request a quote →</a></div>' for t, d, tp in FORMATS)}</div>
 <p class="terms">Terms: expert calls are charged by the hour, directly or through GLG; review sprints at a fixed fee agreed on scope; embedded study work at a day rate, with travel costs billed separately. The first 30-minute call is free.</p>
-<div class="actions"><a class="button primary" href="/contact/?type=call">Discuss a project</a></div></div></section>''',
+<div class="actions"><a class="button primary" href="{quote_url("Project scope")}">Request a quote</a><a class="button secondary" href="/contact/?type=call">Book a free 30-min call</a></div></div></section>''',
      "/advisory/")
 
 # ---------------- ABOUT ----------------

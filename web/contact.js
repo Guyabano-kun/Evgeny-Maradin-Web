@@ -27,6 +27,11 @@
   if (qs === 'call' || qs === 'message') form.elements.type.value = qs;
   setMode(mode());
 
+  // ?topic=...&service=... from "Request a quote" links on the Advisory page
+  var params = new URLSearchParams(location.search), topic = params.get('topic'), service = params.get('service');
+  if (topic) [].forEach.call(form.elements.topic.options, function (o) { if (o.text === topic) form.elements.topic.value = o.value || o.text; });
+  if (service && !msg.value) msg.value = 'Quote request: ' + service.slice(0, 60) + '\n\nScope / what needs to be done:\n\nTiming:\n\nLocation (remote / on-site):\n';
+
   function startDate() {
     if (!dateIn.value || !timeIn.value) return null;
     var d = new Date(dateIn.value + 'T' + timeIn.value);
