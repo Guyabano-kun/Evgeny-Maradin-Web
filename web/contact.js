@@ -43,7 +43,7 @@
   function visitorLinks(start) {
     var end = new Date(start.getTime() + 30 * 60000);
     var title = 'Intro call with Evgeny Maradin';
-    var details = 'Free 30-min intro call (tentative until confirmed by email). Contact: enmaradin@gmail.com';
+    var details = 'Free 30-min intro call (tentative until confirmed by email). Contact: hello@evgenymaradin.com';
     var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Evgeny Maradin//Website booking//EN', 'BEGIN:VEVENT',
       'UID:' + start.getTime() + '@evgenymaradin.com', 'DTSTAMP:' + icsDate(new Date()), 'DTSTART:' + icsDate(start), 'DTEND:' + icsDate(end),
       'SUMMARY:' + title, 'DESCRIPTION:' + details, 'STATUS:TENTATIVE', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
@@ -79,7 +79,7 @@
       })
       .catch(function (err) {
         status.className = 'form-status err';
-        status.innerHTML = (err.message || 'Could not send right now.') + ' Email <a href="mailto:enmaradin@gmail.com">enmaradin@gmail.com</a> or message on <a href="https://wa.me/639669813383" target="_blank" rel="noopener">WhatsApp</a>.';
+        status.innerHTML = (err.message || 'Could not send right now.') + ' Email <a href="mailto:hello@evgenymaradin.com">hello@evgenymaradin.com</a> or message on <a href="https://wa.me/639669813383" target="_blank" rel="noopener">WhatsApp</a>.';
         btn.disabled = false; setMode(mode());
       });
   });
