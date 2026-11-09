@@ -3,6 +3,8 @@ import os, sys, html
 
 OUT = sys.argv[1]
 LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
+# Roles shown on the home hero: held (see TIMELINE) or targeted by the owner; no new claims.
+ROLES = ["Lead Project Engineer", "Study Manager / Study Lead", "Concept Engineer", "Senior Project Engineer", "Concept Development Manager", "Pre-FEED / FEL Advisor"]
 import hashlib
 # cache-busting: phones keep old CSS/JS otherwise and render new HTML unstyled
 def _v(path):
@@ -51,7 +53,7 @@ PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
     "": ("Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL, Upstream O&G",
-         "Lead Project Engineer – Pre-FEED / FEL, 19 years in upstream oil & gas: Pre-FEED, brownfield and CAPEX optimisation. Middle East, Africa, Southeast Asia."),
+         "Lead Project Engineer, Concept Engineer and Study Manager for Pre-FEED / FEL. 19 years in upstream oil & gas: brownfield and CAPEX optimisation."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
               "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
@@ -624,6 +626,7 @@ featured = [CASES[0], CASES[1], CASES[3]]
 page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
      f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions<br><em>before FEED.</em></h1>
 <p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development, with hands-on operations and maintenance background.</p>
+<div class="roles"><span>Roles I take on</span><ul>{"".join(f"<li>{r}</li>" for r in ROLES)}</ul></div>
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available immediately · Middle East, Africa, Southeast Asia</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary" href="/advisory/">Advisory</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="hero-side"><img class="portrait" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"><div class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></div></aside></div></section>
