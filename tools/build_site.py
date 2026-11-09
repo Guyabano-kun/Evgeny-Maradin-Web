@@ -44,7 +44,7 @@ def rec_card(r, full=False):
             f'<a href="{r["u"]}" target="_blank" rel="noopener">{r["n"]} ↗</a><span>{r["h"]}</span><span>{r["r"]}</span></figcaption></figure>')
 
 PULSE = "https://www.linkedin.com/pulse/"
-EMAIL = "enmaradin@gmail.com"
+EMAIL = "hello@evgenymaradin.com"
 UPDATED = "November 2026"
 SITE = "https://evgenymaradin.com"
 PAGES = []  # paths written by page(), for sitemap.xml
