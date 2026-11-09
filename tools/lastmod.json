@@ -1,7 +1,7 @@
 {
  "https://evgenymaradin.com/": {
-  "sha1": "90c52d698aa387dfc1dc293217cd3e1cc53fc78a",
-  "date": "2026-11-03"
+  "sha1": "27dfcb515df217464f364c3f38e042f2fc86c000",
+  "date": "2026-11-09"
  },
  "https://evgenymaradin.com/about/": {
   "sha1": "089096a8a09bd2ab518dcb20c51da10f0c14ef16",
@@ -56,16 +56,20 @@
   "date": "2026-11-03"
  },
  "https://evgenymaradin.com/insights/": {
-  "sha1": "86ab5853c04d144e052ed7c6fe8ace18b3153801",
-  "date": "2026-11-03"
+  "sha1": "637f56ae84ca25287c201a08289db1151319a26b",
+  "date": "2026-11-09"
  },
  "https://evgenymaradin.com/insights/adnoc-tender-wave/": {
   "sha1": "ca46a9de6f58740529f2bda1367458cb0658d624",
   "date": "2026-11-05"
  },
  "https://evgenymaradin.com/insights/digital-oilfield/": {
-  "sha1": "a81c999e0d9735cbc1ae8424908f317d1faa8eeb",
-  "date": "2026-11-03"
+  "sha1": "51bedf9c52a3b77bf30d8ce9ac9e7233a548ad98",
+  "date": "2026-11-09"
+ },
+ "https://evgenymaradin.com/insights/eridu/": {
+  "sha1": "20a76c466a82234b647b8ff9fd4d28598ff2e2b6",
+  "date": "2026-11-09"
  },
  "https://evgenymaradin.com/insights/hormuz/": {
   "sha1": "a842efa3f9cc2e925b280571b3bf22ce05bcc8aa",
@@ -104,8 +108,8 @@
   "date": "2026-11-03"
  },
  "https://evgenymaradin.com/insights/me-brownfields/": {
-  "sha1": "7447f3b44e26393f4de637ada00529ae12f09994",
-  "date": "2026-11-05"
+  "sha1": "f77c3a8518d2eb2528d59ec724f86094c416f118",
+  "date": "2026-11-09"
  },
  "https://evgenymaradin.com/insights/models/eor-constraint-migration/": {
   "sha1": "24f995acd73b0258dbcb6df3a507939620ccbc71",

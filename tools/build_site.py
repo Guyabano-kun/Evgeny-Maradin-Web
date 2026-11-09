@@ -250,6 +250,8 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
 # ---------------- INSIGHTS ----------------
 import math, datetime
 ARTICLES = {
+ "eridu": dict(t="Chevron Is Getting West Qurna-2. Iraq's Biggest Discovery in 20 Years Is Not in the Deal.", tag="Iraq · Eridu", d="9 Nov 2026", w=1109, u="",
+   s="Eridu holds 12.9 billion barrels, yet it is not in the Chevron deal. The binding constraint has moved from the reservoir to execution, counterparty, fiscal terms and export."),
  "adnoc-tender-wave": dict(t="A Tender Wave Is Only as Fast as Its Slowest FEL", tag="UAE · ADNOC", d="5 Nov 2026", w=1507, u="",
    s="ADNOC has set its 2027 tender list and is cutting tender cycles by 40%. How mature each scope is remains undisclosed, and that decides whether the schedule holds."),
  "kurdamir": dict(t="Kurdamir, a concept check before FEED", tag="Kurdistan · Kurdamir", d="26 Oct 2026", w=1836, u=PULSE+"linkedin-article-kurdamir-concept-check-before-feed-evgeny-maradin-x2eqc/",
@@ -283,7 +285,7 @@ ARTICLES = {
  "digital-oilfield": dict(t="Oilfield Development System: Bridging Engineering and Digital Intelligence", tag="Digital", d="21 Oct 2025", w=806, u=PULSE+"oilfield-development-system-bridging-engineering-digital-maradin-isame/",
    s="Lessons from building a digital oilfield MVP that linked SmartField data, PETEX GAP models and GIS with field systems."),
 }
-ORDER = ["adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
+ORDER = ["eridu","adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="production-profile", t="Production profile as a shopping cart", u="/models/production-profile/",
@@ -332,6 +334,8 @@ for _k in ARTICLES:
 _IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
 # search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
 ART_SEO = {
+    "eridu": ("Eridu: Not in Chevron's West Qurna-2 Deal",
+              "Chevron is getting West Qurna-2. Eridu, 12.9 billion barrels from the same seller, is not in the deal. Why delivery certainty, not resource, sets the price."),
     "adnoc-tender-wave": ("ADNOC 2027 Tenders: Scope Maturity vs Schedule",
                           "ADNOC's 2027 tender list is public and tender cycles are 40% shorter. Scope maturity is not public. A Hail and Ghasha precedent and a five-question RFP test."),
     "kurdamir": ("Kurdamir: A Concept Check Before FEED",
