@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAM Across FEL Demonstrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a facility schematic with grouped KPIs on top (what the decision is),
+   then one tab per FEL stage, each split into Key results, Inputs, Robustness checks and Detail. */
+:root {
+  --bg: #f3f5f6; --panel: #ffffff; --ink: #18242b; --muted: #5b6b74; --line: #d5dde1;
+  --accent: #0d6e7a; --accent-soft: #d7ecee; --amber: #b86e00;
+  --good: #2f7d32; --warn: #b86e00; --bad: #b3261e;
+  --run: #2f8f4e; --run-soft: #dcefe2; --stby: #2f6fb3; --stby-soft: #dce8f6; --off: #8d989e; --off-soft: #eceff0;
+  --s1: #0d6e7a; --s2: #6b8fa3; --s3: #c9a227; --s4: #8a5a9e; --s5: #c0612b; --s6: #3f8f3a; --s7: #a0446c; --s8: #4b5bb0;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171b; --panel: #162229; --ink: #e3ebee; --muted: #93a6ae; --line: #2a3a42;
+    --accent: #4fb8c4; --accent-soft: #173a40; --amber: #e0a13a; --good: #6cc070; --warn: #e0a13a; --bad: #ef7b72;
+    --run: #5cc47e; --run-soft: #17372a; --stby: #6aa8e8; --stby-soft: #172c44; --off: #6f7c83; --off-soft: #222e34;
+    --s1: #4fb8c4; --s2: #8fb2c4; --s3: #e0c04a; --s4: #c08ad6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171b; --panel: #162229; --ink: #e3ebee; --muted: #93a6ae; --line: #2a3a42;
+  --accent: #4fb8c4; --accent-soft: #173a40; --amber: #e0a13a; --good: #6cc070; --warn: #e0a13a; --bad: #ef7b72;
+  --run: #5cc47e; --run-soft: #17372a; --stby: #6aa8e8; --stby-soft: #172c44; --off: #6f7c83; --off-soft: #222e34;
+  --s1: #4fb8c4; --s2: #8fb2c4; --s3: #e0c04a; --s4: #c08ad6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+.wrap { max-width: 1260px; margin: 0 auto; padding: 20px 20px 60px; display: grid; gap: 18px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: .01em; }
+h1 { font-size: 30px; line-height: 1.15; }
+h2 { font-size: 21px; }
+h3 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; }
+.muted { color: var(--muted); }
+td.n, .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.tagline { color: var(--muted); }
+.disclaimer { font-size: 13px; color: var(--muted); border-left: 3px solid var(--amber); padding: 4px 10px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.grid-inputs { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px 14px; }
+label.f { display: grid; gap: 3px; font-size: 12.5px; color: var(--muted); }
+label.f input, label.f select { font: 14px var(--mono); padding: 6px 8px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); width: 100%; }
+input:focus-visible, select:focus-visible, button:focus-visible, .tab:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+details.basis > summary { cursor: pointer; font: 600 16px var(--display); list-style: none; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+details.basis > summary::before { content: "+"; font-family: var(--mono); color: var(--accent); }
+details.basis[open] > summary::before { content: "-"; }
+details.basis > summary span { font: 400 13px var(--body); color: var(--muted); }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid var(--line); }
+.tab { font: 600 15px var(--display); background: none; border: 0; padding: 10px 14px; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; text-align: left; }
+.tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.tab small { display: block; font: 400 11.5px var(--body); color: var(--muted); }
+.view { display: none; gap: 14px; }
+.view.on { display: grid; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+.tblwrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 12px var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+td.n, th.n { text-align: right; }
+tr.focus td { background: var(--accent-soft); }
+.chip { display: inline-block; font: 600 11.5px var(--body); padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.chip.good { color: var(--good); } .chip.warn { color: var(--warn); } .chip.bad { color: var(--bad); } .chip.neu { color: var(--muted); }
+.note { font-size: 13px; color: var(--muted); }
+ul.tight { margin: 0; padding-left: 18px; display: grid; gap: 3px; }
+button.run { font: 600 14px var(--display); background: var(--accent); color: var(--panel); border: 0; border-radius: 5px; padding: 9px 16px; cursor: pointer; justify-self: start; }
+button.run:disabled { opacity: .6; cursor: wait; }
+svg text { fill: var(--muted); font: 11.5px var(--body); }
+svg .lbl { fill: var(--ink); font-weight: 500; }
+svg .grid { stroke: var(--line); stroke-width: 1; }
+.verdict { border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--accent-soft); border-radius: 0 6px 6px 0; font-size: 14px; }
+.formula { font-family: var(--mono); font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 8px 10px; display: grid; gap: 4px; }
+.claim { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 700px) { .claim { grid-template-columns: 1fr; } }
+.claim div { border-radius: 6px; padding: 10px 12px; font-size: 13.5px; }
+.claim .can { border: 1px solid var(--good); } .claim .cannot { border: 1px solid var(--bad); }
+.claim b { display: block; font-family: var(--display); margin-bottom: 4px; }
+
+/* overview */
+.ov-controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; }
+.ov-controls label.f { min-width: 190px; }
+.ov-controls .year { flex: 1 1 280px; }
+.ov-controls input[type="range"] { width: 100%; accent-color: var(--accent); }
+.yearval { font: 600 15px var(--mono); color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; border: 2px solid; }
+.kgroups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.kg { border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 8px; background: var(--bg); align-content: start; }
+.kg.decision { border: 2px solid var(--accent); background: var(--panel); }
+.kg header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.kg header b { font: 600 15px var(--display); }
+.imp { font: 600 11px var(--body); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.imp.p1 { background: var(--accent); color: var(--panel); }
+.imp.p2 { background: var(--accent-soft); color: var(--accent); }
+.imp.p3 { background: var(--off-soft); color: var(--muted); }
+.kpi { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; align-items: baseline; }
+.kpi span { font-size: 13px; }
+.kpi b { font: 600 17px var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.kpi.big b { font-size: 26px; }
+.kpi small { grid-column: 1 / -1; font-size: 11.5px; color: var(--muted); }
+
+/* section tiers inside tabs */
+.tier { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+.tier .no { font: 700 13px var(--mono); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--panel); flex: none; }
+.tier.inputs .no { background: var(--off); }
+.tier.checks .no { background: var(--amber); }
+.tier.detail .no { background: var(--s2); }
+.tier h2 { font-size: 18px; }
+.tier p { font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .view.on { animation: fade .18s ease-out; } }
+.modebar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.mbtn { font: 600 14px var(--display); border: 1px solid var(--accent); background: var(--panel); color: var(--accent); padding: 7px 16px; cursor: pointer; }
+.mbtn:first-of-type { border-radius: 5px 0 0 5px; } .mbtn:last-of-type { border-radius: 0 5px 5px 0; margin-left: -11px; }
+.mbtn[aria-pressed="true"] { background: var(--accent); color: var(--panel); }
+body.base .adv { display: none !important; }
+body:not(.base) .base-only { display: none !important; }
+body.base .two.mixed { grid-template-columns: 1fr; }
+ol.findings { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+ol.findings li { max-width: 92ch; }
+ol.findings b { font-family: var(--display); font-size: 15.5px; }
+@keyframes fade { from { opacity: .4; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:grid;gap:8px">
+    <h1>RAM Across FEL: how train count, spares and phasing change a concept decision</h1>
+    <p class="tagline">One illustrative onshore gas development, 500 MMscfd export compression, eight train layouts, answered at the depth each FEL stage can honestly support. Start in Base; switch to Advanced for every input and check.</p>
+    <div class="modebar"><div role="group" aria-label="View mode" style="display:flex"><button type="button" class="mbtn" data-mode="base">Base</button><button type="button" class="mbtn" data-mode="adv">Advanced</button></div><span class="note" id="modenote"></span></div>
+    <p class="disclaimer">Illustrative inputs only. Failure, repair and event figures are round screening values chosen to show the method, not OREDA, vendor or risk-study data.</p>
+  </header>
+
+  <section class="panel base-only" aria-labelledby="q-h">
+    <h2 id="q-h">Three things to see</h2>
+    <ol class="findings" id="findings"></ol>
+    <h3>Change the case</h3>
+    <div class="grid-inputs" id="quick"></div>
+    <p class="note">Base view keeps one question: which train layout, and does the answer hold? Advanced view adds every input, the FEL 1 screen, five more robustness checks (sensitivity, major events, phasing, spares, design margin), the FEED simulation and the formulas.</p>
+  </section>
+
+  <!-- FACILITY AT A GLANCE -->
+  <section class="panel" aria-labelledby="ov-h">
+    <h2 id="ov-h">Facility at a glance</h2>
+    <div class="ov-controls">
+      <label class="f">Configuration shown
+        <select id="focus"></select>
+      </label>
+      <label class="f year">Field year: <span class="yearval" id="yearval">1</span>
+        <input type="range" id="year" min="1" max="20" value="1" step="1">
+      </label>
+      <label class="f adv">Last train enters service after (years)
+        <input type="number" id="in-phaseDelay" value="0" min="0" step="1">
+      </label>
+    </div>
+    <div class="legend"><span><i style="background:var(--run-soft);border-color:var(--run)"></i>Running</span><span><i style="background:var(--stby-soft);border-color:var(--stby)"></i>Built, in reserve</span><span><i style="background:var(--off-soft);border-color:var(--off);border-style:dashed"></i>Not built yet (later phase)</span></div>
+    <div id="schematic"></div>
+    <div class="kgroups" id="kpis"></div>
+    <p class="note adv">How to read the groups: <b>Decision</b> is what an investment board compares between options. <b>Production</b> is what operations plan around in the selected year. <b>Investment</b> and <b>Exposure</b> explain where the decision number comes from. Everything in the tabs below either feeds these numbers or tests whether the decision holds.</p>
+  </section>
+
+  <details class="basis panel adv">
+    <summary>Project basis inputs <span id="basis-sum"></span></summary>
+    <div class="grid-inputs" id="basis"></div>
+    <p class="note">Compression CAPEX per train follows the six-tenths rule: train cost = CAPEX(100%) x size^0.6. A train built later is counted at its present value. Deferment is valued as revenue lost in the year it occurs; volume recovered after field life can be credited with the last input.</p>
+    <p class="note"><b>Design margin over plateau.</b> No API, ISO or NORSOK standard fixes one plant-level margin over plateau. NORSOK P-100 (cl. 4.2.4) makes the design margin and turndown the project owner's responsibility, and ISO 20815 with ISO 15663 expect the choice to be justified by production assurance and lifecycle cost. Equipment standards give the anchors: NORSOK P-002 sets at least 10% over design rates for scrubbers (P-100 cl. 5.3.2: 20% for process-control fluctuations); API 675 rates metering pumps at no less than 110% of maximum specified flow; API 617 sizes compressor drivers at least 10% above maximum absorbed power; API 610 leaves the rated-to-normal flow margin to the purchaser. Process licensors commonly add 10% on flow, and stacked margins are a known cause of oversized compressors (Kurz, Thorp, Zentmyer; Solar Turbines and Saudi Aramco). Default here: 10%.</p>
+    <p class="note"><b>Train count and size.</b> NORSOK P-100 classes each system by the consequence of its failure for deliveries: A, shutdown or reduced production for more than 2 hours; B, less than 2 hours; C, no effect. Gas compression is class A, "vital for production". For some class A services, such as export pumps, the standard requires a spare unit or spare capacity; for compression it leaves the sparing to the project and does not choose between 2 x 100%, 3 x 50% or 2 x 60%: that choice is the regularity and lifecycle-cost optimisation this page runs (ISO 20815, ISO 15663). The configuration table shows which layouts give full N+1 at the chosen margin and the train size that gives full N+1.</p>
+  </details>
+
+  <details class="basis panel adv" id="cfgbox">
+    <summary>Configurations compared <span id="cfg-sum"></span></summary>
+    <p class="note">Up to eight train layouts. Train size is a share of the plateau rate before design margin; installed size = size x (1 + design margin). Set the number of trains to 0 to leave a slot out. Layouts whose installed capacity exceeds plateau show what extra or larger trains buy and what they cost. N+1 test: with one train out, the remaining trains still carry plateau rate.</p>
+    <div class="tblwrap"><table id="cfgtbl"></table></div>
+  </details>
+
+  <nav class="tabs adv" role="tablist" aria-label="FEL stage">
+    <button class="tab" role="tab" id="t-fel1" data-v="fel1">FEL 1 Concept<small>Screen the architecture</small></button>
+    <button class="tab" role="tab" id="t-fel2" data-v="fel2">FEL 2 Pre-FEED<small>Price the options and test the answer</small></button>
+    <button class="tab" role="tab" id="t-feed" data-v="feed">FEED<small>Simulate the year you live through</small></button>
+    <button class="tab" role="tab" id="t-maturity" data-v="maturity">Maturity<small>What each stage can claim</small></button>
+  </nav>
+
+  <!-- FEL 1 -->
+  <section class="view" id="v-fel1" role="tabpanel" aria-labelledby="t-fel1">
+    <div class="tier"><div class="no">1</div><div><h2>Key results</h2><p>Which options go forward, and which structural weaknesses they carry.</p></div></div>
+    <div class="panel">
+      <div class="verdict" id="s1verdict"></div>
+      <div class="tblwrap"><table id="s1tbl"></table></div>
+    </div>
+    <div class="tier inputs"><div class="no">2</div><div><h2>Inputs</h2><p>Benchmark ranges only. No vendor, no equipment list.</p></div></div>
+    <div class="panel"><div class="grid-inputs" id="s1in"></div></div>
+    <div class="tier checks"><div class="no">3</div><div><h2>Robustness check</h2><p>Does the screening survive the full range of benchmark and cost uncertainty?</p></div></div>
+    <div class="panel">
+      <h3>Lifecycle cost range per option, compression scope plus deferment (USD M, PV)</h3>
+      <div id="s1chart"></div>
+      <p class="note">Options share one benchmark set and one estimating basis, so their errors move together. An option is dropped only if another is cheaper in all four corners (best and worst availability, low and high CAPEX accuracy). The test prices cost and deferment only: check what a dropped option offers that it does not price, such as a lower turndown floor.</p>
+    </div>
+    <div class="claim">
+      <div class="can"><b>FEL 1 can claim</b><ul class="tight"><li>Which options are dominated and can be dropped</li><li>Where single points of failure sit in the architecture</li><li>How much capacity survives the loss of one train area</li><li>When field decline reaches each option's turndown floor</li></ul></div>
+      <div class="cannot"><b>FEL 1 must not claim</b><ul class="tight"><li>A production efficiency to one decimal place</li><li>A ranking between options whose ranges overlap in every corner</li><li>A sparing philosophy for individual equipment</li><li>A deferment figure for the investment case</li></ul></div>
+    </div>
+  </section>
+
+  <!-- FEL 2 -->
+  <section class="view" id="v-fel2" role="tabpanel" aria-labelledby="t-fel2">
+    <div class="tier"><div class="no">1</div><div><h2>Key results</h2><p>Lifecycle cost of each carried option at base inputs, and what drives the difference.</p></div></div>
+    <div class="panel">
+      <div class="verdict" id="s2verdict"></div>
+      <div class="tblwrap adv"><table id="s2tbl"></table></div>
+    </div>
+    <div class="two mixed">
+      <div class="panel"><h3>What more capacity buys</h3><div id="s2scatter"></div><p class="note" id="s2scnote"></p></div>
+      <div class="panel adv"><h3>Lifecycle cost build-up (USD M, PV)</h3><div id="s2stack"></div></div>
+    </div>
+
+    <div class="tier inputs adv"><div class="no">2</div><div><h2>Inputs</h2><p>Generic failure data per block, plus the interfaces that operations own.</p></div></div>
+    <div class="panel adv">
+      <div class="tblwrap"><table id="s2blocks"></table></div>
+      <div class="grid-inputs" id="s2in"></div>
+    </div>
+
+    <div class="tier checks"><div class="no">3</div><div><h2>Robustness checks</h2><p class="base-only">Does the winner survive a different gas price or a CAPEX overrun?</p><p class="adv">Each panel asks one question: does the ranking above still hold if this changes?</p></div></div>
+    <div class="panel">
+      <h3>Check A. Commercial and cost uncertainty: who wins where</h3>
+      <div class="tblwrap"><table id="s2map"></table></div>
+      <p class="note" id="s2mapnote"></p>
+    </div>
+    <div class="two adv">
+      <div class="panel">
+        <h3>Check B. Which inputs move the focus option's deferment most</h3>
+        <div id="s2tor"></div>
+        <p class="note">Each input set to x0.5 and x1.5 of its base value, one at a time. Inputs at the top deserve the most effort in FEL 2 data gathering.</p>
+      </div>
+      <div class="panel">
+        <h3>Check C. Major event: loss of one train area for months</h3>
+        <p class="note">Random failures last hours. Fire, explosion or external damage lasts months and takes out an area. The event removes one train area (the whole plant if there is one train). Repair cost is excluded. An event reaching several trains or a shared utility is worse than shown.</p>
+        <div class="grid-inputs" id="evin"></div>
+        <div class="tblwrap"><table id="evtbl"></table></div>
+      </div>
+    </div>
+    <div class="two adv">
+      <div class="panel">
+        <h3>Check D. Phasing: build the last train later</h3>
+        <p class="note">Change the deferral in Facility at a glance. Phasing pays when the deferred train adds capacity the field may not need yet; it costs when the deferred train is the N+1 reserve.</p>
+        <div class="tblwrap"><table id="phtbl"></table></div>
+        <p class="note" id="phnote"></p>
+      </div>
+      <div class="panel">
+        <h3>Check E. Spares, focus option</h3>
+        <div class="grid-inputs" id="spin"></div>
+        <div class="tblwrap"><table id="sptbl"></table></div>
+      </div>
+    </div>
+
+    <div class="panel adv">
+      <h3>Check F. Design margin over plateau</h3>
+      <p class="note">Lifecycle cost of each carried option at three design margins. Margin makes every multi-train layout partly self-sparing: with one train out, the others carry more than their nominal share. For a single train it buys only catch-up capacity, which this model does not credit.</p>
+      <div class="tblwrap"><table id="mgtbl"></table></div>
+    </div>
+
+    <div class="tier detail adv"><div class="no">4</div><div><h2>Detail</h2><p>How the focus option's numbers are built.</p></div></div>
+    <div class="two adv">
+      <div class="panel"><h3>Demand and expected delivery over field life (MMscfd)</h3><div id="s2prof"></div></div>
+      <div class="panel"><h3>Plateau availability build-up</h3><div id="s2avail"></div></div>
+    </div>
+    <div class="panel adv">
+      <h3>Base relations, one compression train</h3>
+      <div class="formula" id="formulas"></div>
+      <p class="note">R(t) = e^(-t/MTBF): chance of running t hours without failure. A = MTBF / (MTBF + MTTR): share of time the train can run. M(t) = 1 - e^(-t/MTTR): chance a repair is finished within t hours.</p>
+    </div>
+  </section>
+
+  <!-- FEED -->
+  <section class="view" id="v-feed" role="tabpanel" aria-labelledby="t-feed">
+    <div class="tier"><div class="no">1</div><div><h2>Key results</h2><p>The range of plateau years the focus option will actually deliver.</p></div></div>
+    <div class="panel">
+      <div class="kgroups" id="s3kpi"></div>
+      <div class="verdict" id="s3read"></div>
+    </div>
+    <div class="tier inputs"><div class="no">2</div><div><h2>Inputs</h2><p>Maintenance strategy: crews, repair scatter and spares logistics.</p></div></div>
+    <div class="panel">
+      <div class="grid-inputs" id="s3in"></div>
+      <button class="run" id="runmc" type="button">Run simulation for the focus option</button>
+    </div>
+    <div class="tier detail"><div class="no">3</div><div><h2>Detail</h2><p>Distribution of simulated plateau years.</p></div></div>
+    <div class="panel"><div id="s3hist"></div></div>
+  </section>
+
+  <!-- MATURITY -->
+  <section class="view" id="v-maturity" role="tabpanel" aria-labelledby="t-maturity">
+    <div class="panel">
+      <h2>The same question at three depths</h2>
+      <p>Plateau production efficiency of the focus option as each stage would report it. FEL 1 and FEL 2 ranges describe what is not yet known about the inputs. The FEED band describes how much one operating year differs from the next.</p>
+      <div id="funnel"></div>
+    </div>
+    <div class="panel">
+      <h3>RAM deliverables by stage</h3>
+      <div class="tblwrap"><table id="mattbl"></table></div>
+    </div>
+  </section>
+  <p class="note">Method follows ISO 20815 (production assurance and reliability management), ISO 15663 (life cycle costing) and the NORSOK P-100 / P-002 system sparing classes; block relations as in IEC 61078 and IEC 61703. All calculations run in this page.</p>
+</div>
+
+<script>
+// RAM Demonstrator engine - pure functions, no DOM.
+// Single source of truth for FEL1 screening, FEL2 analytical RAM and FEED Monte Carlo.
+(function (root) {
+  "use strict";
+  const HRS = 8760;
+
+  const R = (t, mtbf) => Math.exp(-t / mtbf);            // reliability over t hours
+  const A = (mtbf, mttr) => mtbf / (mtbf + mttr);        // inherent availability
+  const M = (t, mttr) => 1 - Math.exp(-t / mttr);        // probability repaired within t hours
+
+  function binom(n, k) { let r = 1; for (let i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+  function trainDist(n, a) {
+    const p = [];
+    for (let k = 0; k <= n; k++) p.push(binom(n, k) * Math.pow(a, k) * Math.pow(1 - a, n - k));
+    return p;
+  }
+  // Expected delivered fraction of design rate, for demand fraction f (0..1)
+  function expectedDelivered(n, s, aTrain, f) {
+    const p = trainDist(n, aTrain);
+    let e = 0;
+    for (let k = 0; k <= n; k++) e += p[k] * Math.min(f, k * s, 1);
+    return e;
+  }
+
+  function profile(L, plateau, decline) {
+    const f = [];
+    for (let t = 1; t <= L; t++) f.push(t <= plateau ? 1 : Math.exp(-decline * (t - plateau)));
+    return f;
+  }
+
+  function revPerMMscf(e) { return 1000 * e.gasPrice + e.condYield * e.condPrice; } // USD per MMscf
+
+  function compCapex(opt, e) { return e.capex100 * opt.n * Math.pow(opt.s, 0.6); }    // USD M
+  function compOpex(opt, e) { return e.opex100 * opt.n * Math.pow(opt.s, 0.6); }      // USD M/yr
+
+  function pv(arr, r) { let s = 0; arr.forEach((x, i) => { s += x / Math.pow(1 + r, i + 1); }); return s; }
+
+  // ---------- FEL2 analytical model ----------
+  // p: reliability inputs; returns availability build-up
+  function analytic(opt, p) {
+    const n = opt.n;
+    const beta = n > 1 ? p.beta : 0;
+    const aTrainInd = A(p.trainMTBF / (1 - beta), p.trainMTTR) * (1 - p.trainPM / 365);
+    const aCC = n > 1 && beta > 0 ? A(p.trainMTBF / beta, p.trainMTTR) : 1;
+    const red = (a, spared) => spared ? 1 - Math.pow(1 - a, 2) : a;
+    const aInlet = A(p.inletMTBF, p.inletMTTR);
+    const aExport = red(A(p.exportMTBF, p.exportMTTR), p.exportSpare);
+    const aPower = red(A(p.powerMTBF, p.powerMTTR), p.powerSpare);
+    const aPipe = A(p.pipeMTBF, p.pipeMTTR);
+    const aHost = 1 - p.hostDays / 365;
+    // Whole-plant stops per year: each one costs restartHrs of lost production after the cause is cleared.
+    const lamT = 1 / p.trainMTBF;
+    const lamSeries = (mtbf, mttr, spared) => spared ? 2 * (1 / mtbf) * (1 - A(mtbf, mttr)) : 1 / mtbf;
+    let stopsHr = lamSeries(p.inletMTBF, p.inletMTTR, false) + lamSeries(p.exportMTBF, p.exportMTTR, p.exportSpare) +
+                  lamSeries(p.powerMTBF, p.powerMTTR, p.powerSpare) + lamSeries(p.pipeMTBF, p.pipeMTTR, false);
+    if (n === 1) stopsHr += lamT; // any train trip stops the plant
+    else {
+      stopsHr += beta * lamT;      // common-cause trip of all trains
+      const aI = A(p.trainMTBF / (1 - beta), p.trainMTTR);
+      stopsHr += n * (1 - beta) * lamT * Math.pow(1 - aI, n - 1); // last running train trips
+    }
+    const stopsYr = stopsHr * 8760 + (p.hostDays > 0 ? 1 : 0) + (n === 1 && p.trainPM > 0 ? 1 : 0);
+    const aRestart = Math.max(0, 1 - stopsYr * (p.restartHrs || 0) / 8760);
+    const aSeries = aInlet * aExport * aPower * aPipe * aHost * aCC * aRestart;
+    return { aTrainInd, aCC, aInlet, aExport, aPower, aPipe, aHost, aRestart, stopsYr, aSeries };
+  }
+
+  // Installed train size as a fraction of plateau rate: nominal size x (1 + design margin).
+  const eff = (opt, e) => Object.assign({}, opt, { s: opt.s * (1 + (e.margin || 0)) });
+  function evaluate(opt0, p, e) {
+    const opt = eff(opt0, e);
+    // Phasing: last train enters service after p.phaseDelay years (0 = built at start).
+    const k = opt.n > 1 ? Math.max(0, Math.round(p.phaseDelay || 0)) : 0;
+    const red = { id: opt.id, label: opt.label, n: opt.n - 1, s: opt.s };
+    const av = analytic(opt, p);
+    const avRed = k > 0 ? analytic(red, p) : av;
+    const f = profile(e.life, e.plateau, e.decline);
+    const rev = revPerMMscf(e);
+    const nAt = t => (t <= k ? opt.n - 1 : opt.n);          // trains built in year t (1-based)
+    const delivered = f.map((ft, i) => {
+      const t = i + 1, a = t <= k ? avRed : av;
+      return a.aSeries * expectedDelivered(nAt(t), opt.s, a.aTrainInd, ft);
+    });
+    const lossMMscf = f.map((ft, i) => (ft - delivered[i]) * e.Q * 365);
+    const lossUSDm = lossMMscf.map(x => x * rev / 1e6);
+    // Major event: loss of one train area (whole plant if single train) for evtMonths, evtFreq per year.
+    const evtP = (p.evtFreq || 0) * (p.evtMonths || 0) / 12;
+    const surviveAt = t => { const m = nAt(t); return m > 1 ? Math.min(1, (m - 1) * opt.s) : 0; };
+    const evtMMscf = f.map((ft, i) => evtP * Math.max(0, ft - surviveAt(i + 1)) * e.Q * 365);
+    const evtUSDm = evtMMscf.map(x => x * rev / 1e6);
+    const pvEvent = pv(evtUSDm, e.r);
+    const evtRateLost = 1 - surviveAt(e.life);
+    if (p.evtInclude) for (let i = 0; i < lossUSDm.length; i++) { lossUSDm[i] += evtUSDm[i]; lossMMscf[i] += evtMMscf[i]; }
+    const pvGross = pv(lossUSDm, e.r);
+    const rec = e.recovery || 0;  // share of deferred volume produced later, in the year after field life
+    const pvLoss = pvGross - rec * lossUSDm.reduce((a, b) => a + b, 0) / Math.pow(1 + e.r, e.life + 1);
+    const trainCost = e.capex100 * Math.pow(opt.s, 0.6), trainOpex = e.opex100 * Math.pow(opt.s, 0.6);
+    const capex = trainCost * (opt.n - (k > 0 ? 1 : 0)) + (k > 0 ? trainCost / Math.pow(1 + e.r, k) : 0); // PV of CAPEX
+    const pvOpex = pv(f.map((_, i) => trainOpex * nAt(i + 1)), e.r);
+    const pePlateau = delivered[0] / f[0];
+    const peLife = delivered.reduce((a, b) => a + b, 0) / f.reduce((a, b) => a + b, 0);
+    const minStable = opt.s * e.minLoad;              // lowest stable plant rate, fraction of design
+    let turndownYear = null;
+    for (let i = 0; i < f.length; i++) if (f[i] < minStable) { turndownYear = i + 1; break; }
+    return { opt: opt0, optEff: opt, installed: opt.n * opt.s, n1Spare: (opt.n - 1) * opt.s - 1, av, avRed, phaseDelay: k, nAt, f, delivered, lossMMscf, lossUSDm, evtUSDm, pvGross, pvLoss, pvEvent, evtRateLost, capex, pvOpex,
+             total: capex + pvOpex + pvLoss, pePlateau, peLife, minStable, turndownYear, trainCost };
+  }
+
+  // ---------- FEL1 screening with ranges ----------
+  // Train and balance-of-plant availability given as low/high benchmark ranges.
+  function screen(opt0, s1, e) {
+    const opt = eff(opt0, e);
+    const run = (aT, aB) => {
+      const f = profile(e.life, e.plateau, e.decline);
+      const rev = revPerMMscf(e);
+      const cc = opt.n > 1 ? (1 - s1.ccPenalty) : 1;
+      const del = f.map(ft => aB * cc * expectedDelivered(opt.n, opt.s, aT, ft));
+      const loss = f.map((ft, i) => (ft - del[i]) * e.Q * 365 * rev / 1e6);
+      const tot = loss.reduce((a, b) => a + b, 0);
+      return { pe: del[0], pvLoss: pv(loss, e.r) - (e.recovery || 0) * tot / Math.pow(1 + e.r, e.life + 1) };
+    };
+    const best = run(s1.aTrainHi, s1.aBopHi);
+    const worst = run(s1.aTrainLo, s1.aBopLo);
+    const capex = compCapex(opt, e);
+    const pvOpex = pv(profile(e.life, e.plateau, e.decline).map(() => compOpex(opt, e)), e.r);
+    return {
+      opt: opt0, installed: opt.n * opt.s,
+      peLo: worst.pe, peHi: best.pe,
+      lossLo: best.pvLoss, lossHi: worst.pvLoss,
+      capexLo: capex * (1 + s1.capexLo), capexHi: capex * (1 + s1.capexHi),
+      totalLo: capex * (1 + s1.capexLo) + pvOpex + best.pvLoss,
+      totalHi: capex * (1 + s1.capexHi) + pvOpex + worst.pvLoss,
+      worstCaseLoss: opt.n === 1 ? 1 : Math.max(0, 1 - (opt.n - 1) * opt.s), // rate lost on one train trip
+      spof: opt.n === 1,
+      capex0: capex, pvOpex, lossBest: best.pvLoss, lossWorst: worst.pvLoss, s1,
+      tieIns: opt.n,
+      minStable: opt.s * e.minLoad
+    };
+  }
+  // Paired dominance screen. Benchmark data and estimating basis are shared by all options,
+  // so their errors are correlated: compare options corner by corner (same availability case,
+  // same CAPEX accuracy factor). An option is screened out if another option is cheaper in every corner.
+  function corners(r) {
+    return [[r.capex0 * (1 + r.s1.capexLo), r.lossBest], [r.capex0 * (1 + r.s1.capexLo), r.lossWorst],
+            [r.capex0 * (1 + r.s1.capexHi), r.lossBest], [r.capex0 * (1 + r.s1.capexHi), r.lossWorst]]
+      .map(c => c[0] + r.pvOpex + c[1]);
+  }
+  function dominance(rows) {
+    const cs = rows.map(corners);
+    return rows.map((r, i) => {
+      const j = rows.findIndex((o, k) => k !== i && cs[k].every((v, c) => v < cs[i][c]));
+      return Object.assign({}, r, { corners: cs[i], dominatedBy: j >= 0 ? rows[j].opt.id : null });
+    });
+  }
+
+  // ---------- FEED Monte Carlo (hourly, plateau year, demand = design) ----------
+  function rng(seed) { let x = seed >>> 0 || 1; return () => { x ^= x << 13; x >>>= 0; x ^= x >> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; }; }
+  function lognorm(rand, mean, cv) {
+    if (cv <= 0) return mean;
+    const s2 = Math.log(1 + cv * cv), mu = Math.log(mean) - s2 / 2;
+    let u = rand(), v = rand(); if (u < 1e-12) u = 1e-12;
+    const z = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    return Math.exp(mu + Math.sqrt(s2) * z);
+  }
+
+  function simulateYear(opt, p, m, rand) {
+    const n = opt.n;
+    const beta = n > 1 ? p.beta : 0;
+    // component list: kind, rate per hour, mttr, needsSpareProb
+    const comps = [];
+    for (let i = 0; i < n; i++) comps.push({ k: "train", lam: (1 - beta) / p.trainMTBF, mttr: p.trainMTTR, sp: m.spareProb });
+    comps.push({ k: "inlet", lam: 1 / p.inletMTBF, mttr: p.inletMTTR, sp: 0 });
+    const nExp = p.exportSpare ? 2 : 1, nPow = p.powerSpare ? 2 : 1;
+    for (let i = 0; i < nExp; i++) comps.push({ k: "export", lam: 1 / p.exportMTBF, mttr: p.exportMTTR, sp: m.spareProb });
+    for (let i = 0; i < nPow; i++) comps.push({ k: "power", lam: 1 / p.powerMTBF, mttr: p.powerMTTR, sp: 0 });
+    comps.push({ k: "pipe", lam: 1 / p.pipeMTBF, mttr: p.pipeMTTR, sp: 0 });
+    comps.forEach(c => { c.st = 0; c.rem = 0; }); // st 0 up, 1 queued, 2 in repair, 3 planned maint
+    const queue = [];
+    let ccRem = 0;
+    const lamCC = n > 1 ? beta / p.trainMTBF : 0;
+    const pmDays = Math.round(p.trainPM);
+    const pmStart = [];
+    for (let i = 0; i < n; i++) pmStart.push(Math.floor(20 + i * (300 / n)) * 24);
+    const hostStart = 200 * 24, hostEnd = hostStart + Math.round(p.hostDays * 24);
+    const lead = m.spareLeadDays * 24;
+    let produced = 0, events = 0, worstDay = 1, dayAcc = 0, wasDown = false, restartRem = 0, stops = 0;
+    const repairDur = c => lognorm(rand, c.mttr, m.cv) + (!m.sparesHeld && rand() < c.sp ? lead : 0);
+
+    for (let h = 0; h < HRS; h++) {
+      // planned maintenance for trains
+      for (let i = 0; i < n; i++) {
+        const c = comps[i];
+        if (h === pmStart[i] && pmDays > 0 && c.st === 0) { c.st = 3; c.rem = pmDays * 24; }
+      }
+      // failures
+      for (const c of comps) {
+        if (c.st === 0 && rand() < c.lam) { c.st = 1; queue.push(c); events++; }
+      }
+      if (ccRem <= 0 && lamCC > 0 && rand() < lamCC) { ccRem = lognorm(rand, p.trainMTTR, m.cv); events++; }
+      // assign crews
+      let busy = comps.filter(c => c.st === 2).length;
+      while (busy < m.crews && queue.length) { const c = queue.shift(); c.st = 2; c.rem = repairDur(c); busy++; }
+      // output this hour
+      const up = k => comps.some(c => c.k === k && c.st === 0);
+      const trainsUp = comps.slice(0, n).filter(c => c.st === 0).length;
+      const hostDown = h >= hostStart && h < hostEnd;
+      const ok = up("inlet") && up("export") && up("power") && up("pipe") && ccRem <= 0 && !hostDown;
+      let out = ok ? Math.min(1, trainsUp * opt.s) : 0;
+      if (out === 0) { if (!wasDown) stops++; wasDown = true; restartRem = 0; }
+      else if (wasDown) { wasDown = false; restartRem = p.restartHrs || 0; }
+      if (restartRem > 0) { out = 0; restartRem -= 1; }
+      produced += out; dayAcc += out;
+      if ((h + 1) % 24 === 0) { worstDay = Math.min(worstDay, dayAcc / 24); dayAcc = 0; }
+      // advance clocks
+      for (const c of comps) {
+        if (c.st === 2 || c.st === 3) { c.rem -= 1; if (c.rem <= 0) { c.st = 0; c.rem = 0; } }
+      }
+      if (ccRem > 0) ccRem -= 1;
+    }
+    return { pe: produced / HRS, events, worstDay, stops };
+  }
+
+  function monteCarlo(opt0, p, m, runs, seed, e) {
+    const opt = e ? eff(opt0, e) : opt0;
+    const rand = rng(seed || 12345);
+    const res = [];
+    for (let i = 0; i < runs; i++) res.push(simulateYear(opt, p, m, rand));
+    const pes = res.map(r => r.pe).sort((a, b) => a - b);
+    const q = x => pes[Math.min(pes.length - 1, Math.max(0, Math.round(x * (pes.length - 1))))];
+    const mean = pes.reduce((a, b) => a + b, 0) / pes.length;
+    return { pes, p10: q(0.1), p50: q(0.5), p90: q(0.9), mean,
+             events: res.reduce((a, r) => a + r.events, 0) / runs, stops: res.reduce((a, r) => a + r.stops, 0) / runs };
+  }
+
+  // ---------- Sensitivity (FEL2 analytic) ----------
+  const TORNADO = [
+    { key: "trainMTBF", label: "Train MTBF" },
+    { key: "trainMTTR", label: "Train MTTR" },
+    { key: "beta", label: "Common-cause factor" },
+    { key: "trainPM", label: "Train planned maintenance" },
+    { key: "exportMTBF", label: "Export pump MTBF" },
+    { key: "exportMTTR", label: "Export pump MTTR" },
+    { key: "hostDays", label: "Host plant shutdown days" },
+    { key: "restartHrs", label: "Plant restart time after a full stop" },
+    { key: "gasPrice", label: "Gas price", econ: true }
+  ];
+  function tornado(opt, p, e, lo, hi) {
+    const base = evaluate(opt, p, e);
+    return TORNADO.map(t => {
+      const mk = f => {
+        const pp = Object.assign({}, p), ee = Object.assign({}, e);
+        if (t.econ) ee[t.key] = e[t.key] * f; else pp[t.key] = p[t.key] * f;
+        if (pp.beta >= 0.95) pp.beta = 0.95;
+        return evaluate(opt, pp, ee);
+      };
+      const a = mk(lo), b = mk(hi);
+      return { label: t.label, key: t.key, low: a.pvLoss, high: b.pvLoss, peLow: a.pePlateau, peHigh: b.pePlateau,
+               swing: Math.abs(b.pvLoss - a.pvLoss) };
+    }).sort((x, y) => y.swing - x.swing).map(r => Object.assign(r, { base: base.pvLoss, basePE: base.pePlateau }));
+  }
+
+  // Lowest-lifecycle option as a function of recovered share of deferred volume
+  function recoverySweep(opts, p, e) {
+    const out = [];
+    for (let k = 0; k <= 20; k++) {
+      const ee = Object.assign({}, e, { recovery: k / 20 });
+      const rs = opts.map(o => evaluate(o, p, ee)).sort((a, b) => a.total - b.total);
+      out.push({ recovery: k / 20, best: rs[0].opt.id, totals: opts.map(o => evaluate(o, p, ee).total) });
+    }
+    return out;
+  }
+  root.RAM = { eff, recoverySweep, R, A, M, trainDist, expectedDelivered, profile, revPerMMscf, compCapex, compOpex, pv,
+               analytic, evaluate, screen, dominance, simulateYear, monteCarlo, tornado };
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  "use strict";
+  const R = window.RAM;
+  const IDS = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const DEF = [[1, 100], [2, 50], [2, 60], [3, 50], [3, 33.33], [2, 100], [4, 33.33], [4, 25]];
+  let OPTS = [];
+  const COL = { A: "var(--s2)", B: "var(--s3)", C: "var(--s4)", D: "var(--s1)", E: "var(--s5)", F: "var(--s6)", G: "var(--s7)", H: "var(--s8)" };
+
+  const BASIS = [
+    ["Q", "Plateau rate (MMscfd)", 500, 10],
+    ["margin", "Design margin over plateau (%)", 10, 5, 0.01],
+    ["gasPrice", "Gas price (USD/Mscf)", 4, 0.5],
+    ["condYield", "Condensate yield (bbl/MMscf)", 30, 5],
+    ["condPrice", "Condensate price (USD/bbl)", 70, 5],
+    ["life", "Field life (years)", 20, 1],
+    ["plateau", "Plateau (years)", 6, 1],
+    ["decline", "Decline after plateau (%/yr)", 12, 1, 0.01],
+    ["r", "Discount rate (%)", 10, 1, 0.01],
+    ["capex100", "CAPEX, one train sized at 100% of plateau (USD M)", 180, 10],
+    ["capexAcc", "Compression CAPEX vs base estimate (%)", 0, 10, 0.01],
+    ["opex100", "OPEX, one train sized at 100% of plateau (USD M/yr)", 6, 1],
+    ["minLoad", "Train minimum stable load (% of train)", 60, 5, 0.01],
+    ["recovery", "Deferred volume recovered after field life (%)", 0, 10, 0.01]
+  ];
+  const S1IN = [
+    ["aTrainLo", "Train availability, low (%)", 93, 0.5, 0.01],
+    ["aTrainHi", "Train availability, high (%)", 98, 0.5, 0.01],
+    ["aBopLo", "Balance of plant availability, low (%)", 95, 0.5, 0.01],
+    ["aBopHi", "Balance of plant availability, high (%)", 98.5, 0.5, 0.01],
+    ["ccPenalty", "Common-cause allowance, multi-train (%)", 0.2, 0.1, 0.01],
+    ["capexLo", "CAPEX accuracy, low (%)", -30, 5, 0.01],
+    ["capexHi", "CAPEX accuracy, high (%)", 50, 5, 0.01]
+  ];
+  const S2IN = [
+    ["beta", "Common-cause factor, beta (%)", 5, 1, 0.01],
+    ["trainPM", "Planned maintenance per train (days/yr)", 7, 1],
+    ["hostDays", "Host plant shutdown (days/yr)", 5, 1],
+    ["restartHrs", "Plant restart after a full stop (hours)", 12, 2]
+  ];
+  const EVIN = [
+    ["evtEvery", "Major event once every (years, 0 = none)", 20, 5],
+    ["evtMonths", "Outage of the affected train area (months)", 6, 1]
+  ];
+  const BLOCKS = [
+    ["Compression train (each)", "train", null],
+    ["Inlet separation", "inlet", null],
+    ["Export pump", "export", "exportSpare"],
+    ["Power generation", "power", "powerSpare"],
+    ["Export pipeline", "pipe", null]
+  ];
+  const P0 = { trainMTBF: 2000, trainMTTR: 36, inletMTBF: 8760, inletMTTR: 24, exportMTBF: 6000, exportMTTR: 48,
+               powerMTBF: 4000, powerMTTR: 12, pipeMTBF: 50000, pipeMTTR: 120 };
+  const SPIN = [["exportSpareCost", "Second export pump, installed (USD M)", 25, 5], ["powerSpareCost", "N+1 generator, installed (USD M)", 30, 5]];
+  const S3IN = [
+    ["crews", "Repair crews available at once", 1, 1],
+    ["cv", "Repair time scatter (coefficient of variation)", 0.8, 0.1],
+    ["spareProb", "Share of rotating-equipment repairs needing a part (%)", 15, 5, 0.01],
+    ["spareLeadDays", "Part lead time if not held on site (days)", 60, 10],
+    ["runs", "Simulated years", 300, 50]
+  ];
+
+  function field(box, id, label, val, step, scale) {
+    const l = document.createElement("label"); l.className = "f";
+    l.innerHTML = label + '<input type="number" id="' + id + '" value="' + val + '" step="' + step + '">';
+    box.appendChild(l);
+  }
+  function build(boxId, list) { const b = document.getElementById(boxId); list.forEach(x => field(b, "in-" + x[0], x[1], x[2], x[3])); }
+  build("basis", BASIS); build("s1in", S1IN); build("s2in", S2IN); build("evin", EVIN); build("spin", SPIN); build("s3in", S3IN);
+  (function () {
+    const a = document.createElement("label"); a.className = "f";
+    a.innerHTML = 'Major events in lifecycle totals<select id="in-evtInclude"><option value="0">Shown separately</option><option value="1">Included</option></select>';
+    document.getElementById("evin").appendChild(a);
+    const b = document.createElement("label"); b.className = "f";
+    b.innerHTML = 'Critical spares strategy<select id="in-sparesHeld"><option value="1">Held on site</option><option value="0">Ordered on failure</option></select>';
+    document.getElementById("s3in").appendChild(b);
+  })();
+  function read(list) {
+    const o = {};
+    list.forEach(x => { const v = parseFloat(document.getElementById("in-" + x[0]).value); o[x[0]] = (isFinite(v) ? v : x[2]) * (x[4] || 1); });
+    return o;
+  }
+  (function () {
+    let h = '<tr><th>Block</th><th>Configuration</th><th class="n">MTBF (h)</th><th class="n">MTTR (h)</th><th class="n">Availability</th></tr>';
+    BLOCKS.forEach(b => {
+      const k = b[1];
+      const cfg = k === "train" ? "Per option (1 to 3 trains)" :
+        b[2] ? '<select id="in-' + b[2] + '" aria-label="' + b[0] + ' configuration"><option value="0">1 x 100%</option><option value="1">2 x 100%</option></select>' : "1 x 100%";
+      h += "<tr><td>" + b[0] + "</td><td>" + cfg + '</td><td class="n"><input aria-label="' + b[0] + ' MTBF" style="width:90px" type="number" id="in-' + k + 'MTBF" value="' + P0[k + "MTBF"] + '" step="100"></td>' +
+        '<td class="n"><input aria-label="' + b[0] + ' MTTR" style="width:70px" type="number" id="in-' + k + 'MTTR" value="' + P0[k + "MTTR"] + '" step="1"></td><td class="n" id="av-' + k + '"></td></tr>';
+    });
+    const t = document.getElementById("s2blocks"); t.innerHTML = h;
+    t.querySelectorAll("input,select").forEach(i => { i.style.font = "13px var(--mono)"; i.style.padding = "4px 6px"; i.style.border = "1px solid var(--line)"; i.style.borderRadius = "4px"; i.style.background = "var(--bg)"; i.style.color = "var(--ink)"; });
+    document.getElementById("in-powerSpare").value = "1";
+  })();
+  function readP() {
+    const p = {};
+    BLOCKS.forEach(b => { const k = b[1]; p[k + "MTBF"] = Math.max(1, +document.getElementById("in-" + k + "MTBF").value || P0[k + "MTBF"]); p[k + "MTTR"] = Math.max(0.01, +document.getElementById("in-" + k + "MTTR").value || P0[k + "MTTR"]); });
+    p.exportSpare = document.getElementById("in-exportSpare").value === "1";
+    p.powerSpare = document.getElementById("in-powerSpare").value === "1";
+    Object.assign(p, read(S2IN));
+    p.beta = Math.min(0.95, Math.max(0, p.beta));
+    const ev = read(EVIN);
+    p.evtFreq = ev.evtEvery > 0 ? 1 / ev.evtEvery : 0; p.evtMonths = Math.max(0, ev.evtMonths);
+    p.evtInclude = document.getElementById("in-evtInclude").value === "1";
+    p.phaseDelay = Math.max(0, Math.round(+document.getElementById("in-phaseDelay").value || 0));
+    return p;
+  }
+  const fsel = document.getElementById("focus");
+  (function () {
+    let h = '<tr><th>Option</th><th class="n">Number of trains</th><th class="n">Train size (% of plateau)</th><th class="n">Installed capacity incl. margin</th><th class="n">Capacity left with one train out</th><th>Full N+1 spare capacity</th><th class="n">Train size for full N+1 at this margin</th></tr>';
+    IDS.forEach((id, i) => {
+      h += '<tr><td><b style="color:' + COL[id] + '">' + id + '</b></td><td class="n"><input type="number" min="0" max="6" step="1" id="cfg-n-' + id + '" value="' + DEF[i][0] + '" aria-label="Option ' + id + ' number of trains" style="width:70px"></td>' +
+        '<td class="n"><input type="number" min="5" max="200" step="5" id="cfg-s-' + id + '" value="' + DEF[i][1] + '" aria-label="Option ' + id + ' train size" style="width:90px"></td><td class="n" id="cfg-i-' + id + '"></td><td class="n" id="cfg-o-' + id + '"></td><td id="cfg-a-' + id + '"></td><td class="n" id="cfg-r-' + id + '"></td></tr>';
+    });
+    const t = document.getElementById("cfgtbl"); t.innerHTML = h;
+    t.querySelectorAll("input").forEach(i => { i.style.font = "13px var(--mono)"; i.style.padding = "4px 6px"; i.style.border = "1px solid var(--line)"; i.style.borderRadius = "4px"; i.style.background = "var(--bg)"; i.style.color = "var(--ink)"; });
+  })();
+  function readOpts() {
+    const out = [];
+    IDS.forEach(id => {
+      const n = Math.max(0, Math.min(6, Math.round(+document.getElementById("cfg-n-" + id).value || 0)));
+      const sp = Math.max(5, Math.min(200, +document.getElementById("cfg-s-" + id).value || 50));
+      if (n > 0) out.push({ id, n, s: sp / 100, label: n + " x " + (Math.abs(sp - Math.round(sp)) < 0.01 ? Math.round(sp) : Math.round(sp)) + "%" });
+    });
+    return out.length ? out : [{ id: "A", n: 1, s: 1, label: "1 x 100%" }];
+  }
+  function refreshFocus() {
+    const keep = fsel.value || "D";
+    fsel.innerHTML = "";
+    OPTS.forEach(o => { const op = document.createElement("option"); op.value = o.id; op.textContent = o.id + ": " + o.label + " trains"; fsel.appendChild(op); });
+    fsel.value = OPTS.some(o => o.id === keep) ? keep : OPTS[0].id;
+  }
+  OPTS = readOpts(); refreshFocus(); fsel.value = "D";
+
+  const pct = (x, d) => (x * 100).toFixed(d === undefined ? 1 : d) + "%";
+  const m$ = x => Math.round(x).toLocaleString("en-US");
+  const sgn = x => (x >= 0 ? "+" : "-") + m$(Math.abs(x));
+  function niceMax(v) { if (v <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(v))); const f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p; }
+  function ticks(min, max, n) { const out = []; const st = (max - min) / n; for (let i = 0; i <= n; i++) out.push(min + st * i); return out; }
+  function svg(w, h, inner, label) { return '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" role="img"' + (label ? ' aria-label="' + label + '"' : "") + ' style="max-width:100%;height:auto">' + inner + "</svg>"; }
+  function rangeChart(rows, opts) {
+    const W = 680, L = opts.left || 90, Rr = 20, rowH = 30, T = 10, B = 30, H = T + rows.length * rowH + B;
+    const vmin = opts.min !== undefined ? opts.min : 0;
+    const vmax = opts.max !== undefined ? opts.max : niceMax(Math.max(...rows.map(r => r.hi)));
+    const x = v => L + (v - vmin) / (vmax - vmin) * (W - L - Rr);
+    let g = "";
+    ticks(vmin, vmax, 5).forEach(t => { g += '<line class="grid" x1="' + x(t) + '" x2="' + x(t) + '" y1="' + T + '" y2="' + (H - B) + '"/><text x="' + x(t) + '" y="' + (H - B + 16) + '" text-anchor="middle">' + opts.fmt(t) + "</text>"; });
+    rows.forEach((r, i) => {
+      const y = T + i * rowH + rowH / 2;
+      g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 4) + '" text-anchor="end"' + (r.focus ? ' style="font-weight:700"' : "") + ">" + r.label + "</text>";
+      g += '<rect x="' + x(r.lo) + '" y="' + (y - 8) + '" width="' + Math.max(2, x(r.hi) - x(r.lo)) + '" height="16" rx="3" fill="' + r.color + '" opacity="' + (r.dim ? 0.3 : 0.85) + '"/>';
+      if (r.pt !== undefined) g += '<line x1="' + x(r.pt) + '" x2="' + x(r.pt) + '" y1="' + (y - 11) + '" y2="' + (y + 11) + '" stroke="var(--ink)" stroke-width="2"/>';
+      const right = x(r.hi) + 6 > W - 80;
+      g += '<text x="' + (right ? x(r.lo) - 6 : x(r.hi) + 6) + '" y="' + (y + 4) + '" text-anchor="' + (right ? "end" : "start") + '">' + opts.fmt(r.lo) + " to " + opts.fmt(r.hi) + "</text>";
+    });
+    return svg(W, H, g);
+  }
+
+  let state = {};
+  function getAll() {
+    OPTS = readOpts(); refreshFocus();
+    const e = read(BASIS);
+    e.capex100 = e.capex100 * (1 + (e.capexAcc || 0));
+    e.life = Math.max(1, Math.round(e.life)); e.plateau = Math.max(0, Math.min(e.life, Math.round(e.plateau)));
+    const s1 = read(S1IN), p = readP(), sp = read(SPIN);
+    const m = read(S3IN); m.sparesHeld = document.getElementById("in-sparesHeld").value === "1"; m.crews = Math.max(1, Math.round(m.crews)); m.runs = Math.max(20, Math.min(2000, Math.round(m.runs)));
+    const yr = document.getElementById("year"); yr.max = e.life; if (+yr.value > e.life) yr.value = e.life;
+    return { e, s1, p, sp, m, focus: OPTS.find(o => o.id === fsel.value), year: +yr.value };
+  }
+
+  // ---------- FEL 1 ----------
+  function renderFEL1() {
+    const { e, s1, focus } = state;
+    const rows = R.dominance(OPTS.map(o => R.screen(o, s1, e)));
+    state.fel1 = rows;
+    const f = R.profile(e.life, e.plateau, e.decline);
+    let h = '<tr><th>Option</th><th>Verdict</th><th class="n">Installed capacity (% of plateau)</th><th class="n">Rate lost if one train trips or one train area is lost</th><th>Whole-plant single point of failure</th><th class="n">Turndown floor reached</th><th class="n">Tie-ins to host</th><th class="n">Plateau efficiency range</th><th class="n">Compression CAPEX range (USD M)</th></tr>';
+    rows.forEach(r => {
+      let ty = null; for (let i = 0; i < f.length; i++) if (f[i] < r.minStable) { ty = i + 1; break; }
+      const v = r.dominatedBy ? '<span class="chip bad">Drop: ' + r.dominatedBy + " cheaper in every corner</span>" : '<span class="chip good">Carry to FEL 2</span>';
+      h += '<tr class="' + (r.opt.id === focus.id ? "focus" : "") + '"><td><b>' + r.opt.id + "</b> " + r.opt.label + "</td><td>" + v + '</td><td class="n">' + pct(r.installed, 0) + '</td><td class="n">' + pct(r.worstCaseLoss, 0) + "</td><td>" +
+        (r.spof ? '<span class="chip bad">Yes</span>' : '<span class="chip good">No</span>') + '</td><td class="n">' + (ty ? "Year " + ty : "Not within life") +
+        '</td><td class="n">' + r.tieIns + '</td><td class="n">' + pct(r.peLo, 0) + " to " + pct(r.peHi, 0) + '</td><td class="n">' + m$(r.capexLo) + " to " + m$(r.capexHi) + "</td></tr>";
+    });
+    document.getElementById("s1tbl").innerHTML = h;
+    const kept = rows.filter(r => !r.dominatedBy), drop = rows.filter(r => r.dominatedBy);
+    document.getElementById("s1verdict").innerHTML = "<b>" + kept.length + " of " + rows.length + " options go to FEL 2.</b> " +
+      (drop.length ? drop.map(r => r.opt.id + " (" + r.opt.label + ") is dropped: " + r.dominatedBy + " is cheaper under every combination of benchmark availability and CAPEX accuracy.").join(" ") : "No option is dominated at these ranges.") +
+      " The columns to the left of the ranges are the FEL 1 deliverable: they are structural facts that no later data will change.";
+    document.getElementById("s1chart").innerHTML = rangeChart(rows.map(r => ({ label: r.opt.id + " " + r.opt.label, lo: r.totalLo, hi: r.totalHi, color: COL[r.opt.id], focus: r.opt.id === focus.id, dim: !!r.dominatedBy })), { fmt: v => m$(v), left: 92 });
+  }
+
+  // ---------- FEL 2 ----------
+  function renderFEL2() {
+    const { e, p, sp, focus } = state;
+    // Phasing applies to the configuration shown only; other options keep all trains from the start.
+    const ev = (o, pp, ee) => R.evaluate(o, o.id === focus.id ? pp : Object.assign({}, pp, { phaseDelay: 0 }), ee);
+    const res = OPTS.map(o => ev(o, p, e));
+    state.fel2 = res;
+    IDS.forEach(id => { const o = OPTS.find(q => q.id === id), ci = document.getElementById("cfg-i-" + id), co = document.getElementById("cfg-o-" + id);
+      const ca = document.getElementById("cfg-a-" + id), cr = document.getElementById("cfg-r-" + id);
+      if (!o) { ci.textContent = "-"; co.textContent = "-"; ca.textContent = "-"; cr.textContent = "-"; return; }
+      const fe = R.eff(o, e), held = o.n > 1 ? (fe.n - 1) * fe.s : 0;
+      ca.innerHTML = o.n < 2 ? '<span class="chip bad">Fail: no spare</span>' : held >= 1 - 1e-9 ? '<span class="chip good">Pass: full N+1</span>' : '<span class="chip warn">Partial: ' + pct(held, 0) + ' held</span>';
+      cr.textContent = o.n < 2 ? "Needs a second train" : Math.ceil(100 / ((o.n - 1) * (1 + e.margin)) - 1e-9) + "% nominal";
+      ci.textContent = pct(fe.n * fe.s, 0) + " (" + m$(fe.n * fe.s * e.Q) + " MMscfd)"; co.textContent = o.n > 1 ? pct(Math.min(1, (fe.n - 1) * fe.s), 0) + " of plateau" : "0%"; });
+    document.getElementById("cfg-sum").textContent = OPTS.map(o => o.id + " " + o.label).join(", ");
+    const fr = res.find(r => r.opt.id === focus.id);
+    const kept = state.fel1.filter(r => !r.dominatedBy).map(r => r.opt.id);
+    state.kept = kept;
+    const ranked = res.filter(r => kept.includes(r.opt.id)).sort((a, b) => a.total - b.total);
+    state.ranked = ranked;
+    const best = ranked[0];
+    const av = fr.av;
+    document.getElementById("av-train").textContent = pct(av.aTrainInd, 2) + " per train";
+    document.getElementById("av-inlet").textContent = pct(av.aInlet, 2);
+    document.getElementById("av-export").textContent = pct(av.aExport, 2);
+    document.getElementById("av-power").textContent = pct(av.aPower, 2);
+    document.getElementById("av-pipe").textContent = pct(av.aPipe, 2);
+
+    let h = '<tr><th>Option</th><th class="n">Installed (% of plateau)</th><th class="n">Lifecycle cost</th><th class="n">vs best</th><th class="n">CAPEX</th><th class="n">PV OPEX</th><th class="n">PV deferment</th><th class="n">Plateau efficiency</th><th class="n">Full-plant stops/yr</th></tr>';
+    res.forEach(r => {
+      const rk = ranked.indexOf(r);
+      h += '<tr class="' + (r.opt.id === focus.id ? "focus" : "") + '"><td><b>' + r.opt.id + "</b> " + r.opt.label + (rk < 0 ? ' <span class="chip neu">dropped at FEL 1</span>' : "") +
+        '</td><td class="n">' + pct(r.installed, 0) + '</td><td class="n"><b>' + m$(r.total) + '</b></td><td class="n">' + (rk === 0 ? '<span class="chip good">best</span>' : rk > 0 ? sgn(r.total - best.total) : "-") +
+        '</td><td class="n">' + m$(r.capex) + '</td><td class="n">' + m$(r.pvOpex) + '</td><td class="n">' + m$(r.pvLoss) + '</td><td class="n">' + pct(r.pePlateau) + '</td><td class="n">' + r.av.stopsYr.toFixed(1) + "</td></tr>";
+    });
+    h += '<tr><td colspan="9" class="note">USD M, PV at ' + pct(e.r, 0) + ". Lifecycle cost = compression CAPEX + OPEX + production deferment; all other scope is common to every option." + (p.phaseDelay > 0 && focus.n > 1 ? " Option " + focus.id + ": last train enters service after " + p.phaseDelay + " years; other options have all trains from the start." : "") + (p.evtInclude ? " Major events included." : "") + "</td></tr>";
+    document.getElementById("s2tbl").innerHTML = h;
+
+    const pNo = Object.assign({}, p, { restartHrs: 0, phaseDelay: 0 }), eNo = Object.assign({}, e, { margin: 0 });
+    const a0 = R.evaluate({ id: "a", n: 1, s: 1 }, pNo, eNo), b0 = R.evaluate({ id: "b", n: 2, s: 0.5 }, pNo, eNo);
+    const a1 = R.evaluate({ id: "a", n: 1, s: 1 }, p, e), b2 = R.evaluate({ id: "b", n: 2, s: 0.5 }, p, e);
+    const gap = ranked[1] ? ranked[1].total - best.total : 0;
+    document.getElementById("s2verdict").innerHTML = "<b>" + best.opt.id + " (" + best.opt.label + ") has the lowest lifecycle cost at base inputs, " + m$(gap) + " USD M ahead of " + ranked[1].opt.id + ".</b> " +
+      "A margin of this size sits inside Pre-FEED accuracy, so read it with Check A: the deliverable is where each option wins, not a single winner. " +
+      "Two trains against one: with no design margin and no restart losses, 2 x 50% and 1 x 100% give the same plateau efficiency (" + pct(a0.pePlateau) + " and " + pct(b0.pePlateau) + "). What lifts two trains to " + pct(b2.pePlateau) + " against " + pct(a1.pePlateau) + " is the " + pct(e.margin, 0) + " design margin, which lets one train carry more than half the plateau, and fewer full-plant stops (" + b2.av.stopsYr.toFixed(1) + " against " + a1.av.stopsYr.toFixed(1) + " a year).";
+
+    // stacked cost
+    (function () {
+      const W = 1100, L = 92, T = 10, rowH = 30, B = 44, Hh = T + res.length * rowH + B;
+      const vmax = niceMax(Math.max(...res.map(r => r.total)));
+      const x = v => L + v / vmax * (W - L - 70);
+      let g = "";
+      ticks(0, vmax, 5).forEach(t => { g += '<line class="grid" x1="' + x(t) + '" x2="' + x(t) + '" y1="' + T + '" y2="' + (Hh - B) + '"/><text x="' + x(t) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + m$(t) + "</text>"; });
+      res.forEach((r, i) => {
+        const y = T + i * rowH + 7; let x0 = x(0);
+        [[r.capex, "var(--s2)"], [r.pvOpex, "var(--s3)"], [r.pvLoss, "var(--bad)"]].forEach(seg => { const w = x(seg[0]) - x(0); g += '<rect x="' + x0 + '" y="' + y + '" width="' + Math.max(0, w) + '" height="16" fill="' + seg[1] + '" opacity="' + (kept.includes(r.opt.id) ? 0.85 : 0.3) + '"/>'; x0 += w; });
+        g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 12) + '" text-anchor="end"' + (r.opt.id === focus.id ? ' style="font-weight:700"' : "") + ">" + r.opt.id + " " + r.opt.label + "</text>";
+        g += '<text x="' + (x0 + 6) + '" y="' + (y + 12) + '">' + m$(r.total) + "</text>";
+      });
+      const ly = Hh - 12;
+      [["CAPEX", "var(--s2)"], ["PV OPEX", "var(--s3)"], ["PV deferment", "var(--bad)"]].forEach((l, i) => { g += '<rect x="' + (L + i * 120) + '" y="' + (ly - 9) + '" width="10" height="10" fill="' + l[1] + '"/><text x="' + (L + i * 120 + 14) + '" y="' + ly + '">' + l[0] + "</text>"; });
+      document.getElementById("s2stack").innerHTML = svg(W, Hh, g);
+    })();
+
+    // capacity ladder: cost and plateau efficiency, sorted by installed capacity
+    (function () {
+      const rows = res.slice().sort((a, b) => a.installed - b.installed || a.opt.n - b.opt.n);
+      const W = 680, L = 170, rowH = 30, T = 26, B = 30, Hh = T + rows.length * rowH + B;
+      const cx0 = L, cx1 = 430, px0 = 470, px1 = W - 50;
+      const cmax = niceMax(Math.max(...rows.map(r => r.total)));
+      const pmin = Math.floor(Math.min(...rows.map(r => r.pePlateau)) * 100 - 1) / 100;
+      const cx = v => cx0 + v / cmax * (cx1 - cx0), px = v => px0 + (v - pmin) / (1 - pmin) * (px1 - px0);
+      let g = '<text x="' + cx0 + '" y="12" class="lbl">Lifecycle cost, USD M PV</text><text x="' + px0 + '" y="12" class="lbl">Plateau efficiency</text>';
+      const best = Math.min(...res.filter(r => kept.includes(r.opt.id)).map(r => r.total));
+      rows.forEach((r, i) => {
+        const y = T + i * rowH, op = kept.includes(r.opt.id) ? 0.9 : 0.3, o = r.opt;
+        const nplus = r.n1Spare >= -1e-9;
+        g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 13) + '" text-anchor="end"' + (o.id === focus.id ? ' style="font-weight:700"' : "") + ">" + o.id + " " + o.label + "</text>";
+        g += '<text x="' + (L - 8) + '" y="' + (y + 25) + '" text-anchor="end">' + pct(r.installed, 0) + " installed" + (nplus ? ", N+1" : "") + "</text>";
+        g += '<rect x="' + cx0 + '" y="' + (y + 4) + '" width="' + Math.max(1, cx(r.total) - cx0) + '" height="16" rx="2" fill="' + COL[o.id] + '" opacity="' + op + '"/>';
+        g += '<text x="' + (cx(r.total) + 5) + '" y="' + (y + 16) + '"' + (Math.abs(r.total - best) < 0.5 && kept.includes(o.id) ? ' class="lbl" style="font-weight:700"' : "") + ">" + m$(r.total) + "</text>";
+        g += '<line x1="' + px0 + '" x2="' + px1 + '" y1="' + (y + 12) + '" y2="' + (y + 12) + '" stroke="var(--line)"/>';
+        g += '<circle cx="' + px(r.pePlateau) + '" cy="' + (y + 12) + '" r="6" fill="' + (nplus ? "var(--accent)" : "var(--panel)") + '" stroke="var(--accent)" stroke-width="2" opacity="' + (op + 0.1) + '"/>';
+        g += '<text x="' + (px(r.pePlateau) + 10) + '" y="' + (y + 16) + '">' + pct(r.pePlateau, 1) + "</text>";
+      });
+      const yb = T + rows.length * rowH + 14;
+      g += '<text x="' + cx0 + '" y="' + yb + '">0</text><text x="' + cx1 + '" y="' + yb + '" text-anchor="end">' + m$(cmax) + '</text><text x="' + px0 + '" y="' + yb + '">' + pct(pmin, 0) + '</text><text x="' + px1 + '" y="' + yb + '" text-anchor="end">100%</text>';
+      document.getElementById("s2scatter").innerHTML = svg(W, Hh, g);
+      const nplus = res.filter(r => r.n1Spare >= -1e-9).sort((a, b) => a.installed - b.installed);
+      document.getElementById("s2scnote").textContent = "Options sorted by installed capacity; faded = dropped at FEL 1; filled ring = full N+1 (one train can be lost without losing plateau rate). Plateau efficiency rises with spare capacity until full N+1, then stops at the ceiling set by single items such as the export pump" +
+        (nplus.length ? " (" + pct(nplus[0].pePlateau, 1) + " here). Beyond that point more or larger trains add CAPEX and OPEX and buy only event resilience and catch-up capacity." : ".");
+    })();
+
+    // Check F: design margin
+    (function () {
+      const ms = [0, 0.1, 0.2], carried = OPTS.filter(o => kept.includes(o.id));
+      let hm = '<tr><th>Option</th>' + ms.map(m => '<th class="n">Margin ' + pct(m, 0) + (Math.abs(m - e.margin) < 1e-9 ? " (current)" : "") + "</th>").join("") + "</tr>";
+      const best = ms.map(m => Math.min(...carried.map(o => ev(o, p, Object.assign({}, e, { margin: m })).total)));
+      carried.forEach(o => {
+        hm += '<tr class="' + (o.id === focus.id ? "focus" : "") + '"><td><b>' + o.id + "</b> " + o.label + "</td>" + ms.map((m, k) => { const v = ev(o, p, Object.assign({}, e, { margin: m })).total; return '<td class="n">' + m$(v) + (Math.abs(v - best[k]) < 0.5 ? ' <span class="chip good">best</span>' : "") + "</td>"; }).join("") + "</tr>";
+      });
+      document.getElementById("mgtbl").innerHTML = hm + '<tr><td colspan="' + (ms.length + 1) + '" class="note">Lifecycle cost, USD M PV. Larger margin raises CAPEX by the six-tenths rule and lifts the turndown floor; it cuts the rate lost when one train of a multi-train layout is out.</td></tr>';
+    })();
+
+    // Check A: decision map
+    (function () {
+      const prices = [2, 3, 4, 5, 6], cf = [0.7, 1.0, 1.3, 1.5];
+      const carried = OPTS.filter(o => kept.includes(o.id));
+      let hm = '<tr><th>Gas price (USD/Mscf)</th>' + cf.map(c => '<th class="n">CAPEX x' + c.toFixed(1) + "</th>").join("") + "</tr>";
+      const seen = {};
+      prices.forEach(gp => {
+        hm += "<tr><td>" + gp.toFixed(1) + (Math.abs(gp - e.gasPrice) < 1e-9 ? " (base)" : "") + "</td>";
+        cf.forEach(c => {
+          const ee = Object.assign({}, e, { gasPrice: gp, capex100: e.capex100 * c });
+          const rs = carried.map(o => ev(o, p, ee)).sort((x, y) => x.total - y.total);
+          const w = rs[0], mg = rs[1] ? rs[1].total - w.total : 0; seen[w.opt.id] = 1;
+          hm += '<td class="n"><span class="chip" style="color:' + COL[w.opt.id] + '">' + w.opt.id + " " + w.opt.label + '</span> <span class="muted">+' + m$(mg) + "</span></td>";
+        });
+        hm += "</tr>";
+      });
+      document.getElementById("s2map").innerHTML = hm; state.mapWinners = Object.keys(seen);
+      document.getElementById("s2mapnote").textContent = "Each cell re-runs the full model with that gas price and compression CAPEX scaled for every option alike" + (p.evtInclude ? ", major events included" : ", major events excluded (switch in Check C, or in Change the case in Base view)") +
+        ". Figure beside each winner = lead over the runner-up, USD M PV. " + Object.keys(seen).length + " different options win somewhere on this map.";
+    })();
+
+    // Check B: tornado
+    (function () {
+      const t = R.tornado(focus, p, e, 0.5, 1.5);
+      state.tornado = t;
+      const W = 680, L = 210, T = 8, rowH = 26, B = 40, Hh = T + t.length * rowH + B;
+      const base = t[0].base;
+      const vmin = Math.min(...t.map(r => Math.min(r.low, r.high))), vmax = Math.max(...t.map(r => Math.max(r.low, r.high)));
+      const pad = (vmax - vmin) * 0.12 + 1;
+      const x = v => L + (v - (vmin - pad)) / ((vmax + pad) - (vmin - pad)) * (W - L - 20);
+      let g = "";
+      ticks(vmin - pad, vmax + pad, 4).forEach(tk => { g += '<line class="grid" x1="' + x(tk) + '" x2="' + x(tk) + '" y1="' + T + '" y2="' + (Hh - B) + '"/><text x="' + x(tk) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + m$(tk) + "</text>"; });
+      t.forEach((r, i) => {
+        const y = T + i * rowH + 5;
+        g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 12) + '" text-anchor="end">' + r.label + "</text>";
+        const seg = (v, c) => '<rect x="' + Math.min(x(v), x(base)) + '" y="' + y + '" width="' + Math.max(1, Math.abs(x(v) - x(base))) + '" height="15" fill="' + c + '" opacity=".8"/>';
+        g += seg(r.low, "var(--s2)") + seg(r.high, "var(--amber)");
+      });
+      g += '<line x1="' + x(base) + '" x2="' + x(base) + '" y1="' + T + '" y2="' + (Hh - B) + '" stroke="var(--ink)" stroke-width="1.5"/>';
+      g += '<rect x="' + L + '" y="' + (Hh - 14) + '" width="10" height="10" fill="var(--s2)"/><text x="' + (L + 14) + '" y="' + (Hh - 5) + '">Input x0.5</text><rect x="' + (L + 110) + '" y="' + (Hh - 14) + '" width="10" height="10" fill="var(--amber)"/><text x="' + (L + 124) + '" y="' + (Hh - 5) + '">Input x1.5</text><text x="' + (L + 230) + '" y="' + (Hh - 5) + '">PV deferment, base ' + m$(base) + " USD M</text>";
+      document.getElementById("s2tor").innerHTML = svg(W, Hh, g);
+    })();
+
+    // Check C: major events
+    (function () {
+      const pInc = Object.assign({}, p, { evtInclude: true }), pExc = Object.assign({}, p, { evtInclude: false });
+      const rs = OPTS.filter(o => kept.includes(o.id)).map(o => ({ o, ex: ev(o, pExc, e), inc: ev(o, pInc, e) }));
+      const order = rs.slice().sort((a, b) => a.inc.total - b.inc.total);
+      let ht = '<tr><th>Option</th><th class="n">Rate lost in the event</th><th class="n">PV loss from events</th><th class="n">Lifecycle cost with events</th><th class="n">Rank</th></tr>';
+      rs.forEach(r => {
+        ht += '<tr class="' + (r.o.id === focus.id ? "focus" : "") + '"><td><b>' + r.o.id + "</b> " + r.o.label + '</td><td class="n">' + pct(r.ex.evtRateLost, 0) + '</td><td class="n">' + m$(r.ex.pvEvent) +
+          '</td><td class="n"><b>' + m$(r.inc.total) + '</b></td><td class="n">' + (order.indexOf(r) + 1) + "</td></tr>";
+      });
+      document.getElementById("evtbl").innerHTML = ht;
+    })();
+
+    // Check D: phasing
+    (function () {
+      const tb = document.getElementById("phtbl"), nt = document.getElementById("phnote");
+      if (focus.n < 2) { tb.innerHTML = ""; nt.textContent = "Single-train option: nothing to phase. Choose a multi-train configuration."; return; }
+      const k = p.phaseDelay > 0 ? p.phaseDelay : 3;
+      const full = ev(focus, Object.assign({}, p, { phaseDelay: 0 }), e), part = ev(focus, Object.assign({}, p, { phaseDelay: k }), e);
+      const capSave = full.capex - part.capex, opSave = full.pvOpex - part.pvOpex, extra = part.pvLoss - full.pvLoss, net = full.total - part.total;
+      const fe = R.eff(focus, e);
+      let opAll = 0; for (let t = 1; t <= e.life; t++) opAll += e.opex100 * Math.pow(fe.s, 0.6) / Math.pow(1 + e.r, t);
+      const isSpare = (fe.n - 1) * fe.s >= 1 - 1e-9;
+      tb.innerHTML = '<tr><th>Last train built ' + k + ' years later' + (p.phaseDelay > 0 ? "" : " (example)") + '</th><th class="n">USD M, PV</th></tr>' +
+        "<tr><td>CAPEX paid later</td><td class=\"n\">+" + m$(capSave) + "</td></tr>" +
+        "<tr><td>OPEX not spent meanwhile</td><td class=\"n\">+" + m$(opSave) + "</td></tr>" +
+        "<tr><td>Extra deferment meanwhile</td><td class=\"n\">-" + m$(extra) + "</td></tr>" +
+        "<tr><td><b>Net value of phasing</b></td><td class=\"n\"><b>" + sgn(net) + "</b></td></tr>" +
+        "<tr><td>If the field never needs it (CAPEX + OPEX never spent)</td><td class=\"n\">+" + m$(full.trainCost + opAll) + "</td></tr>";
+      nt.textContent = isSpare ? "Here the last train is the N+1 reserve: the others already carry design rate. Deferring it removes the reserve in the plateau years, when availability is worth most. Phase capacity, not redundancy." :
+        "Here the last train adds capacity: without it the plant cannot carry design rate at plateau. Phasing it only pays if the production profile itself starts lower.";
+    })();
+
+    // Check E: spares
+    (function () {
+      const with_ = (k, v) => ev(focus, Object.assign({}, p, { [k]: v }), e);
+      const rowsS = [["Second export pump (2 x 100%)", "exportSpare", sp.exportSpareCost], ["N+1 power generation", "powerSpare", sp.powerSpareCost]];
+      let h2 = '<tr><th>Spare</th><th class="n">PV deferment avoided</th><th class="n">Installed cost</th><th>Verdict</th></tr>';
+      rowsS.forEach(r => {
+        const off = with_(r[1], false), on = with_(r[1], true), val = off.pvLoss - on.pvLoss, net = val - r[2];
+        h2 += "<tr><td>" + r[0] + '</td><td class="n">' + m$(val) + '</td><td class="n">' + m$(r[2]) + "</td><td>" + (net > 0 ? '<span class="chip good">Justified, ' + sgn(net) + "</span>" : '<span class="chip warn">Not on value alone, ' + sgn(net) + "</span>") + "</td></tr>";
+      });
+      document.getElementById("sptbl").innerHTML = h2;
+    })();
+
+    // Detail: profile
+    (function () {
+      const W = 680, Hh = 250, L = 52, Rr = 16, T = 12, B = 34;
+      const n = fr.f.length, ymax = niceMax(e.Q * 1.05);
+      const x = i => L + i / (n - 1 || 1) * (W - L - Rr), y = v => T + (1 - v / ymax) * (Hh - T - B);
+      let g = "";
+      ticks(0, ymax, 4).forEach(t => { g += '<line class="grid" x1="' + L + '" x2="' + (W - Rr) + '" y1="' + y(t) + '" y2="' + y(t) + '"/><text x="' + (L - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + m$(t) + "</text>"; });
+      for (let i = 0; i < n; i += Math.max(1, Math.ceil(n / 10))) g += '<text x="' + x(i) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + (i + 1) + "</text>";
+      g += '<text x="' + ((W + L) / 2) + '" y="' + (Hh - 4) + '" text-anchor="middle">Year</text>';
+      const dem = fr.f.map(v => v * e.Q), del = fr.delivered.map(v => v * e.Q);
+      let area = "M" + x(0) + "," + y(dem[0]); dem.forEach((v, i) => area += " L" + x(i) + "," + y(v));
+      for (let i = n - 1; i >= 0; i--) area += " L" + x(i) + "," + y(del[i]); area += "Z";
+      g += '<path d="' + area + '" fill="var(--bad)" opacity=".28"/>';
+      g += '<polyline fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" points="' + dem.map((v, i) => x(i) + "," + y(v)).join(" ") + '"/>';
+      g += '<polyline fill="none" stroke="var(--accent)" stroke-width="2.5" points="' + del.map((v, i) => x(i) + "," + y(v)).join(" ") + '"/>';
+      const ms = fr.minStable * e.Q;
+      g += '<line x1="' + L + '" x2="' + (W - Rr) + '" y1="' + y(ms) + '" y2="' + y(ms) + '" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="2 3"/><text x="' + (W - Rr) + '" y="' + (y(ms) - 5) + '" text-anchor="end" style="fill:var(--amber)">Lowest stable plant rate ' + m$(ms) + "</text>";
+      const yi = state.year - 1;
+      g += '<line x1="' + x(yi) + '" x2="' + x(yi) + '" y1="' + T + '" y2="' + (Hh - B) + '" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 3"/><circle cx="' + x(yi) + '" cy="' + y(del[yi]) + '" r="4" fill="var(--accent)"/>';
+      g += '<text x="' + (L + 8) + '" y="' + (y(dem[0]) - 6) + '">Demand (dashed), expected delivery (line), deferment (shaded)</text>';
+      document.getElementById("s2prof").innerHTML = svg(W, Hh, g);
+    })();
+
+    // Detail: availability build-up
+    (function () {
+      const steps = [["Compression trains (expected capacity)", R.expectedDelivered(focus.n - (p.phaseDelay > 0 && focus.n > 1 ? 1 : 0), fr.optEff.s, (p.phaseDelay > 0 && focus.n > 1 ? fr.avRed : av).aTrainInd, 1)]];
+      const a = p.phaseDelay > 0 && focus.n > 1 ? fr.avRed : av;
+      steps.push(["Common-cause, all trains", a.aCC], ["Inlet separation", a.aInlet], ["Export pump", a.aExport], ["Power generation", a.aPower], ["Export pipeline", a.aPipe], ["Host plant shutdown", a.aHost], ["Restarts after " + a.stopsYr.toFixed(1) + " full stops/yr", a.aRestart]);
+      const W = 680, L = 250, T = 8, rowH = 26, B = 30, Hh = T + (steps.length + 1) * rowH + B;
+      const lo = Math.max(0, Math.floor(fr.pePlateau * 100 - 3) / 100);
+      const x = v => L + (v - lo) / (1 - lo) * (W - L - 80);
+      let g = "", cum = 1;
+      ticks(lo, 1, 4).forEach(t => { g += '<line class="grid" x1="' + x(t) + '" x2="' + x(t) + '" y1="' + T + '" y2="' + (Hh - B) + '"/><text x="' + x(t) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + pct(t, 0) + "</text>"; });
+      steps.forEach((s, i) => {
+        const nc = cum * s[1], y = T + i * rowH + 5;
+        g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 12) + '" text-anchor="end">' + s[0] + "</text>";
+        g += '<rect x="' + x(Math.max(lo, nc)) + '" y="' + y + '" width="' + Math.max(1, x(cum) - x(Math.max(lo, nc))) + '" height="15" fill="var(--bad)" opacity=".75"/>';
+        g += '<text x="' + (x(cum) + 6) + '" y="' + (y + 12) + '">-' + ((cum - nc) * 100).toFixed(2) + " pts</text>";
+        cum = nc;
+      });
+      const y = T + steps.length * rowH + 5;
+      g += '<text class="lbl" x="' + (L - 8) + '" y="' + (y + 12) + '" text-anchor="end" style="font-weight:700">Plateau production efficiency</text><rect x="' + x(lo) + '" y="' + y + '" width="' + Math.max(1, x(cum) - x(lo)) + '" height="15" fill="var(--accent)"/><text x="' + (x(cum) + 6) + '" y="' + (y + 12) + '" class="lbl">' + pct(cum, 1) + "</text>";
+      document.getElementById("s2avail").innerHTML = svg(W, Hh, g);
+    })();
+
+    (function () {
+      const r720 = R.R(720, p.trainMTBF), a = R.A(p.trainMTBF, p.trainMTTR), m24 = R.M(24, p.trainMTTR);
+      document.getElementById("formulas").innerHTML =
+        "<div>R(720 h) = e^(-720/" + p.trainMTBF + ") = " + pct(r720) + "</div>" +
+        "<div>A = " + p.trainMTBF + " / (" + p.trainMTBF + " + " + p.trainMTTR + ") = " + pct(a, 2) + "</div>" +
+        "<div>M(24 h) = 1 - e^(-24/" + p.trainMTTR + ") = " + pct(m24) + "</div>" +
+        "<div>With planned maintenance " + Math.round(p.trainPM) + " d/yr and beta " + pct(p.beta, 0) + ": " + pct(av.aTrainInd, 2) + " per train</div>";
+    })();
+  }
+
+  // ---------- FACILITY AT A GLANCE ----------
+  function renderOverview() {
+    const { e, p, focus, year } = state;
+    document.getElementById("yearval").textContent = year + (year <= e.plateau ? " (plateau)" : " (decline)");
+    document.getElementById("basis-sum").textContent = e.Q + " MMscfd, gas " + e.gasPrice + " USD/Mscf, " + e.plateau + "-yr plateau, " + e.life + "-yr life, " + pct(e.r, 0) + " discount rate";
+    const fr = state.fel2.find(r => r.opt.id === focus.id);
+    const t = year, i = t - 1;
+    const demandF = fr.f[i], demand = demandF * e.Q;
+    const fs = fr.optEff.s;
+    const built = fr.nAt(t), capTrain = fs * e.Q;
+    let running = Math.min(built, Math.max(1, Math.ceil(demandF / fs - 1e-9)));
+    const loadPer = demand / (running * capTrain);
+    const belowTD = loadPer < e.minLoad;
+    const deliveredF = fr.delivered[i], delivered = deliveredF * e.Q;
+    const a = t <= fr.phaseDelay ? fr.avRed : fr.av;
+
+    // schematic
+    const th = focus.n > 4 ? 50 : 66;
+    const tot0 = focus.n * th + (focus.n - 1) * 12;
+    const cy = Math.max(60, tot0 / 2 + 8);
+    const W = 1000, H = cy + tot0 / 2 + 110;
+    let g = "";
+    const box = (x, y, w, h, status, lines, opts) => {
+      const st = { run: ["var(--run-soft)", "var(--run)", ""], stby: ["var(--stby-soft)", "var(--stby)", ""], off: ["var(--off-soft)", "var(--off)", ' stroke-dasharray="6 4"'], neu: ["var(--panel)", "var(--line)", ""] }[status];
+      let s = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="7" fill="' + st[0] + '" stroke="' + st[1] + '" stroke-width="2"' + st[2] + "/>";
+      lines.forEach((l, k) => { s += '<text x="' + (x + 10) + '" y="' + (y + 18 + k * 15) + '"' + (k === 0 ? ' class="lbl" style="font-weight:600"' : "") + ">" + l + "</text>"; });
+      return s;
+    };
+    const arrow = (x1, y1, x2, y2) => '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>';
+    g += '<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>';
+    // field and inlet
+    g += box(10, cy - 45, 150, 90, "neu", ["Field and wells", "Year " + t + " demand", m$(demand) + " MMscfd", pct(demandF, 0) + " of plateau"]);
+    g += arrow(160, cy, 192, cy);
+    g += box(195, cy - 35, 135, 70, "run", ["Inlet separation", "1 x 100%", m$(demand) + " MMscfd in"]);
+    // trains
+    const gap = 12, n = focus.n, tot = n * th + (n - 1) * gap, ty0 = cy - tot / 2;
+    const tx = 395, tw = 230;
+    let runLeft = running;
+    for (let k = 0; k < n; k++) {
+      const y = ty0 + k * (th + gap);
+      const isBuilt = k < built;
+      let status, l3;
+      if (!isBuilt) { status = "off"; l3 = "Not built: enters service year " + (fr.phaseDelay + 1); }
+      else if (runLeft > 0) { status = "run"; runLeft--; l3 = "Running, load " + pct(loadPer, 0) + (belowTD ? " (below stable minimum)" : ""); }
+      else { status = "stby"; l3 = "Built, in reserve"; }
+      g += box(tx, y, tw, th, status, ["Compression train " + (k + 1), m$(capTrain) + " MMscfd installed, " + pct(fs, 0) + " of plateau", l3]);
+      g += '<path d="M330,' + cy + " C360," + cy + " 365," + (y + th / 2) + " " + (tx - 3) + "," + (y + th / 2) + '" fill="none" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#ah)"/>';
+      g += '<path d="M' + (tx + tw) + "," + (y + th / 2) + " C" + (tx + tw + 30) + "," + (y + th / 2) + " " + (tx + tw + 35) + "," + cy + " " + (tx + tw + 52) + "," + cy + '" fill="none" stroke="var(--muted)" stroke-width="1.6"/>';
+    }
+    // export pumps
+    const ex = tx + tw + 55;
+    if (p.exportSpare) {
+      g += box(ex, cy - 62, 120, 54, "run", ["Export pump 1", "100%, running"]);
+      g += box(ex, cy + 8, 120, 54, "stby", ["Export pump 2", "100%, in reserve"]);
+    } else g += box(ex, cy - 30, 120, 60, "run", ["Export pump", "1 x 100%", "single item"]);
+    g += arrow(ex + 120, cy, ex + 150, cy);
+    g += box(ex + 153, cy - 35, 160, 70, "run", ["Export pipeline", "to host plant tie-in", "and customer"]);
+    // power
+    const py = H - 66;
+    g += box(tx, py, 110, 52, "run", ["Power gen 1", p.powerSpare ? "running" : "1 x 100%"]);
+    if (p.powerSpare) g += box(tx + 120, py, 110, 52, "stby", ["Power gen 2", "N+1 reserve"]);
+    g += '<text x="' + (tx + 245) + '" y="' + (py + 30) + '">Power to trains and utilities</text>';
+    // delivered summary
+    g += box(ex + 153, py - 6, 160, 64, "neu", ["Expected delivery, year " + t, m$(delivered) + " MMscfd", pct(deliveredF / demandF, 1) + " of demand"]);
+    g += '<text x="10" y="' + (py + 14) + '" class="lbl">Brownfield interfaces</text><text x="10" y="' + (py + 30) + '">Host plant shutdown ' + Math.round(p.hostDays) + ' d/yr</text><text x="10" y="' + (py + 45) + '">Restart ' + Math.round(p.restartHrs) + ' h after each full stop</text><text x="10" y="' + (py + 60) + '">' + a.stopsYr.toFixed(1) + ' full stops/yr expected</text>';
+    document.getElementById("schematic").innerHTML = '<div class="tblwrap">' + svg(W, H, g, "Facility schematic for option " + focus.id) + "</div>";
+
+    // KPI groups
+    const ranked = state.ranked, rk = ranked.findIndex(r => r.opt.id === focus.id), best = ranked[0];
+    const rev = R.revPerMMscf(e);
+    const lostMMscf = fr.lossMMscf[i], lostUSD = fr.lossUSDm[i];
+    const kp = (label, val, why, big) => '<div class="kpi' + (big ? " big" : "") + '"><span>' + label + "</span><b>" + val + "</b>" + (why ? "<small>" + why + "</small>" : "") + "</div>";
+    const grp = (cls, title, imp, impcls, body) => '<div class="kg ' + cls + '"><header><b>' + title + '</b><span class="imp ' + impcls + '">' + imp + "</span></header>" + body + "</div>";
+    document.getElementById("kpis").innerHTML =
+      grp("decision", "Decision", "Priority 1", "p1",
+        kp("Lifecycle cost, PV (USD M)", m$(fr.total), "Compression CAPEX + OPEX + production deferment over field life", true) +
+        kp("Rank among options carried from FEL 1", rk >= 0 ? (rk + 1) + " of " + ranked.length : "-", rk >= 0 ? "" : "This configuration was dropped at FEL 1") +
+        kp(rk === 0 ? "Lead over next option (USD M)" : "Gap to best option (USD M)", rk === 0 ? (ranked[1] ? m$(ranked[1].total - fr.total) : "-") : rk > 0 ? "+" + m$(fr.total - best.total) : "-", "If smaller than CAPEX accuracy, check the decision map before choosing")) +
+      grp("", "Production, year " + t, "Priority 2", "p2",
+        kp("Expected delivery (MMscfd)", m$(delivered), "Demand " + m$(demand) + " MMscfd") +
+        kp("Production efficiency", pct(deliveredF / demandF, 1), "Share of demand actually delivered") +
+        kp("Gas deferred this year (Bscf)", (lostMMscf / 1000).toFixed(1), "") +
+        kp("Revenue lost this year (USD M)", m$(lostUSD), "At " + m$(rev) + " USD per MMscf")) +
+      grp("adv", "Investment", "Explains the decision", "p3",
+        kp("Installed compression capacity", pct(fr.installed, 0) + " of plateau", m$(fr.installed * e.Q) + " MMscfd incl. " + pct(e.margin, 0) + " design margin") +
+        kp("Compression CAPEX, PV (USD M)", m$(fr.capex), fr.phaseDelay > 0 ? "Last train paid in year " + (fr.phaseDelay + 1) : "All trains at start") +
+        kp("OPEX over life, PV (USD M)", m$(fr.pvOpex), "") +
+        kp("Production deferment over life, PV (USD M)", m$(fr.pvLoss), (p.evtInclude ? "Includes" : "Excludes") + " major events")) +
+      grp("adv", "Exposure", "Explains the decision", "p3",
+        kp("Full-plant stops per year", a.stopsYr.toFixed(1), "Each followed by a " + Math.round(p.restartHrs) + " h restart") +
+        kp("Rate lost if one train area is lost", pct(built > 1 ? Math.max(0, 1 - (built - 1) * fs) : 1, 0), "Year " + t + ", " + built + " train" + (built > 1 ? "s" : "") + " built; lasts months, not hours") +
+        kp("Expected PV loss from major events (USD M)", m$(fr.pvEvent), "Once every " + (p.evtFreq > 0 ? Math.round(1 / p.evtFreq) : "-") + " years, " + p.evtMonths + " months"));
+  }
+
+  // ---------- FEED ----------
+  function key() { const { p, m, focus } = state; return JSON.stringify([p, m, focus.id]); }
+  function renderFEED(runNow) {
+    const { p, m, focus } = state;
+    const fr = state.fel2.find(r => r.opt.id === focus.id);
+    const pSim = Object.assign({}, p, { phaseDelay: 0 });
+    if (runNow || !state.mc || state.mcKey !== key()) { state.mc = R.monteCarlo(focus, pSim, m, m.runs, 20261114, state.e); state.mcKey = key(); }
+    const mc = state.mc;
+    const frFull = R.evaluate(focus, pSim, state.e);
+    const kp = (label, val, why, big) => '<div class="kpi' + (big ? " big" : "") + '"><span>' + label + "</span><b>" + val + "</b>" + (why ? "<small>" + why + "</small>" : "") + "</div>";
+    document.getElementById("s3kpi").innerHTML =
+      '<div class="kg decision"><header><b>Plateau year range</b><span class="imp p1">Priority 1</span></header>' + kp("P10 year (1 in 10 is worse)", pct(mc.p10), "Set plateau commitments and sales nominations against this year", true) + kp("P50 year", pct(mc.p50), "") + kp("P90 year", pct(mc.p90), "") + "</div>" +
+      '<div class="kg"><header><b>Model check</b><span class="imp p3">Validation</span></header>' + kp("Simulated mean", pct(mc.mean, 2), "") + kp("FEL 2 block model, same inputs", pct(frFull.pePlateau, 2), "Close agreement with unconstrained crews and spares on site confirms the model") + "</div>" +
+      '<div class="kg"><header><b>Operations</b><span class="imp p2">Priority 2</span></header>' + kp("Failure events per year", mc.events.toFixed(1), "") + kp("Full-plant stops per year", mc.stops.toFixed(1), "") + "</div>";
+    const diff = mc.mean - frFull.pePlateau;
+    document.getElementById("s3read").innerHTML = "<b>The spread between P10 and P90 is " + ((mc.p90 - mc.p10) * 100).toFixed(1) + " points.</b> " +
+      (Math.abs(diff) < 0.005 ? "The mean matches the FEL 2 model, so the difference lies in year-to-year variation, which averages hide. " : "The mean is " + (diff * 100).toFixed(1) + " points from the FEL 2 model: repair queues and parts not on site, which a steady-state model cannot see. ") +
+      'Try "Ordered on failure" for critical spares: the block model does not move, but the P10 year falls by around 30 points, several times the gap between train configurations. Phasing is not simulated here: the simulation assumes all trains are built.';
+    const W = 680, Hh = 240, L = 44, Rr = 14, T = 12, B = 34;
+    const lo = Math.floor(mc.pes[0] * 100) / 100, hi = Math.min(1, Math.ceil(mc.pes[mc.pes.length - 1] * 100) / 100 + 0.005);
+    const nb = 24, bw = (hi - lo) / nb, bins = new Array(nb).fill(0);
+    mc.pes.forEach(v => { bins[Math.min(nb - 1, Math.max(0, Math.floor((v - lo) / bw)))]++; });
+    const ymax = niceMax(Math.max(...bins));
+    const x = v => L + (v - lo) / (hi - lo) * (W - L - Rr), y = v => T + (1 - v / ymax) * (Hh - T - B);
+    let g = "";
+    ticks(0, ymax, 4).forEach(t => { g += '<line class="grid" x1="' + L + '" x2="' + (W - Rr) + '" y1="' + y(t) + '" y2="' + y(t) + '"/><text x="' + (L - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + Math.round(t) + "</text>"; });
+    ticks(lo, hi, 5).forEach(t => { g += '<text x="' + x(t) + '" y="' + (Hh - B + 16) + '" text-anchor="middle">' + pct(t, 1) + "</text>"; });
+    bins.forEach((c, k) => { g += '<rect x="' + (x(lo + k * bw) + 1) + '" y="' + y(c) + '" width="' + Math.max(1, x(lo + bw) - x(lo) - 2) + '" height="' + (y(0) - y(c)) + '" fill="var(--accent)" opacity=".8"/>'; });
+    const mk = (v, lab, c) => '<line x1="' + x(v) + '" x2="' + x(v) + '" y1="' + T + '" y2="' + y(0) + '" stroke="' + c + '" stroke-width="2" stroke-dasharray="4 3"/><text x="' + (x(v) + 4) + '" y="' + (T + 10) + '" style="fill:' + c + '">' + lab + "</text>";
+    g += mk(mc.p10, "P10", "var(--bad)") + mk(frFull.pePlateau, "FEL 2", "var(--ink)");
+    g += '<text x="' + ((W + L) / 2) + '" y="' + (Hh - 4) + '" text-anchor="middle">Plateau-year production efficiency, ' + m.runs + " simulated years (count per bin)</text>";
+    document.getElementById("s3hist").innerHTML = svg(W, Hh, g);
+  }
+
+  // ---------- MATURITY ----------
+  function renderMaturity() {
+    const { focus, p, e } = state;
+    const f1 = state.fel1.find(r => r.opt.id === focus.id), f2 = R.evaluate(focus, Object.assign({}, p, { phaseDelay: 0 }), e);
+    const t = state.tornado, mc = state.mc;
+    const lo2 = Math.min(...t.map(r => Math.min(r.peLow, r.peHigh))), hi2 = Math.max(...t.map(r => Math.max(r.peLow, r.peHigh)));
+    const rows = [
+      { label: "FEL 1 benchmark range", lo: f1.peLo, hi: f1.peHi, color: "var(--s2)" },
+      { label: "FEL 2 block model, sensitivity range", lo: lo2, hi: hi2, pt: f2.pePlateau, color: "var(--s3)" },
+      { label: "FEED simulation, P10 to P90", lo: mc.p10, hi: mc.p90, pt: mc.p50, color: "var(--s1)" }
+    ];
+    const mn = Math.floor(Math.min(...rows.map(r => r.lo)) * 50) / 50;
+    document.getElementById("funnel").innerHTML = rangeChart(rows, { min: mn, max: 1, fmt: v => pct(v, 1), left: 260 }) +
+      '<p class="note">Option ' + focus.id + " (" + focus.label + "). Black tick = point estimate where the stage has one.</p>";
+    const M = [
+      ["FEL 1 Concept", "Benchmark ranges, structural screening, dominance test", "Analogues, operator experience, benchmarks", "Range of several points", "Drop dominated configurations; flag single points of failure, area-loss exposure, turndown and tie-ins; set the RAM requirement for FEL 2"],
+      ["FEL 2 Pre-FEED", "Block model: MTBF, MTTR, redundancy, common cause, restarts, host downtime, major-event and phasing checks", "Generic databases (OREDA class), preliminary equipment list, BFD", "About one to two points", "Select train count and phasing; value spares; give the economic case a production efficiency and its decision boundary"],
+      ["FEED", "Time-based Monte Carlo: crews, repair scatter, spares logistics, schedule", "Vendor data, maintenance strategy, spares plan", "P10 to P90 band", "Confirm the requirement; size spares and crews; set plateau commitments against the P10 year"]
+    ];
+    let h = "<tr><th>Stage</th><th>Method</th><th>Data</th><th>Typical precision</th><th>Decisions it supports</th></tr>";
+    M.forEach(r => { h += "<tr><td><b>" + r[0] + "</b></td><td>" + r[1] + "</td><td>" + r[2] + "</td><td>" + r[3] + "</td><td>" + r[4] + "</td></tr>"; });
+    document.getElementById("mattbl").innerHTML = h;
+  }
+
+  // ---------- BASE VIEW ----------
+  const QUICK = [["gasPrice", "Gas price (USD/Mscf)"], ["capexAcc", "Compression CAPEX vs base estimate (%)"], ["margin", "Design margin over plateau (%)"], ["evtInclude", "Major event once in 20 years, 6 months"]];
+  (function () {
+    const box = document.getElementById("quick");
+    QUICK.forEach(q => {
+      const real = document.getElementById("in-" + q[0]);
+      const l = document.createElement("label"); l.className = "f";
+      if (real.tagName === "SELECT") l.innerHTML = q[1] + '<select id="q-' + q[0] + '"><option value="0">Excluded</option><option value="1">Included</option></select>';
+      else l.innerHTML = q[1] + '<input type="number" id="q-' + q[0] + '" step="' + real.step + '" value="' + real.value + '">';
+      box.appendChild(l);
+      const el = l.querySelector("input,select");
+      el.addEventListener("input", () => { real.value = el.value; });
+      el.addEventListener("change", () => { real.value = el.value; real.dispatchEvent(new Event("input")); });
+    });
+  })();
+  function syncQuick() { QUICK.forEach(q => { document.getElementById("q-" + q[0]).value = document.getElementById("in-" + q[0]).value; }); }
+  function renderBase() {
+    const { e } = state, res = state.fel2, ranked = state.ranked, best = ranked[0];
+    const s50 = 0.5 * (1 + e.margin);
+    const np = res.filter(r => r.n1Spare >= -1e-9);
+    const peMax = np.length ? Math.max(...np.map(r => r.pePlateau)) : null;
+    const cheapNp = np.slice().sort((a, b) => a.total - b.total);
+    const w = state.mapWinners || [];
+    const lab = id => { const o = OPTS.find(x => x.id === id); return o ? o.label : id; };
+    let h = "<li><b>Design margin is hidden redundancy.</b> At " + pct(e.margin, 0) + " margin a \"50%\" train is really " + pct(s50, 0) + " of plateau, so losing one costs " + pct(Math.max(0, 1 - s50), 0) + " of the rate, not 50%. Margin and train count are one decision.</li>";
+    if (np.length) h += "<li><b>Capacity beyond N+1 buys almost nothing.</b> Every layout that can lose a train and still carry plateau stops near " + pct(peMax, 1) + " plateau efficiency, a ceiling set by single items such as the export pump. Cheapest of them: " + cheapNp[0].opt.label + "; the dearest costs " + m$(cheapNp[cheapNp.length - 1].total - cheapNp[0].total) + " USD M more over field life (capacity ladder below).</li>";
+    h += "<li><b>The answer is a boundary, not a winner.</b> At these inputs " + best.opt.label + " leads by " + m$(ranked[1] ? ranked[1].total - best.total : 0) + " USD M. Across gas price and CAPEX accuracy, " + w.length + " different layouts win somewhere: " + w.map(lab).join(", ") + " (map below).</li>";
+    document.getElementById("findings").innerHTML = h;
+  }
+  function setMode(m, keep) {
+    const base = m !== "adv";
+    document.body.classList.toggle("base", base);
+    document.querySelectorAll(".mbtn").forEach(b => b.setAttribute("aria-pressed", String((b.dataset.mode === "base") === base)));
+    document.getElementById("modenote").textContent = base ? "Base: the decision in two minutes." : "Advanced: every input, check and stage.";
+    if (base) { syncQuick(); show("fel2"); } else show(location.hash.slice(1) || "fel2");
+    if (!keep) { try { localStorage.setItem("ramMode", base ? "base" : "adv"); } catch (err) {} }
+  }
+  document.querySelectorAll(".mbtn").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+
+  // ---------- wiring ----------
+  const views = ["fel1", "fel2", "feed", "maturity"];
+  function show(v) {
+    if (!views.includes(v)) v = "fel2";
+    views.forEach(x => { document.getElementById("v-" + x).classList.toggle("on", x === v); document.getElementById("t-" + x).setAttribute("aria-selected", x === v ? "true" : "false"); });
+  }
+  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { try { location.hash = b.dataset.v; } catch (err) {} show(b.dataset.v); }));
+  window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h === "advanced") setMode("adv"); else if (h === "base") setMode("base"); else if (!document.body.classList.contains("base")) show(h); });
+  function renderAll(runMC) {
+    state = Object.assign(state, getAll());
+    renderFEL1(); renderFEL2(); renderOverview(); renderFEED(!!runMC); renderMaturity(); renderBase();
+  }
+  let tmr = null;
+  document.querySelectorAll("input,select").forEach(i => i.addEventListener("input", () => {
+    if (i.closest("#s3in")) return;
+    if (i.id === "year") { state = Object.assign(state, getAll()); renderOverview(); renderFEL2(); return; }
+    clearTimeout(tmr); tmr = setTimeout(() => renderAll(false), 200);
+  }));
+  document.getElementById("runmc").addEventListener("click", () => {
+    const btn = document.getElementById("runmc"); btn.disabled = true; btn.textContent = "Simulating...";
+    setTimeout(() => { renderAll(true); btn.disabled = false; btn.textContent = "Run simulation for the focus option"; }, 30);
+  });
+  renderAll(false);
+  (function () {
+    const h = location.hash.slice(1);
+    let m = "base"; try { m = localStorage.getItem("ramMode") || "base"; } catch (err) {}
+    if (h === "advanced" || views.includes(h)) m = "adv";
+    if (h === "base") m = "base";
+    setMode(m, true);
+    if (m === "adv") show(views.includes(h) ? h : "fel2");
+  })();
+})();
+</script>
+</body>
+</html>

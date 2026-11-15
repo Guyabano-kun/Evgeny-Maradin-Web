@@ -1,7 +1,7 @@
 {
  "https://evgenymaradin.com/": {
-  "sha1": "b4ac34c90c681ef0718a1116a5d3e7617e697d46",
-  "date": "2026-11-12"
+  "sha1": "c9be84169d702112c859af6020738fcc27eb1ae5",
+  "date": "2026-11-15"
  },
  "https://evgenymaradin.com/about/": {
   "sha1": "9000cdc9ab7a86853fad36422ff06c17a6b4a741",
@@ -56,8 +56,8 @@
   "date": "2026-11-09"
  },
  "https://evgenymaradin.com/insights/": {
-  "sha1": "0adc9c27b5ce336a08b348cebe34c26a2ec8a8e9",
-  "date": "2026-11-12"
+  "sha1": "c2a95e1ab86cb9790a155cb38cb4df3d004850fb",
+  "date": "2026-11-15"
  },
  "https://evgenymaradin.com/insights/adnoc-tender-wave/": {
   "sha1": "fd0c15bd999f90999e95fca83c763bd6de8bd455",
@@ -68,8 +68,8 @@
   "date": "2026-11-12"
  },
  "https://evgenymaradin.com/insights/digital-oilfield/": {
-  "sha1": "d3bab38a399545cf72707c1e39606f6e8509ca1a",
-  "date": "2026-11-12"
+  "sha1": "a7d6a3e872680673d3c130719c79acdda80505d1",
+  "date": "2026-11-15"
  },
  "https://evgenymaradin.com/insights/eridu/": {
   "sha1": "ef79832fb24b1f84104855f98e6042ce545ec0be",
@@ -112,8 +112,8 @@
   "date": "2026-11-09"
  },
  "https://evgenymaradin.com/insights/me-brownfields/": {
-  "sha1": "7fc662193ee9c22572788069f94180acbcfd8ce6",
-  "date": "2026-11-12"
+  "sha1": "187c0254008de00c795fa78147aaac27b2a19a64",
+  "date": "2026-11-15"
  },
  "https://evgenymaradin.com/insights/models/eor-constraint-migration/": {
   "sha1": "4939302f0fd75ca9025483ea3d5ee16081f74f9e",
@@ -131,6 +131,10 @@
   "sha1": "a39a8c57259390b0c140c5e8c28d7f847e49a103",
   "date": "2026-11-09"
  },
+ "https://evgenymaradin.com/insights/models/ram-across-fel/": {
+  "sha1": "8549136f082da927b9d75dbb287f0352e6b026c0",
+  "date": "2026-11-15"
+ },
  "https://evgenymaradin.com/insights/oman/": {
   "sha1": "584abe0801542df9049ea7393751d13c5e1e94e5",
   "date": "2026-11-09"
@@ -142,6 +146,10 @@
  "https://evgenymaradin.com/insights/pressure/": {
   "sha1": "0ae589cfa9a7979e5adc9afa7cbc5b5d66a49640",
   "date": "2026-11-09"
+ },
+ "https://evgenymaradin.com/insights/ram-before-feed/": {
+  "sha1": "23dbc910783c00b64124e8571fbe112aa86d6a4f",
+  "date": "2026-11-15"
  },
  "https://evgenymaradin.com/insights/shopping-cart/": {
   "sha1": "35b01f0f9e994e860c60c787b03d62074079d465",
