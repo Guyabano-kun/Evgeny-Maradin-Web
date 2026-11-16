@@ -638,7 +638,7 @@ page("contact", "Contact", "Send a message or book a free 30-minute intro call w
 # ---------------- HOME ----------------
 featured = [CASES[0], CASES[1], CASES[3]]
 page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
-     f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name"><img class="avatar" src="/img/evgeny-maradin.webp" alt="" width="640" height="800">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions<br><em>before FEED.</em></h1>
+     f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name"><img class="avatar" src="/img/evgeny-maradin.webp" alt="" width="640" height="800">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions</h1>
 <p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development, with hands-on operations and maintenance background.</p>
 <div class="roles"><span>Roles I take on</span><ul>{"".join(f"<li>{r}</li>" for r in ROLES)}</ul></div>
 <p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available immediately · Middle East, Africa, Southeast Asia</p>
