@@ -53,7 +53,7 @@ PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
     "": ("Evgeny Maradin | Lead Project Engineer, Pre-FEED / FEL",
-         "Lead Project Engineer, Concept Engineer and Study Manager for Pre-FEED / FEL. 19 years in upstream oil & gas: brownfield and CAPEX optimisation."),
+         "Lead Project Engineer for Pre-FEED / FEL. 19 years in upstream oil & gas, brownfield and CAPEX optimisation. Open to permanent, contract and rotational roles."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
               "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
@@ -647,7 +647,7 @@ TIMELINE = [
 page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side plus a Rosneft engineering centre, focused on FEL1–FEL2, Pre-FEED and brownfield.",
      f'''<section class="hero small"><div class="container about-grid"><div><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
 <p class="lead">19 years in upstream oil &amp; gas on both sides of the table: most of it on the operator side, and three years in a Rosneft engineering centre delivering studies as the contractor. I know how a contractor scopes and delivers a study, and what an operator needs to take it through a gate. My focus is the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
-<p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available immediately · Middle East, Africa, Southeast Asia</p>
+<p class="avail"><b>Seeking a full-time role:</b> permanent, contract or rotational · ready to relocate (Middle East, Africa, Southeast Asia, Central Asia) or work remotely · available immediately · based in the Philippines</p>
 <div class="actions"><a class="button primary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary" href="/contact/">Contact</a></div></div><img class="portrait about" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
 <div class="timeline">{"".join(f"<div><time>{y}</time><div><b>{r}</b><i>{o}</i><p>{d}</p></div></div>" for y, r, o, d in TIMELINE)}</div></div></section>
@@ -694,9 +694,9 @@ page("contact", "Contact", "Send a message or book a free 30-minute intro call w
 featured = [CASES[0], CASES[1], CASES[3]]
 page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
      f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name"><img class="avatar" src="/img/evgeny-maradin.webp" alt="" width="640" height="800">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions</h1>
-<p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development, with hands-on operations and maintenance background.</p>
+<p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development. Also detailed-design support, commissioning and hands-on operations and maintenance.</p>
 <div class="roles"><span>Roles I take on</span><ul>{"".join(f"<li>{r}</li>" for r in ROLES)}</ul></div>
-<p class="avail">Based in the Philippines · open to permanent, contract and rotational roles · available immediately · Middle East, Africa, Southeast Asia</p>
+<p class="avail"><b>Seeking a full-time role:</b> permanent, contract or rotational · ready to relocate (Middle East, Africa, Southeast Asia, Central Asia) or work remotely · available immediately · based in the Philippines</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary hide-sm" href="/advisory/">Advisory</a><a class="button secondary hide-sm" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
 <aside class="hero-side"><img class="portrait" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"><div class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></div></aside></div></section>
 <section class="trust"><div class="container trust-row"><div><span>Both sides of the table · mostly operator</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft (national majors)</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
