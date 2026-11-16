@@ -16,7 +16,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 - `content/articles/<key>.md`: full LinkedIn article texts (front matter `title`, `date`, `url`; body verbatim). If the file exists, the build writes `/insights/<key>/` and cards link there.
 - `web/img/insights/<key>.webp` cover; `web/img/insights/<key>/NN.webp` in-article images; pixel sizes in `tools/img_sizes.json`.
 - `content/production-note.md`: monthly note under the production chart (update `date`/`data_to`). `web/data/production.json` is refreshed by a GitHub workflow; do not hand-edit it.
-- Hand-maintained: `web/style.css`, `web/contact.js`, `web/functions/api/*.js`, `web/models/*` (interactive models), `web/docs/` (UK ENIC PDF).
+- Hand-maintained: `web/_headers` (security headers, noindex for `/models/*` and `*.pages.dev`), `web/style.css`, `web/contact.js`, `web/functions/api/*.js`, `web/models/*` (interactive models), `web/docs/` (UK ENIC PDF).
 - `tools/make_og.py` regenerates `web/og.png` (social card with headline and metrics) and `web/favicon.svg`; rerun when the headline or headline metrics change.
 - Generated, commit them: `web/sitemap.xml`, `web/robots.txt`, `tools/lastmod.json` (sitemap dates change only when a page's HTML changes).
 - Keep `web/google5ee18c8586b05b2f.html` (Search Console verification) and `web/d64e44d74df91f311902d640a0627c67.txt` (IndexNow key).
@@ -36,7 +36,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 
 **New or edited case.** Edit the dict in `CASES` (slug, n, label, years, title, teaser, metric, metric_l, big, tags, meta with 4 pairs, context, role, challenge, action list, result, insight key for related reading). A new case gets the next `n` and goes at the end; the case count text comes from `NUM[len(CASES)]` (add a word to `NUM` if needed). Optional chart: inline SVG in `FIGURES[slug]` using the `.case-fig` classes; check its labels at 390 px.
 
-**Headline, metrics or title change.** Update the page text and `SEO`, then rerun `make_og.py`.
+**Headline, metrics or title change.** Update the page text and `SEO`, then rerun `make_og.py`. The build asserts search titles <= 65 and descriptions <= 160 characters; long case titles/teasers get an entry in `CASE_SEO`.
 
 ## Build, test, hand over
 
@@ -54,4 +54,4 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 - Recommendations: `RECS` in the build (verbatim LinkedIn texts; `x` = home excerpt, `t` = full text on About). Never edit or invent quotes.
 - Owner's rule: do not add "Your experience" / engagement-question blocks to articles unless he asks.
 - Google Search Console is verified with the HTML file. The sitemap and IndexNow submissions are automatic; "Request indexing" is the owner's button and has a daily quota.
-- Fonts: the CSS names Inter but does not load it, so visitors see Arial. Loading it is an open task; ask before restyling. Design option B ("Engineering": IBM Plex, blue accent) was proposed but not chosen yet.
+- Fonts: Inter is loaded from Google Fonts in every page head. Ask before restyling. Design option B ("Engineering": IBM Plex, blue accent) was proposed but not chosen yet.

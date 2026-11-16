@@ -1,5 +1,5 @@
 """Generates the static multi-page site into web/ (run once; output is committed)."""
-import os, sys, html
+import os, sys, html, json
 
 OUT = sys.argv[1]
 LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
@@ -52,14 +52,14 @@ SITE = "https://evgenymaradin.com"
 PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
-    "": ("Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL, Upstream O&G",
+    "": ("Evgeny Maradin | Lead Project Engineer, Pre-FEED / FEL",
          "Lead Project Engineer, Concept Engineer and Study Manager for Pre-FEED / FEL. 19 years in upstream oil & gas: brownfield and CAPEX optimisation."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
               "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
-              "Nine upstream oil & gas cases: portfolio integration (-57% CAPEX), water injection re-engineering, gas debottlenecking Pre-FEED, well-pad siting, EPC bid analysis."),
+              "Nine upstream cases: portfolio integration (-57% CAPEX), water injection re-engineering, gas debottlenecking Pre-FEED, well-pad siting, EPC bid analysis."),
     "insights": ("Upstream FEL Insights & Interactive Models | Evgeny Maradin",
                  "Frameworks, interactive models and regional analysis on FEL, Pre-FEED and brownfield development in Iraq, Kuwait, Oman, UAE and Kazakhstan."),
     "contact": ("Contact Evgeny Maradin | Projects, Expert Calls, Hiring",
@@ -75,6 +75,51 @@ NAV = [("/cases/", "Cases", ""), ("/advisory/", "Advisory", ""), ("/insights/", 
        ("/about/", "About", "hide-sm"), ("/contact/", "Contact", "hide-sm")]
 
 
+HUBS = {"cases": "Cases", "insights": "Insights", "advisory": "Advisory", "about": "About", "contact": "Contact"}
+
+
+def structured_data(path, title, url, ld_json=None):
+    """One JSON-LD block per page: Person + WebSite on home, ProfilePage on About,
+    BreadcrumbList everywhere else, plus any page-specific item (articles)."""
+    person = json.loads(PERSON); person.pop("@context"); person["@id"] = f"{SITE}/#person"
+    graph = []
+    if path == "":
+        graph += [person, {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/", "name": "Evgeny Maradin",
+                           "inLanguage": "en", "publisher": {"@id": f"{SITE}/#person"}}]
+    else:
+        parts = path.split("/")
+        crumbs = [("Home", f"{SITE}/"), (HUBS.get(parts[0], html.unescape(title)), f"{SITE}/{parts[0]}/")]
+        if len(parts) > 1:
+            crumbs.append((html.unescape(title), url))
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]})
+        if path == "about":
+            graph.append({"@type": "ProfilePage", "url": url, "mainEntity": person})
+    if ld_json:
+        item = json.loads(ld_json); item.pop("@context", None); graph.append(item)
+    data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{data}</script>'
+
+
+def og_image_jpg(img_url):
+    """Social networks (LinkedIn above all) handle WebP previews poorly: publish a 1200 px JPEG copy."""
+    if not img_url or not img_url.endswith(".webp") or not img_url.startswith(SITE):
+        return None
+    src = os.path.join(OUT, img_url[len(SITE) + 1:])
+    name = os.path.splitext(os.path.basename(src))[0] + ".jpg"
+    dst = os.path.join(OUT, "img", "og", name)
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    im = Image.open(src).convert("RGB")
+    w, h = 1200, round(im.height * 1200 / im.width)
+    if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        im.resize((w, h), Image.LANCZOS).save(dst, "JPEG", quality=85, optimize=True, progressive=True)
+    return f"/img/og/{name}", w, h
+
+
 def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
     nav = "".join(
         f'<a href="{h}"{" class=%s" % c if c else ""}{" aria-current=page" if h == active else ""}>{t}</a>'
@@ -83,14 +128,16 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
     if path in SEO:
         full_title, desc = SEO[path]
     if seo:
-        full_title, desc = seo
+        full_title, desc = seo[0] or full_title, seo[1] or desc
     url = f"{SITE}/{path}/" if path else f"{SITE}/"
-    ld = f'<script type="application/ld+json">{PERSON}</script>' if path == "" else ""
-    if ld_json:
-        ld = f'<script type="application/ld+json">{ld_json}</script>'
+    assert len(full_title) <= 65 and len(desc) <= 160, ("SEO length", path, len(full_title), len(desc))
+    ld = structured_data(path, title, url, ld_json)
     og_type, og_img = ("article", og) if og else ("website", None)
-    og_img_tags = (f'<meta property="og:image" content="{og_img}">' if og_img else
+    og_jpg = og_image_jpg(og_img) if og_img else None
+    og_img_tags = (f'<meta property="og:image" content="{SITE}{og_jpg[0]}"><meta property="og:image:width" content="{og_jpg[1]}"><meta property="og:image:height" content="{og_jpg[2]}">' if og_jpg else
+                   f'<meta property="og:image" content="{og_img}">' if og_img else
                    f'<meta property="og:image" content="{SITE}/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">')
+    og_img_tags += f'<meta property="og:image:alt" content="{html.escape(full_title)}"><meta property="og:site_name" content="Evgeny Maradin"><meta property="og:locale" content="en_US">'
     PAGES.append(url)
     # market ticker only on the Insights page (next to the production data), not site-wide
     ticker = ('<div class="ticker" id="ticker" aria-label="Oil and gas benchmark prices"><div class="container ticker-row"><b>Markets</b>'
@@ -114,6 +161,14 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
         f.write(doc)
 
+
+# search titles/descriptions for case pages whose title or teaser is too long for Google (title <= 65 incl. suffix, description <= 160)
+CASE_SEO = {
+    "bazhenov-appraisal": ("Bazhenov Appraisal: Early Production Facility | Evgeny Maradin", None),
+    "minor-capex": ("Minor CAPEX: Debottlenecking & Integrity | Evgeny Maradin", None),
+    "apg-pre-feed": (None, "Owner-side Pre-FEED on associated gas: found the facility was gas-limited, selected a right-sized debottlenecking fix and screened about 19 gas-use routes."),
+    "water-injection": (None, "Merged a development scope and an integrity programme into one study and replaced an oversized redevelopment concept: VRR 70% to 95% at 80% lower CAPEX."),
+}
 
 NUM = {7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve"}
 
@@ -281,7 +336,7 @@ for i, c in enumerate(CASES):
 <div style="margin-bottom:50px">@@RELATED:{c["insight"]}@@</div>
 <div class="pager"><a href="/cases/{prev_c["slug"]}/"><small>← Previous case</small><b>{prev_c["title"]}</b></a><a href="/cases/{next_c["slug"]}/"><small>Next case →</small><b>{next_c["title"]}</b></a></div>
 </div></section>'''
-    page(f"cases/{c['slug']}", c["title"], c["teaser"], body, "/cases/")
+    page(f"cases/{c['slug']}", c["title"], c["teaser"], body, "/cases/", seo=CASE_SEO.get(c["slug"]))
 
 page("cases", "Cases", "Selected cases in concept development, brownfield optimisation and project decision support.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Selected cases</p><h1 class="page">Selected cases.</h1>
@@ -335,7 +390,7 @@ ORDER = ["ram-before-feed","comp6-staircase","eridu","adnoc-tender-wave","kurdam
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="ram-across-fel", t="RAM across FEL: train count, margin and spares", u="/models/ram-across-fel/",
-      s="Eight compression train layouts for a 500 MMscfd gas plant. Base view gives the decision in two minutes; Advanced adds every input, six robustness checks and a FEED Monte Carlo.", related="ram-before-feed", note="Illustrative screening inputs, not OREDA, vendor or risk-study data. Method follows ISO 20815 and ISO 15663."),
+      s="Eight compression train layouts for a 500 MMscfd gas plant. Base view gives the decision in two minutes; Advanced adds every input, six robustness checks and a FEED Monte Carlo.", seo_s="Eight compression train layouts for a 500 MMscfd gas plant: a two-minute base decision, plus every input, six robustness checks and a FEED Monte Carlo.", related="ram-before-feed", note="Illustrative screening inputs, not OREDA, vendor or risk-study data. Method follows ISO 20815 and ISO 15663."),
  dict(slug="production-profile", t="Production profile as a shopping cart", u="/models/production-profile/",
       s="Move water cut, target rate and availability and watch the binding surface constraint migrate: water handling, compression, separation, power.", related="shopping-cart"),
  dict(slug="eor-constraint-migration", t="EOR constraint migration", u="/models/eor-constraint-migration/",
@@ -463,7 +518,7 @@ def art_grid(keys, cls="agrid"):
 
 
 def model_card(m):
-    return (f'<a class="acard dark" href="/insights/models/{m["slug"]}/"><div class="pic"><img src="/img/insights/model-{m["slug"]}.webp" alt="" loading="lazy"></div>'
+    return (f'<a class="acard dark" href="/insights/models/{m["slug"]}/"><div class="pic"><img src="/img/insights/model-{m["slug"]}.webp" alt="" loading="lazy" width="800" height="450"></div>'
             f'<div class="abody"><small>INTERACTIVE MODEL</small><b>{m["t"]}</b><p>{m["s"]}</p><span class="more">Open the model →</span></div></a>')
 
 
@@ -473,7 +528,7 @@ def related(key):
 
 for m in MODELS:
     rel = related(m["related"]) if m["related"] else ""
-    page(f"insights/models/{m['slug']}", m["t"], m["s"],
+    page(f"insights/models/{m['slug']}", m["t"], m.get("seo_s", m["s"]),
          f'''<section class="hero small"><div class="container"><p class="eyebrow"><a href="/insights/">Insights</a> / Interactive model</p><h1 class="page">{m["t"]}</h1>
 <p class="lead">{m["s"]}</p><p class="avail">{m.get("note", "A mechanism demonstrator calibrated to published analogues, not to any named field.")}</p>
 <div class="actions"><a class="button secondary" href="{m["u"]}" target="_blank" rel="noopener">Open full screen ↗</a></div></div></section>
