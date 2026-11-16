@@ -1,0 +1,23 @@
+# Cloudflare Pages response headers (hand-maintained).
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Raw model pages are shown inside /insights/models/<slug>/: keep them out of search results on their own.
+/models/*
+  X-Robots-Tag: noindex, indexifembedded
+
+/404.html
+  X-Robots-Tag: noindex
+
+/img/*
+  Cache-Control: public, max-age=604800
+
+# The old pages.dev address and preview builds stay reachable but are not indexed (canonical host is evgenymaradin.com).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
