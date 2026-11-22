@@ -458,3 +458,4 @@ h1.article-title{font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacin
 .case-fig a.zoom{display:block;cursor:zoom-in}
 .case-fig img{display:block;width:100%;height:auto;border:1px solid var(--line);background:#111}
 .case-fig .fig-note{margin:8px 0 0;font-size:12px;color:var(--muted)}
+.story p a,.story li a{color:var(--accent);border-bottom:1px solid rgba(200,75,47,.35)}

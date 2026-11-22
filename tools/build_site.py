@@ -173,7 +173,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 
 # search titles/descriptions for case pages whose title or teaser is too long for Google (title <= 65 incl. suffix, description <= 160)
 CASE_SEO = {
-    "network-models": ("Field Network Models: Gathering & Injection | Evgeny Maradin", "Pad-level Petex GAP models of oil gathering and water injection, about 100 pads and 1,500+ wells: the calculation basis for the asset's projects, 2017-2024."),
+    "network-models": ("Field Network Models: Gathering & Injection | Evgeny Maradin", "Validated pad-level Petex GAP models of gathering and water injection, about 100 pads and 1,500+ wells: the hydraulic basis for five studies, 2017-2024."),
     "bazhenov-appraisal": ("Bazhenov Appraisal: Early Production Facility | Evgeny Maradin", None),
     "minor-capex": ("Minor CAPEX: Debottlenecking & Integrity | Evgeny Maradin", None),
     "apg-pre-feed": (None, "Owner-side Pre-FEED on associated gas: found the facility was gas-limited, selected a right-sized debottlenecking fix and screened about 19 gas-use routes."),
@@ -296,19 +296,17 @@ CASES = [
          result="10–50% lifecycle cost reduction depending on the case; corridor length down 15–35% and earthworks down 10–30%. The method gave faster alignment between technical and economic teams and more predictable budgets.",
          insight="integrated-fd"),
     dict(slug="network-models", n="10", label="Salym Petroleum · Production systems", years="2017–2024",
-         title="Field-Wide Network Models: Gathering and Water Injection",
-         teaser="Built and ran pad-level Petex GAP models of the oil gathering and water injection systems, around 100 pads and more than 1,500 wells, used as the calculation basis across the asset's projects.",
-         metric="1,500+", metric_l="wells in one<br>network model", big="Around 100 pads and more than 1,500 wells in field-wide gathering and water injection models: the hydraulic basis for the asset's projects from 2017 to 2024.",
+         title="Field-Wide Network Models Behind the Studies",
+         teaser="Used and validated pad-level Petex GAP models of the oil gathering and water injection systems, around 100 pads and more than 1,500 wells, as the hydraulic basis for five of the studies on this site.",
+         metric="1,500+", metric_l="wells in the<br>network models", big="Around 100 pads and more than 1,500 wells in the gathering and water injection models that carried the hydraulics in five studies from 2017 to 2024.",
          tags=["Petex GAP", "Network Modelling", "Water Injection", "Gathering"],
-         meta=[("Client", "Salym Petroleum Development (Shell JV until 2023)"), ("Period", "2017–2024"), ("Role", "Senior Concept Engineer, then Concept Development Manager"), ("Tool", "Petex GAP")],
-         context="A mature multi-field asset with a large oil gathering network and a water injection system built as two independent high-pressure systems. Concept, debottlenecking and development decisions needed a hydraulic basis covering the whole network, not one pipeline at a time.",
-         role="Built and maintained the field-wide network models and used them as the hydraulic basis for concept and project studies.",
-         challenge="Well-by-well models of more than 1,500 wells were too slow to run and maintain for study work. The models had to stay fast enough for option screening while keeping the network detail that sets pressures and capacities.",
-         action=["Built the oil gathering and water injection network models in Petex GAP.",
-                 "Modelled both systems pad by pad, around 100 pads, instead of well by well, which kept run times practical for scenario work.",
-                 "Modelled water injection as two independent high-pressure systems.",
-                 "Used the models as the common calculation basis for projects across the asset: development scenarios, debottlenecking and infrastructure changes."],
-         result="The models were the calculation basis for the asset's projects from 2017 to 2024. Alexander Galkin, who managed Evgeny directly, wrote that the field-wide pipeline network model, more than 500 km, \u201cproved critical for evaluating alternative development scenarios and significantly contributed to the company\u2019s field development plan update.\u201d",
+         meta=[("Client", "Salym Petroleum Development (Shell JV until 2023)"), ("Period", "2017–2024"), ("Role", "Model user and validator"), ("Tool", "Petex GAP")],
+         context="A mature multi-field asset with a large oil gathering network and a water injection system built as two independent high-pressure systems. Field-wide network models of both existed in Petex GAP, built pad by pad, around 100 pads, because well-by-well versions of more than 1,500 wells ran too slowly for study work.",
+         role="Model user and validator. The models were built by others; I validated them before each forward-looking study and used them as the hydraulic basis for concept and project work.",
+         challenge="A network model is only as good as its last check. Before a study looks years ahead, the model has to match the network as it runs today, or every option inherits the same error.",
+         action=["Validated the gathering and water injection models before each forward-looking study.",
+                 "Used the pad-level models as the calculation basis for development, debottlenecking and infrastructure studies across the asset."],
+         result="The models carried the hydraulics in five studies on this site: <a href=\"/cases/portfolio-integration/\">Portfolio Integration – 6 Fields</a>, <a href=\"/cases/water-injection/\">Water Injection Re-engineering</a>, <a href=\"/cases/south-hub/\">South Hub – Brownfield Expansion</a>, <a href=\"/cases/minor-capex/\">Minor CAPEX Portfolio</a>, <a href=\"/cases/well-pad-siting/\">Well-Pad &amp; Corridor Siting Method</a>.",
          insight="pressure"),
 ]
 
