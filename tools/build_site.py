@@ -3,6 +3,15 @@ import os, sys, html, json
 
 OUT = sys.argv[1]
 LI = "https://www.linkedin.com/in/evgeny-maradin-5279b85a/"
+# Training on About (from the owner's certificates; Six Sigma White Belt left out on purpose)
+TRAINING = [
+    ('<a href="https://coursera.org/verify/0CD184PEGIOH" target="_blank" rel="noopener">AI &amp; ML Applications in the Oil and Gas Industry ↗</a>', "L&amp;T EduTech via Coursera", "2025"),
+    ("HAZID and HAZOP: structured hazard analysis (16 h)", "Yamnuska, member of the Canadian Safety Institute", "2023"),
+    ("Integrated Production System Modelling, GAP-RESOLVE (40 h)", "Shell / Salym Petroleum, IRM-IPSM programme", "2017"),
+    ("Project Management Framework", "Shell", "2017"),
+    ("Project Management School, course M021: planning and controlling projects", "PM University (PMSOFT), PMI R.E.P., 24 PDU", "2015"),
+    ("Surface Development and NTR Mitigation for Unconventionals", "Shell Learning, Rijswijk", "2014"),
+]
 # Roles shown on the home hero: held (see TIMELINE) or targeted by the owner; no new claims.
 ROLES = ["Lead Project Engineer", "Study Manager / Study Lead", "Concept Engineer", "Senior Project Engineer", "Concept Development Manager", "Pre-FEED / FEL Advisor"]
 import hashlib
@@ -656,7 +665,8 @@ page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly o
 <section class="section alt"><div class="container"><div class="facts">
 <div><h4>Education</h4><p>Specialist Diploma (5-year), Machinery and Equipment of Oil &amp; Gas Fields, Kuban State Technological University, 2007. Assessed by UK ENIC as comparable to a UK Bachelor (Honours) degree, RQF Level 6.</p><a class="doc" href="/docs/uk-enic-statement-of-comparability.pdf" target="_blank" rel="noopener"><img src="/img/docs/uk-enic.webp" alt="UK ENIC Statement of Comparability for Evgeny Maradin" loading="lazy" width="640" height="506"><span>UK ENIC Statement of Comparability · PDF ↗</span></a><p class="doc-note">Reference 4002501645 · verify at <a href="https://www.enic.org.uk/verification" target="_blank" rel="noopener">enic.org.uk/verification</a></p></div>
 <div><h4>Tools</h4><p>Petex GAP · PIPESIM · HYSYS · PI Vision · Power BI · SmartField · SAP S/4HANA (PPM) · MS Project · AutoCAD</p></div>
-<div><h4>Languages</h4><p>English: professional working proficiency.<br>Russian: native.</p></div>
+<div><h4>Languages</h4><p>English: C1 Advanced (<a href="https://cert.efset.org/rrVoQC" target="_blank" rel="noopener">EF SET certificate, 2025 ↗</a>), professional working proficiency.<br>Russian: native.</p></div>
+<div class="training"><h4>Training</h4><ul>{"".join(f"<li><b>{c}</b><span>{o}</span><time>{y}</time></li>" for c, o, y in TRAINING)}</ul></div>
 </div></div></section>''',
      "/about/")
 
