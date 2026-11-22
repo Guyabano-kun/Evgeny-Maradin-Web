@@ -173,6 +173,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 
 # search titles/descriptions for case pages whose title or teaser is too long for Google (title <= 65 incl. suffix, description <= 160)
 CASE_SEO = {
+    "network-models": ("Field Network Models: Gathering & Injection | Evgeny Maradin", "Validated and extended Petex GAP models of gathering and water injection, about 100 pads and 1,500+ wells: the hydraulic basis for five studies, 2017-2024."),
     "bazhenov-appraisal": ("Bazhenov Appraisal: Early Production Facility | Evgeny Maradin", None),
     "minor-capex": ("Minor CAPEX: Debottlenecking & Integrity | Evgeny Maradin", None),
     "apg-pre-feed": (None, "Owner-side Pre-FEED on associated gas: found the facility was gas-limited, selected a right-sized debottlenecking fix and screened about 19 gas-use routes."),
@@ -243,7 +244,21 @@ CASES = [
          action=['Coordinated engineering disciplines through Pre-FEED and FEED.', 'On my own initiative ran an integrated review of key FEED documents and found a mismatch at the export pipeline and central processing facility tie-in point.', 'Brought the contractors and stakeholders together, set roles, responsibility zones and a short correction plan across FEED and detailed design; the changes were aligned within a week.', 'Led risk management and change control during execution preparation.'],
          result='FEED documentation submitted to state expert review on time with no interface findings, and the construction permit secured on schedule. Facilities integrated without production disruption on a $300M+ programme.',
          insight="integrated-fd"),
-    dict(slug="south-hub", n="06", label="Shell JV · Upper Salym field", years="2017–2018",
+    dict(slug="network-models", n="06", label="Salym Petroleum · Production systems", years="2017–2024",
+         title="Field-Wide Network Models Behind the Studies",
+         teaser="Validated, extended and used pad-level Petex GAP models of the oil gathering and water injection systems, around 100 pads and more than 1,500 wells, as the hydraulic basis for five of the studies on this site.",
+         metric="1,500+", metric_l="wells in the<br>network models", big="Around 100 pads and more than 1,500 wells in the gathering and water injection models that carried the hydraulics in five studies from 2017 to 2024.",
+         tags=["Flow Assurance", "Petex GAP", "PIPESIM", "Network Modelling", "Water Injection", "Gathering"],
+         meta=[("Client", "Salym Petroleum Development (Shell JV until 2023)"), ("Period", "2017–2024"), ("Role", "Flow assurance Technical Authority (TA2)"), ("Tool", "Petex GAP")],
+         context="A mature multi-field asset with a large oil gathering network and a water injection system built as two independent high-pressure systems. Field-wide network models of both existed in Petex GAP, built pad by pad, around 100 pads, because well-by-well versions of more than 1,500 wells ran too slowly for study work.",
+         role="Technical Authority for flow assurance at Salym Petroleum (TA level 2). Validated the models before each forward-looking study, extended them to the prospective development areas and used them as the hydraulic basis for concept and project work. I have also built and validated network models in PIPESIM elsewhere in my career.",
+         challenge="A network model is only as good as its last check. Before a study looks years ahead, the model has to match the network as it runs today, or every option inherits the same error.",
+         action=["Validated the gathering and water injection models before each forward-looking study.",
+                 "Extended both models to the prospective development areas, adding the planned pads and pipelines.",
+                 "Used the pad-level models as the calculation basis for development, debottlenecking and infrastructure studies across the asset."],
+         result="The models carried the hydraulics in five studies on this site: <a href=\"/cases/portfolio-integration/\">Portfolio Integration – 6 Fields</a>, <a href=\"/cases/water-injection/\">Water Injection Re-engineering</a>, <a href=\"/cases/south-hub/\">South Hub – Brownfield Expansion</a>, <a href=\"/cases/minor-capex/\">Minor CAPEX Portfolio</a>, <a href=\"/cases/well-pad-siting/\">Well-Pad &amp; Corridor Siting Method</a>.",
+         insight="pressure"),
+    dict(slug="south-hub", n="07", label="Shell JV · Upper Salym field", years="2017–2018",
          title="South Hub – Brownfield Expansion",
          teaser="Synchronised subsurface and surface decisions so that new facilities could be brought online and integrated into a live producing asset.",
          metric="7", metric_l="technical authority disciplines<br>signed off the concept", big="Concept selection approved: existing plant and pump station expanded in place, new water injection station at the tie-in point, phased in two stages.",
@@ -255,7 +270,7 @@ CASES = [
          action=["Tested facility capacity against the likely South Hub development scenarios together with reservoir engineering.", "Screened expansion and new-build options for the dehydration plant, the multiphase pump station and a new well-pad water injection station: location, capacity and phasing.", "Integrated the external power supply strategy into the concept.", "Recommended moving the main technical solutions into a separate early design stage, so the project could progress faster with lower design risk."],
          result="Concept selection approved by the Petroleum Engineering Manager after review by reservoir engineering, design and seven technical authority disciplines. Expand the existing plant and pump station in place, build a new water injection station near the tie-in point, phase the work in two stages.",
          insight="me-brownfields"),
-    dict(slug="minor-capex", n="07", label="Salym Petroleum · Asset & Integrity", years="2012–2024",
+    dict(slug="minor-capex", n="08", label="Salym Petroleum · Asset & Integrity", years="2012–2024",
          title="Minor CAPEX Portfolio – Debottlenecking & Integrity",
          teaser="Led FEL for minor CAPEX projects that kept a mature asset running: debottlenecking, integrity and reliability of the gathering system and field facilities.",
          metric="$1–20M", metric_l="TEC per project<br>FEL1–FEL2", big="A continuous stream of $1M–$20M projects taken through FEL: debottlenecking up to 10% value uplift, integrity cost savings up to 20%, Profitability Index up to +25%.",
@@ -267,7 +282,7 @@ CASES = [
          action=["Framed each problem against production, integrity and operating data before defining scope.", "Screened alternatives, including doing less: re-routing, re-use of existing equipment, phased scope.", "Used flow assurance and network analysis (PIPESIM, PETEX GAP) to size debottlenecking options.", "Applied competitive scoping and cost engineering, then took each concept to approval."],
          result="Debottlenecking and plant optimisation with up to 10% value uplift, integrity cost savings of up to 20%, and fast-track quick wins that raised Profitability Index by up to 25%.",
          insight="shopping-cart"),
-    dict(slug="bazhenov-appraisal", n="08", label="Shell JV · Unconventional", years="2012–2014",
+    dict(slug="bazhenov-appraisal", n="09", label="Shell JV · Unconventional", years="2012–2014",
          title="Bazhenov Shale Appraisal – Early Production Facility",
          teaser="Coordinated international technical contractors to deliver the early production facility design for an HPHT shale appraisal project on schedule.",
          metric="$46M", metric_l="appraisal project<br>EPF design on schedule", big="EPF design package for a $46M Bazhenov HPHT shale appraisal project delivered on schedule, with KBR and Granherne as technical contractors.",
@@ -279,7 +294,7 @@ CASES = [
          action=["Coordinated KBR and Granherne as technical contractors on the early production facility design.", "Aligned the facility scope with the appraisal programme and the operating requirements of the asset.", "Managed contractor interfaces, deliverables and schedule through to the final design package."],
          result="EPF design package delivered on schedule for the $46M appraisal project.",
          insight="kazakhstan"),
-    dict(slug="well-pad-siting", n="09", label="Shell JV · Field infrastructure", years="2018–2023",
+    dict(slug="well-pad-siting", n="10", label="Shell JV · Field infrastructure", years="2018–2023",
          title="Well-Pad & Corridor Siting Method",
          teaser="Built an integrated method for choosing well-pad locations and infrastructure corridors that cut lifecycle cost by 10–50%.",
          metric="10–50%", metric_l="lifecycle cost<br>reduction", big="10–50% lifecycle cost reduction depending on the case, with corridor length down 15–35% and earthworks down 10–30%.",
@@ -311,6 +326,10 @@ def case_card(c, full=False, num=True):
 _gas = [.84, .79, .77, .73, .76, 1.05, 1.57, 1.77, 1.64, 1.8, 2.01, 2.15, 2.05, 1.54, 1.06, .68, .45]
 _pts = " ".join(f"{60 + i * 47.5:.1f},{280 - v / 2.3 * 250:.1f}" for i, v in enumerate(_gas))
 FIGURES = {
+    "network-models": ''.join(f'''<figure class="case-fig"><figcaption>{cap}</figcaption><a class="zoom" href="/img/cases/{f}.webp" target="_blank" rel="noopener"><img src="/img/cases/{f}.webp" alt="{cap}" loading="lazy" width="1600" height="{h}"></a><p class="fig-note">Topology only: labels, names and pressures removed. Illustrative.</p></figure>'''
+        for cap, f, h in [("Water injection network model: two independent high-pressure systems", "network-water-injection", 777),
+                          ("Oil gathering network model, pad level", "network-gathering", 753),
+                          ("Gathering network model built in PIPESIM, earlier project", "network-pipesim", 1394)]),
     "apg-pre-feed": f'''<figure class="case-fig"><figcaption>Gas loading against installed capacity over the life of field</figcaption>
 <svg viewBox="0 0 860 330" role="img" aria-label="Gas loading peaks at 2.15 times installed capacity around year 12 and falls back below 1 by year 15">
 <line x1="60" y1="280" x2="820" y2="280" class="ax"/><line x1="60" y1="30" x2="60" y2="280" class="ax"/>
