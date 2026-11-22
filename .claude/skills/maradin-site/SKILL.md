@@ -28,7 +28,7 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 3. Experience: 19 years in upstream oil & gas (since 2007), the same number everywhere, including `make_og.py`. Do not call the whole period "operator side": 2024–now is independent advisory. Availability: "available immediately".
 4. Education: Specialist Diploma (5-year), Kuban State Technological University, 2007; UK ENIC: comparable to UK Bachelor (Honours), RQF Level 6. Not "Master's".
 5. No unverifiable claims ("adopted as best practice", named NOC clients, management adoption) unless he confirms them. Anonymised studies keep "illustrative figures, relative values only", with no asset names or absolute costs.
-6. When in doubt, ask one short question instead of guessing. Case 10 (well-pad siting) is SPD, 2018–2023. Case 06 (network models): Evgeny did not build the GAP models; he validated, extended and used them, and was flow assurance TA2 at SPD.
+6. When in doubt, ask one short question instead of guessing. Case 10 (well-pad siting) is SPD, 2018–2023. Case 06 (network models): he did not create the original GAP models; he developed them into the complete field-wide model (500+ km, per Galkin) by validating and extending them, and was flow assurance TA2 at SPD. Do not write "built from scratch".
 
 ## Workflows
 
