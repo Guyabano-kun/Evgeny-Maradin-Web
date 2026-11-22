@@ -302,7 +302,7 @@ CASES = [
          tags=["Petex GAP", "PIPESIM", "Network Modelling", "Water Injection", "Gathering"],
          meta=[("Client", "Salym Petroleum Development (Shell JV until 2023)"), ("Period", "2017–2024"), ("Role", "Validated and extended the models"), ("Tool", "Petex GAP")],
          context="A mature multi-field asset with a large oil gathering network and a water injection system built as two independent high-pressure systems. Field-wide network models of both existed in Petex GAP, built pad by pad, around 100 pads, because well-by-well versions of more than 1,500 wells ran too slowly for study work.",
-         role="Validated the models before each forward-looking study, extended them to the prospective development areas and used them as the hydraulic basis for concept and project work. Earlier, at Rosneft, built similar gathering network models in PIPESIM.",
+         role="Validated the models before each forward-looking study, extended them to the prospective development areas and used them as the hydraulic basis for concept and project work. I have also built and validated network models in PIPESIM elsewhere in my career.",
          challenge="A network model is only as good as its last check. Before a study looks years ahead, the model has to match the network as it runs today, or every option inherits the same error.",
          action=["Validated the gathering and water injection models before each forward-looking study.",
                  "Extended both models to the prospective development areas, adding the planned pads and pipelines.",
@@ -328,7 +328,8 @@ _pts = " ".join(f"{60 + i * 47.5:.1f},{280 - v / 2.3 * 250:.1f}" for i, v in enu
 FIGURES = {
     "network-models": ''.join(f'''<figure class="case-fig"><figcaption>{cap}</figcaption><a class="zoom" href="/img/cases/{f}.webp" target="_blank" rel="noopener"><img src="/img/cases/{f}.webp" alt="{cap}" loading="lazy" width="1600" height="{h}"></a><p class="fig-note">Topology only: labels, names and pressures removed. Illustrative.</p></figure>'''
         for cap, f, h in [("Water injection network model: two independent high-pressure systems", "network-water-injection", 777),
-                          ("Oil gathering network model, pad level", "network-gathering", 753)]),
+                          ("Oil gathering network model, pad level", "network-gathering", 753),
+                          ("Gathering network model built in PIPESIM, earlier project", "network-pipesim", 1394)]),
     "apg-pre-feed": f'''<figure class="case-fig"><figcaption>Gas loading against installed capacity over the life of field</figcaption>
 <svg viewBox="0 0 860 330" role="img" aria-label="Gas loading peaks at 2.15 times installed capacity around year 12 and falls back below 1 by year 15">
 <line x1="60" y1="280" x2="820" y2="280" class="ax"/><line x1="60" y1="30" x2="60" y2="280" class="ax"/>
