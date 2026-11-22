@@ -173,6 +173,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 
 # search titles/descriptions for case pages whose title or teaser is too long for Google (title <= 65 incl. suffix, description <= 160)
 CASE_SEO = {
+    "network-models": ("Field Network Models: Gathering & Injection | Evgeny Maradin", "Pad-level Petex GAP models of oil gathering and water injection, about 100 pads and 1,500+ wells: the calculation basis for the asset's projects, 2017-2024."),
     "bazhenov-appraisal": ("Bazhenov Appraisal: Early Production Facility | Evgeny Maradin", None),
     "minor-capex": ("Minor CAPEX: Debottlenecking & Integrity | Evgeny Maradin", None),
     "apg-pre-feed": (None, "Owner-side Pre-FEED on associated gas: found the facility was gas-limited, selected a right-sized debottlenecking fix and screened about 19 gas-use routes."),
@@ -294,6 +295,21 @@ CASES = [
                  "Produced a recommended and an alternative option with quantified savings per driver and aligned them at the DRB."],
          result="10–50% lifecycle cost reduction depending on the case; corridor length down 15–35% and earthworks down 10–30%. The method gave faster alignment between technical and economic teams and more predictable budgets.",
          insight="integrated-fd"),
+    dict(slug="network-models", n="10", label="Salym Petroleum · Production systems", years="2017–2024",
+         title="Field-Wide Network Models: Gathering and Water Injection",
+         teaser="Built and ran pad-level Petex GAP models of the oil gathering and water injection systems, around 100 pads and more than 1,500 wells, used as the calculation basis across the asset's projects.",
+         metric="1,500+", metric_l="wells in one<br>network model", big="Around 100 pads and more than 1,500 wells in field-wide gathering and water injection models: the hydraulic basis for the asset's projects from 2017 to 2024.",
+         tags=["Petex GAP", "Network Modelling", "Water Injection", "Gathering"],
+         meta=[("Client", "Salym Petroleum Development (Shell JV until 2023)"), ("Period", "2017–2024"), ("Role", "Senior Concept Engineer, then Concept Development Manager"), ("Tool", "Petex GAP")],
+         context="A mature multi-field asset with a large oil gathering network and a water injection system built as two independent high-pressure systems. Concept, debottlenecking and development decisions needed a hydraulic basis covering the whole network, not one pipeline at a time.",
+         role="Built and maintained the field-wide network models and used them as the hydraulic basis for concept and project studies.",
+         challenge="Well-by-well models of more than 1,500 wells were too slow to run and maintain for study work. The models had to stay fast enough for option screening while keeping the network detail that sets pressures and capacities.",
+         action=["Built the oil gathering and water injection network models in Petex GAP.",
+                 "Modelled both systems pad by pad, around 100 pads, instead of well by well, which kept run times practical for scenario work.",
+                 "Modelled water injection as two independent high-pressure systems.",
+                 "Used the models as the common calculation basis for projects across the asset: development scenarios, debottlenecking and infrastructure changes."],
+         result="The models were the calculation basis for the asset's projects from 2017 to 2024. Alexander Galkin, who managed Evgeny directly, wrote that the field-wide pipeline network model, more than 500 km, \u201cproved critical for evaluating alternative development scenarios and significantly contributed to the company\u2019s field development plan update.\u201d",
+         insight="pressure"),
 ]
 
 
@@ -311,6 +327,9 @@ def case_card(c, full=False, num=True):
 _gas = [.84, .79, .77, .73, .76, 1.05, 1.57, 1.77, 1.64, 1.8, 2.01, 2.15, 2.05, 1.54, 1.06, .68, .45]
 _pts = " ".join(f"{60 + i * 47.5:.1f},{280 - v / 2.3 * 250:.1f}" for i, v in enumerate(_gas))
 FIGURES = {
+    "network-models": ''.join(f'''<figure class="case-fig"><figcaption>{cap}</figcaption><a class="zoom" href="/img/cases/{f}.webp" target="_blank" rel="noopener"><img src="/img/cases/{f}.webp" alt="{cap}" loading="lazy" width="1600" height="{h}"></a><p class="fig-note">Topology only: labels, names and pressures removed. Illustrative.</p></figure>'''
+        for cap, f, h in [("Water injection network model: two independent high-pressure systems", "network-water-injection", 777),
+                          ("Oil gathering network model, pad level", "network-gathering", 753)]),
     "apg-pre-feed": f'''<figure class="case-fig"><figcaption>Gas loading against installed capacity over the life of field</figcaption>
 <svg viewBox="0 0 860 330" role="img" aria-label="Gas loading peaks at 2.15 times installed capacity around year 12 and falls back below 1 by year 15">
 <line x1="60" y1="280" x2="820" y2="280" class="ax"/><line x1="60" y1="30" x2="60" y2="280" class="ax"/>
