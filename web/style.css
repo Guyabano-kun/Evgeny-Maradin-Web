@@ -561,3 +561,37 @@ section[id]{scroll-margin-top:84px}
  .contact-compact .mode label{padding:7px 11px}
  .contact-compact .form .button{padding-top:11px;padding-bottom:11px}
 }
+/* Advisory services: collapsed to titles on phones, "Details" opens each */
+.svc-more{display:flex;flex-direction:column;flex:1}
+.svc-toggle{display:none}
+@media(max-width:800px){
+ .services>div{min-height:0;padding:18px 20px}
+ .services h3{margin:4px 0 0;font-size:19px}
+ .svc-toggle{display:inline-block;align-self:flex-start;margin-top:10px;padding:0;border:0;background:none;font:800 11px Inter,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);cursor:pointer}
+ .svc-toggle::after{content:" ▾"}
+ .svc.open .svc-toggle::after{content:" ▴"}
+ .svc .svc-more{display:none}
+ .svc.open .svc-more{display:flex;margin-top:8px}
+}
+/* very large screens (QHD, 4K): keep scaling so the layout fills the width */
+@media(min-width:2200px){body{zoom:1.4}}
+@media(min-width:2900px){body{zoom:1.75}}
+@media(min-width:3600px){body{zoom:2.1}}
+/* Advisory services on tablets and desktops: all six tiles fit one screen */
+@media(min-width:801px){
+ .services{grid-template-columns:repeat(3,1fr)}
+ .services>div{min-height:0;padding:20px 22px}
+ .services h3{font-size:19px;line-height:1.2;margin:6px 0 8px}
+ .services p{font-size:14px;line-height:1.5;margin:0 0 12px}
+ .services ul{padding-top:10px;font-size:12.5px}
+ .services li{padding:2px 0}
+}
+@media(min-width:801px) and (max-height:760px){
+ .services>div{padding:14px 18px}
+ .services h3{font-size:18px;margin:4px 0 6px}
+ .services p{font-size:13.5px;margin:0 0 8px}
+ .services ul{display:flex;flex-wrap:wrap;gap:0 4px;padding-top:8px}
+ .services li{padding:0}
+ .services li:not(:last-child)::after{content:" ·"}
+
+}
