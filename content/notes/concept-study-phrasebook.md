@@ -1,6 +1,6 @@
 ---
 title: "What a concept study says - and what it usually means"
-date: 2026-11-26
+date: 2026-11-23
 summary: "A short translation guide for anyone who signs off on a concept study: six familiar phrases and the postponed question behind each one."
 tag: "Concept stage"
 ---
