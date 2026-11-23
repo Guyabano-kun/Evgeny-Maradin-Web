@@ -509,3 +509,19 @@ section[id]{scroll-margin-top:84px}
 .to-top.show{opacity:.9;pointer-events:auto;transform:none}
 .to-top:hover{background:var(--accent);border-color:var(--accent);opacity:1}
 @media(max-width:800px){.to-top{right:14px;bottom:14px;width:44px;height:44px}}
+/* desktop, round 2: less air, text runs the full width (owner feedback) */
+@media(min-width:1100px){
+ .hero{padding:44px 0 36px}
+ .hero.small{padding:40px 0 30px}
+ .statement{padding:30px 0}
+ .section{padding:40px 0}
+ .section.tight{padding:30px 0}
+ .section-head{margin-bottom:22px;gap:40px}
+ .section-head>p{max-width:560px}
+ .expertise{margin-top:22px}
+ .lead,.statement p,.prod-note,.prod-auto,.case p,.story p,.story ul,.timeline p,.agrid.one,.terms{max-width:none}
+ .narrow{max-width:1200px}
+ .prose,.art-source,.art-cta{max-width:1000px}
+ .lead{margin-top:14px}
+ .agrid{gap:22px}
+}
