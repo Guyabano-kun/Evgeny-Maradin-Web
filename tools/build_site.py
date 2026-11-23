@@ -564,6 +564,63 @@ for m in MODELS:
 <div style="margin-top:50px">{rel}</div></div></section>''', "/insights/")
 
 regional = [k for k in ORDER if k not in FRAMEWORK_KEYS]
+
+# ---------------- NOTES (content/notes/<key>.md: short, evergreen practitioner notes; newest first) ----------------
+# front matter: title, date (YYYY-MM-DD), summary (card + search description, <= 160), tag
+NOTES = []
+_nd = os.path.join(ROOT, "content", "notes")
+if os.path.isdir(_nd):
+    for _f in sorted(os.listdir(_nd)):
+        if not _f.endswith(".md"):
+            continue
+        _fm, _nb = open(os.path.join(_nd, _f), encoding="utf-8").read().split("\n---\n", 1)
+        _m = dict(re.findall(r'^(\w+): "?(.*?)"?$', _fm.strip("-\n"), re.M))
+        _m["key"], _m["body"] = _f[:-3], _nb.strip("\n")
+        _m["d"] = datetime.date.fromisoformat(_m["date"]).strftime("%-d %b %Y")
+        _m["w"] = len(re.findall(r"\w+", _nb))
+        NOTES.append(_m)
+NOTES.sort(key=lambda n: n["date"], reverse=True)
+
+
+def note_card(n):
+    return (f'<a class="acard note" href="/insights/notes/{n["key"]}/"><div class="abody">'
+            f'<small>NOTE · {n["tag"].upper()} · {n["d"].upper()} · {mins(n["w"])} MIN</small><b>{html.escape(n["title"])}</b>'
+            f'<p>{html.escape(n["summary"])}</p><span class="more">Read note →</span></div></a>')
+
+
+for i, n in enumerate(NOTES):
+    url = f"{SITE}/insights/notes/{n['key']}/"
+    seo_title = n["title"] + " | Evgeny Maradin"
+    if len(seo_title) > 65:
+        seo_title = n["title"][:65 - len(" | Evgeny Maradin")].rsplit(" ", 1)[0] + " | Evgeny Maradin"
+    assert len(n["summary"]) <= 160, (n["key"], len(n["summary"]))
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": n["title"][:110],
+                     "description": n["summary"], "datePublished": n["date"],
+                     "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
+                     "image": f"{SITE}/og.png", "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url}, ensure_ascii=False)
+    others = "".join(note_card(o) for o in [o for o in NOTES if o is not n][:2])
+    more = (f'<section class="section"><div class="container"><p class="eyebrow">More notes</p><div class="agrid two">{others}</div></div></section>'
+            if others else
+            f'<section class="section"><div class="container"><p class="eyebrow">Related reading</p>{art_grid(ORDER[:2], "agrid two")}</div></section>')
+    page(f"insights/notes/{n['key']}", n["title"], n["summary"],
+         f'''<article><section class="hero small"><div class="container narrow"><p class="eyebrow"><a href="/insights/">Insights</a> / <a href="/insights/#notes">Notes</a> / {html.escape(n["tag"])}</p>
+<h1 class="page article-title">{html.escape(n["title"])}</h1>
+<p class="art-meta"><time datetime="{n["date"]}">{n["d"]}</time> · {mins(n["w"])} min read · Evgeny Maradin</p></div></section>
+<section class="section tight" style="border-top:0;padding-top:0"><div class="container narrow"><div class="prose">
+{md_to_html(n["body"])}
+</div>
+<div class="art-cta"><p><b>Working on a concept, Pre-FEED or a tender pack?</b> A short call is often enough to see where the gaps are.</p><div class="actions"><a class="button primary" href="/contact/?type=call">Book a free 30-min call</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">Follow on LinkedIn ↗</a></div></div>
+</div></section></article>
+{more}''',
+         "/insights/", seo=(seo_title, n["summary"]), ld_json=ld)
+
+NOTES_SECTION = (f'<section class="section" id="notes"><div class="container"><div class="section-head"><div><p class="eyebrow">Notes</p><h2>Short notes to keep.</h2></div>'
+                 f'<p>Checklists and field notes for concept and Pre-FEED work. Short, practical, not tied to the news.</p></div>'
+                 f'<div class="agrid">{"".join(note_card(n) for n in NOTES)}</div></div></section>') if NOTES else ""
+TOPICS = [("latest", "Latest")] + ([("notes", "Notes")] if NOTES else []) + [
+    ("production", "Production data"), ("models", "Interactive models"), ("frameworks", "Frameworks"), ("regional", "Regional analysis")]
+TOPIC_NAV = ('<nav class="topics" aria-label="Insights sections">'
+             + "".join(f'<a href="#{a}">{t}</a>' for a, t in TOPICS) + "</nav>")
 # analyst note under the production chart: content/production-note.md (front matter: date, data_to; body = paragraphs)
 _pn = os.path.join(ROOT, "content", "production-note.md")
 PROD_NOTE = ""
@@ -575,8 +632,9 @@ if os.path.exists(_pn):
                  + md_to_html(_pb) + "</div>")
 page("insights", "Insights", "Frameworks, interactive models and regional analysis on FEL, brownfield and upstream development.",
      f'''<section class="hero small"><div class="container"><p class="eyebrow">Insights</p><h1 class="page">From project experience<br>to reusable engineering logic.</h1>
-<p class="lead">Frameworks, interactive models and regional analysis. Mostly MENA, always through the lens of early-phase decisions.</p></div></section>
-<section class="section" style="border-top:0;padding-top:20px"><div class="container"><div class="section-head"><div><p class="eyebrow">Latest</p><h2>Most recent analysis.</h2></div></div>{art_card(ORDER[0], "wide")}</div></section>
+<p class="lead">Frameworks, interactive models and regional analysis. Mostly MENA, always through the lens of early-phase decisions.</p>{TOPIC_NAV}</div></section>
+<section class="section" id="latest" style="border-top:0;padding-top:20px"><div class="container"><div class="section-head"><div><p class="eyebrow">Latest</p><h2>Most recent analysis.</h2></div></div>{art_card(ORDER[0], "wide")}</div></section>
+{NOTES_SECTION}
 <section class="section" id="production"><div class="container"><div class="section-head"><div><p class="eyebrow">Production data</p><h2>Who is producing, month by month.</h2></div><p>Crude oil production by country, refreshed monthly. Top producers shown, the rest summed. Filter by period and region; click countries in the table to compare your own selection.</p></div>
 <div class="prod" id="prod"><div class="prod-bar"><div class="prod-period" role="group" aria-label="Period"></div>
 <label>Region <select class="prod-region"></select></label><label>Show <select class="prod-top"></select></label></div>
@@ -585,9 +643,9 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
 <div class="prod-scroll"><table class="prod-table"><thead><tr><th>#</th><th>Country</th><th>Region</th><th>Latest month</th><th>Last 12 m avg</th><th>vs prior 12 m</th></tr></thead><tbody></tbody></table></div></details>
 <p class="prod-src"></p></div></div></section>
 <script src="/production.js" defer></script>
-<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Interactive models</p><h2>Move the levers.</h2></div><p>Move the inputs and watch the binding constraint migrate. Open any model to use it full screen.</p></div><div class="agrid two">{"".join(model_card(m) for m in MODELS)}</div></div></section>
-<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Frameworks</p><h2>How I approach front-end decisions.</h2></div></div>{art_grid([k for k in FRAMEWORK_KEYS])}</div></section>
-<section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Regional analysis</p><h2>Reading the news as an early-phase engineer.</h2></div><p>Public deals and announcements, and the front-end questions behind them.</p></div>{art_grid([k for k in regional if k != ORDER[0]])}</div></section>''',
+<section class="section" id="models"><div class="container"><div class="section-head"><div><p class="eyebrow">Interactive models</p><h2>Move the levers.</h2></div><p>Move the inputs and watch the binding constraint migrate. Open any model to use it full screen.</p></div><div class="agrid two">{"".join(model_card(m) for m in MODELS)}</div></div></section>
+<section class="section" id="frameworks"><div class="container"><div class="section-head"><div><p class="eyebrow">Frameworks</p><h2>How I approach front-end decisions.</h2></div></div>{art_grid([k for k in FRAMEWORK_KEYS])}</div></section>
+<section class="section" id="regional"><div class="container"><div class="section-head"><div><p class="eyebrow">Regional analysis</p><h2>Reading the news as an early-phase engineer.</h2></div><p>Public deals and announcements, and the front-end questions behind them.</p></div>{art_grid([k for k in regional if k != ORDER[0]])}</div></section>''',
      "/insights/")
 
 # ---------------- ARTICLE PAGES (/insights/<key>/) ----------------
