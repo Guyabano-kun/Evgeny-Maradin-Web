@@ -468,3 +468,8 @@ section[id]{scroll-margin-top:84px}
 .acard.note p,.acard.note small{color:#aaa}
 .acard.note b{font-size:22px}
 @media(max-width:640px){.topics{gap:6px}.topics a{padding:9px 11px;font-size:10.5px}}
+/* "At a glance" key-facts box in articles */
+.prose .glance{margin:0 0 34px;padding:20px 24px;border:1px solid var(--line);border-left:3px solid var(--accent);background:rgba(255,255,255,.5)}
+.prose .glance .eyebrow{margin:0 0 10px}
+.prose .glance ul{margin:0;padding-left:18px}
+.prose .glance li{margin-bottom:6px;font-size:15.5px;line-height:1.5}

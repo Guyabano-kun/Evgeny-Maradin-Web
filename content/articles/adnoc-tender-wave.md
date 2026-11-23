@@ -3,7 +3,13 @@ title: "A Tender Wave Is Only as Fast as Its Slowest FEL"
 date: 2026-11-05
 url:
 ---
-
+:::glance
+- **2027 upstream tenders:** offshore sour gas with wellhead towers, an export gas pipeline with new wells, CO2/water EOR, and a long-term development with a processing island.
+- **Tender cycles:** ADNOC targets 40% shorter tender cycles; commercial and ICV offers are scored together (70/30).
+- **Context:** 5 million b/d capacity target by 2027; ten major EPC awards already in 2026.
+- **Not disclosed:** project values, field names and FEED status of each scope.
+- **Precedent:** Hail and Ghasha took more than four years from FEED to an award that held.
+:::
 
 ADNOC has told its suppliers what goes to market in 2027. It has not told them how mature that scope is.
 
