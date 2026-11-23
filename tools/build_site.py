@@ -774,19 +774,18 @@ page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly o
 # ---------------- CONTACT ----------------
 TOPICS = ["Job opportunity", "Advisory project", "Expert call", "FEL / Concept Select workshop", "Other"]
 page("contact", "Contact", "Send a message or book a free 30-minute intro call with Evgeny Maradin.",
-     f"""<section class="hero small"><div class="container"><p class="eyebrow">Contact</p><h1 class="page">Let's talk.</h1>
-<p class="lead">Send a short message, or book a free 30-minute intro call. I reply within one working day.</p></div></section>
-<section class="section" style="border-top:0;padding-top:20px"><div class="container contact-page">
-<div><form id="enquiry" class="form" novalidate>
-<fieldset class="mode"><legend class="eyebrow">I would like to</legend>
+     f"""<section class="contact-compact"><div class="container contact-page">
+<div><div class="contact-head"><h1>Let's talk.</h1><p>Send a short message or book a free 30-minute intro call. I reply within one working day.</p></div>
+<form id="enquiry" class="form" novalidate>
+<fieldset class="mode"><legend class="sr-only">I would like to</legend>
 <label><input type="radio" name="type" value="message" checked> Send a message</label>
 <label><input type="radio" name="type" value="call"> Book a free 30-min call</label></fieldset>
 <div class="row"><label>Name<input name="name" required maxlength="120" autocomplete="name"></label><label>Email<input name="email" type="email" required maxlength="160" autocomplete="email"></label></div>
-<div class="row"><label>Company <span>(optional)</span><input name="company" maxlength="160" autocomplete="organization"></label>
+<div class="row"><label>Company<input name="company" maxlength="160" autocomplete="organization" placeholder="optional"></label>
 <label>Topic<select name="topic">{"".join(f"<option>{t}</option>" for t in TOPICS)}</select></label></div>
 <div id="call-fields" hidden><div class="row"><label>Date<input name="date" type="date"></label><label>Time <span>(your time zone: <b id="tz-label"></b>)</span><input name="time" type="time" step="1800"></label></div>
 <p id="time-hint" class="hint"></p></div>
-<label>Message<textarea name="message" rows="6" maxlength="4000"></textarea></label>
+<label>Message<textarea name="message" rows="4" maxlength="4000"></textarea></label>
 <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
 <button class="button primary" type="submit">Send message</button>
 <p id="form-status" class="form-status" role="status"></p>

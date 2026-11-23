@@ -19,6 +19,7 @@
     dateIn.required = timeIn.required = call;
     msg.required = !call;
     msg.placeholder = call ? 'What would you like to discuss? (optional)' : 'Your message';
+    msg.rows = call ? 2 : 4;
     btn.textContent = call ? 'Request the call' : 'Send message';
     document.querySelectorAll('.mode label').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').value === m); });
   }
