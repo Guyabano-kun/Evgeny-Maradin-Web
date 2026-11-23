@@ -88,7 +88,8 @@
       '<line class="xh" x1="0" x2="0" y1="' + T + '" y2="' + (T + ih) + '" visibility="hidden"/><rect class="hit" x="' + L + '" y="' + T + '" width="' + iw + '" height="' + ih + '"/></svg>';
     $(".prod-chart").innerHTML = svg + '<div class="prod-tip" hidden></div>';
     $(".prod-legend").innerHTML = s.map(function (ser) { return '<span><i style="background:' + ser.color + '"></i>' + esc(ser.name) + "</span>"; }).join("");
-    $(".prod-total").textContent = "Total " + (st.region === "All" ? "reported" : st.region) + ", " + mlabel(M[b]) + ": " + fmt(tot[tot.length - 1]);
+    var estB = D.est_from !== null && D.est_from !== undefined && b >= D.est_from;
+    $(".prod-total").textContent = "Total " + (st.region === "All" ? (estB ? "" : "reported") : st.region).replace(/^$/, "all countries") + ", " + mlabel(M[b]) + (estB ? " (includes EIA estimates)" : "") + ": " + fmt(tot[tot.length - 1]);
     hover(s, a, b, x, W, L, iw);
     table(S);
     auto(S);
@@ -138,7 +139,8 @@
     var dn = mv.filter(function (m) { return m.d < 0; }).sort(function (x, y) { return x.d - y.d; }).slice(0, 3);
     var up = mv.filter(function (m) { return m.d > 0; }).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
     var li = function (m) { return esc(m.n) + " " + (m.d > 0 ? "+" : "−") + fmt(Math.abs(m.d)) + (m.p === null ? "" : " (" + sign(m.p) + ")"); };
-    $(".prod-auto").innerHTML = "<b>" + (st.region === "All" ? "All reporting countries" : esc(st.region)) + ": " + sign(pct) + " vs " + mlabel(M[ago]) + ".</b> " +
+    var estL = D.est_from !== null && D.est_from !== undefined && last >= D.est_from;
+    $(".prod-auto").innerHTML = "<b>" + (st.region === "All" ? "All countries" : esc(st.region)) + ", " + mlabel(M[last]) + (estL ? " (estimate)" : "") + ": " + sign(pct) + " vs " + mlabel(M[ago]) + ".</b> " +
       (dn.length ? "Largest falls: " + dn.map(li).join(", ") + ". " : "") + (up.length ? "Largest gains: " + up.map(li).join(", ") + "." : "");
   }
 

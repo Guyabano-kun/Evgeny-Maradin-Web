@@ -41,6 +41,12 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 4. Tags in `ARTICLES[key]["tag"]` drive "Related reading" (same country/topic first, then region group: Gulf, Iraq, CIS, Framework), so use the existing country names.
 5. The cover gets the article title as alt text and goes into the image sitemap automatically.
 
+**Monthly production update** (owner's standing request, Nov 2026: do it every month, in the site chat):
+1. The GitHub workflow `production-data.yml` refreshes `web/data/production.json` on the 12th (after the EIA STEO release) and the 24th. Check its latest commit landed; if not, run `tools/update_production.py` or trigger the workflow.
+2. Check the estimate split in the JSON: `est_from` and each country's `e` index = first month that is a STEO estimate (after the country's last EIA-reported month). Never call an estimated month "reported". The page labels use `est_from` (`web/production.js`: total line "includes EIA estimates", auto line "(estimate)", chart marker "estimates").
+3. Rewrite `content/production-note.md`: `date` = today, `data_to` = last month in the data with the estimate range, e.g. "October 2026 (August to October are EIA estimates)". Body: Middle East total (Feb 2026 pre-crisis, May low, latest), each Gulf producer as % of February at the low and now, what changed since last month, one FEL takeaway. Numbers only from production.json; say which months are estimates.
+4. Build twice, check /insights/ at 1366 and 390 px, PR, merge, report in Russian with the new numbers.
+
 **New or edited case.** Edit the dict in `CASES` (slug, n, label, years, title, teaser, metric, metric_l, big, tags, meta with 4 pairs, context, role, challenge, action list, result, insight key for related reading). A new case gets the next `n` and goes at the end; the case count text comes from `NUM[len(CASES)]` (add a word to `NUM` if needed). Optional chart: inline SVG in `FIGURES[slug]` using the `.case-fig` classes; check its labels at 390 px.
 
 **Headline, metrics or title change.** Update the page text and `SEO`, then rerun `make_og.py`. The build asserts search titles <= 65 and descriptions <= 160 characters; long case titles/teasers get an entry in `CASE_SEO`.
