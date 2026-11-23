@@ -34,3 +34,11 @@
   function upd() { b.classList.toggle('show', window.scrollY > 700); }
   window.addEventListener('scroll', upd, { passive: true }); upd();
 })();
+// Advisory services on phones: details open on tap.
+document.addEventListener('click', function (e) {
+  var t = e.target.closest && e.target.closest('.svc-toggle');
+  if (!t) return;
+  var card = t.closest('.svc'), open = card.classList.toggle('open');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  t.textContent = open ? 'Hide' : 'Details';
+});
