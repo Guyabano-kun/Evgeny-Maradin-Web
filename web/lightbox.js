@@ -25,3 +25,12 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 })();
+// Back-to-top button: appears after scrolling down, on every page.
+(function () {
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'to-top'; b.setAttribute('aria-label', 'Back to top'); b.textContent = '↑';
+  b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.body.appendChild(b);
+  function upd() { b.classList.toggle('show', window.scrollY > 700); }
+  window.addEventListener('scroll', upd, { passive: true }); upd();
+})();
