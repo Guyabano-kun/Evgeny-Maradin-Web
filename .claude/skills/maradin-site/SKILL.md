@@ -34,6 +34,13 @@ The owner writes in Russian: answer in Russian, short, with what changed and the
 
 **New LinkedIn article.** Needs the URL, the full text and the cover. Cloud sessions cannot open LinkedIn, so either the owner pastes text, link and cover, or the work runs in a local Claude Desktop session with Claude in Chrome. Then: save `content/articles/<key>.md` (verbatim, keep links), save the cover as `web/img/insights/<key>.webp` (about 800x449), add the entry to `ARTICLES` (copy the shape of an existing one: `t`, `tag`, `d` like "26 Oct 2026", `w` word count, `u`, summary), put the key first in `ORDER`, add `ART_SEO[key]` (title up to 65 characters including " | Evgeny Maradin", description up to 160), and add sizes for any in-article images.
 
+**Search checklist for every article** (Search Console, Nov 2026: most impressions come from UAE searches for ADNOC tenders; titles that name the topic get shown, vague ones do not):
+1. Pick the phrase a contractor or operator would type (company + project + year, e.g. "ADNOC 2027 tenders", "Chevron West Qurna 2"). `ART_SEO` title starts with it (<= 65 with " | Evgeny Maradin"); the description (<= 160) gives 2-3 concrete facts from the article and what the reader gets.
+2. Start the body with an "At a glance" box: a block from `:::glance` to `:::`, 3-5 lines `- **Label:** fact`, facts taken only from the article text.
+3. Optional front matter `keywords:` (comma-separated) goes into the Article JSON-LD.
+4. Tags in `ARTICLES[key]["tag"]` drive "Related reading" (same country/topic first, then region group: Gulf, Iraq, CIS, Framework), so use the existing country names.
+5. The cover gets the article title as alt text and goes into the image sitemap automatically.
+
 **New or edited case.** Edit the dict in `CASES` (slug, n, label, years, title, teaser, metric, metric_l, big, tags, meta with 4 pairs, context, role, challenge, action list, result, insight key for related reading). A new case gets the next `n` and goes at the end; the case count text comes from `NUM[len(CASES)]` (add a word to `NUM` if needed). Optional chart: inline SVG in `FIGURES[slug]` using the `.case-fig` classes; check its labels at 390 px.
 
 **Headline, metrics or title change.** Update the page text and `SEO`, then rerun `make_og.py`. The build asserts search titles <= 65 and descriptions <= 160 characters; long case titles/teasers get an entry in `CASE_SEO`.

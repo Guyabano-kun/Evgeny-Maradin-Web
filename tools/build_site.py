@@ -471,8 +471,8 @@ ART_SEO = {
         "COMP6 is one more step in North Field compression. Concept-to-installation runs 6-7 years; the installation window is now the binding constraint."),
     "eridu": ("Eridu: Not in Chevron's West Qurna-2 Deal",
               "Chevron is getting West Qurna-2. Eridu, 12.9 billion barrels from the same seller, is not in the deal. Why delivery certainty, not resource, sets the price."),
-    "adnoc-tender-wave": ("ADNOC 2027 Tenders: Scope Maturity vs Schedule",
-                          "ADNOC's 2027 tender list is public and tender cycles are 40% shorter. Scope maturity is not public. A Hail and Ghasha precedent and a five-question RFP test."),
+    "adnoc-tender-wave": ("ADNOC 2027 Tenders: What Is on the List",
+        "ADNOC's 2027 tender list: four upstream scopes, 40% shorter tender cycles, no FEED status disclosed. What it means for schedules, plus a five-question RFP test."),
     "kurdamir": ("Kurdamir: A Concept Check Before FEED",
                  "A concept check of the 2014 Kurdamir plan on public data: the plant, not the reservoir, limits it, and a phased larger concept adds 3.8 billion $ of NPV."),
     "hormuz": ("Around Hormuz: The Bypass Is Now the Constraint",
@@ -515,6 +515,9 @@ def md_to_html(md):
         lines = blk.split("\n")
         if blk.strip() == "---":
             out.append("<hr>")
+        elif blk.startswith(":::glance"):  # "At a glance" key-facts box: lines starting with "- " until ":::"
+            items = [l[2:] for l in lines if l.startswith("- ")]
+            out.append('<aside class="glance"><p class="eyebrow">At a glance</p><ul>' + "".join(f"<li>{_inline(t)}</li>" for t in items) + "</ul></aside>")
         elif blk.lstrip().startswith(("<figure", "<div", "<table", "<svg")):  # raw HTML exhibit, passed through
             out.append(blk)
         elif re.match(r"#{1,6} ", blk):
@@ -649,6 +652,22 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
      "/insights/")
 
 # ---------------- ARTICLE PAGES (/insights/<key>/) ----------------
+_GROUP = {"uae": "gulf", "qatar": "gulf", "kuwait": "gulf", "oman": "gulf", "gulf": "gulf", "iraq": "iraq", "kurdistan": "iraq", "kazakhstan": "cis", "framework": "framework"}
+def _tags(k):
+    return {t.strip().lower() for t in re.split(r"[·/,]", ARTICLES[k]["tag"]) if t.strip()}
+def related_articles(key, n=2):
+    """Same country/topic first, then same region group, then newest; keeps internal links topical."""
+    mine = _tags(key); groups = {_GROUP.get(t) for t in mine} - {None}
+    def score(k):
+        t = _tags(k)
+        return (len(mine & t) * 2 + len(groups & ({_GROUP.get(x) for x in t} - {None})), -ORDER.index(k))
+    cand = [k for k in ORDER if k != key and k in ARTICLE_MD]
+    return sorted(cand, key=score, reverse=True)[:n]
+try:
+    _LM_PREV = json.load(open(os.path.join(ROOT, "tools", "lastmod.json"), encoding="utf-8"))
+except FileNotFoundError:
+    _LM_PREV = {}
+ART_IMG = {}  # page url -> cover url, for the image sitemap
 for i, key in enumerate(ORDER):
     if key not in ARTICLE_MD:
         continue
@@ -661,13 +680,17 @@ for i, key in enumerate(ORDER):
     assert len(seo_title) <= 65 and len(seo_desc) <= 160, (key, len(seo_title), len(seo_desc))
     ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": meta["title"][:110],
                      "description": seo_desc, "datePublished": meta["date"],
+                     "dateModified": max(meta["date"], _LM_PREV.get(url, {}).get("date", meta["date"])),
+                     "articleSection": a["tag"].replace(" · ", ", "), "inLanguage": "en",
+                     **({"keywords": meta["keywords"]} if meta.get("keywords") else {}),
                      "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
                      "image": f"{SITE}{img}" if img else f"{SITE}/og.png",
                      "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url,
                      **({"isBasedOn": meta["url"]} if meta.get("url") else {})}, ensure_ascii=False)
+    if img: ART_IMG[url] = f"{SITE}{img}"
     cases_rel = [c for c in CASES if c["insight"] == key]
     models_rel = [m for m in MODELS if m["related"] == key]
-    others = [k for k in ORDER[i + 1:] + ORDER[:i] if k != key][:2]
+    others = related_articles(key)
     rel = ""
     if cases_rel:
         rel += f'<div class="case-grid{" three" if len(cases_rel) > 2 else ""}" style="margin-bottom:28px">{"".join(case_card(c, num=False) for c in cases_rel)}</div>'
@@ -680,7 +703,7 @@ for i, key in enumerate(ORDER):
 <h1 class="page article-title">{html.escape(meta["title"])}</h1><p class="lead">{a["s"]}</p>
 <p class="art-meta"><time datetime="{meta["date"]}">{a["d"]}</time> · {mins(a["w"])} min read · Evgeny Maradin</p></div></section>
 <section class="section tight" style="border-top:0;padding-top:0"><div class="container narrow">
-{f'<img class="art-cover" src="{img}" alt="" width="{_IMG_SIZES[img][0]}" height="{_IMG_SIZES[img][1]}">' if img else ""}
+{f'<img class="art-cover" src="{img}" alt="{html.escape(meta["title"])}" width="{_IMG_SIZES[img][0]}" height="{_IMG_SIZES[img][1]}">' if img else ""}
 <div class="prose">
 {body_html}
 </div>
@@ -830,7 +853,9 @@ for u in PAGES:
         lm[u] = {"sha1": h, "date": today}
 json.dump({u: lm[u] for u in sorted(PAGES)}, open(LASTMOD, "w", encoding="utf-8"), indent=1)
 with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
-    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-            + "".join(f"<url><loc>{u}</loc><lastmod>{lm[u]['date']}</lastmod></url>\n" for u in sorted(PAGES)) + "</urlset>\n")
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+            + "".join(f"<url><loc>{u}</loc><lastmod>{lm[u]['date']}</lastmod>"
+                      + (f"<image:image><image:loc>{ART_IMG[u]}</image:loc></image:image>" if u in ART_IMG else "")
+                      + "</url>\n" for u in sorted(PAGES)) + "</urlset>\n")
 with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
     f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
