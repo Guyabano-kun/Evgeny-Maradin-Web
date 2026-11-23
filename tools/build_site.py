@@ -19,7 +19,7 @@ import hashlib
 def _v(path):
     try: return hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "web", path), "rb").read()).hexdigest()[:8]
     except OSError: return "1"
-CSS_V, JS_V = _v("style.css"), _v("contact.js")
+CSS_V, JS_V, LB_V = _v("style.css"), _v("contact.js"), _v("lightbox.js")
 
 # LinkedIn recommendations, verbatim (collected from the owner's profile, Nov 2026).
 # "x" = excerpt for the home page (verbatim, cut with an ellipsis); "t" = full text for About.
@@ -164,7 +164,7 @@ def page(path, title, desc, body, active="", seo=None, og=None, ld_json=None):
 <section id="contact" class="contact"><div class="container contact-grid"><div><p class="eyebrow">Contact</p><h2>For roles, studies and expert calls.</h2></div><div><a href="mailto:{EMAIL}">{EMAIL}</a><button class="copy" type="button" data-copy="{EMAIL}">Copy email</button><a href="tel:+639669813383">+63 966 981 3383</a><a class="wa" href="https://wa.me/639669813383" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp ↗</a><a href="/contact/?type=call">Book a free 30-min call →</a><a href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a><p class="avail"><a href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>Project enquiries by email. Based in the Philippines, available immediately.</p></div></div></section>
 <footer><div class="container"><span>Evgeny Maradin · <a href="/cases/">Cases</a> · <a href="/advisory/">Advisory</a> · <a href="/insights/">Insights</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a></span><span>Concept Development / FEL | Upstream Oil &amp; Gas · Updated {UPDATED}</span></div></footer>
 <script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{{const t=b.dataset.copy;try{{await navigator.clipboard.writeText(t)}}catch(e){{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}}b.textContent='Copied: '+t;setTimeout(()=>b.textContent='Copy email',2500)}}))</script>
-{ticker_js}</body></html>'''
+{ticker_js}<script src="/lightbox.js?v={LB_V}" defer></script></body></html>'''
     d = os.path.join(OUT, path)
     os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
@@ -562,7 +562,7 @@ for m in MODELS:
     page(f"insights/models/{m['slug']}", m["t"], m.get("seo_s", m["s"]),
          f'''<section class="hero small"><div class="container"><p class="eyebrow"><a href="/insights/">Insights</a> / Interactive model</p><h1 class="page">{m["t"]}</h1>
 <p class="lead">{m["s"]}</p><p class="avail">{m.get("note", "A mechanism demonstrator calibrated to published analogues, not to any named field.")}</p>
-<div class="actions"><a class="button secondary" href="{m["u"]}" target="_blank" rel="noopener">Open full screen ↗</a></div></div></section>
+<div class="actions"><a class="button secondary" href="{m["u"]}">Open full screen</a></div></div></section>
 <section class="section tight" style="border-top:0;padding-top:0"><div class="container"><div class="embed"><iframe src="{m["u"]}" title="{m["t"]}" loading="lazy"></iframe></div>
 <div style="margin-top:50px">{rel}</div></div></section>''', "/insights/")
 
