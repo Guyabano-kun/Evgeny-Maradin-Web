@@ -23,7 +23,7 @@ d.text((PAD, 236), "Engineering decisions", font=f("ExtraBold", 84), fill=INK)
 d.text((PAD, 406), "Evgeny Maradin, Lead Project Engineer, Pre-FEED / FEL", font=f("Medium", 28), fill=INK)
 
 d.line((PAD, 482, W - PAD, 482), fill=LINE, width=2)
-metrics = [("19", "years upstream"), ("50+", "studies"), ("$300M+", "project scale"), ("57%", "CAPEX reduction")]
+metrics = [("2", "sides: op. & contractor"), ("50+", "studies"), ("$300M+", "project scale"), ("57%", "CAPEX reduction")]
 col = (W - 2 * PAD) / len(metrics)
 for i, (b, s) in enumerate(metrics):
     x = PAD + i * col
