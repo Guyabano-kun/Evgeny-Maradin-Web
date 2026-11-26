@@ -1,15 +1,15 @@
 {
  "https://evgenymaradin.com/": {
-  "sha1": "a53217fce7868ec8da8ddd44e4b5e93061a94244",
-  "date": "2026-11-23"
+  "sha1": "112915a71b445b6d04204fa842acace270803710",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/about/": {
-  "sha1": "ce57bebbf732c2344667a6f99f465127668937bf",
-  "date": "2026-11-23"
+  "sha1": "9b9ac67c66edcaad95d305a0977c97a08c2749dc",
+  "date": "2026-11-24"
  },
  "https://evgenymaradin.com/advisory/": {
-  "sha1": "dee2ce85b9d69f02a094260fd82e605c9acdcef0",
-  "date": "2026-11-23"
+  "sha1": "be719fca7ab9a8b8337c93b40d936428fbb0bf62",
+  "date": "2026-11-24"
  },
  "https://evgenymaradin.com/cases/": {
   "sha1": "f77ddfce864eaffc528620a24d517f8150e9bdb0",
@@ -60,8 +60,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/": {
-  "sha1": "ae7efa62ed24e2a83728368203f6a7fb89c12120",
-  "date": "2026-11-23"
+  "sha1": "e22a661f53fb9b44e229af3c7c1469c7ed9d3723",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/adnoc-tender-wave/": {
   "sha1": "6c6fa1b9c85647789e59c4d8869ffebc6e233d03",
@@ -72,12 +72,12 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/digital-oilfield/": {
-  "sha1": "55115bc64b2a7a9d88fb329700d547523281ea85",
-  "date": "2026-11-23"
+  "sha1": "58e8b79e4f9887b57c0fae0fa68e67d055fc29a3",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/eridu/": {
-  "sha1": "0d7d6c4607b98fe8bb0198a6c9dadd9a8334c279",
-  "date": "2026-11-23"
+  "sha1": "c63a74a78c4890516f2f617a341465e30f2b0618",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/hormuz/": {
   "sha1": "44138ce889a8bbf9e22c86f6bcad07d35e487ce7",
@@ -88,32 +88,36 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/iraq-cycle/": {
-  "sha1": "b7687685ea2c492ac3e3ad19fa96ef17d041ef14",
-  "date": "2026-11-23"
+  "sha1": "7831fe13ccfd147ac1dd07e5af17938789edc7a3",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/iraq-deals/": {
-  "sha1": "a20b91d138d6996cf706e353bec70e0cf1517c7a",
-  "date": "2026-11-23"
+  "sha1": "cead7900b575869a3de84cc9b460f2b5de453497",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kazakhstan/": {
-  "sha1": "e053a9d22cc4b2be066876b9a7bae377c55b95af",
-  "date": "2026-11-23"
+  "sha1": "396841b535b46bb174f7a4927506856279d8b6d2",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kirkuk/": {
-  "sha1": "cc2fb270a5dfe345425c0288725e0af4dc404756",
-  "date": "2026-11-23"
+  "sha1": "0adaff2eb32ec64578109519bf1abf0fdab04140",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kurdamir/": {
-  "sha1": "0a92e52fddd66487bf2a0e0bf73b7e1d280ff5d5",
-  "date": "2026-11-23"
+  "sha1": "4e2a17ec15cefa989725396a6d8a30c7d56d3050",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kurdistan/": {
-  "sha1": "5ef27906a90cd11bf2b051fa780cc3fa14949848",
-  "date": "2026-11-23"
+  "sha1": "c330e30c79fa4b809a19a02bef514eec53c6559b",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kuwait/": {
   "sha1": "38fb79c7da5aa04f32a14bf2085420c437b460f2",
   "date": "2026-11-23"
+ },
+ "https://evgenymaradin.com/insights/lukoil-international/": {
+  "sha1": "765cffdc07e01f0527137ccf8de1ac704f6cff05",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/me-brownfields/": {
   "sha1": "2904fc2926a77b0eb9c903e43600be774db68af5",
@@ -140,8 +144,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/notes/concept-study-phrasebook/": {
-  "sha1": "ffd6914a9c1b4b731db83de8ddddb8f31f0d3b41",
-  "date": "2026-11-23"
+  "sha1": "8836559ddc189c761017d8111e5ee19ed8d4ce2e",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/oman/": {
   "sha1": "637f0ddd54a9e17441201faaa849d7d8e90ab9ad",
@@ -152,8 +156,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/pressure/": {
-  "sha1": "e0909ff6b08c3e98d2f684e16d7d906ee71fd59d",
-  "date": "2026-11-23"
+  "sha1": "e911baadaab9b677658a9f2013e565e5559ca886",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/ram-before-feed/": {
   "sha1": "eed9fc3057fa3cff7a937ea11d542c5b86173337",

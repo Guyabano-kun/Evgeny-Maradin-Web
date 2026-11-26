@@ -62,9 +62,9 @@ PAGES = []  # paths written by page(), for sitemap.xml
 # search titles (<= ~65 chars) and descriptions (<= ~160 chars) for the key pages
 SEO = {
     "": ("Evgeny Maradin | Lead Project Engineer, Pre-FEED / FEL",
-         "Lead Project Engineer for Pre-FEED / FEL. 19 years in upstream oil & gas, brownfield and CAPEX optimisation. Open to permanent, contract and rotational roles."),
+         "Lead Project Engineer for Pre-FEED / FEL in upstream oil & gas: brownfield, concept select, CAPEX savings. Open to permanent, contract and rotational roles."),
     "about": ("About Evgeny Maradin | Lead Project Engineer – Pre-FEED / FEL",
-              "19 years in upstream oil & gas on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
+              "A long upstream oil & gas career on both sides: mostly operator (Shell JV, Gazprom Neft), plus a Rosneft engineering centre. FEL1–FEL2, Pre-FEED, brownfield."),
     "advisory": ("FEL & Pre-FEED Advisory for Upstream Oil & Gas | Evgeny Maradin",
                  "Independent FEL and Pre-FEED reviews, concept select, brownfield constraint analysis and EPC bid support for operators, contractors and investors."),
     "cases": ("Case Studies: Concept Select, Brownfield, CAPEX | Evgeny Maradin",
@@ -112,6 +112,7 @@ def structured_data(path, title, url, ld_json=None):
 
 def og_image_jpg(img_url):
     """Social networks (LinkedIn above all) handle WebP previews poorly: publish a 1200 px JPEG copy."""
+    img_url = img_url.split("?")[0] if img_url else img_url
     if not img_url or not img_url.endswith(".webp") or not img_url.startswith(SITE):
         return None
     src = os.path.join(OUT, img_url[len(SITE) + 1:])
@@ -375,6 +376,8 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
 # ---------------- INSIGHTS ----------------
 import math, datetime
 ARTICLES = {
+ "lukoil-international": dict(t="A US Consortium Signed for Lukoil's $16B Portfolio. What It Signed For Is a Carve-Out, Not a Takeover.", tag="Iraq · Kazakhstan · Lukoil", d="26 Nov 2026", w=1703, u="",
+   s="The Eldridge-DFC deal buys a portfolio whose interfaces were built around a Russian parent. West Qurna-2 is gone, Kazakhstan is open, and OFAC's test is not yet met."),
  "ram-before-feed": dict(t="The Capacity That Survives a Failure Is Chosen at Concept Stage", tag="Gulf · RAM", d="15 Nov 2026", w=3330, u="",
    s="What Habshan, Barzan and Pearl GTL show about train count, design margin and spares, and how to price them before FEED."),
  "comp6-staircase": dict(t="A Plateau Is a Staircase, Not a Step", tag="Qatar · North Field", d="12 Nov 2026", w=2185, u="https://www.linkedin.com/feed/update/urn:li:activity:7526486199948054528/",
@@ -414,7 +417,7 @@ ARTICLES = {
  "digital-oilfield": dict(t="Oilfield Development System: Bridging Engineering and Digital Intelligence", tag="Digital", d="21 Oct 2025", w=806, u=PULSE+"oilfield-development-system-bridging-engineering-digital-maradin-isame/",
    s="Lessons from building a digital oilfield MVP that linked SmartField data, PETEX GAP models and GIS with field systems."),
 }
-ORDER = ["ram-before-feed","comp6-staircase","eridu","adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
+ORDER = ["lukoil-international","ram-before-feed","comp6-staircase","eridu","adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="ram-across-fel", t="RAM across FEL: train count, margin and spares", u="/models/ram-across-fel/",
@@ -431,8 +434,12 @@ MODELS = [
 IMG_DIR = os.path.join(OUT, "img", "insights")
 
 
+# bump when a cover image is replaced under the same file name (browsers cache /img/* for 7 days)
+COVER_V = {"lukoil-international": "2"}
 def cover(key):
-    return f"/img/insights/{key}.webp" if os.path.exists(os.path.join(IMG_DIR, key + ".webp")) else None
+    if not os.path.exists(os.path.join(IMG_DIR, key + ".webp")):
+        return None
+    return f"/img/insights/{key}.webp" + (f"?v={COVER_V[key]}" if key in COVER_V else "")
 
 
 def mins(w):
@@ -465,6 +472,8 @@ for _k in ARTICLES:
 _IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
 # search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
 ART_SEO = {
+    "lukoil-international": ("Lukoil Boehly Deal: A Carve-Out, Not a Takeover",
+        "Eldridge-DFC signed for Lukoil's $16B portfolio. West Qurna-2 is gone, Kazakh stakes are open, OFAC's test is unmet. Five interfaces that set the value."),
     "ram-before-feed": ("RAM Before FEED: Train Count, Margin, Spares",
                         "What survives a failure is set at concept stage. Train count, design margin and spares priced at FEL 1, FEL 2 and FEED, with an interactive model."),
     "comp6-staircase": ("QatarEnergy COMP6: A Compression Staircase",
@@ -684,10 +693,10 @@ for i, key in enumerate(ORDER):
                      "articleSection": a["tag"].replace(" · ", ", "), "inLanguage": "en",
                      **({"keywords": meta["keywords"]} if meta.get("keywords") else {}),
                      "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
-                     "image": f"{SITE}{img}" if img else f"{SITE}/og.png",
+                     "image": f"{SITE}{img.split('?')[0]}" if img else f"{SITE}/og.png",
                      "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url,
                      **({"isBasedOn": meta["url"]} if meta.get("url") else {})}, ensure_ascii=False)
-    if img: ART_IMG[url] = f"{SITE}{img}"
+    if img: ART_IMG[url] = f"{SITE}{img.split('?')[0]}"
     cases_rel = [c for c in CASES if c["insight"] == key]
     models_rel = [m for m in MODELS if m["related"] == key]
     others = related_articles(key)
@@ -703,7 +712,7 @@ for i, key in enumerate(ORDER):
 <h1 class="page article-title">{html.escape(meta["title"])}</h1><p class="lead">{a["s"]}</p>
 <p class="art-meta"><time datetime="{meta["date"]}">{a["d"]}</time> · {mins(a["w"])} min read · Evgeny Maradin</p></div></section>
 <section class="section tight" style="border-top:0;padding-top:0"><div class="container narrow">
-{f'<img class="art-cover" src="{img}" alt="{html.escape(meta["title"])}" width="{_IMG_SIZES[img][0]}" height="{_IMG_SIZES[img][1]}">' if img else ""}
+{f'<img class="art-cover" src="{img}" alt="{html.escape(meta["title"])}" width="{_IMG_SIZES[img.split('?')[0]][0]}" height="{_IMG_SIZES[img.split('?')[0]][1]}">' if img else ""}
 <div class="prose">
 {body_html}
 </div>
@@ -730,7 +739,7 @@ page("advisory", "Advisory", "Independent FEL, Pre-FEED and concept select advis
      f'''<section class="hero small"><div class="container hero-grid"><div><p class="eyebrow">Advisory</p><h1 class="page">Independent front&#8209;end advice.</h1>
 <p class="lead">For operators, contractors and investors who need an experienced view before committing to FEED, FID or a contract, without hiring a full team.</p>
 <div class="actions"><a class="button primary" href="{quote_url("Project scope")}">Request a quote</a><a class="button secondary" href="{LI}" target="_blank" rel="noopener">LinkedIn profile ↗</a></div></div>
-<aside class="metrics"><div><b>50+</b><span>FEL studies led</span></div><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>GMT+8</b><span>remote or on-site</span></div></aside></div></section>
+<aside class="metrics"><div><b>50+</b><span>FEL studies led</span></div><div><b>2</b><span>sides: operator &amp; contractor</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>GMT+8</b><span>remote or on-site</span></div></aside></div></section>
 <section class="section" style="border-top:0;padding-top:40px"><div class="container"><div class="section-head"><div><p class="eyebrow">What I do</p><h2>Six ways to work together.</h2></div><p>Examples in <a class="textlink" href="/cases/">cases</a>.</p></div>
 <div class="services">{"".join(f'<div class="svc"><b>{n}</b><h3>{t}</h3><button type="button" class="svc-toggle" aria-expanded="false">Details</button><div class="svc-more"><p>{d}</p><ul>{"".join(f"<li>— {x}</li>" for x in li)}</ul></div></div>' for n, t, d, li in SERVICES)}</div></div></section>
 <section class="section" style="border-top:0;padding-top:20px"><div class="container"><div class="section-head"><div><p class="eyebrow">Recommendations</p><h2>What colleagues say.</h2></div><p><a class="textlink" href="/about/#recommendations">More recommendations →</a></p></div>
@@ -753,9 +762,9 @@ TIMELINE = [
     ("2008 – 2011", "Head of Concept Design / Concept Engineer", "Rosneft", "Engineering-centre (contractor) side: delivered 10+ greenfield and brownfield concept and Pre-FEED studies for Rosneft subsidiaries, held the study budget and competed with other centres for scope. Led a team of seven engineers."),
     ("2007 – 2008", "Senior Field Mechanic (LPG/NGL)", "Rosneft · Krasnodarneftegas", "Four-stage oil–gas separation train feeding a DEG gas treatment plant (dry gas, LPG, stabilised condensate): commissioning of a new pump station, start-up, maintenance and post-incident recovery, including winter operation. Team of 11–13 technicians, zero LTI."),
 ]
-page("about", "About", "Evgeny Maradin: 19 years in upstream oil & gas, mostly on the operator side plus a Rosneft engineering centre, focused on FEL1–FEL2, Pre-FEED and brownfield.",
+page("about", "About", "Evgeny Maradin: a long career in upstream oil & gas, mostly on the operator side plus a Rosneft engineering centre, focused on FEL1–FEL2, Pre-FEED and brownfield.",
      f'''<section class="hero small"><div class="container about-grid"><div><p class="eyebrow">About</p><h1 class="page">Operator-side engineer<br><em>for the front end.</em></h1>
-<p class="lead">19 years in upstream oil &amp; gas on both sides of the table: most of it on the operator side, and three years in a Rosneft engineering centre delivering studies as the contractor. I know how a contractor scopes and delivers a study, and what an operator needs to take it through a gate. My focus is the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
+<p class="lead">A long career in upstream oil &amp; gas on both sides of the table: most of it on the operator side, and three years in Rosneft's in-house engineering centre, delivering concept and Pre-FEED studies for Rosneft subsidiaries as their contractor. Before that, a year in the field as a mechanic on an operating gas-treatment and LPG/NGL complex. I know how a contractor scopes and delivers a study, and what an operator needs to take it through a gate. My focus is the phase where project value, constraints and decision logic are set: FEL1–FEL2, Pre-FEED and brownfield development.</p>
 <p class="avail"><b>Seeking a full-time role:</b> permanent, contract or rotational · ready to relocate (Middle East, Africa, Southeast Asia, Central Asia) or work remotely · available immediately · based in the Philippines</p>
 <div class="actions"><a class="button primary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary" href="/contact/">Contact</a></div></div><img class="portrait about" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"></div></section>
 <section class="section" style="border-top:0;padding-top:30px"><div class="container"><p class="eyebrow">Career</p><h2 style="margin-bottom:40px">Where the experience comes from.</h2>
@@ -800,15 +809,15 @@ page("contact", "Contact", "Send a message or book a free 30-minute intro call w
      "/contact/")
 
 # ---------------- HOME ----------------
-featured = [CASES[0], CASES[1], CASES[3]]
+featured = [CASES[0], CASES[1], CASES[4]]
 page("", "", "Lead Project Engineer for FEL1–FEL2, Pre-FEED and brownfield development in upstream oil & gas.",
      f'''<section class="hero"><div class="container hero-grid"><div><p class="hero-name"><img class="avatar" src="/img/evgeny-maradin.webp" alt="" width="640" height="800">Evgeny Maradin</p><p class="eyebrow">Pre-FEED / FEL | Upstream Oil &amp; Gas</p><h1>Engineering decisions</h1>
 <p class="lead">Lead Project Engineer for FEL1–FEL2, Pre-FEED, FEED and brownfield development. Also detailed-design support, commissioning and hands-on operations and maintenance.</p>
 <div class="roles"><span>Roles I take on</span><ul>{"".join(f"<li>{r}</li>" for r in ROLES)}</ul></div>
 <p class="avail"><b>Seeking a full-time role:</b> permanent, contract or rotational · ready to relocate (Middle East, Africa, Southeast Asia, Central Asia) or work remotely · available immediately · based in the Philippines</p>
 <div class="actions"><a class="button primary" href="/cases/">View cases</a><a class="button secondary" href="/docs/evgeny-maradin-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a><a class="button secondary hide-sm" href="/advisory/">Advisory</a><a class="button secondary hide-sm" href="{LI}" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
-<aside class="hero-side"><img class="portrait" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"><div class="metrics"><div><b>19</b><span>years upstream O&amp;G</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></div></aside></div></section>
-<section class="trust"><div class="container trust-row"><div><span>Both sides of the table · mostly operator</span><b>Shell JV (Salym Petroleum) · Gazprom Neft · Rosneft (national majors)</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
+<aside class="hero-side"><img class="portrait" src="/img/evgeny-maradin.webp" alt="Evgeny Maradin" width="640" height="800"><div class="metrics"><div><b>2</b><span>sides: operator &amp; contractor</span></div><div><b>50+</b><span>projects &amp; studies</span></div><div><b>$300M+</b><span>project scale</span></div><div><b>57%</b><span>portfolio CAPEX reduction</span></div></div></aside></div></section>
+<section class="trust"><div class="container trust-row"><div><span>Both sides of the table · mostly operator</span><b>Salym Petroleum · Gazprom Neft · Rosneft</b></div><div><span>Contractors managed</span><b>KBR · Granherne</b></div><div><span>Expert network</span><b>GLG</b></div></div></section>
 <section class="statement"><div class="container narrow"><p>Project value is often determined long before detailed engineering starts. The critical work is making assumptions visible, integrating disciplines, testing options and creating a decision that can survive the transition into execution.</p></div></section>
 <section class="section"><div class="container"><div class="section-head"><div><p class="eyebrow">Selected cases</p><h2>Project cases.</h2></div><p><a class="textlink" href="/cases/">All {NUM[len(CASES)].lower()} cases →</a></p></div>
 <div class="case-grid three">{"".join(case_card(c, num=False) for c in featured)}</div></div></section>
