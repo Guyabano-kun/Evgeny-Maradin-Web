@@ -19,7 +19,7 @@ import hashlib
 def _v(path):
     try: return hashlib.md5(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "web", path), "rb").read()).hexdigest()[:8]
     except OSError: return "1"
-CSS_V, JS_V, LB_V = _v("style.css"), _v("contact.js"), _v("lightbox.js")
+CSS_V, JS_V, LB_V, PJ_V = _v("style.css"), _v("contact.js"), _v("lightbox.js"), _v("production.js")
 
 # LinkedIn recommendations, verbatim (collected from the owner's profile, Nov 2026).
 # "x" = excerpt for the home page (verbatim, cut with an ellipsis); "t" = full text for About.
@@ -654,7 +654,7 @@ page("insights", "Insights", "Frameworks, interactive models and regional analys
 <details class="prod-more" open><summary>All countries <span class="prod-mode"></span><button type="button" class="prod-reset" hidden>Back to top producers</button></summary>
 <div class="prod-scroll"><table class="prod-table"><thead><tr><th>#</th><th>Country</th><th>Region</th><th>Latest month</th><th>Last 12 m avg</th><th>vs prior 12 m</th></tr></thead><tbody></tbody></table></div></details>
 <p class="prod-src"></p></div></div></section>
-<script src="/production.js" defer></script>
+<script src="/production.js?v={PJ_V}" defer></script>
 <section class="section" id="models"><div class="container"><div class="section-head"><div><p class="eyebrow">Interactive models</p><h2>Move the levers.</h2></div><p>Move the inputs and watch the binding constraint migrate. Open any model to use it full screen.</p></div><div class="agrid two">{"".join(model_card(m) for m in MODELS)}</div></div></section>
 <section class="section" id="frameworks"><div class="container"><div class="section-head"><div><p class="eyebrow">Frameworks</p><h2>How I approach front-end decisions.</h2></div></div>{art_grid([k for k in FRAMEWORK_KEYS])}</div></section>
 <section class="section" id="regional"><div class="container"><div class="section-head"><div><p class="eyebrow">Regional analysis</p><h2>Reading the news as an early-phase engineer.</h2></div><p>Public deals and announcements, and the front-end questions behind them.</p></div>{art_grid([k for k in regional if k not in ORDER[:2]])}</div></section>''',
