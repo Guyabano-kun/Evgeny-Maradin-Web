@@ -6,7 +6,7 @@ keywords: Lukoil International, Lukoil sale, Lukoil Boehly deal, Eldridge, DFC, 
 ---
 :::glance
 - **Deal:** an Eldridge-led consortium with the US DFC signed on 25 Nov 2026 to swap about $10B of Lukoil securities for Lukoil International, a portfolio put at about $16B.
-- **Already gone:** West Qurna-2 (75%, about 460,000 b/d gross) is moving to Basra Oil Company and Chevron.
+- **Already gone:** West Qurna-2 (75% interest, about 460,000 b/d gross in early 2026) is run by Basra Oil Company, with Chevron set to take over.
 - **Still open:** Kazakh stakes under state pre-emption, the Block 10 (Eridu) perimeter, and the Petrotel refinery in insolvency.
 - **Gate:** OFAC FAQ 1224 requires complete severance from Lukoil and blocked proceeds; the negotiation licence GL 131L expires on 19 Dec 2026.
 - **Earliest closing:** late 2027, with at least one licence renewal needed inside the window.
@@ -22,7 +22,7 @@ That is a carve-out problem. And carve-outs fail on interfaces, not on reserves.
 
 The first number is the gap between $16 billion and the [$22 billion book value](https://finance.yahoo.com/news/russias-lukoil-reaches-tentative-deal-203301323.html) Lukoil itself put on its international business. The bases differ and the gap is not itemised in public. But part of it has a name.
 
-The second number is 460,000. That is roughly how many barrels per day West Qurna-2 produces gross, and it has already left. Under an [OFAC permit dated 31 March 2026](https://interfax.com/newsroom/top-stories/119452/), Lukoil's 75% stake could be transferred to Basra Oil Company, and on 3 November Iraq said terms with Chevron [were agreed](https://worldoil.com/news/2026/11/3/iraq-says-terms-agreed-with-chevron-on-west-qurna-2-contract-signing-targeted-before-year-end/), with signing targeted before year-end. One Iraqi field produced more gross barrels than the entire portfolio now being sold.
+The second number is 460,000. That is roughly how many barrels per day West Qurna-2 produced gross in early 2026, before export disruption forced cuts in June, and it has already left. [Basra Oil Company](https://www.thenationalnews.com/business/energy/2026/01/08/iraq-to-nationalise-west-qurna-2-oilfield-operations-government-says) has run the field since January. Under an [OFAC permit dated 31 March 2026](https://interfax.com/newsroom/top-stories/119452/), Lukoil's 75% interest in the service contract could be transferred to Basra Oil Company, and on 3 November Iraq said terms with Chevron [were agreed](https://worldoil.com/news/2026/11/3/iraq-says-terms-agreed-with-chevron-on-west-qurna-2-contract-signing-targeted-before-year-end/), with signing targeted before year-end. One Iraqi field produced more gross barrels than the entire portfolio now being sold.
 
 The third number is about 19 cents. Reuters reported that the swap securities were [bought from Western funds](https://kurs.com.ua/en/novost/1486880-amerikanskii-miljarder-skupovue-zamorozheni-akciyi-zaradi-aktiviv-lukoilu-reuters) at about 30 cents on the dollar. If that applies to the full $10 billion, the cash behind a $16 billion portfolio is around $3 billion. That spread is not a bargain. It is the budget for every interface that still has to be rebuilt.
 
@@ -111,4 +111,4 @@ Practitioners who have been through a carve-out or a change of operator: which i
 - Caveats: Reuters did not report the swap ratio, and it is not disclosed whether $10B is face or purchase value. Treat as an order-of-magnitude indicator (±50%, i.e. ~$1.5-4.5B), not a price.
 - $22B is Lukoil's stated book value of its whole international business; $16B is a source-based estimate of the current portfolio. Different bases: the ~$6B gap is indicative, not an itemised write-down.
 - Timeline: 25 Nov 2026 + up to 12 months = late Nov 2027 closing, versus general licence expiry on 24 Apr 2027: a ~7-month gap that requires at least one renewal.
-- West Qurna-2 (~460 kb/d gross) versus remaining portfolio (~350 kb/d): different bases (gross field vs portfolio), shown only to illustrate the scale of what has already left.
+- West Qurna-2 (~460 kb/d gross, early 2026, before the June export cuts) versus remaining portfolio (~350 kb/d): different bases (gross field vs portfolio), shown only to illustrate the scale of what has already left.
