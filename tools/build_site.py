@@ -375,6 +375,8 @@ page("cases", "Cases", "Selected cases in concept development, brownfield optimi
 # ---------------- INSIGHTS ----------------
 import math, datetime
 ARTICLES = {
+ "lukoil-international": dict(t="A US Consortium Signed for Lukoil's $16B Portfolio. What It Signed For Is a Carve-Out, Not a Takeover.", tag="Iraq · Kazakhstan · Lukoil", d="26 Nov 2026", w=1703, u="",
+   s="The Eldridge-DFC deal buys a portfolio whose interfaces were built around a Russian parent. West Qurna-2 is gone, Kazakhstan is open, and OFAC's test is not yet met."),
  "ram-before-feed": dict(t="The Capacity That Survives a Failure Is Chosen at Concept Stage", tag="Gulf · RAM", d="15 Nov 2026", w=3330, u="",
    s="What Habshan, Barzan and Pearl GTL show about train count, design margin and spares, and how to price them before FEED."),
  "comp6-staircase": dict(t="A Plateau Is a Staircase, Not a Step", tag="Qatar · North Field", d="12 Nov 2026", w=2185, u="https://www.linkedin.com/feed/update/urn:li:activity:7526486199948054528/",
@@ -414,7 +416,7 @@ ARTICLES = {
  "digital-oilfield": dict(t="Oilfield Development System: Bridging Engineering and Digital Intelligence", tag="Digital", d="21 Oct 2025", w=806, u=PULSE+"oilfield-development-system-bridging-engineering-digital-maradin-isame/",
    s="Lessons from building a digital oilfield MVP that linked SmartField data, PETEX GAP models and GIS with field systems."),
 }
-ORDER = ["ram-before-feed","comp6-staircase","eridu","adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
+ORDER = ["lukoil-international","ram-before-feed","comp6-staircase","eridu","adnoc-tender-wave","kurdamir","hormuz","kirkuk","pressure","kazakhstan","shopping-cart","kuwait","iraq-deals","portfolio-risk","kurdistan","iraq-cycle","integrated-fd","oman","me-brownfields","digital-oilfield"]
 FRAMEWORK_KEYS = ["shopping-cart","pressure","integrated-fd","portfolio-risk","me-brownfields"]
 MODELS = [
  dict(slug="ram-across-fel", t="RAM across FEL: train count, margin and spares", u="/models/ram-across-fel/",
@@ -465,6 +467,8 @@ for _k in ARTICLES:
 _IMG_SIZES = json.load(open(os.path.join(ROOT, "tools", "img_sizes.json"), encoding="utf-8"))
 # search titles (title + " | Evgeny Maradin" <= 65) and descriptions (<= 160) for article pages
 ART_SEO = {
+    "lukoil-international": ("Lukoil Boehly Deal: A Carve-Out, Not a Takeover",
+        "Eldridge-DFC signed for Lukoil's $16B portfolio. West Qurna-2 is gone, Kazakh stakes are open, OFAC's test is unmet. Five interfaces that set the value."),
     "ram-before-feed": ("RAM Before FEED: Train Count, Margin, Spares",
                         "What survives a failure is set at concept stage. Train count, design margin and spares priced at FEL 1, FEL 2 and FEED, with an interactive model."),
     "comp6-staircase": ("QatarEnergy COMP6: A Compression Staircase",

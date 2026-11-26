@@ -1,7 +1,7 @@
 {
  "https://evgenymaradin.com/": {
-  "sha1": "6f2f3446994b7e879a63d310843960123e1aaec5",
-  "date": "2026-11-24"
+  "sha1": "ee4de12d83807c4a1bf89d5da892d8130eda6635",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/about/": {
   "sha1": "9b9ac67c66edcaad95d305a0977c97a08c2749dc",
@@ -60,8 +60,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/": {
-  "sha1": "0ecd81bea8263e20a46a71114d8342c8f6c63f7a",
-  "date": "2026-11-23"
+  "sha1": "62d075404864063087bd5b67f272650c193c5520",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/adnoc-tender-wave/": {
   "sha1": "6c6fa1b9c85647789e59c4d8869ffebc6e233d03",
@@ -72,12 +72,12 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/digital-oilfield/": {
-  "sha1": "55115bc64b2a7a9d88fb329700d547523281ea85",
-  "date": "2026-11-23"
+  "sha1": "66471b69f91389bd2c4d5925f08e7068c542a450",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/eridu/": {
-  "sha1": "0d7d6c4607b98fe8bb0198a6c9dadd9a8334c279",
-  "date": "2026-11-23"
+  "sha1": "77c927c49ba210b63c98c92923af5031602dd27c",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/hormuz/": {
   "sha1": "44138ce889a8bbf9e22c86f6bcad07d35e487ce7",
@@ -88,32 +88,36 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/iraq-cycle/": {
-  "sha1": "b7687685ea2c492ac3e3ad19fa96ef17d041ef14",
-  "date": "2026-11-23"
+  "sha1": "e3937ac2e2dbee4e0fc477aea8778c0d8e11ba7c",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/iraq-deals/": {
-  "sha1": "a20b91d138d6996cf706e353bec70e0cf1517c7a",
-  "date": "2026-11-23"
+  "sha1": "c2f01ba8c88b43c5e39a26565b3bdff0c7f86427",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kazakhstan/": {
-  "sha1": "e053a9d22cc4b2be066876b9a7bae377c55b95af",
-  "date": "2026-11-23"
+  "sha1": "99d963b998c266b660dc37c00b7aa36018531a47",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kirkuk/": {
-  "sha1": "cc2fb270a5dfe345425c0288725e0af4dc404756",
-  "date": "2026-11-23"
+  "sha1": "38e2ef37e450299025fa15ae64c7d532b3e45d29",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kurdamir/": {
-  "sha1": "0a92e52fddd66487bf2a0e0bf73b7e1d280ff5d5",
-  "date": "2026-11-23"
+  "sha1": "916621b780821cd0353b89fa857c18bca3ce72de",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kurdistan/": {
-  "sha1": "5ef27906a90cd11bf2b051fa780cc3fa14949848",
-  "date": "2026-11-23"
+  "sha1": "ad8d37b4c0efd2925ae383c56a9cea6568f16553",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/kuwait/": {
   "sha1": "38fb79c7da5aa04f32a14bf2085420c437b460f2",
   "date": "2026-11-23"
+ },
+ "https://evgenymaradin.com/insights/lukoil-international/": {
+  "sha1": "a0157c8257dace97e17567a64173bccb8cdcd68f",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/me-brownfields/": {
   "sha1": "2904fc2926a77b0eb9c903e43600be774db68af5",
@@ -140,8 +144,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/notes/concept-study-phrasebook/": {
-  "sha1": "ffd6914a9c1b4b731db83de8ddddb8f31f0d3b41",
-  "date": "2026-11-23"
+  "sha1": "f177a3e845f67b36be66277efaec018b360c6e3e",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/oman/": {
   "sha1": "637f0ddd54a9e17441201faaa849d7d8e90ab9ad",
@@ -152,8 +156,8 @@
   "date": "2026-11-23"
  },
  "https://evgenymaradin.com/insights/pressure/": {
-  "sha1": "e0909ff6b08c3e98d2f684e16d7d906ee71fd59d",
-  "date": "2026-11-23"
+  "sha1": "66ea7d7abcc174d14545abb8f485535f416be823",
+  "date": "2026-11-26"
  },
  "https://evgenymaradin.com/insights/ram-before-feed/": {
   "sha1": "eed9fc3057fa3cff7a937ea11d542c5b86173337",
