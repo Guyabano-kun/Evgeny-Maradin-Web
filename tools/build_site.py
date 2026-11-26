@@ -112,6 +112,7 @@ def structured_data(path, title, url, ld_json=None):
 
 def og_image_jpg(img_url):
     """Social networks (LinkedIn above all) handle WebP previews poorly: publish a 1200 px JPEG copy."""
+    img_url = img_url.split("?")[0] if img_url else img_url
     if not img_url or not img_url.endswith(".webp") or not img_url.startswith(SITE):
         return None
     src = os.path.join(OUT, img_url[len(SITE) + 1:])
@@ -433,8 +434,12 @@ MODELS = [
 IMG_DIR = os.path.join(OUT, "img", "insights")
 
 
+# bump when a cover image is replaced under the same file name (browsers cache /img/* for 7 days)
+COVER_V = {"lukoil-international": "2"}
 def cover(key):
-    return f"/img/insights/{key}.webp" if os.path.exists(os.path.join(IMG_DIR, key + ".webp")) else None
+    if not os.path.exists(os.path.join(IMG_DIR, key + ".webp")):
+        return None
+    return f"/img/insights/{key}.webp" + (f"?v={COVER_V[key]}" if key in COVER_V else "")
 
 
 def mins(w):
@@ -688,10 +693,10 @@ for i, key in enumerate(ORDER):
                      "articleSection": a["tag"].replace(" · ", ", "), "inLanguage": "en",
                      **({"keywords": meta["keywords"]} if meta.get("keywords") else {}),
                      "author": {"@type": "Person", "name": "Evgeny Maradin", "url": f"{SITE}/about/"},
-                     "image": f"{SITE}{img}" if img else f"{SITE}/og.png",
+                     "image": f"{SITE}{img.split('?')[0]}" if img else f"{SITE}/og.png",
                      "mainEntityOfPage": {"@type": "WebPage", "@id": url}, "url": url,
                      **({"isBasedOn": meta["url"]} if meta.get("url") else {})}, ensure_ascii=False)
-    if img: ART_IMG[url] = f"{SITE}{img}"
+    if img: ART_IMG[url] = f"{SITE}{img.split('?')[0]}"
     cases_rel = [c for c in CASES if c["insight"] == key]
     models_rel = [m for m in MODELS if m["related"] == key]
     others = related_articles(key)
@@ -707,7 +712,7 @@ for i, key in enumerate(ORDER):
 <h1 class="page article-title">{html.escape(meta["title"])}</h1><p class="lead">{a["s"]}</p>
 <p class="art-meta"><time datetime="{meta["date"]}">{a["d"]}</time> · {mins(a["w"])} min read · Evgeny Maradin</p></div></section>
 <section class="section tight" style="border-top:0;padding-top:0"><div class="container narrow">
-{f'<img class="art-cover" src="{img}" alt="{html.escape(meta["title"])}" width="{_IMG_SIZES[img][0]}" height="{_IMG_SIZES[img][1]}">' if img else ""}
+{f'<img class="art-cover" src="{img}" alt="{html.escape(meta["title"])}" width="{_IMG_SIZES[img.split('?')[0]][0]}" height="{_IMG_SIZES[img.split('?')[0]][1]}">' if img else ""}
 <div class="prose">
 {body_html}
 </div>
